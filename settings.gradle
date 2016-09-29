@@ -1,1 +1,1 @@
-include ':app', ':viewonmeasure'
+include ':app', ':viewonmeasure', ':learnswiperefreshlayout'
