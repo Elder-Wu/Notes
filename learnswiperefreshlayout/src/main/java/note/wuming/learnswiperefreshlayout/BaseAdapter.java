@@ -98,7 +98,7 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T extends 
         notifyItemInserted(position_in_list);
     }
 
-//    //更改某个位置的数据
+//    //更新某个位置的数据
 //    public void changeData(int position,) {
 //        data.set(position);
 //        notifyItemChanged(position);
@@ -135,5 +135,4 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T extends 
     protected boolean hasFooter() {
         return footerView == null ? false : true;
     }
-
 }
