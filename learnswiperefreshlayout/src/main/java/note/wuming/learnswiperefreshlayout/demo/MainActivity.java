@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        initView();
+         initView();
     }
 
     private void initView() {

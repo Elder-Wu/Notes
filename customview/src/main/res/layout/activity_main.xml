@@ -9,13 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.customview.MainActivity">
 
-    <TextView
+    <com.example.customview.CustomClock
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_centerInParent="true" />
 
-    <com.example.customview.CustomClock
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <com.example.customview.CountDownView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/countDownView" />
 </RelativeLayout>
