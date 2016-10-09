@@ -15,10 +15,10 @@
         android:layout_centerInParent="true" />
 
     <com.example.customview.CountDownView
-        android:layout_width="100dp"
+        android:id="@+id/countDownView"
+        android:layout_width="160dp"
         android:layout_height="150dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/countDownView" />
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
