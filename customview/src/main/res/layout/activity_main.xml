@@ -25,4 +25,8 @@
         app:border_color="#55B8E2"
         app:border_width="4dp"
         app:text_size="42dp" />
+
+    <com.example.customview.ChangeColorBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></com.example.customview.ChangeColorBar>
 </RelativeLayout>

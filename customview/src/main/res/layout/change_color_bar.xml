@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/bar_iv"
+        android:layout_width="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="32dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/bar_tv"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bar_iv"
+        android:text="标题" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/red_dot_bg"
+        android:textSize="10dp"
+        android:layout_toRightOf="@+id/bar_iv"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="-12dp"
+        android:text="1"/>
+</RelativeLayout>
