@@ -60,24 +60,19 @@ public class TestActivity extends AppCompatActivity implements TextHolderAdatpte
             case "仿ios底部弹出对话框":
                 // fragmentTransaction.replace(R.id.main_container, new BottomDialogFragment()).commitAllowingStateLoss();
                 BottomDialog.Builder builder = new BottomDialog.Builder(context);
-                builder.setTitle("我的自定义标题");
-                builder.setTitleSize(30);
-                builder.setTitleColor(Color.RED);
-                builder.setOptionTextSize(25);
-                builder.setOptionTextColor(Color.DKGRAY);
-                builder.addOption("操作1", new BottomDialog.OnOptionClickListener() {
+                builder.setTitle("标题", Color.RED);
+                builder.addOption("操作1", Color.BLACK, new BottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show(context, "操作1");
                     }
                 });
-                builder.addOption("操作2", new BottomDialog.OnOptionClickListener() {
+                builder.addOption("取消", Color.GRAY, new BottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
-                        ToastUtils.show(context, "操作2");
+                        ToastUtils.show(context, "取消");
                     }
                 });
-                builder.setCancelable(false);
                 builder.create().show();
                 break;
         }

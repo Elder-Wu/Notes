@@ -3,11 +3,16 @@ package com.example.customview.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.customview.R;
+import com.example.customview.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +31,8 @@ public class BottomDialog extends Dialog {
 
     public BottomDialog(Context context) {
         //给dialog定制了一个主题（透明背景，无边框，无标题栏，浮在Activity上面，模糊）
-        super(context, R.style.custom_dialog);
-        setContentView(R.layout.bottom_dialog);
+        super(context, R.style.ios_bottom_dialog);
+        setContentView(R.layout.ios_bottom_dialog);
         initView();
     }
 
@@ -42,6 +47,21 @@ public class BottomDialog extends Dialog {
                 BottomDialog.this.dismiss();
             }
         });
+        //点击空白区域可以取消
+        this.setCanceledOnTouchOutside(true);
+        //点击back键可以取消
+        this.setCancelable(true);
+        Window window = this.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+    }
+
+    public interface OnOptionClickListener {
+        void onOptionClick();
     }
 
     public static class Builder {
@@ -53,23 +73,14 @@ public class BottomDialog extends Dialog {
             this.context = context;
         }
 
-        public Builder setTitle(String title) {
+        public Builder setTitle(String title, int color) {
             p.title = title;
-            return this;
-        }
-
-        public Builder setTitleSize(int size) {
-            p.titleSize = size;
-            return this;
-        }
-
-        public Builder setTitleColor(int color) {
             p.titleColor = color;
             return this;
         }
 
-        public Builder addOption(String option, OnOptionClickListener listener) {
-            p.options.add(new Option(option, listener));
+        public Builder addOption(String option, int color, OnOptionClickListener listener) {
+            p.options.add(new Option(option, color, listener));
             return this;
         }
 
@@ -78,18 +89,9 @@ public class BottomDialog extends Dialog {
             return this;
         }
 
-        public Builder setOptionTextSize(int size) {
-            p.optionTextSize = size;
-            return this;
-        }
-
-        public Builder setOptionTextColor(int color) {
-            p.optionTextColor = color;
-            return this;
-        }
-
         public BottomDialog create() {
             final BottomDialog dialog = new BottomDialog(context);
+            final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
             if (p.title.isEmpty()) {
                 //设置标题栏不可见
                 dialog.title.setVisibility(View.GONE);
@@ -105,11 +107,14 @@ public class BottomDialog extends Dialog {
             if (p.options.size() == 0) {
                 dialog.options_ll.setVisibility(View.GONE);
             } else {
-                for (final Option option : p.options) {
-                    TextView optionText = new TextView(context);
+                for (int i = 0; i < p.options.size(); i++) {
+                    final Option option = p.options.get(i);
+                    final TextView optionText = new TextView(context);
+                    optionText.setPadding(UIUtils.dp2px(20), UIUtils.dp2px(20), UIUtils.dp2px(20), UIUtils.dp2px(20));
                     optionText.setText(option.getName());
                     optionText.setTextSize(p.optionTextSize);
-                    optionText.setTextColor(p.optionTextColor);
+                    optionText.setGravity(Gravity.CENTER);
+                    optionText.setTextColor(option.getColor());
                     optionText.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -120,34 +125,32 @@ public class BottomDialog extends Dialog {
                         }
                     });
                     dialog.options_ll.addView(optionText);
+                    //添加条目之间的分割线
+                    if (i != p.options.size() - 1) {
+                        View divider = new View(context);
+                        divider.setBackgroundColor(Color.BLACK);
+                        dialog.options_ll.addView(divider, params);
+                    }
                 }
             }
             return dialog;
         }
     }
-
-    public interface OnOptionClickListener {
-        void onOptionClick();
-    }
-
 }
 
 //这个类保存了dialog的众多参数
 class Paraments {
+    //// TODO: 16/10/14 这里应该进行一下dp和px的转换
+    public static final int titleSize = UIUtils.dp2px(20);
+    public static final int optionTextSize = UIUtils.dp2px(20);
     public String title;
     public int titleColor;
-    public int titleSize;
-    public int optionTextColor;
-    public int optionTextSize;
     public boolean cancelable;
     public List<Option> options;
 
     public Paraments() {
-        title = "标题";
+        title = "";
         titleColor = Color.BLACK;
-        titleSize = 20;
-        optionTextColor = Color.BLACK;
-        optionTextSize = 20;
         cancelable = true;
         options = new ArrayList();
     }
@@ -155,13 +158,15 @@ class Paraments {
 
 class Option {
     private String name;
+    private int color;
     private BottomDialog.OnOptionClickListener listener;
 
     public Option() {
     }
 
-    public Option(String name, BottomDialog.OnOptionClickListener listener) {
+    public Option(String name, int color, BottomDialog.OnOptionClickListener listener) {
         this.name = name;
+        this.color = color;
         this.listener = listener;
     }
 
@@ -171,6 +176,14 @@ class Option {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public BottomDialog.OnOptionClickListener getListener() {
