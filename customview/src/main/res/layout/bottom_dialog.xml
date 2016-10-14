@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="#999999">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_dialog_cancel_tv"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bottom_dialog_selector"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bottom_dialog_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/bottom_dialog_title_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_444444" />
+
+        <LinearLayout
+            android:id="@+id/options_ll"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bottom_dialog_cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_dialog_selector"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/cancel"
+        android:textSize="20dp" />
+
+</RelativeLayout>
