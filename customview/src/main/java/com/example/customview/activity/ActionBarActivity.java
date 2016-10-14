@@ -8,7 +8,7 @@ import android.view.View;
  * Created by wuming on 16/10/14.
  */
 
-public abstract class ActionBarActivity extends BaseActicity {
+public abstract class ActionBarActivity extends BaseActivity {
 
     private View actionBar;
 

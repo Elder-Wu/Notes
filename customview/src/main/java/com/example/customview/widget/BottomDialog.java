@@ -3,26 +3,18 @@ package com.example.customview.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Path;
-import android.os.Build;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.customview.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * 仿IOS风格的Dialog
- * 从底部弹出的
+ * 仿IOS风格－从底部弹出的dialog
  * Created by wuming on 16/10/12.
  */
 
@@ -52,16 +44,12 @@ public class BottomDialog extends Dialog {
         });
     }
 
-    private void addOption(String optionName, OnOptionClickListener onOptionClickListener) {
-//        TextView
-    }
-
     public static class Builder {
-        private Parament p;
+        private Paraments p;
         private Context context;
 
         public Builder(Context context) {
-            p = new Parament();
+            p = new Paraments();
             this.context = context;
         }
 
@@ -102,18 +90,22 @@ public class BottomDialog extends Dialog {
 
         public BottomDialog create() {
             final BottomDialog dialog = new BottomDialog(context);
-            if(p.title.isEmpty()){
+            if (p.title.isEmpty()) {
+                //设置标题栏不可见
                 dialog.title.setVisibility(View.GONE);
                 dialog.title_line.setVisibility(View.GONE);
-            } else{
+            } else {
                 dialog.title.setText(p.title);
                 dialog.title.setTextColor(p.titleColor);
                 dialog.title.setTextSize(p.titleSize);
+                //设置标题栏可见
+                dialog.title.setVisibility(View.VISIBLE);
+                dialog.title_line.setVisibility(View.VISIBLE);
             }
-            if(p.options.size()==0){
+            if (p.options.size() == 0) {
                 dialog.options_ll.setVisibility(View.GONE);
             } else {
-                for(final Option option:p.options){
+                for (final Option option : p.options) {
                     TextView optionText = new TextView(context);
                     optionText.setText(option.getName());
                     optionText.setTextSize(p.optionTextSize);
@@ -122,7 +114,7 @@ public class BottomDialog extends Dialog {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
-                            if(option.getListener()!=null){
+                            if (option.getListener() != null) {
                                 option.getListener().onOptionClick();
                             }
                         }
@@ -138,18 +130,26 @@ public class BottomDialog extends Dialog {
         void onOptionClick();
     }
 
-    //这个类保存了dialog的众多参数
-    private static class Parament {
-        public String title = "标题";
-        public int titleColor = Color.BLACK;
-        public int titleSize = 20;
-        public int optionTextColor = Color.BLACK;
-        public int optionTextSize = 20;
-        public boolean cancelable = true;
-        public List<Option> options = new ArrayList();
+}
 
-        public Parament() {
-        }
+//这个类保存了dialog的众多参数
+class Paraments {
+    public String title;
+    public int titleColor;
+    public int titleSize;
+    public int optionTextColor;
+    public int optionTextSize;
+    public boolean cancelable;
+    public List<Option> options;
+
+    public Paraments() {
+        title = "标题";
+        titleColor = Color.BLACK;
+        titleSize = 20;
+        optionTextColor = Color.BLACK;
+        optionTextSize = 20;
+        cancelable = true;
+        options = new ArrayList();
     }
 }
 

@@ -1,35 +1,40 @@
 package com.example.customview.activity;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.customview.R;
-import com.example.customview.fragment.BottomDialogFragment;
-import com.example.customview.utils.ToastUtils;
 import com.example.customview.adapter.TextHolderAdatpter;
+import com.example.customview.utils.ToastUtils;
 import com.example.customview.widget.BottomDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestActivity extends ActionBarActivity implements TextHolderAdatpter.TextHolderClickListener {
+public class TestActivity extends AppCompatActivity implements TextHolderAdatpter.TextHolderClickListener {
 
     private final String TAG = TestActivity.class.getSimpleName();
     private TextHolderAdatpter adatpter;
 
+    private Context context;
     private FragmentTransaction fragmentTransaction;
 
-    @Override
-    protected int setContentView() {
-        return R.layout.activity_main;
-    }
 
     @Override
-    protected void initView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        context = this;
+        initView();
+    }
+
+    private void initView() {
         initData();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -78,8 +83,4 @@ public class TestActivity extends ActionBarActivity implements TextHolderAdatpte
         }
     }
 
-    @Override
-    protected View setCustomActionBar() {
-        return null;
-    }
 }

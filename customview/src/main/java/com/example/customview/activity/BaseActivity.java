@@ -11,7 +11,7 @@ import android.util.Log;
  * Created by wuming on 16/10/13.
  */
 
-public abstract class BaseActicity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context context;
 
@@ -20,6 +20,8 @@ public abstract class BaseActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
         beforeSetContentView();
+        setContentView(setContentView());
+        initView();
     }
 
     protected void beforeSetContentView() {
