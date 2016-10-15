@@ -126,7 +126,7 @@ public class BottomDialog extends Dialog {
                     //添加条目之间的分割线
                     if (i != p.options.size() - 1) {
                         View divider = new View(context);
-                        divider.setBackgroundColor(Color.BLACK);
+                        divider.setBackgroundResource(R.color.black_444444);
                         dialog.options_ll.addView(divider, params);
                     }
                     //选择到底使用哪个selector文件
