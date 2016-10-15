@@ -10,22 +10,14 @@ import android.view.View;
 
 public abstract class ActionBarActivity extends BaseActivity {
 
-    private View actionBar;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView();
-        actionBar = setCustomActionBar();
+        beforeSetContentView();
+        setContentView(setContentView());
+        initActionBar();
         initView();
     }
 
-    protected abstract View setCustomActionBar();
-
-    protected View getCustomActionBar() {
-        if (actionBar != null) {
-            return actionBar;
-        }
-        return null;
-    }
+    protected abstract void initActionBar();
 }

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import com.example.customview.R;
 
 /**
+ * 仿QQ，微信底部icon，可以显示未读消息数角标
  * Created on 2016/10/11.
  */
 

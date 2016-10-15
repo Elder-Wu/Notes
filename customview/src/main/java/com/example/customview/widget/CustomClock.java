@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
+ * 自定义钟表表盘
  * Created by wuming on 16/9/28.
  */
 public class CustomClock extends View {

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.customview.R;
 
 /**
+ * 仿迅雷手机客户端  广告倒计时View
  * Created on 2016/10/8.
  */
 

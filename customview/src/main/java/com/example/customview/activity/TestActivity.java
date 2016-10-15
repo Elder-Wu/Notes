@@ -1,54 +1,50 @@
 package com.example.customview.activity;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.customview.R;
 import com.example.customview.adapter.TextHolderAdatpter;
-import com.example.customview.utils.ToastUtils;
-import com.example.customview.widget.BottomDialog;
+import com.example.customview.fragment.BottomDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestActivity extends AppCompatActivity implements TextHolderAdatpter.TextHolderClickListener {
+public class TestActivity extends ActionBarActivity implements TextHolderAdatpter.TextHolderClickListener {
 
     private final String TAG = TestActivity.class.getSimpleName();
     private TextHolderAdatpter adatpter;
 
-    private Context context;
-    private FragmentTransaction fragmentTransaction;
-
+    //ActionBar
+    private TextView actionBarTitle;
+    private FragmentManager fragmentManager;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        context = this;
-        initView();
+    protected int setContentView() {
+        return R.layout.activity_main;
     }
 
-    private void initView() {
+    @Override
+    protected void initActionBar() {
+        View actionBar = findViewById(R.id.activity_main_actionbar);
+        actionBarTitle = (TextView) actionBar.findViewById(R.id.actionbar_main_title);
+    }
+
+    protected void initView() {
         initData();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adatpter);
 
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentManager = getSupportFragmentManager();
     }
 
     private void initData() {
         List<String> data = new ArrayList();
-        data.add("Java");
-        data.add("Python");
-        data.add("Html");
         data.add("仿ios底部弹出对话框");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
@@ -56,26 +52,19 @@ public class TestActivity extends AppCompatActivity implements TextHolderAdatpte
 
     @Override
     public void onTextClick(int position) {
+        setTitle(adatpter.getData(position));
         switch (adatpter.getData(position)) {
             case "仿ios底部弹出对话框":
-                // fragmentTransaction.replace(R.id.main_container, new BottomDialogFragment()).commitAllowingStateLoss();
-                BottomDialog.Builder builder = new BottomDialog.Builder(context);
-                builder.setTitle("标题", Color.RED);
-                builder.addOption("操作1", Color.BLACK, new BottomDialog.OnOptionClickListener() {
-                    @Override
-                    public void onOptionClick() {
-                        ToastUtils.show(context, "操作1");
-                    }
-                });
-                builder.addOption("取消", Color.GRAY, new BottomDialog.OnOptionClickListener() {
-                    @Override
-                    public void onOptionClick() {
-                        ToastUtils.show(context, "取消");
-                    }
-                });
-                builder.create().show();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.main_container, new BottomDialogFragment())
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
                 break;
         }
+    }
+
+    public void setTitle(String title) {
+        actionBarTitle.setText(title);
     }
 
 }

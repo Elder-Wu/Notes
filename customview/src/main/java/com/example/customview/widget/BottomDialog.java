@@ -47,13 +47,16 @@ public class BottomDialog extends Dialog {
                 BottomDialog.this.dismiss();
             }
         });
-        //点击空白区域可以取消
+        //点击空白区域可以取消dialog
         this.setCanceledOnTouchOutside(true);
-        //点击back键可以取消
+        //点击back键可以取消dialog
         this.setCancelable(true);
         Window window = this.getWindow();
+        //让Dialog显示在屏幕的底部
         window.setGravity(Gravity.BOTTOM);
+        //设置窗口出现和窗口隐藏的动画
         window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
+        //设置BottomDialog的宽高属性
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -81,11 +84,6 @@ public class BottomDialog extends Dialog {
 
         public Builder addOption(String option, int color, OnOptionClickListener listener) {
             p.options.add(new Option(option, color, listener));
-            return this;
-        }
-
-        public Builder setCancelable(boolean cancelable) {
-            p.cancelable = cancelable;
             return this;
         }
 
@@ -130,6 +128,16 @@ public class BottomDialog extends Dialog {
                         View divider = new View(context);
                         divider.setBackgroundColor(Color.BLACK);
                         dialog.options_ll.addView(divider, params);
+                    }
+                    //选择到底使用哪个selector文件
+                    if(p.options.size()==1){
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option13);
+                    } else if(i == 0){
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option1);
+                    } else if(i<p.options.size()-1){
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
+                    } else {
+                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option3);
                     }
                 }
             }

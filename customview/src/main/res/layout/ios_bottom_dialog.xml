@@ -8,7 +8,7 @@
         android:id="@+id/bottom_dialog_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_dialog_selector"
+        android:background="@drawable/bottom_dialog_cancel"
         android:orientation="vertical">
 
         <TextView
@@ -42,10 +42,10 @@
         android:id="@+id/bottom_dialog_cancel_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_dialog_selector"
+        android:background="@drawable/bottom_dialog_cancel"
         android:gravity="center"
         android:padding="8dp"
-        android:textColor="@color/black_444444"
+        android:textColor="@color/text_color_green_013ADF"
         android:text="@string/cancel"
         android:textSize="20dp" />
 

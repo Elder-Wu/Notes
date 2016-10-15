@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无标题，只有操作" />
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无操作，只有标题" />
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题＋1个操作" />
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题＋2个操作" />
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无标题＋3个操作" />
+
+        <Button
+            android:id="@+id/fragment_ios_bottom_dialog_btn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无标题＋4个操作" />
+    </LinearLayout>
+
+</RelativeLayout>
