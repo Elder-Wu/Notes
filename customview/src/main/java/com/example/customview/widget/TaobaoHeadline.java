@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextSwitcher;
+import android.widget.ViewFlipper;
 
 import com.example.customview.R;
 import com.example.customview.adapter.HeadlineHolderAdapter;
@@ -51,6 +53,7 @@ public class TaobaoHeadline extends RelativeLayout {
         this.data = data;
         initView();
         start();
+        
     }
 
     public void setHeadlineClickListener(HeadlineHolderAdapter.HeadlineClickListener listener) {
