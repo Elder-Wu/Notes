@@ -53,7 +53,7 @@ public class TaobaoHeadline extends RelativeLayout {
         this.data = data;
         initView();
         start();
-        
+
     }
 
     public void setHeadlineClickListener(HeadlineHolderAdapter.HeadlineClickListener listener) {
