@@ -5,11 +5,10 @@
     android:layout_height="56dp">
 
     <TextView
-        android:id="@+id/actionbar_main_title"
+        android:id="@+id/actionbar_default_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="软件主界面"
         android:textColor="@color/white"
         android:textSize="20dp"/>
 </RelativeLayout>

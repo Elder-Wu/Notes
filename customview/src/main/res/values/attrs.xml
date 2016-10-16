@@ -9,8 +9,9 @@
         <attr name="text_color" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="ChangeColorBar">
-        <attr name="bar_img" format="reference"/>
-        <attr name="bar_text" format="string"/>
+    <declare-styleable name="BottomBar">
+        <attr name="bar_img" format="reference" />
+        <attr name="bar_text" format="string" />
     </declare-styleable>
+
 </resources>

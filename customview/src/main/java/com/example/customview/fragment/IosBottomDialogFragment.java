@@ -3,20 +3,19 @@ package com.example.customview.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 
 import com.example.customview.R;
 import com.example.customview.utils.ToastUtils;
-import com.example.customview.widget.BottomDialog;
+import com.example.customview.widget.IosBottomDialog;
 
 /**
  * Created by wuming on 16/10/14.
  */
 
-public class BottomDialogFragment extends BaseFragment implements View.OnClickListener {
+public class IosBottomDialogFragment extends BaseFragment implements View.OnClickListener {
 
-    private static final String TAG = BottomDialogFragment.class.getSimpleName();
+    private static final String TAG = IosBottomDialogFragment.class.getSimpleName();
 
     @Override
     protected int setResId() {
@@ -35,11 +34,11 @@ public class BottomDialogFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        final BottomDialog.Builder builder = new BottomDialog.Builder(context);
+        final IosBottomDialog.Builder builder = new IosBottomDialog.Builder(context);
         switch (v.getId()) {
             case R.id.fragment_ios_bottom_dialog_btn1:
                 //无标题，只有操作
-                builder.addOption("操作1", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                builder.addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作1");
@@ -53,7 +52,7 @@ public class BottomDialogFragment extends BaseFragment implements View.OnClickLi
             case R.id.fragment_ios_bottom_dialog_btn3:
                 //标题＋1个操作
                 builder.setTitle("标题", Color.RED)
-                        .addOption("操作1", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                        .addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
                                 ToastUtils.show("操作1");
@@ -63,12 +62,12 @@ public class BottomDialogFragment extends BaseFragment implements View.OnClickLi
             case R.id.fragment_ios_bottom_dialog_btn4:
                 //标题＋2个操作
                 builder.setTitle("标题", Color.RED)
-                        .addOption("操作1", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                        .addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
                                 ToastUtils.show("操作1");
                             }
-                        }).addOption("操作2", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                        }).addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作2");
@@ -77,17 +76,17 @@ public class BottomDialogFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.fragment_ios_bottom_dialog_btn5:
                 //无标题，3个操作
-                builder.addOption("操作1", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                builder.addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作1");
                     }
-                }).addOption("操作2", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                }).addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作2");
                     }
-                }).addOption("操作3", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                }).addOption("操作3", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作3");
@@ -96,22 +95,22 @@ public class BottomDialogFragment extends BaseFragment implements View.OnClickLi
                 break;
             case R.id.fragment_ios_bottom_dialog_btn6:
                 //无标题，4个操作
-                builder.addOption("操作1", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                builder.addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作1");
                     }
-                }).addOption("操作2", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                }).addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作2");
                     }
-                }).addOption("操作3", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                }).addOption("操作3", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作3");
                     }
-                }).addOption("操作4", Color.DKGRAY, new BottomDialog.OnOptionClickListener() {
+                }).addOption("操作4", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                     @Override
                     public void onOptionClick() {
                         ToastUtils.show("操作4");

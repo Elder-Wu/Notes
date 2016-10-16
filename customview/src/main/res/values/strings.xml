@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CustomView</string>
     <string name="cancel">取消</string>
+    <string name="more">更多</string>
 </resources>

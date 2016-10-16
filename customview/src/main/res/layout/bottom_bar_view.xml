@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="-12dp"
         android:layout_toRightOf="@+id/bar_iv"
-        android:background="@drawable/red_dot_bg"
+        android:background="@drawable/red_dot"
         android:text="1"
         android:gravity="center"
         android:textColor="#FFFFFF"

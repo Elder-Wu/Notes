@@ -1,5 +1,7 @@
 package com.example.customview.widget;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -23,13 +25,13 @@ import java.util.List;
  * Created by wuming on 16/10/12.
  */
 
-public class BottomDialog extends Dialog {
+public class IosBottomDialog extends Dialog {
 
-    public LinearLayout options_ll;
-    public TextView title;
-    public View title_line;
+    private LinearLayout options_ll;
+    private TextView title;
+    private View title_line;
 
-    public BottomDialog(Context context) {
+    private IosBottomDialog(Context context) {
         //给dialog定制了一个主题（透明背景，无边框，无标题栏，浮在Activity上面，模糊）
         super(context, R.style.ios_bottom_dialog);
         setContentView(R.layout.ios_bottom_dialog);
@@ -44,7 +46,7 @@ public class BottomDialog extends Dialog {
         findViewById(R.id.bottom_dialog_cancel_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomDialog.this.dismiss();
+                IosBottomDialog.this.dismiss();
             }
         });
         //点击空白区域可以取消dialog
@@ -87,8 +89,8 @@ public class BottomDialog extends Dialog {
             return this;
         }
 
-        public BottomDialog create() {
-            final BottomDialog dialog = new BottomDialog(context);
+        public IosBottomDialog create() {
+            final IosBottomDialog dialog = new IosBottomDialog(context);
             final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
             if (p.title.isEmpty()) {
                 //设置标题栏不可见
@@ -130,11 +132,11 @@ public class BottomDialog extends Dialog {
                         dialog.options_ll.addView(divider, params);
                     }
                     //选择到底使用哪个selector文件
-                    if(p.options.size()==1){
+                    if (p.options.size() == 1) {
                         optionText.setBackgroundResource(R.drawable.bottom_dialog_option13);
-                    } else if(i == 0){
+                    } else if (i == 0) {
                         optionText.setBackgroundResource(R.drawable.bottom_dialog_option1);
-                    } else if(i<p.options.size()-1){
+                    } else if (i < p.options.size() - 1) {
                         optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
                     } else {
                         optionText.setBackgroundResource(R.drawable.bottom_dialog_option3);
@@ -167,12 +169,12 @@ class Paraments {
 class Option {
     private String name;
     private int color;
-    private BottomDialog.OnOptionClickListener listener;
+    private IosBottomDialog.OnOptionClickListener listener;
 
     public Option() {
     }
 
-    public Option(String name, int color, BottomDialog.OnOptionClickListener listener) {
+    public Option(String name, int color, IosBottomDialog.OnOptionClickListener listener) {
         this.name = name;
         this.color = color;
         this.listener = listener;
@@ -194,11 +196,11 @@ class Option {
         this.color = color;
     }
 
-    public BottomDialog.OnOptionClickListener getListener() {
+    public IosBottomDialog.OnOptionClickListener getListener() {
         return listener;
     }
 
-    public void setListener(BottomDialog.OnOptionClickListener listener) {
+    public void setListener(IosBottomDialog.OnOptionClickListener listener) {
         this.listener = listener;
     }
 }
