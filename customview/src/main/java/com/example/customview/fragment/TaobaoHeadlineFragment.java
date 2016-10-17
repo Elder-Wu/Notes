@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.customview.R;
-import com.example.customview.adapter.HeadlineHolderAdapter;
 import com.example.customview.bean.HeadlineBean;
 import com.example.customview.utils.ToastUtils;
 import com.example.customview.widget.TaobaoHeadline;
@@ -29,16 +28,22 @@ public class TaobaoHeadlineFragment extends BaseFragment {
     @Override
     protected void initView(View view, @Nullable Bundle savedInstanceState) {
         List<HeadlineBean> data = new ArrayList<>();
-        data.add(new HeadlineBean("热", "还是短发根深蒂固舒服的感受是对分身乏术是减肥损公肥私风格舒服的感受"));
-        data.add(new HeadlineBean("荐", "还是短发根深蒂固舒服的感受是对分身乏术是减肥损公肥私风格舒服的感受"));
-        data.add(new HeadlineBean("好", "还是短发根深蒂固舒服的感受是对分身乏术是减肥损公肥私风格舒服的感受"));
-        data.add(new HeadlineBean("省", "还是短发根深蒂固舒服的感受是对分身乏术是减肥损公肥私风格舒服的感受"));
+        data.add(new HeadlineBean("热门", "袜子裤子只要998～只要998～"));
+        data.add(new HeadlineBean("荐", "秋冬上心，韩流服饰，一折起"));
+        data.add(new HeadlineBean("好货", "品牌二手车"));
+        data.add(new HeadlineBean("省", "MadCatz MMO7 游戏鼠标键盘套装"));
+
         taobaoHeadline = (TaobaoHeadline) view.findViewById(R.id.fragment_taobao_headline_headline);
         taobaoHeadline.setData(data);
-        taobaoHeadline.setHeadlineClickListener(new HeadlineHolderAdapter.HeadlineClickListener() {
+        taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener() {
             @Override
-            public void onHeadlineClick(List<HeadlineBean> data, int position_in_data) {
-                ToastUtils.show(data.get(position_in_data).getTitle());
+            public void onHeadlineClick(HeadlineBean bean) {
+                ToastUtils.show(bean.getTitle() + ":" + bean.getContent());
+            }
+
+            @Override
+            public void onMoreClick() {
+                ToastUtils.show("更多");
             }
         });
     }

@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/headline_title"
         android:gravity="center"
-        android:text="荐"
         android:textColor="#FF0000" />
 
     <TextView

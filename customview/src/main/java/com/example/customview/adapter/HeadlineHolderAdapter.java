@@ -19,7 +19,7 @@ import java.util.List;
 public class HeadlineHolderAdapter extends BaseAdapter<HeadlineHolder, HeadlineBean> {
 
     private static final String TAG = HeadlineHolderAdapter.class.getSimpleName();
-    private HeadlineClickListener listener;
+//    private HeadlineClickListener listener;
 
     public HeadlineHolderAdapter(Context context, List<HeadlineBean> data) {
         super(context, data);
@@ -32,25 +32,27 @@ public class HeadlineHolderAdapter extends BaseAdapter<HeadlineHolder, HeadlineB
 
     @Override
     protected void onBindHolder(HeadlineHolder holder, final int position_in_data) {
-        final HeadlineBean bean = data.get(position_in_data%data.size());
-        holder.title.setText(bean.getTitle());
-        holder.content.setText(bean.getContent());
-        holder.content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onHeadlineClick(data, position_in_data);
-                }
-            }
-        });
+//        final HeadlineBean bean = data.get(position_in_data%data.size());
+//        holder.title.setText(bean.getTitle());
+//        holder.content.setText(bean.getContent());
+//        holder.content.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (listener != null) {
+//                    listener.onHeadlineClick(data, position_in_data);
+//                }
+//            }
+//        });
     }
 
-    public void setHeadlineClickListener(HeadlineClickListener listener) {
-        this.listener = listener;
+    public void setHeadlineClickListener(TaobaoHeadline.HeadlineClickListener listener) {
+//        this.listener = listener;
     }
 
-    public interface HeadlineClickListener {
-        void onHeadlineClick(List<HeadlineBean> data, int position_in_data);
-    }
+//    public interface HeadlineClickListener {
+//        void onHeadlineClick(List<HeadlineBean> data, int position_in_data);
+//
+//        void onHeadlineClick(HeadlineBean b);
+//    }
 
 }

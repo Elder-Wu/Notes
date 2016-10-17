@@ -17,8 +17,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="1dp"
             android:scaleType="fitXY"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -26,24 +28,26 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text=":"
+            android:textColor="@color/black_444444"
             android:textSize="20dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/taobao_headline_rv"
+        <ViewFlipper
+            android:id="@+id/taobao_headline_viewflipper"
             android:layout_width="0dp"
             android:layout_height="@dimen/headline_height"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="11dp"
             android:layout_weight="1" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="@color/black"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black_444444" />
 
         <TextView
+            android:id="@+id/taobao_headline_more_tv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
