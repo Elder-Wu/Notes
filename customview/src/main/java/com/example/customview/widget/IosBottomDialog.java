@@ -1,7 +1,5 @@
 package com.example.customview.widget;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -30,6 +28,7 @@ public class IosBottomDialog extends Dialog {
     private LinearLayout options_ll;
     private TextView title;
     private View title_line;
+    private IosBottomDialogDismissListener dismissListener;
 
     private IosBottomDialog(Context context) {
         //给dialog定制了一个主题（透明背景，无边框，无标题栏，浮在Activity上面，模糊）
@@ -65,8 +64,25 @@ public class IosBottomDialog extends Dialog {
         window.setAttributes(lp);
     }
 
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        if (dismissListener != null) {
+            dismissListener.onDismiss();
+        }
+    }
+
+    private void setIosBottomDialogDismissListener(IosBottomDialogDismissListener listener) {
+        this.dismissListener = listener;
+    }
+
+
     public interface OnOptionClickListener {
         void onOptionClick();
+    }
+
+    public interface IosBottomDialogDismissListener {
+        void onDismiss();
     }
 
     public static class Builder {
@@ -89,6 +105,11 @@ public class IosBottomDialog extends Dialog {
             return this;
         }
 
+        public Builder setDialogDismissListener(IosBottomDialogDismissListener listener) {
+            p.dismisslistener = listener;
+            return this;
+        }
+
         public IosBottomDialog create() {
             final IosBottomDialog dialog = new IosBottomDialog(context);
             final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
@@ -104,6 +125,7 @@ public class IosBottomDialog extends Dialog {
                 dialog.title.setVisibility(View.VISIBLE);
                 dialog.title_line.setVisibility(View.VISIBLE);
             }
+            //设置item项点击之后的效果
             if (p.options.size() == 0) {
                 dialog.options_ll.setVisibility(View.GONE);
             } else {
@@ -133,9 +155,17 @@ public class IosBottomDialog extends Dialog {
                     }
                     //选择到底使用哪个selector文件
                     if (p.options.size() == 1) {
-                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option13);
+                        if (p.title.isEmpty()) {
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option13);
+                        } else {
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option3);
+                        }
                     } else if (i == 0) {
-                        optionText.setBackgroundResource(R.drawable.bottom_dialog_option1);
+                        if (p.title.isEmpty()) {
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option1);
+                        } else {
+                            optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
+                        }
                     } else if (i < p.options.size() - 1) {
                         optionText.setBackgroundResource(R.drawable.bottom_dialog_option2);
                     } else {
@@ -143,6 +173,7 @@ public class IosBottomDialog extends Dialog {
                     }
                 }
             }
+            dialog.setIosBottomDialogDismissListener(p.dismisslistener);
             return dialog;
         }
     }
@@ -157,6 +188,7 @@ class Paraments {
     public int titleColor;
     public boolean cancelable;
     public List<Option> options;
+    public IosBottomDialog.IosBottomDialogDismissListener dismisslistener;
 
     public Paraments() {
         title = "";

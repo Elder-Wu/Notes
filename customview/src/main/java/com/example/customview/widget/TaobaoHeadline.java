@@ -51,8 +51,11 @@ public class TaobaoHeadline extends RelativeLayout {
                 }
             }
         });
+        //进入动画
         viewFlipper.setInAnimation(getContext(), R.anim.headline_in);
+        //退出动画
         viewFlipper.setOutAnimation(getContext(), R.anim.headline_out);
+        //动画间隔
         viewFlipper.setFlipInterval(2000);
         viewFlipper.startFlipping();
     }

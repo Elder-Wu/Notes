@@ -44,7 +44,7 @@ public class CountDownView extends View {
     private TextPaint textPaint;
     private Paint borderPaint;
 
-    private float progress = 135;
+    private float progress = 0;
     private StaticLayout staticLayout;
 
     private CountDownTimerListener listener;

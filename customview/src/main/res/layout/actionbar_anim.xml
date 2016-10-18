@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/black_444444"
-    android:layout_height="56dp">
+    android:layout_height="56dp"
+    android:background="@color/black_444444">
 
     <TextView
-        android:id="@+id/actionbar_default_title"
+        android:id="@+id/actionbar_anim_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/white"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 </RelativeLayout>

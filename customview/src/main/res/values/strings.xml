@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">CustomView</string>
+    <string name="app_name">Notes</string>
     <string name="cancel">取消</string>
     <string name="more">更多</string>
+    <string name="back">返回</string>
+    <string name="main_title">软件主界面</string>
 </resources>

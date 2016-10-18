@@ -5,7 +5,7 @@
 
     <include
         android:id="@+id/activity_main_actionbar"
-        layout="@layout/actionbar_default" />
+        layout="@layout/actionbar_main" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

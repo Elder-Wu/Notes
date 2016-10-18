@@ -9,4 +9,6 @@
     <color name="black">#000000</color>
     <color name="black_888888">#888888</color>
     <color name="text_color_green_013ADF">#013ADF</color>
+    <color name="blue_6eb">#6eb0f3</color>
+    <color name="gray_aaa">#aaaaaa</color>
 </resources>

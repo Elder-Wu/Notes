@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.customview.R;
 import com.example.customview.activity.MainActivity;
 
 /**
@@ -28,12 +29,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         initView(view, savedInstanceState);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ((MainActivity) getActivity()).setTitle("软件主界面");
     }
 
     protected abstract int setResId();
