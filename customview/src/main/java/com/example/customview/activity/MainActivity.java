@@ -15,6 +15,7 @@ import com.example.customview.fragment.BottomBarFragment;
 import com.example.customview.fragment.CountDownFragment;
 import com.example.customview.fragment.IosBottomDialogFragment;
 import com.example.customview.fragment.TaobaoHeadlineFragment;
+import com.example.customview.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,9 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
 
     @Override
     public void onTextClick(int position) {
+        if(UIUtils.isDoubleClick()){
+            return;
+        }
         Intent intent;
         setTitle(adatpter.getData(position));
         switch (adatpter.getData(position)) {

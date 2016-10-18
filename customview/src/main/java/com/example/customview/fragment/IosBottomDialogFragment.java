@@ -67,12 +67,13 @@ public class IosBottomDialogFragment extends BaseFragment implements View.OnClic
                             public void onOptionClick() {
                                 ToastUtils.show("操作1");
                             }
-                        }).addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
-                    @Override
-                    public void onOptionClick() {
-                        ToastUtils.show("操作2");
-                    }
-                }).create().show();
+                        })
+                        .addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
+                            @Override
+                            public void onOptionClick() {
+                                ToastUtils.show("操作2");
+                            }
+                        }).create().show();
                 break;
             case R.id.fragment_ios_bottom_dialog_btn5:
                 //无标题，3个操作

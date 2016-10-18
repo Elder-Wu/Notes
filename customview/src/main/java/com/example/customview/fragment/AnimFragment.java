@@ -6,10 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.animation.AnimationSet;
 
 import com.example.customview.R;
 import com.example.customview.utils.ToastUtils;
+import com.example.customview.utils.UIUtils;
 import com.example.customview.widget.IosBottomDialog;
 
 /**
@@ -29,6 +29,9 @@ public class AnimFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        if (UIUtils.isDoubleClick()) {
+            return;
+        }
         switch (v.getId()) {
             case R.id.fragment_anim_btn1:
                 IosBottomDialog.Builder builder = new IosBottomDialog.Builder(context);

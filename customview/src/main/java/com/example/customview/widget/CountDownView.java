@@ -124,33 +124,40 @@ public class CountDownView extends View {
             rectF = new RectF(borderWidth / 2, height / 2 - min / 2 + borderWidth / 2, width - borderWidth / 2, height / 2 - borderWidth / 2 + min / 2);
         }
         canvas.drawArc(rectF, -90, progress, false, borderPaint);
-        //画居中的文字
+        //画单行居中的文字
 //       canvas.drawText("稍等片刻", width / 2, height / 2 - textPaint.descent() + textPaint.getTextSize() / 2, textPaint);
         canvas.translate(width / 2, height / 2 - staticLayout.getHeight() / 2);
         staticLayout.draw(canvas);
     }
 
+    private CountDownTimer countDownTimer;
+
     public void start() {
         if (listener != null) {
             listener.onStartCount();
         }
-        CountDownTimer countDownTimer = new CountDownTimer(3600, 36) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                progress = ((3600 - millisUntilFinished) / 3600f) * 360;
-                Log.d(TAG, "progress:" + progress);
-                invalidate();
-            }
-
-            @Override
-            public void onFinish() {
-                progress = 360;
-                invalidate();
-                if (listener != null) {
-                    listener.onFinishCount();
+        if (countDownTimer == null) {
+            countDownTimer = new CountDownTimer(3600, 36) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    progress = ((3600 - millisUntilFinished) / 3600f) * 360;
+                    Log.d(TAG, "progress:" + progress);
+                    invalidate();
                 }
-            }
-        }.start();
+
+                @Override
+                public void onFinish() {
+                    progress = 360;
+                    invalidate();
+                    if (listener != null) {
+                        listener.onFinishCount();
+                    }
+                }
+            };
+        }
+        countDownTimer.cancel();
+        countDownTimer.start();
+
     }
 
     public void setCountDownTimerListener(CountDownTimerListener listener) {
@@ -162,48 +169,5 @@ public class CountDownView extends View {
         void onStartCount();
 
         void onFinishCount();
-    }
-
-    /**
-     * Created on 2016/10/11.
-     */
-
-    public static class BottomBarView extends RelativeLayout {
-
-        private int msgCount;
-        private TextView bar_num;
-
-        public BottomBarView(Context context) {
-            this(context, null);
-        }
-
-        public BottomBarView(Context context, AttributeSet attrs) {
-            this(context, attrs, 0);
-        }
-
-        public BottomBarView(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-            RelativeLayout rl = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.bottom_bar_view, this, true);
-            bar_num = (TextView) rl.findViewById(R.id.bar_num);
-        }
-
-        public void setMessageCount(int count) {
-            msgCount = count;
-            if (count == 0) {
-                bar_num.setVisibility(View.GONE);
-            } else {
-                bar_num.setVisibility(View.VISIBLE);
-                if (count < 100) {
-                    bar_num.setText(count + "");
-                } else {
-                    bar_num.setText("99+");
-                }
-            }
-            invalidate();
-        }
-
-        public void addMsg() {
-            setMessageCount(msgCount + 1);
-        }
     }
 }

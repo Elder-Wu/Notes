@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.customview.R;
-import com.example.customview.activity.MainActivity;
-
 /**
  * Created by wuming on 16/10/14.
  */
@@ -28,10 +25,12 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        view.setClickable(true);
         initView(view, savedInstanceState);
     }
 
     protected abstract int setResId();
 
     protected abstract void initView(View view, @Nullable Bundle savedInstanceState);
+
 }
