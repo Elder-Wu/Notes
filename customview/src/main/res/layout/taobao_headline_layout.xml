@@ -16,11 +16,11 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:scaleType="fitXY"
             android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
+            android:scaleType="fitXY"
             android:src="@drawable/jd_toutiao" />
 
         <ViewFlipper
