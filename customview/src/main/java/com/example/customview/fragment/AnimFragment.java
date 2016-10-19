@@ -35,7 +35,7 @@ public class AnimFragment extends BaseFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.fragment_anim_btn1:
                 IosBottomDialog.Builder builder = new IosBottomDialog.Builder(context);
-                builder.setTitle("这是一个带动画特效的Activity", Color.RED)
+                builder.setTitle("标题", Color.RED)
                         .addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
