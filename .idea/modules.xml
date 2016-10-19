@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Notes.iml" filepath="$PROJECT_DIR$/Notes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/customview/customview.iml" filepath="$PROJECT_DIR$/customview/customview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/learnswiperefreshlayout/learnswiperefreshlayout.iml" filepath="$PROJECT_DIR$/learnswiperefreshlayout/learnswiperefreshlayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/viewonmeasure/viewonmeasure.iml" filepath="$PROJECT_DIR$/viewonmeasure/viewonmeasure.iml" />
     </modules>
   </component>
 </project>
