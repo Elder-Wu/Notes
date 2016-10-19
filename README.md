@@ -1,8 +1,7 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
 ###高仿IOS：从底部弹出的Dialog，拓展性比较高
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true" width="270" height="400">
-
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true" width="270" height="400"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true" width="270" height="400">
 使用方法
 ```
     IosBottomDialog.Builder builder = new IosBottomDialog.Builder(context);
@@ -45,4 +44,42 @@ Create a repository for myself.Mainly record some of my study notes.
                 ToastUtils.show("更多");
             }
         });
+```
+###广告倒计时View
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif" width="270" height="400">
+
+使用方法
+```
+布局文件中使用
+    <com.example.customview.widget.CountDownView
+        android:id="@+id/fragment_count_down"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:background_color="@color/gray_aaa"
+        app:border_color="@color/blue_6eb"
+        app:border_width="3dp"
+        app:text="跳过广告"
+        app:text_color="@color/white"
+        app:text_size="55dp" />
+
+        代码中使用
+                countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
+                    @Override
+                    public void onStartCount() {
+                        ToastUtils.show("开始了");
+                    }
+
+                    @Override
+                    public void onFinishCount() {
+                        ToastUtils.show("结束了");
+                    }
+                });
+                view.findViewById(R.id.fragment_count_down_start_btn).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        countDownView.start();
+                    }
+                });
 ```
