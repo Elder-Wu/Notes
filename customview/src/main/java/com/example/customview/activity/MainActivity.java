@@ -14,6 +14,7 @@ import com.example.customview.fragment.AnimFragment;
 import com.example.customview.fragment.BottomBarFragment;
 import com.example.customview.fragment.CountDownFragment;
 import com.example.customview.fragment.IosBottomDialogFragment;
+import com.example.customview.fragment.NetworkFragment;
 import com.example.customview.fragment.TaobaoHeadlineFragment;
 import com.example.customview.utils.UIUtils;
 
@@ -60,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("淘宝头条控件");
         data.add("显示未读消息数控件");
         data.add("广告倒计时控件");
+        data.add("网络请求");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
     }
@@ -86,6 +88,9 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
                 break;
             case "广告倒计时控件":
                 openFragment(new CountDownFragment());
+                break;
+            case "网络请求":
+                openFragment(new NetworkFragment());
                 break;
         }
     }

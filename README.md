@@ -65,6 +65,7 @@ _布局文件中使用_
     app:text_size="55dp" />
 
 _代码中使用_
+countDownView.start();
 countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
     @Override
     public void onStartCount() {
@@ -74,13 +75,6 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
     @Override
     public void onFinishCount() {
         ToastUtils.show("结束了");
-    }
-});
-view.findViewById(R.id.fragment_count_down_start_btn).setOnClickListener(new View.OnClickListener() {
-
-    @Override
-    public void onClick(View v) {
-        countDownView.start();
     }
 });
 ```

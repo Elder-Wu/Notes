@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/fragment_network_get_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="进行网络请求" />
+
+    <TextView
+        android:id="@+id/fragment_network_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_network_get_btn"
+        tools:text="这里显示请求结果" />
+</RelativeLayout>
