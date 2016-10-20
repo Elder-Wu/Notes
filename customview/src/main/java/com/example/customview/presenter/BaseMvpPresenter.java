@@ -6,7 +6,7 @@ import com.example.customview.view.BaseMvpView;
  * Created by wuming on 16/10/20.
  */
 
-public class BaseMvpPresenter<V extends BaseMvpView> {
+public abstract class BaseMvpPresenter<V extends BaseMvpView> {
 
     V view;
 

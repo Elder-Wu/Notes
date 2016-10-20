@@ -11,6 +11,7 @@ import com.example.customview.view.BaseMvpView;
  */
 
 public abstract class BaseMvpFragment<V extends BaseMvpView, P extends BaseMvpPresenter> extends BaseFragment {
+
     public P presenter;
 
     @Override
