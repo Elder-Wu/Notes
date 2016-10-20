@@ -16,12 +16,12 @@ public class BottomBarFragment extends BaseFragment implements View.OnClickListe
     private BottomBar bottomBar;
 
     @Override
-    protected int setResId() {
+    public int setResId() {
         return R.layout.fragment_bottom_bar;
     }
 
     @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         bottomBar = (BottomBar) view.findViewById(R.id.fragment_bottom_bar);
         view.findViewById(R.id.fragment_bottombar_add1_btn).setOnClickListener(this);
         view.findViewById(R.id.fragment_bottombar_add10_btn).setOnClickListener(this);

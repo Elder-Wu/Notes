@@ -1,7 +1,6 @@
 package com.example.customview.utils;
 
-import com.example.customview.bean.BaseResp;
-import com.example.customview.bean.WeatherBean;
+import com.example.customview.bean.HeWeatherBean;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -38,10 +37,10 @@ public class NetworkRequest {
     }
 
     public void getWeather(String city, Action1 onNext) {
-        getService().getWeatherService(city, GlobleData.HEFENG_KEY).compose(new ComposeThread<WeatherBean>()).subscribe(onNext);
+        getService().getWeatherService(city, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
     }
 
     public void getScenic(String cityid, Action1 onNext) {
-        getService().getScenicService(cityid, GlobleData.HEFENG_KEY).compose(new ComposeThread<BaseResp>()).subscribe(onNext);
+        getService().getScenicService(cityid, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
     }
 }

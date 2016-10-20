@@ -21,12 +21,12 @@ public class TaobaoHeadlineFragment extends BaseFragment {
     private TaobaoHeadline taobaoHeadline;
 
     @Override
-    protected int setResId() {
+    public int setResId() {
         return R.layout.fragment_taobao_headline;
     }
 
     @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         List<HeadlineBean> data = new ArrayList<>();
         data.add(new HeadlineBean("热门", "袜子裤子只要998～只要998～"));
         data.add(new HeadlineBean("推荐", "秋冬上心，韩流服饰，一折起"));

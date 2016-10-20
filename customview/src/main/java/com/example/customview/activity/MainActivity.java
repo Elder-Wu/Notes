@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -90,6 +91,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
                 openFragment(new CountDownFragment());
                 break;
             case "网络请求":
+                Log.d(TAG,"openFragment start");
                 openFragment(new NetworkFragment());
                 break;
         }

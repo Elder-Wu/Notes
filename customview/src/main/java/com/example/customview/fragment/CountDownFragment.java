@@ -18,12 +18,12 @@ public class CountDownFragment extends BaseFragment {
     private CountDownView countDownView;
 
     @Override
-    protected int setResId() {
+    public int setResId() {
         return R.layout.fragment_countdown;
     }
 
     @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         countDownView = (CountDownView) view.findViewById(R.id.fragment_count_down);
         countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
             @Override

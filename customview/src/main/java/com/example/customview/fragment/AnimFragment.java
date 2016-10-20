@@ -18,12 +18,12 @@ import com.example.customview.widget.IosBottomDialog;
 
 public class AnimFragment extends BaseFragment implements View.OnClickListener {
     @Override
-    protected int setResId() {
+    public int setResId() {
         return R.layout.fragment_anim;
     }
 
     @Override
-    protected void initView(View view, @Nullable Bundle savedInstanceState) {
+    public void initView(View view, @Nullable Bundle savedInstanceState) {
         view.findViewById(R.id.fragment_anim_btn1).setOnClickListener(this);
     }
 
