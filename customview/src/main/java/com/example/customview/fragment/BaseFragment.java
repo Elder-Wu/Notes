@@ -1,6 +1,7 @@
 package com.example.customview.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Log.e("MainActivity", "BaseFragment onViewCreated");
         view.setClickable(true);
+        view.setBackgroundColor(Color.WHITE);
         initView(view, savedInstanceState);
     }
 

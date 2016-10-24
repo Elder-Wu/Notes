@@ -5,13 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.customview.R;
 import com.example.customview.adapter.TextHolderAdatpter;
 import com.example.customview.fragment.AnimFragment;
+import com.example.customview.fragment.ApproveListFragment;
 import com.example.customview.fragment.BottomBarFragment;
 import com.example.customview.fragment.CountDownFragment;
 import com.example.customview.fragment.IosBottomDialogFragment;
@@ -63,13 +63,14 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("显示未读消息数控件");
         data.add("广告倒计时控件");
         data.add("网络请求");
+        data.add("点赞列表");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
     }
 
     @Override
     public void onTextClick(int position) {
-        if(UIUtils.isDoubleClick()){
+        if (UIUtils.isDoubleClick()) {
             return;
         }
         Intent intent;
@@ -91,8 +92,10 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
                 openFragment(new CountDownFragment());
                 break;
             case "网络请求":
-                Log.d(TAG,"openFragment start");
                 openFragment(new NetworkFragment());
+                break;
+            case "点赞列表":
+                openFragment(new ApproveListFragment());
                 break;
         }
     }
