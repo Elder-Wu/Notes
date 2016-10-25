@@ -36,8 +36,8 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpV
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         initData();
-approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
-approveListLayout.updateApproveList(approveList);
+        approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
+        approveListLayout.updateApproveList(approveList);
 
         view.findViewById(R.id.apprive_list_mv1_approve).setOnClickListener(this);
         view.findViewById(R.id.apprive_list_mv1_unapprove).setOnClickListener(this);
@@ -48,20 +48,20 @@ approveListLayout.updateApproveList(approveList);
     }
 
     private void initData() {
-approveList = new ArrayList<>();
-approveList.add(R.drawable.demo);
-approveList.add(R.drawable.demo);
-approveList.add(R.drawable.demo);
-approveList.add(R.drawable.demo);
-approveList.add(R.drawable.demo);
+        approveList = new ArrayList<>();
+        approveList.add(R.drawable.demo);
+        approveList.add(R.drawable.demo);
+        approveList.add(R.drawable.demo);
+        approveList.add(R.drawable.demo);
+        approveList.add(R.drawable.demo);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.apprive_list_mv1_approve:
-                if(!approveList.contains(R.drawable.mv1)){
-                    approveList.add(0,R.drawable.mv1);
+                if (!approveList.contains(R.drawable.mv1)) {
+                    approveList.add(0, R.drawable.mv1);
                 } else {
                     ToastUtils.show("该用户已经点过赞了");
                 }
@@ -70,8 +70,8 @@ approveList.add(R.drawable.demo);
                 approveList.remove(new Integer(R.drawable.mv1));
                 break;
             case R.id.apprive_list_mv2_approve:
-                if(!approveList.contains(R.drawable.mv2)){
-                    approveList.add(0,R.drawable.mv2);
+                if (!approveList.contains(R.drawable.mv2)) {
+                    approveList.add(0, R.drawable.mv2);
                 } else {
                     ToastUtils.show("该用户已经点过赞了");
                 }
@@ -80,8 +80,8 @@ approveList.add(R.drawable.demo);
                 approveList.remove(new Integer(R.drawable.mv2));
                 break;
             case R.id.apprive_list_mv3_approve:
-                if(!approveList.contains(R.drawable.mv3)){
-                    approveList.add(0,R.drawable.mv3);
+                if (!approveList.contains(R.drawable.mv3)) {
+                    approveList.add(0, R.drawable.mv3);
                 } else {
                     ToastUtils.show("该用户已经点过赞了");
                 }

@@ -29,11 +29,11 @@ public class ApproveListLayout extends HorizontalScrollView {
 
     private static final String TAG = ApproveListLayout.class.getSimpleName();
 
-    //图片大小
+    //默认图片大小
     private static final int DEFAULT_PIC_SIZE = 50;
-    //图片数量
+    //默认图片数量
     private static final int DEFAULT_PIC_COUNT = 6;
-    //图片偏移百分比 0～1
+    //默认图片偏移百分比 0～1
     private static final float DEFAULT_PIC_OFFSET = 0.3f;
 
     private Context context;
@@ -54,6 +54,7 @@ public class ApproveListLayout extends HorizontalScrollView {
     public ApproveListLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
+        //初始化自定义属性
         TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.ApproveListLayout);
         picCount = ta.getInt(R.styleable.ApproveListLayout_pic_count, DEFAULT_PIC_COUNT);
         picSize = (int) ta.getDimension(R.styleable.ApproveListLayout_pic_size, picSize);
@@ -66,6 +67,7 @@ public class ApproveListLayout extends HorizontalScrollView {
     public ApproveListLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.context = context;
+        //初始化自定义属性
         TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.ApproveListLayout);
         picCount = ta.getInt(R.styleable.ApproveListLayout_pic_count, DEFAULT_PIC_COUNT);
         picSize = (int) ta.getDimension(R.styleable.ApproveListLayout_pic_size, picSize);
@@ -77,9 +79,11 @@ public class ApproveListLayout extends HorizontalScrollView {
 
     private void init() {
         setHorizontalScrollBarEnabled(false);
+        //定义一个RelativeLayout
         RelativeLayout relativeLayout = new RelativeLayout(context);
         int offset = picSize - (int) (picSize * picOffset);
         headList = new ArrayList<>(picCount);
+        //循环把CircleImageView塞到RelativiLayout中，根据偏移量来摆放位置
         for (int i = 0; i < picCount; i++) {
             CircleImageView head = new CircleImageView(context);
             head.setId(head.hashCode() + i);
@@ -93,6 +97,7 @@ public class ApproveListLayout extends HorizontalScrollView {
             headList.add(head);
         }
         relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        //这里是关键：把定义的RelativeLayout放到布局中，这样才能显示出来
         this.addView(relativeLayout);
     }
 
@@ -134,5 +139,4 @@ public class ApproveListLayout extends HorizontalScrollView {
             head.setVisibility(View.GONE);
         }
     }
-
 }
