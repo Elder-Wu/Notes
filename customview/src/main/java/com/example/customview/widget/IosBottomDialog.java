@@ -25,6 +25,10 @@ import java.util.List;
 
 public class IosBottomDialog extends Dialog {
 
+    public static final int DEFAULT_PADDING = 7;
+    public static final int DEFAULT_TITLE_SIZE = 7;
+    public static final int DEFAULT_OPTION_SIZE = 7;
+
     private LinearLayout options_ll;
     private TextView title;
     private View title_line;
@@ -132,7 +136,8 @@ public class IosBottomDialog extends Dialog {
                 for (int i = 0; i < p.options.size(); i++) {
                     final Option option = p.options.get(i);
                     final TextView optionText = new TextView(context);
-                    optionText.setPadding(UIUtils.dp2px(20), UIUtils.dp2px(20), UIUtils.dp2px(20), UIUtils.dp2px(20));
+                    int padding = UIUtils.dp2px(IosBottomDialog.DEFAULT_PADDING);
+                    optionText.setPadding(padding, padding, padding, padding);
                     optionText.setText(option.getName());
                     optionText.setTextSize(p.optionTextSize);
                     optionText.setGravity(Gravity.CENTER);
@@ -182,8 +187,8 @@ public class IosBottomDialog extends Dialog {
 //这个类保存了dialog的众多参数
 class Paraments {
     //// TODO: 16/10/14 这里应该进行一下dp和px的转换
-    public static final int titleSize = UIUtils.dp2px(20);
-    public static final int optionTextSize = UIUtils.dp2px(20);
+    public static final int titleSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_TITLE_SIZE);
+    public static final int optionTextSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_OPTION_SIZE);
     public String title;
     public int titleColor;
     public boolean cancelable;

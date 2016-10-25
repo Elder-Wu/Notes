@@ -14,4 +14,9 @@
         <attr name="bar_text" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ApproveListLayout">
+        <attr name="pic_count" format="integer"/>
+        <attr name="pic_size" format="dimension"/>
+        <attr name="pic_offset" format="float"/>
+    </declare-styleable>
 </resources>

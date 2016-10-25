@@ -2,38 +2,46 @@ package com.example.customview.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 
+import com.example.customview.R;
 import com.example.customview.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
+
 /**
  * Created by wuming on 2016/10/23.
  */
 
-public class ApproveListLayout extends RelativeLayout {
+public class ApproveListLayout extends HorizontalScrollView {
 
     private static final String TAG = ApproveListLayout.class.getSimpleName();
 
     //图片大小
-    private static final int PIC_SIZE = 50;
+    private static final int DEFAULT_PIC_SIZE = 50;
     //图片数量
-    private static final int PIC_COUNT = 6;
+    private static final int DEFAULT_PIC_COUNT = 6;
     //图片偏移百分比 0～1
-    private static final float PIC_OFFSET = 0.3f;
+    private static final float DEFAULT_PIC_OFFSET = 0.3f;
 
     private Context context;
-    private List<ImageView> headList;
+    private List<CircleImageView> headList;
 
-    private int picSize = UIUtils.dp2px(PIC_SIZE);
-    private int picCount = PIC_COUNT;
-    private float picOffset = PIC_OFFSET;
+    private int picSize = UIUtils.dp2px(DEFAULT_PIC_SIZE);
+    private int picCount = DEFAULT_PIC_COUNT;
+    private float picOffset = DEFAULT_PIC_OFFSET;
 
     public ApproveListLayout(Context context) {
         this(context, null);
@@ -46,6 +54,11 @@ public class ApproveListLayout extends RelativeLayout {
     public ApproveListLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
+        TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.ApproveListLayout);
+        picCount = ta.getInt(R.styleable.ApproveListLayout_pic_count, DEFAULT_PIC_COUNT);
+        picSize = (int) ta.getDimension(R.styleable.ApproveListLayout_pic_size, picSize);
+        picOffset = ta.getFloat(R.styleable.ApproveListLayout_pic_offset, DEFAULT_PIC_OFFSET);
+        picOffset = picOffset > 1 ? 1 : picOffset;
         init();
     }
 
@@ -53,43 +66,73 @@ public class ApproveListLayout extends RelativeLayout {
     public ApproveListLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.context = context;
+        TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.ApproveListLayout);
+        picCount = ta.getInt(R.styleable.ApproveListLayout_pic_count, DEFAULT_PIC_COUNT);
+        picSize = (int) ta.getDimension(R.styleable.ApproveListLayout_pic_size, picSize);
+        picOffset = ta.getFloat(R.styleable.ApproveListLayout_pic_offset, DEFAULT_PIC_OFFSET);
+        picOffset = picOffset > 1 ? 1 : picOffset;
+        ta.recycle();
         init();
     }
 
     private void init() {
+        setHorizontalScrollBarEnabled(false);
+        RelativeLayout relativeLayout = new RelativeLayout(context);
         int offset = picSize - (int) (picSize * picOffset);
         headList = new ArrayList<>(picCount);
         for (int i = 0; i < picCount; i++) {
-            ImageView head = new ImageView(context);
+            CircleImageView head = new CircleImageView(context);
             head.setId(head.hashCode() + i);
-            head.setBackgroundColor(Color.GRAY);
-            LayoutParams params = new LayoutParams(picSize, picSize);
-            params.addRule(ALIGN_PARENT_RIGHT);
-            params.setMargins(0, 0, i * (offset), 0);
-            this.addView(head, params);
+            head.setBorderColor(Color.WHITE);
+            head.setBorderWidth(UIUtils.dp2px(1));
+            head.setImageResource(R.drawable.demo);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(picSize, picSize);
+            params.addRule(ALIGN_PARENT_LEFT);
+            params.setMargins((picCount - i - 1) * offset, 0, 0, 0);
+            relativeLayout.addView(head, params);
             headList.add(head);
         }
+        relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        this.addView(relativeLayout);
     }
 
     public void setPicSize(int picSize) {
         this.picSize = picSize;
-        init();
     }
 
     public void setPicCount(int picCount) {
         this.picCount = picCount;
-        init();
     }
 
     public void setPicOffset(int offset) {
         picOffset = UIUtils.dp2px(offset);
     }
 
-    public void updateApproveList(List<String> urlList) {
-//        if (headList == null) {
-//        }
-//        requestLayout();
-//        invalidate();
-//        Log.e(TAG,"childCount->"+getChildCount());
+    public void initLayout() {
+        init();
     }
+
+    //根据传进来的头像列表来更新头像
+    public void updateApproveList(List<Integer> urlList) {
+        if (urlList == null) {
+            return;
+        }
+        hideAllHeads();
+        int i = picCount - 1;
+        for (int url : urlList) {
+            headList.get(i).setImageResource(url);
+            headList.get(i).setVisibility(View.VISIBLE);
+            if (i == 0) {
+                break;
+            }
+            --i;
+        }
+    }
+
+    private void hideAllHeads() {
+        for (CircleImageView head : headList) {
+            head.setVisibility(View.GONE);
+        }
+    }
+
 }
