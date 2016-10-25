@@ -78,3 +78,28 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
 });
 countDownView.start();
 ```
+###点赞头像列表
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif" width="270" height="400">
+
+使用方法
+```
+_布局中使用_
+<com.example.customview.widget.ApproveListLayout
+    android:id="@+id/approve_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    app:pic_count="9"
+    app:pic_offset="0.3f"
+    app:pic_size="20dp"/>
+
+_代码中使用_
+approveList = new ArrayList<>();
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+
+approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
+approveListLayout.updateApproveList(approveList);
+```

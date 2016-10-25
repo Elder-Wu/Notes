@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.customview.widget.ApproveListLayout
-        android:id="@+id/approve_list_layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:pic_count="9" />
+<com.example.customview.widget.ApproveListLayout
+    android:id="@+id/approve_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    app:pic_count="9"
+    app:pic_offset="0.3f"
+    app:pic_size="20dp"/>
 
 
     <LinearLayout

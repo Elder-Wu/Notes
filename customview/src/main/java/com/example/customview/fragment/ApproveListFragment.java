@@ -1,6 +1,5 @@
 package com.example.customview.fragment;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -21,7 +20,7 @@ import java.util.List;
 public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpView, ApproveListFragmentMvpPresenter>
         implements ApproveListFragmentMvpView, View.OnClickListener {
 
-    private ApproveListLayout all;
+    private ApproveListLayout approveListLayout;
     private List<Integer> approveList;
 
     @Override
@@ -37,8 +36,8 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpV
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         initData();
-        all = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
-        all.updateApproveList(approveList);
+approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
+approveListLayout.updateApproveList(approveList);
 
         view.findViewById(R.id.apprive_list_mv1_approve).setOnClickListener(this);
         view.findViewById(R.id.apprive_list_mv1_unapprove).setOnClickListener(this);
@@ -49,12 +48,12 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpV
     }
 
     private void initData() {
-        approveList = new ArrayList<>();
-        approveList.add(R.drawable.demo);
-        approveList.add(R.drawable.demo);
-        approveList.add(R.drawable.demo);
-        approveList.add(R.drawable.demo);
-        approveList.add(R.drawable.demo);
+approveList = new ArrayList<>();
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
+approveList.add(R.drawable.demo);
     }
 
     @Override
@@ -91,6 +90,6 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpV
                 approveList.remove(new Integer(R.drawable.mv3));
                 break;
         }
-        all.updateApproveList(approveList);
+        approveListLayout.updateApproveList(approveList);
     }
 }
