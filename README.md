@@ -1,6 +1,7 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
-[DEMO下载地址](http://fir.im/wuzhanglao)
+
+[demo apk下载地址](http://fir.im/wuzhanglao)
 ###高仿IOS：从底部弹出的Dialog，拓展性比较高
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true" width="270" height="400"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true" width="270" height="400">
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true">
+
+    <com.example.notes.widget.BottomBar
+        android:id="@+id/fragment_bottom_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:id="@+id/fragment_bottombar_add1_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加一条未读消息" />
+
+    <Button
+        android:id="@+id/fragment_bottombar_add10_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_bottombar_add1_btn"
+        android:text="添加十条未读消息" />
+
+    <Button
+        android:id="@+id/fragment_bottombar_delete1_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_bottombar_add10_btn"
+        android:text="删除一条未读消息" />
+
+    <Button
+        android:id="@+id/fragment_bottombar_deleteall_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_bottombar_delete1_btn"
+        android:text="删除所有未读消息" />
+</RelativeLayout>
