@@ -3,6 +3,9 @@
     package="com.example.customview">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".utils.MyApplication"
@@ -20,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5810166a7666132fe5002154" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="total" />
     </application>
 
 </manifest>

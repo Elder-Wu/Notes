@@ -1,10 +1,13 @@
 package com.example.customview.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,7 +44,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     protected void initActionBar() {
         View actionBar = findViewById(R.id.activity_main_actionbar);
         actionBarTitle = (TextView) actionBar.findViewById(R.id.actionbar_main_title);
-        actionBarTitle.setText("软件主界面");
+        actionBarTitle.setText(getString(R.string.main_title));
         actionBarBack = (TextView) actionBar.findViewById(R.id.actionbar_main_back_tv);
         actionBarBack.setOnClickListener(this);
         hideBackButton();
@@ -50,8 +53,16 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     protected void initView() {
         initData();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        TextView introduce = (TextView) findViewById(R.id.introduce_tv);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            introduce.setText(Html.fromHtml(getString(R.string.introduce), 0));
+        } else {
+            introduce.setText(Html.fromHtml(getString(R.string.introduce)));
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adatpter);
+
         fragmentManager = getSupportFragmentManager();
     }
 

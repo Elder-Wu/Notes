@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.umeng.analytics.MobclickAgent;
+
 /**
  * Created by wuming on 16/10/14.
  */
@@ -31,6 +33,18 @@ public abstract class BaseFragment extends Fragment {
         view.setClickable(true);
         view.setBackgroundColor(Color.WHITE);
         initView(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(getClass().getSimpleName());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getClass().getSimpleName());
     }
 
     public abstract int setResId();

@@ -13,10 +13,27 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        release {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled false
+            shrinkResources false
         }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+       }
     }
 }
 
@@ -38,4 +55,6 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //圆形ImageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //友盟统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
