@@ -1,7 +1,9 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
 
-[Demo apk 下载地址](http://fir.im/wuzhanglao)
+[Demo apk 下载地址](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
+
+![扫码下载](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ###高仿IOS：从底部弹出的Dialog，拓展性比较高
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true" width="270" height="400"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true" width="270" height="400">
 
@@ -105,7 +107,7 @@ approveList.add(R.drawable.demo);
 approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
 approveListLayout.updateApproveList(approveList);
 ```
-###可以悬浮在边缘的控件
+###可以悬浮在屏幕边缘的控件
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif" width="270" height="400">
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
