@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    //兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
     signingConfigs {
         NotesKey {
             keyAlias 'NotesKey'
@@ -9,10 +13,6 @@ android {
             storePassword 'dawang520'
         }
     }
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
-    //兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
-    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.customview"
         minSdkVersion 14
@@ -21,11 +21,15 @@ android {
         versionName "1.0.1"
         multiDexEnabled true
     }
+    packagingOptions {
+        //解决bmob和rxjava冲突的问题
+        exclude 'META-INF/rxjava.properties'
+    }
     buildTypes {
         debug {
             // 显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
-            versionNameSuffix ""
+            versionNameSuffix "-debug"
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
@@ -38,7 +42,7 @@ android {
             minifyEnabled true
             //Zipalign优化
             zipAlignEnabled true
-            // 移除无用的resource文件
+            //移除无用的resource文件
             shrinkResources true
             //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -69,6 +73,6 @@ dependencies {
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-//    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile 'cn.bmob.android:bmob-sdk:3.5.0'
     compile 'cn.bmob.android:http-legacy:1.0'
 }
