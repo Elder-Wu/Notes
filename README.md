@@ -108,7 +108,7 @@ approveListLayout.updateApproveList(approveList);
 ###可以悬浮在边缘的控件
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif" width="270" height="400">
 
-使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了
+使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
 ```
 <com.example.notes.widget.DragLayout
     android:id="@+id/fragment_drag_layout"

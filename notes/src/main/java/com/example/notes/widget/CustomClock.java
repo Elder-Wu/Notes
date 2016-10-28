@@ -45,22 +45,22 @@ public class CustomClock extends View {
         int width_mode = MeasureSpec.getMode(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int height_mode = MeasureSpec.getMode(heightMeasureSpec);
-        if(width_mode == MeasureSpec.AT_MOST){
+        if (width_mode == MeasureSpec.AT_MOST) {
             width = 400;
         }
-        if(height_mode == MeasureSpec.AT_MOST){
+        if (height_mode == MeasureSpec.AT_MOST) {
             height = 400;
         }
-        setMeasuredDimension(width,height);
+        setMeasuredDimension(width, height);
     }
 
     private void init() {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setDither(true);
-        paint.setTextSize(20);
-        paint.setStrokeWidth(3);
-        paint.setColor(Color.BLUE);
+        paint.setTextSize(15);
+        paint.setStrokeWidth(2);
+        paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         textHeight = paint.getFontMetrics().descent - paint.getFontMetrics().ascent;
     }
@@ -74,7 +74,7 @@ public class CustomClock extends View {
         for (int i = 1; i <= 12; i++) {
             canvas.rotate(30, width / 2, height / 2);
             canvas.drawLine(width / 2, height / 2 - radius, width / 2, height / 2 - radius + 15, paint);
-            canvas.drawText(i + "", width / 2-paint.measureText(i+"")/2, height / 2 - radius + 15+textHeight, paint);
+            canvas.drawText(i + "", width / 2 - paint.measureText(i + "") / 2, height / 2 - radius + 15 + textHeight, paint);
         }
 
         canvas.rotate(-30, width / 2, height / 2);
