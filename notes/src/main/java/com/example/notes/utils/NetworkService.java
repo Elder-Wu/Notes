@@ -1,6 +1,6 @@
 package com.example.notes.utils;
 
-import com.example.notes.bean.HeWeatherBean;
+import com.example.notes.mvp.model.HeWeatherBean;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

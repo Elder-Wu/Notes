@@ -1,4 +1,4 @@
-package com.example.notes.bean;
+package com.example.notes.mvp.model;
 
 /**
  * Created by wuming on 16/10/16.

@@ -1,8 +1,8 @@
-package com.example.notes.presenter;
+package com.example.notes.mvp.presenter;
 
-import com.example.notes.bean.HeWeatherBean;
+import com.example.notes.mvp.model.HeWeatherBean;
 import com.example.notes.utils.NetworkRequest;
-import com.example.notes.view.NetworkFragmentMvpView;
+import com.example.notes.mvp.view.NetworkFragmentMvpView;
 
 import rx.functions.Action1;
 

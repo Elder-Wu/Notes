@@ -1,6 +1,6 @@
 package com.example.notes.utils;
 
-import com.example.notes.bean.HeWeatherBean;
+import com.example.notes.mvp.model.HeWeatherBean;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

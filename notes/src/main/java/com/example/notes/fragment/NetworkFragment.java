@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.notes.R;
-import com.example.notes.presenter.NetworkFragmentMvpPresenter;
+import com.example.notes.mvp.presenter.NetworkFragmentMvpPresenter;
 import com.example.notes.utils.ToastUtils;
-import com.example.notes.view.NetworkFragmentMvpView;
+import com.example.notes.mvp.view.NetworkFragmentMvpView;
 
 /**
  * Created by wuming on 16/10/19.

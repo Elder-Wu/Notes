@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<com.example.notes.widget.DragLayout
+    android:id="@+id/fragment_drag_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black_444444"
+        android:padding="20dp"
+        android:text="我是一个可以拖动的View"
+        android:textColor="@color/white" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:src="#22000000" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="140dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/demo" />
+
+    <com.example.notes.widget.CustomClock
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="200dp" />
+</com.example.notes.widget.DragLayout>
+
+</RelativeLayout>

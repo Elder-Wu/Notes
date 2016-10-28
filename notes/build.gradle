@@ -11,18 +11,21 @@ android {
     }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
+    //兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.customview"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
         versionName "1.0.1"
+        multiDexEnabled true
     }
     buildTypes {
         debug {
             // 显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
-            versionNameSuffix "-debug"
+            versionNameSuffix ""
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
@@ -46,9 +49,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.google.code.gson:gson:2.2.4'
     //rxjava相关依赖
     compile 'io.reactivex:rxjava:1.2.1'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -63,4 +68,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+//    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile 'cn.bmob.android:http-legacy:1.0'
 }

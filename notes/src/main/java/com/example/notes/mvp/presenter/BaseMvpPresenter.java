@@ -1,6 +1,6 @@
-package com.example.notes.presenter;
+package com.example.notes.mvp.presenter;
 
-import com.example.notes.view.BaseMvpView;
+import com.example.notes.mvp.view.BaseMvpView;
 
 /**
  * Created by wuming on 16/10/20.

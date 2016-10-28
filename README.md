@@ -1,7 +1,7 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
 
-[demo apk下载地址](http://fir.im/wuzhanglao)
+[Demo apk 下载地址](http://fir.im/wuzhanglao)
 ###高仿IOS：从底部弹出的Dialog，拓展性比较高
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true" width="270" height="400"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true" width="270" height="400">
 
@@ -104,4 +104,37 @@ approveList.add(R.drawable.demo);
 
 approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
 approveListLayout.updateApproveList(approveList);
+```
+###可以悬浮在边缘的控件
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif" width="270" height="400">
+
+使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了
+```
+<com.example.notes.widget.DragLayout
+    android:id="@+id/fragment_drag_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black_444444"
+        android:padding="20dp"
+        android:text="我是一个可以拖动的View"
+        android:textColor="@color/white" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:src="#22000000" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="140dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/demo" />
+    <com.example.notes.widget.CustomClock
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="200dp" />
+</com.example.notes.widget.DragLayout>
 ```

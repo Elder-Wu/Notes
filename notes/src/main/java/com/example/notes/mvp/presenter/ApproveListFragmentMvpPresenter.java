@@ -1,6 +1,6 @@
-package com.example.notes.presenter;
+package com.example.notes.mvp.presenter;
 
-import com.example.notes.view.ApproveListFragmentMvpView;
+import com.example.notes.mvp.view.ApproveListFragmentMvpView;
 
 import java.util.ArrayList;
 import java.util.List;

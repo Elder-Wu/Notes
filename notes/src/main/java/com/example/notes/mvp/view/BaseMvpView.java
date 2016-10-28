@@ -1,4 +1,4 @@
-package com.example.notes.view;
+package com.example.notes.mvp.view;
 
 /**
  * Created by wuming on 16/10/19.

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.notes.R;
-import com.example.notes.bean.HeadlineBean;
+import com.example.notes.mvp.model.HeadlineBean;
 
 import java.util.ArrayList;
 import java.util.List;

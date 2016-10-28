@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.notes.R;
-import com.example.notes.bean.HeadlineBean;
+import com.example.notes.mvp.model.HeadlineBean;
 import com.example.notes.utils.ToastUtils;
 import com.example.notes.widget.TaobaoHeadline;
 

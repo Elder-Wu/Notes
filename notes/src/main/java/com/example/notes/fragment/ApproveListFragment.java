@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.notes.R;
-import com.example.notes.presenter.ApproveListFragmentMvpPresenter;
+import com.example.notes.mvp.presenter.ApproveListFragmentMvpPresenter;
 import com.example.notes.utils.ToastUtils;
-import com.example.notes.view.ApproveListFragmentMvpView;
+import com.example.notes.mvp.view.ApproveListFragmentMvpView;
 import com.example.notes.widget.ApproveListLayout;
 
 import java.util.ArrayList;

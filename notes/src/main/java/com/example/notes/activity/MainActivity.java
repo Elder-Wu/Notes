@@ -16,6 +16,7 @@ import com.example.notes.fragment.AnimFragment;
 import com.example.notes.fragment.ApproveListFragment;
 import com.example.notes.fragment.BottomBarFragment;
 import com.example.notes.fragment.CountDownFragment;
+import com.example.notes.fragment.DragFragment;
 import com.example.notes.fragment.IosBottomDialogFragment;
 import com.example.notes.fragment.NetworkFragment;
 import com.example.notes.fragment.TaobaoHeadlineFragment;
@@ -74,6 +75,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("广告倒计时控件");
         data.add("网络请求");
         data.add("点赞列表");
+        data.add("可以拖动的布局");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
     }
@@ -106,6 +108,9 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
                 break;
             case "点赞列表":
                 openFragment(new ApproveListFragment());
+                break;
+            case "可以拖动的布局":
+                openFragment(new DragFragment());
                 break;
         }
     }
