@@ -2,6 +2,7 @@ package com.example.notes.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Paint;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -49,6 +50,7 @@ public class DragLayout extends RelativeLayout {
 
             @Override
             public int clampViewPositionVertical(View child, int top, int dy) {
+                child.setAlpha(dy/top);
                 return top;
             }
 
