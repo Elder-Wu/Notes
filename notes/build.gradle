@@ -14,7 +14,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "com.example.customview"
+        applicationId "com.wuzhanglao.niubi"
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
@@ -22,7 +22,7 @@ android {
         multiDexEnabled true
     }
     packagingOptions {
-        //解决bmob和rxjava冲突的问题
+        //解决bmob的依赖冲突的问题
         exclude 'META-INF/rxjava.properties'
     }
     buildTypes {
@@ -57,7 +57,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.google.code.gson:gson:2.2.4'
+//    compile 'com.google.code.gson:gson:2.2.4'
     //rxjava相关依赖
     compile 'io.reactivex:rxjava:1.2.1'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -73,6 +73,9 @@ dependencies {
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+//    compile('cn.bmob.android:bmob-sdk:3.5.0') {
+//        exclude group: 'com.squareup.okhttp3'
+//        exclude group: 'com.google.gson',module:'annotations'
+//    }
     compile 'cn.bmob.android:http-legacy:1.0'
 }
