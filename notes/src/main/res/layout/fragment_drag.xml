@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.notes.widget.DragLayout
+    <com.wuzhanglao.niubi.widget.DragLayout
         android:id="@+id/fragment_drag_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,10 +30,10 @@
             android:scaleType="centerCrop"
             android:src="@drawable/demo" />
 
-        <com.example.notes.widget.CustomClock
+        <com.wuzhanglao.niubi.widget.CustomClock
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="200dp" />
-    </com.example.notes.widget.DragLayout>
+    </com.wuzhanglao.niubi.widget.DragLayout>
 
 </RelativeLayout>

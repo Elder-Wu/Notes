@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 
 /**
  * Created by wuming on 2016/10/26.

@@ -1,6 +1,6 @@
 package com.wuzhanglao.niubi.utils;
 
-import com.example.notes.mvp.model.HeWeatherBean;
+import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

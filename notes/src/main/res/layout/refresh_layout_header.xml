@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_888888"
+    android:gravity="bottom|center_horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/refresh_header_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/refresh_header_prompt_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/refresh_header_icon"
+        android:text="下拉刷新"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+</RelativeLayout>

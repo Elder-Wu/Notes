@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 
 /**
  * 仿QQ，微信底部icon，可以显示未读消息数角标

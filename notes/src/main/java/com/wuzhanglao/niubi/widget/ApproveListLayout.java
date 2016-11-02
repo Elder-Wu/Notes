@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.util.ArrayList;

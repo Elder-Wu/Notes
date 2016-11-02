@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:clickable="true">
 
-    <com.example.notes.widget.BottomBar
+    <com.wuzhanglao.niubi.widget.BottomBar
         android:id="@+id/fragment_bottom_bar"
         android:layout_width="wrap_content"
         android:layout_height="50dp"

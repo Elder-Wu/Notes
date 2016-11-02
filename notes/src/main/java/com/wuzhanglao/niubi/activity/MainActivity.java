@@ -10,7 +10,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.fragment.AnimFragment;
 import com.wuzhanglao.niubi.fragment.ApproveListFragment;

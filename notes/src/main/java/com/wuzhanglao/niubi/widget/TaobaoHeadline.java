@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.HeadlineBean;
 
 import java.util.ArrayList;

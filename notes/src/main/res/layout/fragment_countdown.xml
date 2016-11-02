@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:clickable="true">
 
-    <com.example.notes.widget.CountDownView
+    <com.wuzhanglao.niubi.widget.CountDownView
         android:id="@+id/fragment_count_down"
         android:layout_width="50dp"
         android:layout_height="50dp"

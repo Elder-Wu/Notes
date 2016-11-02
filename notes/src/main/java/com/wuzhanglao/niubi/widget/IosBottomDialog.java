@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.util.ArrayList;

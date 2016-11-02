@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.presenter.NetworkFragmentMvpPresenter;
 import com.wuzhanglao.niubi.mvp.view.NetworkFragmentMvpView;
 import com.wuzhanglao.niubi.utils.ToastUtils;

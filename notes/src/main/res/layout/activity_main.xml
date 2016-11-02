@@ -7,11 +7,16 @@
         android:id="@+id/activity_main_actionbar"
         layout="@layout/actionbar_main" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <com.wuzhanglao.niubi.widget.DragRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_actionbar" />
+        android:layout_below="@+id/activity_main_actionbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.wuzhanglao.niubi.widget.DragRefreshLayout>
 
     <FrameLayout
         android:id="@+id/main_container"

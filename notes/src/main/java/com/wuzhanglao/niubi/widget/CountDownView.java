@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 
 /**
  * 仿迅雷手机客户端  广告倒计时View

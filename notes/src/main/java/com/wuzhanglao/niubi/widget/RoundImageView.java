@@ -12,7 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
 
 public class RoundImageView extends ImageView {
 

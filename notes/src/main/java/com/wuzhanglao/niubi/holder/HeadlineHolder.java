@@ -4,7 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.notes.R;
+import com.wuzhanglao.niubi.R;
+
 
 /**
  * Created by wuming on 16/10/16.
