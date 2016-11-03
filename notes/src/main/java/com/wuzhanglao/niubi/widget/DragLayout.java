@@ -2,7 +2,6 @@ package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Paint;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.utils.ToastUtils;
 
 /**
  * Created by wuming on 2016/10/26.
@@ -43,7 +41,7 @@ public class DragLayout extends RelativeLayout {
         viewDragHelper = ViewDragHelper.create(this, new ViewDragHelper.Callback() {
             @Override
             public boolean tryCaptureView(View child, int pointerId) {
-                Log.d(TAG,child.getClass().getSimpleName());
+                Log.d(TAG, child.getClass().getSimpleName());
                 return true;
             }
 

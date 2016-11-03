@@ -2,8 +2,8 @@ package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.ExploreByTouchHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -103,18 +103,24 @@ public class DragRefreshLayout extends RelativeLayout {
 //        invalidate();
     }
 
-    private float startY = 0;
+    private float pointerCurrentY;
+    private float pointerStartY;
 
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                startY = ev.getRawY();
+                //相对坐标
+                pointerStartY = ev.getY();
+                pointerCurrentY = ev.getY();
+
+                scroller.forceFinished(true);
                 break;
             case MotionEvent.ACTION_MOVE:
                 //(1)判断手指是向下滑动的，不是向上滑动
                 //(2)判断targetView是否到达顶部
                 //(3)scrollY必须大于0
-                if ((ev.getRawY() - startY) > 0 && !ViewCompat.canScrollVertically(targetView, -1) && getScrollY() <= 0) {
+                pointerCurrentY = ev.getY();
+                if ((pointerCurrentY - pointerStartY) > 0 && !ViewCompat.canScrollVertically(targetView, -1)) {
                     return true;
                 }
                 break;
@@ -139,18 +145,15 @@ public class DragRefreshLayout extends RelativeLayout {
     private boolean processTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                float dy = event.getRawY() - startY;
+                pointerCurrentY = event.getY();
+                float dy = pointerCurrentY - pointerStartY;
+                dy = Math.max(0, dy);
+                if(dy==0){
+                    return true;
+                }
 //                dy = (getScaleY() + dy) > 0 ? dy : -getScrollY();
                 //noinspection ResourceType
-                scrollBy(0, (int) -dy / 3);
-                Log.d(TAG, "scrollY" + getScrollY());
-                startY = event.getRawY();
-                if (getScrollY() < -100) {
-                    headerIcon.setRotationX(180);
-                    headerIcon.setRotationY(150);
-                } else {
-                    headerIcon.setRotationX(50);
-                }
+                scrollTo(0, (int) -dy / 2);
                 break;
             case MotionEvent.ACTION_UP:
                 //判断是否可以进行刷新
