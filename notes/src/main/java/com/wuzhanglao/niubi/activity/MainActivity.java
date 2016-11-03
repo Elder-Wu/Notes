@@ -76,6 +76,16 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("网络请求");
         data.add("点赞列表");
         data.add("可以拖动的布局");
+
+        data.add("1");
+        data.add("2");
+        data.add("3");
+        data.add("4");
+        data.add("5");
+        data.add("6");
+        data.add("7");
+        data.add("8");
+        data.add("9");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
     }

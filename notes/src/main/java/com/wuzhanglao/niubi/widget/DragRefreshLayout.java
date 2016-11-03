@@ -1,6 +1,7 @@
 package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,14 +61,14 @@ public class DragRefreshLayout extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        ensureTarget();
-//        if (targetView == null) {
-//            return;
-//        }
-//        //measure child
-//        widthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() - targetView.getPaddingLeft() - targetView.getPaddingRight(), MeasureSpec.EXACTLY);
-//        heightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() - targetView.getPaddingTop() - targetView.getPaddingBottom(), MeasureSpec.EXACTLY);
-//        targetView.measure(widthMeasureSpec, heightMeasureSpec);
+        ensureTarget();
+        if (targetView == null) {
+            return;
+        }
+        //measure child
+        widthMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth() - targetView.getPaddingLeft() - targetView.getPaddingRight(), MeasureSpec.EXACTLY);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight() - targetView.getPaddingTop() - targetView.getPaddingBottom(), MeasureSpec.EXACTLY);
+        targetView.measure(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void ensureTarget() {
@@ -102,22 +103,31 @@ public class DragRefreshLayout extends RelativeLayout {
 //        invalidate();
     }
 
+    private float startY = 0;
+
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d("onInterceptTouchEvent", "onInterceptTouchEvent");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startY = ev.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //(1)判断手指是向下滑动的，不是向上滑动
+                //(2)判断targetView是否到达顶部
+                //(3)scrollY必须大于0
+                if ((ev.getRawY() - startY) > 0 && !ViewCompat.canScrollVertically(targetView, -1) && getScrollY() <= 0) {
+                    return true;
+                }
+                break;
+        }
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
-    public void setBackgroundColor(int color) {
-        super.setBackgroundColor(color);
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent event) {
-        processTouchEvent(event);
-        return true;
+        return processTouchEvent(event);
     }
 
+    //重绘
     @Override
     public void computeScroll() {
         if (scroller.computeScrollOffset()) {
@@ -126,24 +136,27 @@ public class DragRefreshLayout extends RelativeLayout {
         }
     }
 
-    private float pointY;
-
-    private void processTouchEvent(MotionEvent event) {
+    private boolean processTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                pointY = event.getRawY();
-                break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getY() < 0) {
-
+                float dy = event.getRawY() - startY;
+//                dy = (getScaleY() + dy) > 0 ? dy : -getScrollY();
+                //noinspection ResourceType
+                scrollBy(0, (int) -dy / 3);
+                Log.d(TAG, "scrollY" + getScrollY());
+                startY = event.getRawY();
+                if (getScrollY() < -100) {
+                    headerIcon.setRotationX(180);
+                    headerIcon.setRotationY(150);
+                } else {
+                    headerIcon.setRotationX(50);
                 }
-                scrollBy(0, (int) ((pointY - event.getRawY()) / 3));
-                pointY = event.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
                 //判断是否可以进行刷新
                 if (event.getY() > 100) {
                     //可以刷新
+
                 } else {
                     //不可以刷新，回到初始位置
                 }
@@ -152,5 +165,6 @@ public class DragRefreshLayout extends RelativeLayout {
                 invalidate();
                 break;
         }
+        return super.onTouchEvent(event);
     }
 }
