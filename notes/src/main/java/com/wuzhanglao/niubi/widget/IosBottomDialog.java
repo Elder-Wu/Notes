@@ -19,15 +19,15 @@ import java.util.List;
 
 
 /**
- * 仿IOS风格－从底部弹出的dialog
+ * 仿IOS风格-----从底部弹出的dialog
  * Created by wuming on 16/10/12.
  */
 
 public class IosBottomDialog extends Dialog {
 
-    public static final int DEFAULT_PADDING = 10;
-    public static final int DEFAULT_TITLE_SIZE = 10;
-    public static final int DEFAULT_OPTION_SIZE = 10;
+    public static final int DEFAULT_PADDING = 7;
+    public static final int DEFAULT_TITLE_SIZE = 7;
+    public static final int DEFAULT_OPTION_SIZE = 7;
 
     private LinearLayout options_ll;
     private TextView title;

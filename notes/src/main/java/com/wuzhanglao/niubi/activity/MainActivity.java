@@ -1,6 +1,5 @@
 package com.wuzhanglao.niubi.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -21,6 +21,7 @@ import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TaobaoHeadlineFragment;
 import com.wuzhanglao.niubi.utils.UIUtils;
+import com.wuzhanglao.niubi.widget.ImageBanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     private TextView actionBarTitle;
     private TextView actionBarBack;
     private FragmentManager fragmentManager;
+
+    private ImageBanner banner;
 
     @Override
     protected int setContentView() {
@@ -51,9 +54,11 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     }
 
     protected void initView() {
-        initData();
+        banner = (ImageBanner) findViewById(R.id.activity_main_image_banner);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         TextView introduce = (TextView) findViewById(R.id.introduce_tv);
+
+        initData();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             introduce.setText(Html.fromHtml(getString(R.string.introduce), 0));
@@ -77,17 +82,18 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("点赞列表");
         data.add("可以拖动的布局");
 
-        data.add("1");
-        data.add("2");
-        data.add("3");
-        data.add("4");
-        data.add("5");
-        data.add("6");
-        data.add("7");
-        data.add("8");
-        data.add("9");
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
+
+        banner.addImage(getImageView(R.drawable.mv1));
+        banner.addImage(getImageView(R.drawable.mv2));
+        banner.addImage(getImageView(R.drawable.mv3));
+    }
+
+    private ImageView getImageView(int resId) {
+        ImageView image = new ImageView(context);
+        image.setImageResource(resId);
+        return image;
     }
 
     @Override
@@ -95,50 +101,49 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         if (UIUtils.isDoubleClick()) {
             return;
         }
-        Intent intent;
-        setTitle(adatpter.getData(position));
         switch (adatpter.getData(position)) {
             case "显示未读消息数控件":
-                openFragment(new BottomBarFragment());
+                openFragment(new BottomBarFragment(), adatpter.getData(position));
                 break;
             case "仿ios底部弹出对话框":
-                openFragment(new IosBottomDialogFragment());
+                openFragment(new IosBottomDialogFragment(), adatpter.getData(position));
                 break;
             case "Activity动画特效":
-                openFragment(new AnimFragment());
+                openFragment(new AnimFragment(), adatpter.getData(position));
                 break;
             case "淘宝头条控件":
-                openFragment(new TaobaoHeadlineFragment());
+                openFragment(new TaobaoHeadlineFragment(), adatpter.getData(position));
                 break;
             case "广告倒计时控件":
-                openFragment(new CountDownFragment());
+                openFragment(new CountDownFragment(), adatpter.getData(position));
                 break;
             case "网络请求":
-                openFragment(new NetworkFragment());
+                openFragment(new NetworkFragment(), adatpter.getData(position));
                 break;
             case "点赞列表":
-                openFragment(new ApproveListFragment());
+                openFragment(new ApproveListFragment(), adatpter.getData(position));
                 break;
             case "可以拖动的布局":
-                openFragment(new DragFragment());
+                openFragment(new DragFragment(), adatpter.getData(position));
                 break;
         }
     }
 
-    private void openFragment(Fragment fragment) {
+    private void openFragment(Fragment fragment, String fragmentName) {
         fragmentManager.beginTransaction()
                 .replace(R.id.main_container, fragment)
                 .addToBackStack(null)
                 .commitAllowingStateLoss();
-        showBackButton();
+        showBackButton(fragmentName);
     }
 
     public void setTitle(String title) {
         actionBarTitle.setText(title);
     }
 
-    public void showBackButton() {
+    public void showBackButton(String fragmentName) {
         actionBarBack.setVisibility(View.VISIBLE);
+        setTitle(fragmentName);
     }
 
     public void hideBackButton() {
