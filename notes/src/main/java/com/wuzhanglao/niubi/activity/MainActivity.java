@@ -17,6 +17,7 @@ import com.wuzhanglao.niubi.fragment.ApproveListFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.DragFragment;
+import com.wuzhanglao.niubi.fragment.DrawBoardFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TaobaoHeadlineFragment;
@@ -81,6 +82,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("网络请求");
         data.add("点赞列表");
         data.add("可以拖动的布局");
+        data.add("刮刮卡");
 
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
@@ -125,6 +127,9 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
                 break;
             case "可以拖动的布局":
                 openFragment(new DragFragment(), adatpter.getData(position));
+                break;
+            case "刮刮卡":
+                openFragment(new DrawBoardFragment(), adatpter.getData(position));
                 break;
         }
     }
