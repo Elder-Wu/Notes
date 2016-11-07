@@ -19,9 +19,8 @@ import com.wuzhanglao.niubi.R;
  * Created by wuming on 2016/11/6.
  */
 
-public class DrawBoard extends View {
+public class GuaGuaKa extends View {
 
-    private Paint outerPaint;
     private Paint pathPaint;
 
     private Path path;
@@ -31,17 +30,13 @@ public class DrawBoard extends View {
 
     private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.demo);
 
-    public DrawBoard(Context context) {
+    public GuaGuaKa(Context context) {
         this(context, null);
     }
 
-    public DrawBoard(Context context, AttributeSet attrs) {
+    public GuaGuaKa(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setBackgroundColor(Color.WHITE);
-
-        outerPaint = new Paint();
-        outerPaint.setAntiAlias(true);
-        outerPaint.setDither(true);
 
         pathPaint = new Paint();
         pathPaint.setAntiAlias(true);
