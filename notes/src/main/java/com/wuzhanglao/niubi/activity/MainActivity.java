@@ -37,8 +37,6 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     private TextView actionBarBack;
     private FragmentManager fragmentManager;
 
-    private ImageBanner banner;
-
     @Override
     protected int setContentView() {
         return R.layout.activity_main;
@@ -55,7 +53,6 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     }
 
     protected void initView() {
-        banner = (ImageBanner) findViewById(R.id.activity_main_image_banner);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         TextView introduce = (TextView) findViewById(R.id.introduce_tv);
 
@@ -86,10 +83,6 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
 
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
-
-        banner.addImage(getImageView(R.drawable.mv1));
-        banner.addImage(getImageView(R.drawable.mv2));
-        banner.addImage(getImageView(R.drawable.mv3));
     }
 
     private ImageView getImageView(int resId) {
