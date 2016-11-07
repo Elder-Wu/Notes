@@ -142,3 +142,12 @@ approveListLayout.updateApproveList(approveList);
         android:layout_marginTop="200dp" />
 </com.example.notes.widget.DragLayout>
 ```
+###刮刮卡
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif" width="270" height="400">
+
+使用方法
+```
+<com.wuzhanglao.niubi.widget.GuaGuaKa
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
