@@ -60,16 +60,19 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
     public ImageBanner(Context context, AttributeSet attrs) {
         super(context, attrs);
+        //动态添加ViewPager实例
         mViewPager = new ViewPager(context);
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(this);
         addView(mViewPager);
 
+        //动态添加一个LinearLayout
         ll_dots = new LinearLayout(context);
         ll_dots.setOrientation(LinearLayout.HORIZONTAL);
         ll_dots.setGravity(CENTER_IN_PARENT);
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(ALIGN_PARENT_BOTTOM);
+        params.setMargins(10, 10, 10, 10);
         addView(ll_dots, params);
     }
 
@@ -83,14 +86,14 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
         super.onLayout(changed, l, t, r, b);
     }
 
+    //初始化数据
     public void addImage(View view) {
-        images.add(view);
-//        mViewPager.setCurrentItem(images.size() % 1024);
-
         Dot dot = new Dot(getContext());
         dots.add(dot);
         ll_dots.addView(dot);
 
+        images.add(view);
+//        mViewPager.setCurrentItem(images.size() % 1024);
         adapter.notifyDataSetChanged();
     }
 
@@ -118,6 +121,7 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
     private Paint dotPaint;
 
+    //定义Dot类，可以表示当前viewpager处于第几个页面
     private class Dot extends View {
 
         private Canvas dotCanvas;
@@ -150,6 +154,7 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
             }
         }
 
+        //这一步的作用是把dot的宽度和高度定死
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(40, MeasureSpec.EXACTLY);
@@ -157,9 +162,9 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
             setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         }
 
+        //修改dot的颜色，并且让整个dot重绘
         public void setDotColor(int color) {
             dotColor = color;
-            invalidate();
         }
     }
 }

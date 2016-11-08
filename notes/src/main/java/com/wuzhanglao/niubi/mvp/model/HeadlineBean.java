@@ -40,4 +40,9 @@ public class HeadlineBean {
                 ", content='" + content + '\'' +
                 '}';
     }
+
+
+
+
+
 }
