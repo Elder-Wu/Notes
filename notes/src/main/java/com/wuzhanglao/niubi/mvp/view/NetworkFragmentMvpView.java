@@ -7,6 +7,6 @@ import com.wuzhanglao.niubi.mvp.view.BaseMvpView;
  */
 
 public interface NetworkFragmentMvpView extends BaseMvpView {
-    void requestSuccess();
+    void requestSuccess(Object obj);
     void requestFailed(String msg);
 }

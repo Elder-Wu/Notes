@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion "25.0.0"
     signingConfigs {
         NotesKey {

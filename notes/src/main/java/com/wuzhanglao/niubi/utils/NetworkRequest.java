@@ -1,6 +1,7 @@
 package com.wuzhanglao.niubi.utils;
 
 
+import com.wuzhanglao.niubi.mvp.model.HeBeiBeiBean;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 
 import rx.Observable;
@@ -16,15 +17,20 @@ public class NetworkRequest {
 
     private static class NetworkRequestSingletonHolder {
         private static final NetworkRequest instance = new NetworkRequest();
-        private static final NetworkService service = NetworkService.Factory.create();
+        private static final NetworkService heweather_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeWeather);
+        private static final NetworkService hebeibei_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeBeiBei);
     }
 
     public static final NetworkRequest getInstance() {
         return NetworkRequestSingletonHolder.instance;
     }
 
-    private static final NetworkService getService() {
-        return NetworkRequestSingletonHolder.service;
+    private static final NetworkService getHeWeatherService() {
+        return NetworkRequestSingletonHolder.heweather_service;
+    }
+
+    private static final NetworkService getHeBeiBeiService() {
+        return NetworkRequestSingletonHolder.hebeibei_service;
     }
 
     private class ComposeThread<T> implements Observable.Transformer<T, T> {
@@ -38,10 +44,14 @@ public class NetworkRequest {
     }
 
     public void getWeather(String city, Action1 onNext) {
-        getService().getWeatherService(city, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
+        getHeWeatherService().getWeatherService(city, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
     }
 
     public void getScenic(String cityid, Action1 onNext) {
-        getService().getScenicService(cityid, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
+        getHeWeatherService().getScenicService(cityid, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
+    }
+
+    public void getHeBeiBeiData(Action1 onNext) {
+        getHeBeiBeiService().getHeBeiBeiDate("64").compose(new ComposeThread<HeBeiBeiBean>()).subscribe(onNext);
     }
 }
