@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <com.wuzhanglao.niubi.widget.ImageBanner
+        android:id="@+id/fragment_viewpager_imagebanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

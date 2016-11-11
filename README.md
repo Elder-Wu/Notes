@@ -151,3 +151,22 @@ approveListLayout.updateApproveList(approveList);
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 ```
+###广告栏无限循环
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/image_banner.gif" width="270" height="400">
+
+使用方法
+```
+@Override
+public void initView(View view, @Nullable Bundle savedInstanceState) {
+    banner = (ImageBanner) view.findViewById(R.id.fragment_viewpager_imagebanner);
+    banner.addImage(getImageView(R.drawable.mv1));
+    banner.addImage(getImageView(R.drawable.mv2));
+    banner.addImage(getImageView(R.drawable.mv3));
+    banner.addImage(getImageView(R.drawable.mv4));
+}
+private ImageView getImageView(int resId) {
+    ImageView image = new ImageView(context);
+    image.setImageResource(resId);
+    return image;
+}
+```

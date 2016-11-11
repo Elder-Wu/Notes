@@ -44,9 +44,10 @@ public class NetworkFragment extends BaseMvpFragment<NetworkFragmentMvpView, Net
         return new NetworkFragmentMvpPresenter();
     }
 
+
     @Override
-    public void requestSuccess() {
-        ToastUtils.show("请求成功");
+    public void requestSuccess(Object obj) {
+
     }
 
     @Override

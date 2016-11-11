@@ -13,12 +13,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/activity_main_actionbar" />
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_actionbar" />
-
     <TextView
         android:id="@+id/introduce_tv"
         android:layout_width="match_parent"
@@ -26,4 +20,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="center" />
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/activity_main_actionbar" />
 </RelativeLayout>

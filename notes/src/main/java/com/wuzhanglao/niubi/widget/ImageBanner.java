@@ -1,7 +1,6 @@
 package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,6 +21,10 @@ import java.util.ArrayList;
 
 public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChangeListener {
 
+    private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
+    private static final int SELECTED_DOT_COLOR = Color.DKGRAY;
+    private static final int DEFAULT_DOT_SIZE = 30;
+
     private ViewPager mViewPager;
     private LinearLayout ll_dots;
 
@@ -31,7 +34,7 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
     private PagerAdapter adapter = new PagerAdapter() {
         @Override
         public int getCount() {
-            return images.size();
+            return Integer.MAX_VALUE;
         }
 
         @Override
@@ -42,13 +45,17 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((ImageView) object);
+//            container.removeView((ImageView) object);
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             int position_in_data = position % images.size();
             View image = images.get(position_in_data);
+            if (image.getParent() != null) {
+                ViewGroup viewGroup = (ViewGroup) image.getParent();
+                viewGroup.removeView(image);
+            }
             container.addView(image);
             return image;
         }
@@ -68,10 +75,9 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
         //动态添加一个LinearLayout
         ll_dots = new LinearLayout(context);
-        ll_dots.setOrientation(LinearLayout.HORIZONTAL);
-        ll_dots.setGravity(CENTER_IN_PARENT);
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(ALIGN_PARENT_BOTTOM);
+        params.addRule(CENTER_HORIZONTAL);
         params.setMargins(10, 10, 10, 10);
         addView(ll_dots, params);
     }
@@ -86,17 +92,30 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
         super.onLayout(changed, l, t, r, b);
     }
 
+    private LinearLayout.LayoutParams params;
+
     //初始化数据
     public void addImage(View view) {
+        if (params == null) {
+            params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(5, 5, 5, 5);
+        }
         Dot dot = new Dot(getContext());
         dots.add(dot);
-        ll_dots.addView(dot);
-
+        ll_dots.addView(dot, params);
         images.add(view);
-//        mViewPager.setCurrentItem(images.size() % 1024);
         adapter.notifyDataSetChanged();
+        mViewPager.setCurrentItem(images.size() * 1024);
+        refreshDots(0);
     }
 
+
+    private void refreshDots(int position_in_data) {
+        for (Dot dot : dots) {
+            dot.setDotColor(UNSELECTED_DOT_COLOR);
+        }
+        dots.get(position_in_data).setDotColor(SELECTED_DOT_COLOR);
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -106,10 +125,7 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
     @Override
     public void onPageSelected(int position) {
         int position_in_data = position % images.size();
-        for (Dot dot : dots) {
-            dot.setDotColor(Color.GRAY);
-        }
-        dots.get(position_in_data).setDotColor(Color.RED);
+        refreshDots(position_in_data);
         requestLayout();
         invalidate();
     }
@@ -119,52 +135,39 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
     }
 
-    private Paint dotPaint;
-
     //定义Dot类，可以表示当前viewpager处于第几个页面
     private class Dot extends View {
 
-        private Canvas dotCanvas;
-        private int dotColor = Color.GRAY;
+        private Paint dotPaint;
+        private int dotColor = UNSELECTED_DOT_COLOR;
 
         public Dot(Context context) {
             super(context);
-        }
 
-        public Dot(Context context, AttributeSet attrs) {
-            super(context, attrs);
+            dotPaint = new Paint();
+            dotPaint.setAntiAlias(true);
+            dotPaint.setDither(true);
+            dotPaint.setStyle(Paint.Style.FILL);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
-            int width = getMeasuredWidth();
-            int height = getMeasuredHeight();
-            if (dotPaint == null) {
-                dotPaint = new Paint();
-                dotPaint.setAntiAlias(true);
-                dotPaint.setDither(true);
-                dotPaint.setStyle(Paint.Style.FILL);
-            }
             dotPaint.setColor(dotColor);
-            if (dotCanvas == null) {
-                Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-                dotCanvas = new Canvas(bitmap);
-                dotCanvas.drawCircle(width / 2, height / 2, width / 2, dotPaint);
-                canvas.drawBitmap(bitmap, 0, 0, dotPaint);
-            }
+            canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, dotPaint);
         }
 
         //这一步的作用是把dot的宽度和高度定死
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(40, MeasureSpec.EXACTLY);
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(40, MeasureSpec.EXACTLY);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(DEFAULT_DOT_SIZE, MeasureSpec.EXACTLY);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(DEFAULT_DOT_SIZE, MeasureSpec.EXACTLY);
             setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         }
 
         //修改dot的颜色，并且让整个dot重绘
         public void setDotColor(int color) {
             dotColor = color;
+            invalidate();
         }
     }
 }
