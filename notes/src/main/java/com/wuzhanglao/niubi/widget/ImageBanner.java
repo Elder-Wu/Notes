@@ -9,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -45,7 +44,7 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-//            container.removeView((ImageView) object);
+            // container.removeView((ImageView) object);
         }
 
         @Override
@@ -82,16 +81,6 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
         addView(ll_dots, params);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-    }
-
     private LinearLayout.LayoutParams params;
 
     //初始化数据
@@ -126,8 +115,6 @@ public class ImageBanner extends RelativeLayout implements ViewPager.OnPageChang
     public void onPageSelected(int position) {
         int position_in_data = position % images.size();
         refreshDots(position_in_data);
-        requestLayout();
-        invalidate();
     }
 
     @Override
