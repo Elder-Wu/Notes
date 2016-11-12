@@ -23,7 +23,6 @@ import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TaobaoHeadlineFragment;
 import com.wuzhanglao.niubi.utils.UIUtils;
-import com.wuzhanglao.niubi.widget.ImageBanner;
 
 import java.util.ArrayList;
 import java.util.List;

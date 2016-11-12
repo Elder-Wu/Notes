@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wuzhanglao.niubi.widget.ImageBanner
+    <com.wuzhanglao.niubi.widget.Banner
         android:id="@+id/fragment_viewpager_imagebanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

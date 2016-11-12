@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.widget.ImageBanner;
+import com.wuzhanglao.niubi.widget.Banner;
 
 /**
  * Created by wuming on 2016/11/10.
@@ -14,7 +14,7 @@ import com.wuzhanglao.niubi.widget.ImageBanner;
 
 public class FragmentViewPager extends BaseFragment {
 
-    private ImageBanner banner;
+    private Banner banner;
 
     @Override
     public int setResId() {
@@ -23,11 +23,12 @@ public class FragmentViewPager extends BaseFragment {
 
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
-        banner = (ImageBanner) view.findViewById(R.id.fragment_viewpager_imagebanner);
-        banner.addImage(getImageView(R.drawable.mv1));
-        banner.addImage(getImageView(R.drawable.mv2));
-        banner.addImage(getImageView(R.drawable.mv3));
-        banner.addImage(getImageView(R.drawable.mv4));
+        banner = (Banner) view.findViewById(R.id.fragment_viewpager_imagebanner);
+        banner.addContent(getImageView(R.drawable.mv1));
+        banner.addContent(getImageView(R.drawable.mv2));
+        banner.addContent(getImageView(R.drawable.mv3));
+        banner.addContent(getImageView(R.drawable.mv4));
+        banner.startScroll();
     }
 
     private ImageView getImageView(int resId) {
