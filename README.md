@@ -152,7 +152,7 @@ approveListLayout.updateApproveList(approveList);
     android:layout_height="match_parent" />
 ```
 ###广告栏无限循环
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/image_banner.gif">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
 
 使用方法
 ```
