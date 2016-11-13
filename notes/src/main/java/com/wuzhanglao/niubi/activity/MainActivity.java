@@ -27,12 +27,12 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements TextHolderAdatpter.TextHolderClickListener, View.OnClickListener {
+public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener, View.OnClickListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
     private TextHolderAdatpter adatpter;
 
-    //ActionBar
+    //Toolbar
     private TextView actionBarTitle;
     private TextView actionBarBack;
     private FragmentManager fragmentManager;
@@ -43,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
     }
 
     @Override
-    protected void initActionBar() {
+    protected void initToolBar() {
         View actionBar = findViewById(R.id.activity_main_actionbar);
         actionBarTitle = (TextView) actionBar.findViewById(R.id.actionbar_main_title);
         actionBarTitle.setText(getString(R.string.main_title));
