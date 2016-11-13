@@ -28,7 +28,7 @@ builder.setTitle("标题",Color.RED)
     }).create().show();
 ```
 ###"淘宝头条－京东头条"控件
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
 使用方法
 ```
@@ -53,7 +53,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 });
 ```
 ###广告倒计时View
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
 
 使用方法
 ```
@@ -85,7 +85,7 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
 countDownView.start();
 ```
 ###点赞头像列表
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
 
 使用方法
 ```
@@ -110,7 +110,7 @@ approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layo
 approveListLayout.updateApproveList(approveList);
 ```
 ###可以悬浮在屏幕边缘的控件
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
 ```
@@ -143,7 +143,7 @@ approveListLayout.updateApproveList(approveList);
 </com.example.notes.widget.DragLayout>
 ```
 ###刮刮卡
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif">
 
 使用方法
 ```
@@ -152,7 +152,7 @@ approveListLayout.updateApproveList(approveList);
     android:layout_height="match_parent" />
 ```
 ###广告栏无限循环
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/image_banner.gif" width="270" height="400">
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/image_banner.gif">
 
 使用方法
 ```
