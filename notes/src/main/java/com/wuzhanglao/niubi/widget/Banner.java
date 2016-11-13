@@ -5,16 +5,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Scroller;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,25 +25,23 @@ import java.util.TimerTask;
  * Created by wuming on 2016/11/3.
  */
 
-public class Banner extends RelativeLayout implements ViewPager.OnPageChangeListener {
+public class Banner extends RelativeLayout implements ViewPager.OnPageChangeListener, View.OnTouchListener {
 
+    //指示器选中时和未选中时的颜色
     private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
     private static final int SELECTED_DOT_COLOR = Color.DKGRAY;
+    //指示器的圆点大小
     private static final int DEFAULT_DOT_SIZE = 30;
+    //页面切换时间
+    private static final int SCROLL_DURATION = 800;
+    //页面展示时间
+    private static final int DISPLAY_TIME = 3000;
 
     private ViewPager mViewPager;
     private LinearLayout ll_dots;
 
-    private ArrayList<View> views = new ArrayList<>();
+    private ArrayList<View> views = new ArrayList<>();//视图列表
     private ArrayList<Dot> dots = new ArrayList<>();
-
-
-    private Handler hander = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-        }
-    };
-
 
     private PagerAdapter adapter = new PagerAdapter() {
         @Override
@@ -83,6 +83,9 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         mViewPager = new ViewPager(context);
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(this);
+        mViewPager.setOnTouchListener(this);
+        mViewPager.setPageTransformer(false, new MyPageTransformer());
+        setDefaultDuration();
         addView(mViewPager);
 
         //动态添加一个LinearLayout
@@ -92,6 +95,67 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         params.addRule(CENTER_HORIZONTAL);
         params.setMargins(10, 10, 10, 10);
         addView(ll_dots, params);
+    }
+
+    /**
+     * 利用反射原理来改变ViewPager页面切换时间
+     * <p>
+     * android动画差值器使用方法
+     *
+     * @link 博客地址：http://blog.csdn.net/sun_star1chen/article/details/12843741
+     */
+    private void setDefaultDuration() {
+        try {
+            Field field = ViewPager.class.getDeclaredField("mScroller");
+            field.setAccessible(true);
+            Scroller scroller = new Scroller(getContext(), new LinearInterpolator()) {
+                @Override
+                public void startScroll(int startX, int startY, int dx, int dy, int duration) {
+                    super.startScroll(startX, startY, dx, dy, SCROLL_DURATION);
+                }
+
+                @Override
+                public void startScroll(int startX, int startY, int dx, int dy) {
+                    super.startScroll(startX, startY, dx, dy, SCROLL_DURATION);
+                }
+            };
+            field.set(mViewPager, scroller);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 页面切换时的动画
+     * <p>
+     * #{ViewPagerTransforms}项目为我们提供了一些现成的PageTransformer来实现一些动画
+     *
+     * @link git地址：https://github.com/ToxicBakery/ViewPagerTransforms
+     */
+    private class MyPageTransformer implements ViewPager.PageTransformer {
+
+        @Override
+        public void transformPage(View page, float position) {
+            if (position < -1) {
+                page.setAlpha(0);
+            } else if (position <= 0) {
+                //ViewPager正在滑动时，页面左边的View       -1～0
+                page.setAlpha(1);
+                page.setTranslationX(0);
+                page.setScaleX(1);
+                page.setScaleY(1);
+            } else if (position <= 1) {
+                //ViewPager正在滑动时，页面右边的View       0～1
+                page.setAlpha(1 - position);
+                page.setTranslationX(0);
+                page.setScaleX((float) (1 - position * 0.8));
+                page.setScaleY((float) (1 - position * 0.8));
+            } else {
+                page.setAlpha(0);
+            }
+        }
     }
 
     private LinearLayout.LayoutParams params;
@@ -171,8 +235,11 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     }
 
 
+    private Handler hander = new Handler();
     private Timer timer = new Timer();
-    private TimerTask timerTask = new TimerTask() {
+    private TimerTask timerTask;
+
+    private Runnable runable = new Runnable() {
         @Override
         public void run() {
             //true表示平滑滚动
@@ -181,16 +248,23 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     };
 
     public void startScroll() {
-        timer.schedule(timerTask, 2000, 2000);
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                hander.post(runable);
+            }
+        };
+        timer.schedule(timerTask, DISPLAY_TIME, DISPLAY_TIME);
     }
 
     public void stopScroll() {
-        timer.cancel();
+        timerTask.cancel();
+        timerTask = null;
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()) {
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 stopScroll();
                 break;
@@ -198,6 +272,8 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
                 startScroll();
                 break;
         }
-        return super.onInterceptTouchEvent(ev);
+        return false;
     }
+
+
 }

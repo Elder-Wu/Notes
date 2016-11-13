@@ -80,7 +80,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
         data.add("点赞列表");
         data.add("可以拖动的布局");
         data.add("刮刮卡");
-        data.add("广告栏轮播");
+        data.add("广告栏无限轮播");
 
         adatpter = new TextHolderAdatpter(context, data);
         adatpter.setTextHolderClickListener(this);
@@ -125,7 +125,7 @@ public class MainActivity extends ActionBarActivity implements TextHolderAdatpte
             case "刮刮卡":
                 openFragment(new DrawBoardFragment(), adatpter.getData(position));
                 break;
-            case "广告栏轮播":
+            case "广告栏无限轮播":
                 openFragment(new FragmentViewPager(), adatpter.getData(position));
                 break;
         }
