@@ -130,25 +130,12 @@ public class DragRefreshLayout extends RelativeLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return processTouchEvent(event);
-    }
-
-    //重绘
-    @Override
-    public void computeScroll() {
-        if (scroller.computeScrollOffset()) {
-            scrollTo(0, scroller.getCurrY());
-            invalidate();
-        }
-    }
-
-    private boolean processTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 pointerCurrentY = event.getY();
                 float dy = pointerCurrentY - pointerStartY;
                 dy = Math.max(0, dy);
-                if(dy==0){
+                if (dy == 0) {
                     return true;
                 }
 //                dy = (getScaleY() + dy) > 0 ? dy : -getScrollY();
@@ -169,5 +156,14 @@ public class DragRefreshLayout extends RelativeLayout {
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    //重绘
+    @Override
+    public void computeScroll() {
+        if (scroller.computeScrollOffset()) {
+            scrollTo(0, scroller.getCurrY());
+            invalidate();
+        }
     }
 }

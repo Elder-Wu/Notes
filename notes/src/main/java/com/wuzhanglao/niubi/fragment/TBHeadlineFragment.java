@@ -16,7 +16,7 @@ import java.util.List;
  * Created by wuming on 16/10/16.
  */
 
-public class TaobaoHeadlineFragment extends BaseFragment {
+public class TBHeadlineFragment extends BaseFragment {
 
     private TaobaoHeadline taobaoHeadline;
 

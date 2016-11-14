@@ -7,13 +7,13 @@ import android.view.View;
 import com.wuzhanglao.niubi.R;
 
 /**
- * Created by wuming on 2016/11/6.
+ * Created by wuming on 2016/11/14.
  */
 
-public class DrawBoardFragment extends BaseFragment {
+public class SwipeRefreshFragment extends BaseFragment {
     @Override
     public int setResId() {
-        return R.layout.fragment_drawboard;
+        return R.layout.fragment_swipe_refresh;
     }
 
     @Override

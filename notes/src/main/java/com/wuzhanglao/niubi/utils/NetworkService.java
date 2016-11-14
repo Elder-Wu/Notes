@@ -39,6 +39,7 @@ public interface NetworkService {
                         @Override
                         public Response intercept(Chain chain) throws IOException {
                             // TODO: 2016/11/9 可以进行重连接等操作
+                            //@link 这篇博客写的很详细:http://gold.xitu.io/entry/57b123497db2a200542a073b
                             return chain.proceed(chain.request());
                         }
                     })//网络拦截器,进行重定向等操作

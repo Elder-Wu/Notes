@@ -10,10 +10,10 @@ import com.wuzhanglao.niubi.R;
  * Created by wuming on 2016/10/26.
  */
 
-public class DragFragment extends BaseFragment {
+public class FloatViewFragment extends BaseFragment {
     @Override
     public int setResId() {
-        return R.layout.fragment_drag;
+        return R.layout.fragment_float_view;
     }
 
     @Override

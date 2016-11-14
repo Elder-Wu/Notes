@@ -12,7 +12,7 @@ import com.wuzhanglao.niubi.widget.Banner;
  * Created by wuming on 2016/11/10.
  */
 
-public class FragmentViewPager extends BaseFragment {
+public class BannerFragment extends BaseFragment {
 
     private Banner banner;
 

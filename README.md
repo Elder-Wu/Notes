@@ -6,7 +6,29 @@ Create a repository for myself.Mainly record some of my study notes.
 **扫描二维码下载**
 
 ![](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-###高仿IOS：从底部弹出的Dialog，拓展性比较高
+****
+<table border="1">
+    <tr align="center">
+        <td>
+            <a href="#ios_dialog">高仿IOS底部弹窗（扩展性较高）</a>
+        </td>
+        <td>
+            <a href="#taobao_headline">淘宝头条控件</a>
+        </td>
+        <td>
+            <a href="#countdown">广告倒计时View</a>
+        </td>
+    </tr>
+</table>
+<a href="#ios_dialog">高仿IOS底部弹窗（扩展性较高）</a>
+<a href="#taobao_headline">淘宝头条控件</a>
+<a href="#countdown">广告倒计时View</a>
+<a href="#approve_list">点赞列表</a>
+<a href="#float_view">可以悬浮在屏幕边缘的控件</a>
+<a href="#guaguaka">刮刮卡</a>
+<a href="#banner">广告栏无限循环</a>
+****
+<h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
 
 使用方法
@@ -27,7 +49,7 @@ builder.setTitle("标题",Color.RED)
         }
     }).create().show();
 ```
-###"淘宝头条－京东头条"控件
+<h3 id="taobao_headline">淘宝头条控件</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
 使用方法
@@ -52,7 +74,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
     }
 });
 ```
-###广告倒计时View
+<h3 id="countdown">广告倒计时View</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
 
 使用方法
@@ -84,7 +106,7 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
 });
 countDownView.start();
 ```
-###点赞头像列表
+<h3 id="approve_list">点赞列表</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
 
 使用方法
@@ -109,7 +131,7 @@ approveList.add(R.drawable.demo);
 approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
 approveListLayout.updateApproveList(approveList);
 ```
-###可以悬浮在屏幕边缘的控件
+<h3 id="float_view">可以悬浮在屏幕边缘的控件</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
@@ -151,7 +173,7 @@ approveListLayout.updateApproveList(approveList);
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 ```
-###广告栏无限循环
+<h3 id="banner">广告栏无限循环</h3>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
 
 使用方法
