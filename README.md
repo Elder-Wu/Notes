@@ -28,6 +28,8 @@ Create a repository for myself.Mainly record some of my study notes.
         <td>
             <a href="#guaguaka">刮刮卡</a>
         </td>
+    </tr>
+    <tr align="center">
         <td>
             <a href="#banner">广告栏无限循环</a>
         </td>
