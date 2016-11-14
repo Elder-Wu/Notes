@@ -8,7 +8,7 @@ Create a repository for myself.Mainly record some of my study notes.
 ![](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ****
 <table>
-    <caption id="directory">目录</caption>
+    <caption id="mulu" align="center">目录</caption>
     <tr align="center">
         <td>
             <a href="#ios_dialog">高仿IOS底部弹窗（扩展性较高）</a>
