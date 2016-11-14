@@ -60,7 +60,7 @@ builder.setTitle("标题",Color.RED)
     }).create().show();
 ```
 <h3 id="taobao_headline">淘宝头条控件</h3>
-<a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
 使用方法
