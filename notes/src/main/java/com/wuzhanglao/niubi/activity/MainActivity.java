@@ -27,14 +27,11 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener, View.OnClickListener {
+public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
-    private TextHolderAdatpter adatpter;
+    private TextHolderAdatpter adapter;
 
-    //Toolbar
-    private TextView actionBarTitle;
-    private TextView actionBarBack;
     private FragmentManager fragmentManager;
 
     @Override
@@ -42,29 +39,19 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         return R.layout.activity_main;
     }
 
-    @Override
-    protected void initToolBar() {
-        View actionBar = findViewById(R.id.activity_main_actionbar);
-        actionBarTitle = (TextView) actionBar.findViewById(R.id.actionbar_main_title);
-        actionBarTitle.setText(getString(R.string.main_title));
-        actionBarBack = (TextView) actionBar.findViewById(R.id.actionbar_main_back_tv);
-        actionBarBack.setOnClickListener(this);
-        hideBackButton();
-    }
-
     protected void initView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        TextView introduce = (TextView) findViewById(R.id.introduce_tv);
-
         initData();
 
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
+
+        TextView introduce = (TextView) findViewById(R.id.introduce_tv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             introduce.setText(Html.fromHtml(getString(R.string.introduce), 0));
         } else {
             introduce.setText(Html.fromHtml(getString(R.string.introduce)));
         }
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(adatpter);
 
         fragmentManager = getSupportFragmentManager();
     }
@@ -82,14 +69,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("刮刮卡");
         data.add("广告栏无限轮播");
 
-        adatpter = new TextHolderAdatpter(context, data);
-        adatpter.setTextHolderClickListener(this);
-    }
-
-    private ImageView getImageView(int resId) {
-        ImageView image = new ImageView(context);
-        image.setImageResource(resId);
-        return image;
+        adapter = new TextHolderAdatpter(context, data);
+        adapter.setTextHolderClickListener(this);
     }
 
     @Override
@@ -97,36 +78,36 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         if (UIUtils.isDoubleClick()) {
             return;
         }
-        switch (adatpter.getData(position)) {
+        switch (adapter.getData(position)) {
             case "显示未读消息数控件":
-                openFragment(new BottomBarFragment(), adatpter.getData(position));
+                openFragment(new BottomBarFragment(), adapter.getData(position));
                 break;
             case "仿ios底部弹出对话框":
-                openFragment(new IosBottomDialogFragment(), adatpter.getData(position));
+                openFragment(new IosBottomDialogFragment(), adapter.getData(position));
                 break;
             case "Activity动画特效":
-                openFragment(new AnimFragment(), adatpter.getData(position));
+                openFragment(new AnimFragment(), adapter.getData(position));
                 break;
             case "淘宝头条控件":
-                openFragment(new TaobaoHeadlineFragment(), adatpter.getData(position));
+                openFragment(new TaobaoHeadlineFragment(), adapter.getData(position));
                 break;
             case "广告倒计时控件":
-                openFragment(new CountDownFragment(), adatpter.getData(position));
+                openFragment(new CountDownFragment(), adapter.getData(position));
                 break;
             case "网络请求":
-                openFragment(new NetworkFragment(), adatpter.getData(position));
+                openFragment(new NetworkFragment(), adapter.getData(position));
                 break;
             case "点赞列表":
-                openFragment(new ApproveListFragment(), adatpter.getData(position));
+                openFragment(new ApproveListFragment(), adapter.getData(position));
                 break;
             case "可以拖动的布局":
-                openFragment(new DragFragment(), adatpter.getData(position));
+                openFragment(new DragFragment(), adapter.getData(position));
                 break;
             case "刮刮卡":
-                openFragment(new DrawBoardFragment(), adatpter.getData(position));
+                openFragment(new DrawBoardFragment(), adapter.getData(position));
                 break;
             case "广告栏无限轮播":
-                openFragment(new FragmentViewPager(), adatpter.getData(position));
+                openFragment(new FragmentViewPager(), adapter.getData(position));
                 break;
         }
     }
@@ -139,32 +120,24 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         showBackButton(fragmentName);
     }
 
-    public void setTitle(String title) {
-        actionBarTitle.setText(title);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        hideBackButton(R.string.main_title);
     }
 
     public void showBackButton(String fragmentName) {
-        actionBarBack.setVisibility(View.VISIBLE);
-        setTitle(fragmentName);
+        setToolbarBackVisible(true);
+        setToolbarTitle(fragmentName);
     }
 
-    public void hideBackButton() {
-        actionBarBack.setVisibility(View.INVISIBLE);
+    public void hideBackButton(int stringRes) {
+        setTitle(getString(R.string.main_title));
+        setToolbarBackVisible(false);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.actionbar_main_back_tv:
-                onBackPressed();
-                break;
-        }
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        setTitle(getString(R.string.main_title));
-        hideBackButton();
     }
 }

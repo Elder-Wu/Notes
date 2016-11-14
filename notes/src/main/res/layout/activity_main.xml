@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/activity_main_actionbar"
-        layout="@layout/actionbar_main" />
+        android:id="@+id/activity_main_toolbar"
+        layout="@layout/toolbar_general" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/activity_main_actionbar" />
+        android:layout_below="@id/activity_main_toolbar" />
 
     <TextView
         android:id="@+id/introduce_tv"
@@ -25,5 +25,5 @@
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_actionbar" />
+        android:layout_below="@+id/activity_main_toolbar" />
 </RelativeLayout>

@@ -1,7 +1,7 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
 
-[Demo下载地址](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
+[Demo apk下载地址](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
 
 **扫描二维码下载**
 

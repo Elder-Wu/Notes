@@ -26,8 +26,8 @@ import java.util.List;
 public class IosBottomDialog extends Dialog {
 
     public static final int DEFAULT_PADDING = 7;
-    public static final int DEFAULT_TITLE_SIZE = 7;
-    public static final int DEFAULT_OPTION_SIZE = 7;
+    public static final int DEFAULT_TITLE_SIZE = 10;
+    public static final int DEFAULT_OPTION_SIZE = 10;
 
     private LinearLayout options_ll;
     private TextView title;
@@ -178,6 +178,7 @@ public class IosBottomDialog extends Dialog {
                     }
                 }
             }
+            //对话框dismiss之后的监听
             dialog.setIosBottomDialogDismissListener(p.dismisslistener);
             return dialog;
         }
@@ -186,7 +187,6 @@ public class IosBottomDialog extends Dialog {
 
 //这个类保存了dialog的众多参数
 class Paraments {
-    //// TODO: 16/10/14 这里应该进行一下dp和px的转换
     public static final int titleSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_TITLE_SIZE);
     public static final int optionTextSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_OPTION_SIZE);
     public String title;
