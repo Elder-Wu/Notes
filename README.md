@@ -7,8 +7,8 @@ Create a repository for myself.Mainly record some of my study notes.
 
 ![](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ****
-<p id="directory" align="center"><font size="5dp">全文目录</font></p>
-<p><font color="#FF0000">版权声明：未经本人许可，任何人不得以任何形式转载！</font></p>
+###全文目录
+<p id="directory"><font color="#FF0000">版权声明：未经本人许可，任何人不得以任何形式转载！</font></p>
 <table>
     <tr align="center">
         <td>
