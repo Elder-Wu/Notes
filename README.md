@@ -59,6 +59,7 @@ builder.setTitle("标题",Color.RED)
         }
     }).create().show();
 ```
+****
 <h3 id="taobao_headline">淘宝头条控件</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
@@ -85,6 +86,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
     }
 });
 ```
+****
 <h3 id="countdown">广告倒计时View</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
@@ -118,6 +120,7 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
 });
 countDownView.start();
 ```
+****
 <h3 id="approve_list">点赞列表</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
@@ -144,6 +147,7 @@ approveList.add(R.drawable.demo);
 approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
 approveListLayout.updateApproveList(approveList);
 ```
+****
 <h3 id="float_view">可以悬浮在屏幕边缘的控件</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
@@ -178,6 +182,7 @@ approveListLayout.updateApproveList(approveList);
         android:layout_marginTop="200dp" />
 </com.example.notes.widget.DragLayout>
 ```
+****
 <h3 id="guaguaka">刮刮卡</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif">
@@ -188,6 +193,7 @@ approveListLayout.updateApproveList(approveList);
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 ```
+****
 <h3 id="banner">广告栏无限循环</h3>
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
