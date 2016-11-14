@@ -8,7 +8,7 @@ Create a repository for myself.Mainly record some of my study notes.
 ![](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ****
 ###全文目录
-<p id="directory"><font color="#FF0000">版权声明：未经本人许可，任何人不得以任何形式转载！</font></p>
+<p id="directory"><font color="#FF0000">版权声明：原创作品，如需转载，请注明出处！</font></p>
 <table>
     <tr align="center">
         <td>
@@ -32,14 +32,20 @@ Create a repository for myself.Mainly record some of my study notes.
     </tr>
     <tr align="center">
         <td>
+            <a href="#guaguaka">刮刮卡</a>
+        </td>
+        <td>
             <a href="#banner">广告栏无限循环</a>
         </td>
     </tr>
 </table>
 
 ****
-<h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>[Demo apk下载](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
-<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
+<h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>
+<p>
+    <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
+    <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+</p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
 
 使用方法
