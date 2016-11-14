@@ -1,6 +1,5 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
-<p id="apk_download> </p>
 
 [Demo apk下载地址](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
 
@@ -39,7 +38,7 @@ Create a repository for myself.Mainly record some of my study notes.
 </table>
 
 ****
-<h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>
+<h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>[Demo apk下载](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk)
 <p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
 
@@ -63,10 +62,7 @@ builder.setTitle("标题",Color.RED)
 ```
 ****
 <h3 id="taobao_headline">淘宝头条控件</h3>
-<p>
-    <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#apk_download"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-</p>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
 使用方法
