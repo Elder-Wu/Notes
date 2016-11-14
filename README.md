@@ -8,6 +8,7 @@ Create a repository for myself.Mainly record some of my study notes.
 ![](http://upload-images.jianshu.io/upload_images/2377552-0add330e65789ab4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ****
 <table>
+    <caption id="directory">目录</caption>
     <tr align="center">
         <td>
             <a href="#ios_dialog">高仿IOS底部弹窗（扩展性较高）</a>
@@ -35,6 +36,7 @@ Create a repository for myself.Mainly record some of my study notes.
 
 ****
 <h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
 
 使用方法
@@ -56,6 +58,7 @@ builder.setTitle("标题",Color.RED)
     }).create().show();
 ```
 <h3 id="taobao_headline">淘宝头条控件</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
 使用方法
@@ -81,6 +84,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 });
 ```
 <h3 id="countdown">广告倒计时View</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
 
 使用方法
@@ -113,6 +117,7 @@ countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener
 countDownView.start();
 ```
 <h3 id="approve_list">点赞列表</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
 
 使用方法
@@ -138,6 +143,7 @@ approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layo
 approveListLayout.updateApproveList(approveList);
 ```
 <h3 id="float_view">可以悬浮在屏幕边缘的控件</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
@@ -170,7 +176,8 @@ approveListLayout.updateApproveList(approveList);
         android:layout_marginTop="200dp" />
 </com.example.notes.widget.DragLayout>
 ```
-###刮刮卡
+<h3 id="guaguaka">刮刮卡</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif">
 
 使用方法
@@ -180,6 +187,7 @@ approveListLayout.updateApproveList(approveList);
     android:layout_height="match_parent" />
 ```
 <h3 id="banner">广告栏无限循环</h3>
+<p><a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a></p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
 
 使用方法
