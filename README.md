@@ -45,7 +45,7 @@ Create a repository for myself.Mainly record some of my study notes.
 <p>
     <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-    <a href="http://www.jianshu.com/p/2ebc5cc80835"><font color="#3262b3" size="3dp">博客原文</font></a>
+    <a href="http://www.jianshu.com/p/2ebc5cc80835" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
 
@@ -72,7 +72,7 @@ builder.setTitle("标题",Color.RED)
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/3a7688cab9e1"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/3a7688cab9e1" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
 
@@ -103,7 +103,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/3db73ba78882"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/3db73ba78882" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
 
@@ -141,7 +141,7 @@ countDownView.start();
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/993cea9d6631"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/993cea9d6631" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
 
@@ -172,7 +172,7 @@ approveListLayout.updateApproveList(approveList);
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/8b2247b3112d"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/8b2247b3112d" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
 
@@ -211,7 +211,7 @@ approveListLayout.updateApproveList(approveList);
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/a9abd8f7ef51"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/a9abd8f7ef51" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif">
 
@@ -226,7 +226,7 @@ approveListLayout.updateApproveList(approveList);
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
      <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
-     <a href="http://www.jianshu.com/p/15dfbf64cf7a"><font color="#3262b3" size="3dp">博客原文</font></a>
+     <a href="http://www.jianshu.com/p/15dfbf64cf7a" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
 
