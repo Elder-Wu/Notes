@@ -76,4 +76,8 @@ dependencies {
 //        exclude group: 'com.google.gson',module:'annotations'
 //    }
 //    compile 'cn.bmob.android:http-legacy:1.0'
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'cn.bingoogolapple:bga-banner:2.0.9@aar'
+
 }

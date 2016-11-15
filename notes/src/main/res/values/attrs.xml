@@ -20,7 +20,7 @@
         <attr name="pic_offset" format="float" />
     </declare-styleable>
 
-    <declare-styleable name="DragLayout">
+    <declare-styleable name="FloatViewLayout">
         <attr name="offset" format="float" />
     </declare-styleable>
 </resources>

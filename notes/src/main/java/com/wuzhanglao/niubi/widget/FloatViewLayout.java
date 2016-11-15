@@ -15,9 +15,9 @@ import com.wuzhanglao.niubi.R;
  * Created by wuming on 2016/10/26.
  */
 
-public class DragLayout extends RelativeLayout {
+public class FloatViewLayout extends RelativeLayout {
 
-    private static final String TAG = DragLayout.class.getSimpleName();
+    private static final String TAG = FloatViewLayout.class.getSimpleName();
     private static final float DEFAULT_OFFSET = 0f;
 
     private ViewDragHelper viewDragHelper;
@@ -25,14 +25,14 @@ public class DragLayout extends RelativeLayout {
     private View targetView;
     private boolean isFirstStart = false;
 
-    public DragLayout(Context context) {
+    public FloatViewLayout(Context context) {
         this(context, null);
     }
 
-    public DragLayout(Context context, AttributeSet attrs) {
+    public FloatViewLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DragLayout);
-        offset = ta.getFloat(R.styleable.DragLayout_offset, DEFAULT_OFFSET);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FloatViewLayout);
+        offset = ta.getFloat(R.styleable.FloatViewLayout_offset, DEFAULT_OFFSET);
         ta.recycle();
         init();
     }

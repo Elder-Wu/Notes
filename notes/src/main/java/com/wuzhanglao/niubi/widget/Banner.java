@@ -4,19 +4,25 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,6 +32,7 @@ import java.util.TimerTask;
  */
 
 public class Banner extends RelativeLayout implements ViewPager.OnPageChangeListener, View.OnTouchListener {
+    private static final String TAG = Banner.class.getSimpleName();
 
     //指示器选中时和未选中时的颜色
     private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
@@ -33,7 +40,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     //指示器的圆点大小
     private static final int DEFAULT_DOT_SIZE = 30;
     //页面切换时间
-    private static final int SCROLL_DURATION = 800;
+    private static final int SCROLL_DURATION = 500;
     //页面展示时间
     private static final int DISPLAY_TIME = 3000;
 
@@ -46,6 +53,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     private PagerAdapter adapter = new PagerAdapter() {
         @Override
         public int getCount() {
+//            return views.size();
             return Integer.MAX_VALUE;
         }
 
@@ -54,7 +62,6 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
             return view == object;
         }
 
-
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             // container.removeView((ImageView) object);
@@ -62,14 +69,14 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            int position_in_data = position % views.size();
-            View image = views.get(position_in_data);
-            if (image.getParent() != null) {
-                ViewGroup viewGroup = (ViewGroup) image.getParent();
-                viewGroup.removeView(image);
+            final int position_in_data = position % views.size();
+            final View child = views.get(position_in_data);
+            if (child.getParent() != null) {
+                ViewGroup viewGroup = (ViewGroup) child.getParent();
+                viewGroup.removeView(child);
             }
-            container.addView(image);
-            return image;
+            container.addView(child);
+            return child;
         }
     };
 
@@ -79,12 +86,14 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
 
     public Banner(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setWillNotDraw(false);
+
         //动态添加ViewPager实例
         mViewPager = new ViewPager(context);
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOnTouchListener(this);
-        mViewPager.setPageTransformer(false, new MyPageTransformer());
+        mViewPager.setPageTransformer(true, new MyPageTransformer());
         setDefaultDuration();
         addView(mViewPager);
 
@@ -139,7 +148,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         @Override
         public void transformPage(View page, float position) {
             if (position < -1) {
-                page.setAlpha(0);
+                page.setAlpha(1);
             } else if (position <= 0) {
                 //ViewPager正在滑动时，页面左边的View       -1～0
                 page.setAlpha(1);
@@ -153,7 +162,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
                 page.setScaleX((float) (1 - position * 0.8));
                 page.setScaleY((float) (1 - position * 0.8));
             } else {
-                page.setAlpha(0);
+                page.setAlpha(1);
             }
         }
     }
@@ -236,30 +245,22 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
 
 
     private Handler hander = new Handler();
-    private Timer timer = new Timer();
-    private TimerTask timerTask;
 
     private Runnable runable = new Runnable() {
         @Override
         public void run() {
             //true表示平滑滚动
             mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);
+            hander.postDelayed(runable, DISPLAY_TIME);
         }
     };
 
     public void startScroll() {
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                hander.post(runable);
-            }
-        };
-        timer.schedule(timerTask, DISPLAY_TIME, DISPLAY_TIME);
+        hander.postDelayed(runable, DISPLAY_TIME);
     }
 
     public void stopScroll() {
-        timerTask.cancel();
-        timerTask = null;
+        hander.removeCallbacks(runable);
     }
 
     @Override
@@ -274,6 +275,4 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         }
         return false;
     }
-
-
 }
