@@ -3,7 +3,6 @@ package com.wuzhanglao.niubi.activity;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -15,6 +14,7 @@ import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.fragment.AnimFragment;
 import com.wuzhanglao.niubi.fragment.ApproveListFragment;
 import com.wuzhanglao.niubi.fragment.BannerFragment;
+import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
@@ -79,12 +79,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("可以拖动的布局");
         data.add("刮刮卡");
         data.add("广告栏无限轮播");
-        data.add("下拉刷新--嵌套滚动");
-        data.add("不可点击1");
-        data.add("不可点击2");
-        data.add("不可点击3");
-        data.add("不可点击4");
-        data.add("不可点击5");
+        data.add("贝塞尔曲线");
+//        data.add("下拉刷新--嵌套滚动");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -128,6 +124,9 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 break;
             case "下拉刷新--嵌套滚动":
                 openFragment(new SwipeRefreshFragment(), adapter.getData(position));
+                break;
+            case "贝塞尔曲线":
+                openFragment(new BezierFragment(), adapter.getData(position));
                 break;
         }
     }

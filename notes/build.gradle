@@ -68,16 +68,10 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
-    //Zxing
-    compile 'com.google.zxing:core:3.3.0';
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
 //    compile('cn.bmob.android:bmob-sdk:3.5.0') {
 //        exclude group: 'com.squareup.okhttp3'
 //        exclude group: 'com.google.gson',module:'annotations'
 //    }
 //    compile 'cn.bmob.android:http-legacy:1.0'
-
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'cn.bingoogolapple:bga-banner:2.0.9@aar'
-
 }

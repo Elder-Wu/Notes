@@ -8,10 +8,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <cn.bingoogolapple.bgabanner.BGABanner
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_alignParentBottom="true">
-
-    </cn.bingoogolapple.bgabanner.BGABanner>
 </RelativeLayout>
