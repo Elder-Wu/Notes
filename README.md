@@ -34,6 +34,9 @@ Create a repository for myself.Mainly record some of my study notes.
         <td>
             <a href="#banner">广告栏无限循环</a>
         </td>
+        <td>
+            <a href="#bezier_view">美拍点赞效果</a>
+        </td>
     </tr>
 </table>
 
