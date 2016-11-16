@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wuzhanglao.niubi.widget.BezierView
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="200dp" />
+<com.wuzhanglao.niubi.widget.BezierView
+    android:layout_width="100dp"
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="200dp" />
 </RelativeLayout>

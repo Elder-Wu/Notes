@@ -243,3 +243,19 @@ private ImageView getImageView(int resId) {
     return image;
 }
 ```
+<h3 id="bezier_view">美拍点赞效果</h3>
+<p>
+     <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="http://www.jianshu.com/p/6e5230503745" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
+</p>
+<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/bezier_view.gif">
+
+使用方法
+```
+<com.wuzhanglao.niubi.widget.BezierView
+    android:layout_width="100dp"
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="200dp" />
+```
