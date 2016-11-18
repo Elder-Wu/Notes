@@ -1,8 +1,11 @@
 package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ExploreByTouchHelper;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,16 +25,14 @@ public class DragRefreshLayout extends RelativeLayout {
 
     private static final String TAG = DragRefreshLayout.class.getSimpleName();
     private static final String refresh_state = "refresh_state";
-
+    private Paint paint;
     private View targetView;
-
     //刷新头部
     private View headerView;
     private ImageView headerIcon;
     private TextView headerText;
 
     private boolean isRefreshing = false;
-
     private Scroller scroller;
 
     public DragRefreshLayout(Context context) {
@@ -42,8 +43,14 @@ public class DragRefreshLayout extends RelativeLayout {
         super(context, attrs);
         scroller = new Scroller(getContext());
         addHeaderView();
-        //设置false之后，DragRefreshLayout的onDraw会被调用
-        setWillNotDraw(false);
+
+        paint = new Paint();
+        paint.setDither(true);
+        paint.setAntiAlias(true);
+        paint.setFilterBitmap(true);
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(20);
     }
 
     private boolean canRefresh() {
@@ -103,6 +110,17 @@ public class DragRefreshLayout extends RelativeLayout {
 //        invalidate();
     }
 
+    private Path path;
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        path = new Path();
+        path.moveTo(0, 0);
+        path.cubicTo(getWidth()-100, 500, 100, 500, getWidth(), 0);
+        canvas.drawPath(path, paint);
+    }
+
     private float pointerCurrentY;
     private float pointerStartY;
 
@@ -112,18 +130,16 @@ public class DragRefreshLayout extends RelativeLayout {
                 //相对坐标
                 pointerStartY = ev.getY();
                 pointerCurrentY = ev.getY();
-
-                scroller.forceFinished(true);
                 break;
             case MotionEvent.ACTION_MOVE:
                 //(1)判断手指是向下滑动的，不是向上滑动
                 //(2)判断targetView是否到达顶部
                 //(3)scrollY必须大于0
                 pointerCurrentY = ev.getY();
-                if ((pointerCurrentY - pointerStartY) > 0 && !ViewCompat.canScrollVertically(targetView, -1)) {
+//                if ((pointerCurrentY - pointerStartY) > 0 && !ViewCompat.canScrollVertically(targetView, -1)) {
                     return true;
-                }
-                break;
+//                }
+//                break;
         }
         return super.onInterceptTouchEvent(ev);
     }
@@ -141,6 +157,9 @@ public class DragRefreshLayout extends RelativeLayout {
 //                dy = (getScaleY() + dy) > 0 ? dy : -getScrollY();
                 //noinspection ResourceType
                 scrollTo(0, (int) -dy / 2);
+                path = new Path();
+                path.moveTo(0, 0);
+                path.cubicTo(getWidth(), getScrollY(), 0, getScaleY(), getWidth(), 0);
                 break;
             case MotionEvent.ACTION_UP:
                 //判断是否可以进行刷新

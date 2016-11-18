@@ -21,7 +21,7 @@ import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
-import com.wuzhanglao.niubi.fragment.SwipeRefreshFragment;
+import com.wuzhanglao.niubi.fragment.DragRefreshFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
@@ -80,7 +80,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("刮刮卡");
         data.add("广告栏无限轮播");
         data.add("贝塞尔曲线");
-//        data.add("下拉刷新--嵌套滚动");
+        data.add("下拉刷新");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -123,10 +123,13 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 openFragment(new BannerFragment(), adapter.getData(position));
                 break;
             case "下拉刷新--嵌套滚动":
-                openFragment(new SwipeRefreshFragment(), adapter.getData(position));
+                openFragment(new DragRefreshFragment(), adapter.getData(position));
                 break;
             case "贝塞尔曲线":
                 openFragment(new BezierFragment(), adapter.getData(position));
+                break;
+            case "下拉刷新":
+                openFragment(new DragRefreshFragment(),adapter.getData(position));
                 break;
         }
     }

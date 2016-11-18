@@ -10,10 +10,10 @@ import com.wuzhanglao.niubi.R;
  * Created by wuming on 2016/11/14.
  */
 
-public class SwipeRefreshFragment extends BaseFragment {
+public class DragRefreshFragment extends BaseFragment {
     @Override
     public int setResId() {
-        return R.layout.fragment_swipe_refresh;
+        return R.layout.fragment_drag_refresh;
     }
 
     @Override

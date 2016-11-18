@@ -12,7 +12,6 @@ public class MyApplication extends Application {
     private static final Thread initSDKThread = new Thread(){
         @Override
         public void run() {
-
         }
     };
 
@@ -20,6 +19,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        initSDKThread.start();
 
     }
 

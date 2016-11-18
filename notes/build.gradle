@@ -17,6 +17,16 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0.1"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "bdff410f9c7a31c23daad7aa", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         debug {
@@ -68,6 +78,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
+    //JPush
+    compile 'cn.jiguang:jpush:2.1.8'  // 此处以SDK 2.1.8版本为例
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
 //    compile('cn.bmob.android:bmob-sdk:3.5.0') {
 //        exclude group: 'com.squareup.okhttp3'
