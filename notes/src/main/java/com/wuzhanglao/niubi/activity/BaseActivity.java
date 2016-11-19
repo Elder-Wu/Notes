@@ -4,13 +4,9 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.umeng.analytics.MobclickAgent;
 
@@ -46,7 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 可以达到
+     * 可以达到沉浸式状态栏的效果
      */
     protected void afterSetContentView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -56,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
-        Log.d(TAG,"system status height->"+getStatusBarHeight());
+        Log.d(TAG, "system status height->" + getStatusBarHeight());
     }
 
     protected abstract int setContentView();
