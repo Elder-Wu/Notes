@@ -5,12 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by wuming on 16/10/13.
@@ -38,7 +38,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void beforeSetContentView() {
-
     }
 
     /**
@@ -50,30 +49,25 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明底部导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
 
-        Log.d(TAG, "system status height->" + getStatusBarHeight());
+            final ViewGroup contentLayout = (ViewGroup) findViewById(android.R.id.content);
+            final View contentChild = contentLayout.getChildAt(0);
+            contentChild.setFitsSystemWindows(true);
+        }
+        // create our manager instance after the content view is set
+        final SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        // enable status bar tint
+        tintManager.setStatusBarTintEnabled(true);
+        // enable navigation bar tint
+        tintManager.setNavigationBarTintEnabled(true);
+        // set a custom tint color for all system bars
+        tintManager.setTintColor(setSystemBarColor());
     }
+
+    protected abstract int setSystemBarColor();
 
     protected abstract int setContentView();
 
     protected abstract void initView();
 
-    // 获取手机状态栏高度
-    public int getStatusBarHeight() {
-        Class<?> c = null;
-        Object obj = null;
-        Field field = null;
-        int x = 0, statusBarHeight = 0;
-        try {
-            c = Class.forName("com.android.internal.R$dimen");
-            obj = c.newInstance();
-            field = c.getField("status_bar_height");
-            x = Integer.parseInt(field.get(obj).toString());
-            statusBarHeight = getResources().getDimensionPixelSize(x);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-        return statusBarHeight;
-    }
 }

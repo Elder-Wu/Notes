@@ -1,5 +1,6 @@
 package com.wuzhanglao.niubi.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,6 +35,11 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     private TextHolderAdatpter adapter;
 
     private FragmentManager fragmentManager;
+
+    @Override
+    protected int setSystemBarColor() {
+        return Color.parseColor("#88FF00FF");
+    }
 
     @Override
     protected int setContentView() {

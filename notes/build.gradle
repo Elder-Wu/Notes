@@ -79,7 +79,10 @@ dependencies {
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
     //JPush
-    compile 'cn.jiguang:jpush:2.1.8'  // 此处以SDK 2.1.8版本为例
+    compile 'cn.jiguang:jpush:2.1.8'
+    //沉浸式状态栏
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    // 此处以SDK 2.1.8版本为例
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
 //    compile('cn.bmob.android:bmob-sdk:3.5.0') {
 //        exclude group: 'com.squareup.okhttp3'

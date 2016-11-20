@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorPrimaryDark"
-    android:clipToPadding="false"
-    android:fitsSystemWindows="true">
+    android:background="@color/black_444444">
 
     <TextView
         android:id="@+id/general_toolbar_back_tv"
