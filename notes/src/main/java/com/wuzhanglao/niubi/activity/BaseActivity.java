@@ -72,7 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明底部导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
+            //如果不进行这步操作，整个View树就会往上偏移一点点   具体的原因，看一下setFitsSystemWindows()方法就好
             final ViewGroup contentLayout = (ViewGroup) findViewById(android.R.id.content);
             final View contentChild = contentLayout.getChildAt(0);
             contentChild.setFitsSystemWindows(true);
