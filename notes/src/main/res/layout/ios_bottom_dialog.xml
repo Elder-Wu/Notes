@@ -47,6 +47,6 @@
         android:padding="8dp"
         android:textColor="@color/text_color_green_013ADF"
         android:text="@string/cancel"
-        android:textSize="20dp" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

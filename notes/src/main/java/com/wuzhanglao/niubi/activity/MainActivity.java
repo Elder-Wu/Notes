@@ -1,13 +1,12 @@
 package com.wuzhanglao.niubi.activity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.view.View;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -18,16 +17,18 @@ import com.wuzhanglao.niubi.fragment.BannerFragment;
 import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
+import com.wuzhanglao.niubi.fragment.DragRefreshFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
-import com.wuzhanglao.niubi.fragment.DragRefreshFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.functions.Action1;
 
 public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener {
 
@@ -37,8 +38,24 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     private FragmentManager fragmentManager;
 
     @Override
+    protected Action1<Object> setOnNext() {
+        return new Action1<Object>() {
+            @Override
+            public void call(Object o) {
+                Log.d(TAG, "call  我接受到消息啦   " + o.toString());
+            }
+        };
+    }
+
+    @Override
     protected int setSystemBarColor() {
-        return Color.parseColor("#88FF00FF");
+        return getResources().getColor(R.color.black_444444);
+    }
+
+    @Override
+    protected void afterSetContentView() {
+        super.afterSetContentView();
+        initDefaultToolBar();
     }
 
     @Override
@@ -46,9 +63,26 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         return R.layout.activity_main;
     }
 
-    protected void initView() {
-        initData();
+    protected void initData() {
+        List<String> data = new ArrayList();
+        data.add("仿ios底部弹出对话框");
+        data.add("Activity动画特效");
+        data.add("淘宝头条控件");
+        data.add("显示未读消息数控件");
+        data.add("广告倒计时控件");
+        data.add("网络请求");
+        data.add("点赞列表");
+        data.add("可以拖动的布局");
+        data.add("刮刮卡");
+        data.add("广告栏无限轮播");
+        data.add("贝塞尔曲线");
+        data.add("下拉刷新");
 
+        adapter = new TextHolderAdatpter(context, data);
+        adapter.setTextHolderClickListener(this);
+    }
+
+    protected void initView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
@@ -71,25 +105,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
 
         fragmentManager = getSupportFragmentManager();
         hideBackButton();
-    }
-
-    private void initData() {
-        List<String> data = new ArrayList();
-        data.add("仿ios底部弹出对话框");
-        data.add("Activity动画特效");
-        data.add("淘宝头条控件");
-        data.add("显示未读消息数控件");
-        data.add("广告倒计时控件");
-        data.add("网络请求");
-        data.add("点赞列表");
-        data.add("可以拖动的布局");
-        data.add("刮刮卡");
-        data.add("广告栏无限轮播");
-        data.add("贝塞尔曲线");
-        data.add("下拉刷新");
-
-        adapter = new TextHolderAdatpter(context, data);
-        adapter.setTextHolderClickListener(this);
     }
 
     @Override
@@ -135,7 +150,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 openFragment(new BezierFragment(), adapter.getData(position));
                 break;
             case "下拉刷新":
-                openFragment(new DragRefreshFragment(),adapter.getData(position));
+                openFragment(new DragRefreshFragment(), adapter.getData(position));
                 break;
         }
     }
@@ -162,10 +177,5 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     public void hideBackButton() {
         setToolbarTitle(getString(R.string.main_title));
         setToolbarBackVisible(false);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

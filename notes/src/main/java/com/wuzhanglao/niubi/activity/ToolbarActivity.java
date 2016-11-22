@@ -1,9 +1,6 @@
 package com.wuzhanglao.niubi.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,22 +10,12 @@ import com.wuzhanglao.niubi.R;
  * Created by wuming on 16/10/14.
  */
 
-public abstract class ToolbarActivity extends BaseActivity implements View.OnClickListener {
+public abstract class ToolbarActivity extends BaseActivity {
 
     private TextView toolbar_title_tv;
     private TextView toolbar_back_tv;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        beforeSetContentView();
-        setContentView(setContentView());
-        afterSetContentView();
-        initDefaultToolBar();
-        initView();
-    }
-
-    private void initDefaultToolBar() {
+    public void initDefaultToolBar() {
         toolbar_back_tv = (TextView) findViewById(R.id.general_toolbar_back_tv);
         toolbar_title_tv = (TextView) findViewById(R.id.general_toolbar_title_tv);
 

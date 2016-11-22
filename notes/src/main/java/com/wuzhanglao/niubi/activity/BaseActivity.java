@@ -11,6 +11,12 @@ import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
+import com.wuzhanglao.niubi.utils.RxBus;
+
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by wuming on 16/10/13.
@@ -19,11 +25,22 @@ import com.umeng.analytics.MobclickAgent;
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = BaseActivity.class.getSimpleName();
     public Context context;
+    private Subscription subscription;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+        //设置contentView
+        beforeSetContentView();
+        setContentView(setContentView());
+        afterSetContentView();
+        //初始化RxBus
+        initRxBus(setOnNext());
+        //初始化数据
+        initData();
+        //初始化View
+        initView();
     }
 
     @Override
@@ -35,6 +52,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(context);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindRxBus();
     }
 
     protected void beforeSetContentView() {
@@ -64,10 +87,31 @@ public abstract class BaseActivity extends AppCompatActivity {
         tintManager.setTintColor(setSystemBarColor());
     }
 
+    protected abstract Action1<Object> setOnNext();
+
+    private void initRxBus(final Action1<Object> onNext) {
+        if (onNext != null) {
+            subscription = RxBus.toObserverable()
+                    .subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(onNext);
+        }
+    }
+
+    private void unbindRxBus() {
+        if (subscription != null) {
+            subscription.unsubscribe();
+        }
+    }
+
     protected abstract int setSystemBarColor();
 
     protected abstract int setContentView();
 
     protected abstract void initView();
+
+    protected void initData() {
+    }
 
 }

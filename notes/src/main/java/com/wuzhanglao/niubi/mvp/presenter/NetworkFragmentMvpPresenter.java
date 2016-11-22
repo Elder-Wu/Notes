@@ -31,6 +31,5 @@ public class NetworkFragmentMvpPresenter extends BaseMvpPresenter<NetworkFragmen
             }
         };
         NetworkRequest.getInstance().getHeBeiBeiData(onNext);
-
     }
 }

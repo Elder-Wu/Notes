@@ -25,9 +25,9 @@ import java.util.List;
 
 public class IosBottomDialog extends Dialog {
 
-    public static final int DEFAULT_PADDING = 7;
-    public static final int DEFAULT_TITLE_SIZE = 7;
-    public static final int DEFAULT_OPTION_SIZE = 7;
+    public static final int DEFAULT_PADDING = 8;
+    public static final int DEFAULT_TITLE_SIZE = 5;
+    public static final int DEFAULT_OPTION_SIZE = 5;
 
     private LinearLayout options_ll;
     private TextView title;
@@ -183,61 +183,64 @@ public class IosBottomDialog extends Dialog {
             return dialog;
         }
     }
-}
 
-//这个类保存了dialog的众多参数
-class Paraments {
-    public static final int titleSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_TITLE_SIZE);
-    public static final int optionTextSize = UIUtils.dp2px(IosBottomDialog.DEFAULT_OPTION_SIZE);
-    public String title;
-    public int titleColor;
-    public boolean cancelable;
-    public List<Option> options;
-    public IosBottomDialog.IosBottomDialogDismissListener dismisslistener;
+    //这个类保存了dialog的众多参数
+    private static class Paraments {
+        public int titleSize;
+        public int optionTextSize;
+        public String title;
+        public int titleColor;
+        public boolean cancelable;
+        public List<Option> options;
+        public IosBottomDialog.IosBottomDialogDismissListener dismisslistener;
 
-    public Paraments() {
-        title = "";
-        titleColor = Color.BLACK;
-        cancelable = true;
-        options = new ArrayList();
-    }
-}
-
-class Option {
-    private String name;
-    private int color;
-    private IosBottomDialog.OnOptionClickListener listener;
-
-    public Option() {
+        public Paraments() {
+            title = "";
+            titleColor = Color.BLACK;
+            cancelable = true;
+            options = new ArrayList();
+            titleSize = UIUtils.sp2px(IosBottomDialog.DEFAULT_TITLE_SIZE);
+            optionTextSize = UIUtils.sp2px(IosBottomDialog.DEFAULT_OPTION_SIZE);
+        }
     }
 
-    public Option(String name, int color, IosBottomDialog.OnOptionClickListener listener) {
-        this.name = name;
-        this.color = color;
-        this.listener = listener;
+    private static class Option {
+        private String name;
+        private int color;
+        private IosBottomDialog.OnOptionClickListener listener;
+
+        public Option() {
+        }
+
+        public Option(String name, int color, IosBottomDialog.OnOptionClickListener listener) {
+            this.name = name;
+            this.color = color;
+            this.listener = listener;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getColor() {
+            return color;
+        }
+
+        public void setColor(int color) {
+            this.color = color;
+        }
+
+        public IosBottomDialog.OnOptionClickListener getListener() {
+            return listener;
+        }
+
+        public void setListener(IosBottomDialog.OnOptionClickListener listener) {
+            this.listener = listener;
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public IosBottomDialog.OnOptionClickListener getListener() {
-        return listener;
-    }
-
-    public void setListener(IosBottomDialog.OnOptionClickListener listener) {
-        this.listener = listener;
-    }
 }

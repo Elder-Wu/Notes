@@ -179,6 +179,10 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         refreshDots(0);
     }
 
+    public void setContent(){
+
+    }
+
     private void refreshDots(int position_in_data) {
         for (Dot dot : dots) {
             dot.setDotColor(UNSELECTED_DOT_COLOR);

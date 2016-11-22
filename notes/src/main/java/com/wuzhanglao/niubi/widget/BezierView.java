@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.utils.UIUtils;
+import com.wuzhanglao.niubi.utils.view.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -113,7 +114,7 @@ public class BezierView extends RelativeLayout {
                 heart.setX(point.x);
                 heart.setY(point.y);
                 //设置透明度
-                heart.setAlpha((1 - animation.getAnimatedFraction()) * 2);
+                ViewHelper.setAlpha(heart, (1 - animation.getAnimatedFraction()) * 2);
             }
         });
         valueAnimator.start();
