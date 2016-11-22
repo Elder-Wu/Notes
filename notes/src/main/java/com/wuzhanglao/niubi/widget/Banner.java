@@ -18,6 +18,7 @@ import android.widget.Scroller;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wuming on 2016/11/3.
@@ -179,8 +180,23 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         refreshDots(0);
     }
 
-    public void setContent(){
-
+    public void addContentList(List<View> viewList) {
+        if (viewList == null || viewList.size() == 0) {
+            return;
+        }
+        if (params == null) {
+            params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(5, 5, 5, 5);
+        }
+        for (View view : viewList) {
+            Dot dot = new Dot(getContext());
+            dots.add(dot);
+            ll_dots.addView(dot, params);
+            views.add(view);
+            adapter.notifyDataSetChanged();
+            mViewPager.setCurrentItem(views.size() * 1024);
+            refreshDots(0);
+        }
     }
 
     private void refreshDots(int position_in_data) {
