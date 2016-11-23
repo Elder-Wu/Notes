@@ -59,15 +59,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void beforeSetContentView() {
-    }
-
-    protected void afterSetContentView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明底部导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+    }
+
+    protected void afterSetContentView() {
     }
 
     private Action1<Object> setOnNext() {

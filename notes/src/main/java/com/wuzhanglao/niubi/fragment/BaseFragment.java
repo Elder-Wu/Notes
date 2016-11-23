@@ -32,7 +32,7 @@ public abstract class BaseFragment extends Fragment {
         Log.e("MainActivity", "BaseFragment onViewCreated");
         //解决Fragment覆盖的时候会点到其他Fragment的问题
         view.setClickable(true);
-        //给Fragment统一设置一个背景，这样就不会透明了
+        //给Fragment统一设置一个默认的背景，这样就不会透明了
         view.setBackgroundColor(Color.WHITE);
         initView(view, savedInstanceState);
     }
