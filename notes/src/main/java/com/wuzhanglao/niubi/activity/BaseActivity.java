@@ -23,6 +23,7 @@ import rx.schedulers.Schedulers;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
+
     private static final String TAG = BaseActivity.class.getSimpleName();
     public Context context;
     private Subscription subscription;

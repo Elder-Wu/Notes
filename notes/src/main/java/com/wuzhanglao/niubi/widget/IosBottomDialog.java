@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -26,9 +25,10 @@ import java.util.List;
 
 public class IosBottomDialog extends Dialog {
 
+    private static final String TAG = IosBottomDialog.class.getSimpleName();
     public static final int DEFAULT_PADDING = 8;
-    public static final int DEFAULT_TITLE_SIZE = 5;
-    public static final int DEFAULT_OPTION_SIZE = 5;
+    public static final int DEFAULT_TITLE_SIZE = 15;
+    public static final int DEFAULT_OPTION_SIZE = 15;
 
     private LinearLayout options_ll;
     private TextView title;
@@ -136,14 +136,12 @@ public class IosBottomDialog extends Dialog {
             } else {
                 for (int i = 0; i < p.options.size(); i++) {
                     final Option option = p.options.get(i);
-                    final TextView optionText = (TextView) LayoutInflater.from(context).
-                            inflate(R.layout.ios_dialog_item, dialog.options_ll, true);
-                    //final TextView optionText = new TextView(context);
-                    //int padding = UIUtils.dp2px(IosBottomDialog.DEFAULT_PADDING);
-                    //optionText.setPadding(padding, padding, padding, padding);
+                    final TextView optionText = new TextView(context);
+                    int padding = UIUtils.dp2px(IosBottomDialog.DEFAULT_PADDING);
+                    optionText.setPadding(padding, padding, padding, padding);
                     optionText.setText(option.getName());
-                    //optionText.setTextSize(p.optionTextSize);
-                    //optionText.setGravity(Gravity.CENTER);
+                    optionText.setTextSize(p.optionTextSize);
+                    optionText.setGravity(Gravity.CENTER);
                     optionText.setTextColor(option.getColor());
                     optionText.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -154,7 +152,7 @@ public class IosBottomDialog extends Dialog {
                             }
                         }
                     });
-//                    dialog.options_ll.addView(optionText);
+                    dialog.options_ll.addView(optionText);
                     //添加条目之间的分割线
                     if (i != p.options.size() - 1) {
                         View divider = new View(context);
@@ -202,8 +200,8 @@ public class IosBottomDialog extends Dialog {
             titleColor = Color.BLACK;
             cancelable = true;
             options = new ArrayList();
-            titleSize = UIUtils.sp2px(IosBottomDialog.DEFAULT_TITLE_SIZE);
-            optionTextSize = UIUtils.sp2px(IosBottomDialog.DEFAULT_OPTION_SIZE);
+            titleSize = DEFAULT_TITLE_SIZE;
+            optionTextSize = DEFAULT_OPTION_SIZE;
         }
     }
 

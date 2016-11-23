@@ -53,14 +53,14 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     }
 
     @Override
-    protected void afterSetContentView() {
-        super.afterSetContentView();
-        initDefaultToolBar();
+    protected int setContentView() {
+        return R.layout.activity_main;
     }
 
     @Override
-    protected int setContentView() {
-        return R.layout.activity_main;
+    protected void afterSetContentView() {
+        super.afterSetContentView();
+        initDefaultToolBar();
     }
 
     protected void initData() {
