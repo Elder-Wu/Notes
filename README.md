@@ -111,17 +111,18 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 使用方法
 ```
 _布局文件中使用_
-<com.example.customview.widget.CountDownView
+<com.wuzhanglao.niubi.widget.CountDownView
     android:id="@+id/fragment_count_down"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:layout_centerInParent="true"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_alignParentRight="true"
+    android:layout_margin="5dp"
     app:background_color="@color/gray_aaa"
     app:border_color="@color/blue_6eb"
-    app:border_width="3dp"
+    app:border_width="2dp"
     app:text="跳过广告"
     app:text_color="@color/white"
-    app:text_size="55dp" />
+    app:text_size="14dp" />
 
 _代码中使用_
 countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
@@ -149,13 +150,10 @@ countDownView.start();
 使用方法
 ```
 _布局中使用_
-<com.example.customview.widget.ApproveListLayout
+<com.wuzhanglao.niubi.widget.ApproveListLayout
     android:id="@+id/approve_list_layout"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    app:pic_count="9"
-    app:pic_offset="0.3f"
-    app:pic_size="20dp"/>
+    android:layout_height="50dp" />
 
 _代码中使用_
 approveList = new ArrayList<>();
@@ -179,18 +177,19 @@ approveListLayout.updateApproveList(approveList);
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
 ```
-<com.example.notes.widget.DragLayout
+<com.wuzhanglao.niubi.widget.FloatViewLayout
     android:id="@+id/fragment_drag_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@color/black_444444"
         android:padding="20dp"
         android:text="我是一个可以拖动的View"
         android:textColor="@color/white" />
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.wuzhanglao.niubi.widget.CircleImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="80dp"
@@ -201,11 +200,11 @@ approveListLayout.updateApproveList(approveList);
         android:layout_marginTop="140dp"
         android:scaleType="centerCrop"
         android:src="@drawable/demo" />
-    <com.example.notes.widget.CustomClock
+    <com.wuzhanglao.niubi.widget.CustomClock
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="200dp" />
-</com.example.notes.widget.DragLayout>
+</com.wuzhanglao.niubi.widget.FloatViewLayout>
 ```
 ****
 <h3 id="guaguaka">刮刮卡</h3>
@@ -233,14 +232,12 @@ approveListLayout.updateApproveList(approveList);
 
 使用方法
 ```
-@Override
-public void initView(View view, @Nullable Bundle savedInstanceState) {
-    banner = (ImageBanner) view.findViewById(R.id.fragment_viewpager_imagebanner);
-    banner.addImage(getImageView(R.drawable.mv1));
-    banner.addImage(getImageView(R.drawable.mv2));
-    banner.addImage(getImageView(R.drawable.mv3));
-    banner.addImage(getImageView(R.drawable.mv4));
-}
+banner = (Banner) view.findViewById(R.id.fragment_viewpager_imagebanner);
+banner.addImage(getImageView(R.drawable.mv1));
+banner.addImage(getImageView(R.drawable.mv2));
+banner.addImage(getImageView(R.drawable.mv3));
+banner.addImage(getImageView(R.drawable.mv4));
+
 private ImageView getImageView(int resId) {
     ImageView image = new ImageView(context);
     image.setImageResource(resId);
