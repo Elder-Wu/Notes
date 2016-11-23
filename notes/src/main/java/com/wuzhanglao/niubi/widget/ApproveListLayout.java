@@ -17,8 +17,6 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 
 /**

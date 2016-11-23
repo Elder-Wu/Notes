@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -17,7 +16,6 @@ import com.wuzhanglao.niubi.fragment.BannerFragment;
 import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
-import com.wuzhanglao.niubi.fragment.DragRefreshFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
@@ -28,8 +26,6 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.functions.Action1;
-
 public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
@@ -38,18 +34,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     private FragmentManager fragmentManager;
 
     @Override
-    protected Action1<Object> setOnNext() {
-        return new Action1<Object>() {
-            @Override
-            public void call(Object o) {
-                Log.d(TAG, "call  我接受到消息啦   " + o.toString());
-            }
-        };
-    }
-
-    @Override
-    protected int setSystemBarColor() {
-        return getResources().getColor(R.color.black_444444);
+    protected void doOnNext(Object o) {
+        //接收到全局广播之后在这里处理的相关的业务逻辑
     }
 
     @Override
@@ -76,7 +62,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("刮刮卡");
         data.add("广告栏无限轮播");
         data.add("贝塞尔曲线");
-        data.add("下拉刷新");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -86,15 +71,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            }
-        });
 
         TextView introduce = (TextView) findViewById(R.id.introduce_tv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -143,14 +119,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
             case "广告栏无限轮播":
                 openFragment(new BannerFragment(), adapter.getData(position));
                 break;
-            case "下拉刷新--嵌套滚动":
-                openFragment(new DragRefreshFragment(), adapter.getData(position));
-                break;
             case "贝塞尔曲线":
                 openFragment(new BezierFragment(), adapter.getData(position));
-                break;
-            case "下拉刷新":
-                openFragment(new DragRefreshFragment(), adapter.getData(position));
                 break;
         }
     }

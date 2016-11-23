@@ -1,5 +1,7 @@
 package com.wuzhanglao.niubi.utils;
 
+import android.util.Log;
+
 import com.wuzhanglao.niubi.mvp.model.HeBeiBeiBean;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 
@@ -8,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -40,8 +43,11 @@ public interface NetworkService {
                         public Response intercept(Chain chain) throws IOException {
                             // TODO: 2016/11/9 可以进行重连接等操作
                             //@link 这篇博客写的很详细:http://gold.xitu.io/entry/57b123497db2a200542a073b
+                            Request request = chain.request();
+                            Log.d("okhppt","request->"+request.toString());
                             return chain.proceed(chain.request());
                         }
+
                     })//网络拦截器,进行重定向等操作
                     .connectTimeout(15, TimeUnit.SECONDS)//设置连接超时
                     .build();

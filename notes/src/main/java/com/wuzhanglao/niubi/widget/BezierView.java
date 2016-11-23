@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.utils.UIUtils;
-import com.wuzhanglao.niubi.utils.view.ViewHelper;
+import com.wuzhanglao.niubi.utils.nine_old_android.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.Random;

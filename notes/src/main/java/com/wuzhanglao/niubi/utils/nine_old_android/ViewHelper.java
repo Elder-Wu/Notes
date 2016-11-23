@@ -1,9 +1,9 @@
-package com.wuzhanglao.niubi.utils.view;
+package com.wuzhanglao.niubi.utils.nine_old_android;
 
 import android.view.View;
 
-import static com.wuzhanglao.niubi.utils.view.AnimatorProxy.NEEDS_PROXY;
-import static com.wuzhanglao.niubi.utils.view.AnimatorProxy.wrap;
+import static com.wuzhanglao.niubi.utils.nine_old_android.AnimatorProxy.NEEDS_PROXY;
+import static com.wuzhanglao.niubi.utils.nine_old_android.AnimatorProxy.wrap;
 
 public final class ViewHelper {
     private ViewHelper() {

@@ -47,7 +47,7 @@ public class NetworkFragment extends BaseMvpFragment<NetworkFragmentMvpView, Net
 
     @Override
     public void requestSuccess(Object obj) {
-
+        ToastUtils.show("请求成功");
     }
 
     @Override

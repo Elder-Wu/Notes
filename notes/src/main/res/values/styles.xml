@@ -18,7 +18,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <!-- 弹出框动画 由下至上 -->
+    <!-- 弹窗动画 由下至上 -->
     <style name="ios_bottom_dialog_anim" parent="@android:style/Animation.Dialog">
         <item name="@android:windowEnterAnimation">@anim/ios_dialog_enter</item>
         <!-- 进入时的动画 -->

@@ -13,34 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.wuzhanglao.niubi.utils.view;
+package com.wuzhanglao.niubi.utils.nine_old_android;
 
 /**
  * An implementation of {@link android.util.Property} to be used specifically with fields of type
- * <code>float</code>. This type-specific subclass enables performance benefit by allowing
- * calls to a {@link #set(Object, Float) set()} function that takes the primitive
- * <code>float</code> type and avoids autoboxing and other overhead associated with the
- * <code>Float</code> class.
+ * <code>int</code>. This type-specific subclass enables performance benefit by allowing
+ * calls to a {@link #set(Object, Integer) set()} function that takes the primitive
+ * <code>int</code> type and avoids autoboxing and other overhead associated with the
+ * <code>Integer</code> class.
  *
  * @param <T> The class on which the Property is declared.
  *
  * @hide
  */
-public abstract class FloatProperty<T> extends Property<T, Float> {
+public abstract class IntProperty<T> extends Property<T, Integer> {
 
-    public FloatProperty(String name) {
-        super(Float.class, name);
+    public IntProperty(String name) {
+        super(Integer.class, name);
     }
 
     /**
-     * A type-specific override of the {@link #set(Object, Float)} that is faster when dealing
-     * with fields of type <code>float</code>.
+     * A type-specific override of the {@link #set(Object, Integer)} that is faster when dealing
+     * with fields of type <code>int</code>.
      */
-    public abstract void setValue(T object, float value);
+    public abstract void setValue(T object, int value);
 
     @Override
-    final public void set(T object, Float value) {
-        setValue(object, value);
+    final public void set(T object, Integer value) {
+        set(object, value.intValue());
     }
 
 }
