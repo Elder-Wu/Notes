@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.utils.ToastUtils;
+import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.CountDownView;
 
 /**
@@ -27,12 +27,12 @@ public class CountDownFragment extends BaseFragment {
         countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
             @Override
             public void onStartCount() {
-                ToastUtils.show("开始了");
+                UIUtils.showToast("开始了");
             }
 
             @Override
             public void onFinishCount() {
-                ToastUtils.show("结束了");
+                UIUtils.showToast("结束了");
             }
         });
         view.findViewById(R.id.fragment_count_down_start_btn).setOnClickListener(new View.OnClickListener() {

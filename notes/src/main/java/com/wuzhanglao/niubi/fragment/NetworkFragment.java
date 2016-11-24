@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.presenter.NetworkFragmentMvpPresenter;
 import com.wuzhanglao.niubi.mvp.view.NetworkFragmentMvpView;
-import com.wuzhanglao.niubi.utils.ToastUtils;
+import com.wuzhanglao.niubi.utils.UIUtils;
 
 /**
  * Created by wuming on 16/10/19.
@@ -47,11 +47,11 @@ public class NetworkFragment extends BaseMvpFragment<NetworkFragmentMvpView, Net
 
     @Override
     public void requestSuccess(Object obj) {
-        ToastUtils.show("请求成功");
+        UIUtils.showToast("请求成功");
     }
 
     @Override
     public void requestFailed(String msg) {
-        ToastUtils.show("请求失败");
+        UIUtils.showToast("请求失败");
     }
 }

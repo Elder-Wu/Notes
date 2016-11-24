@@ -24,7 +24,7 @@
         <attr name="offset" format="float" />
     </declare-styleable>
 
-    <declare-styleable name="CircleImageView">
+    <declare-styleable name="RoundImageView">
         <attr name="civ_border_width" format="dimension" />
         <attr name="civ_border_color" format="color" />
         <attr name="civ_border_overlay" format="boolean" />

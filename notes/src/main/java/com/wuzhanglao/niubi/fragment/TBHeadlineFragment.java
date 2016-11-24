@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.HeadlineBean;
-import com.wuzhanglao.niubi.utils.ToastUtils;
+import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.TaobaoHeadline;
 
 import java.util.ArrayList;
@@ -38,12 +38,12 @@ public class TBHeadlineFragment extends BaseFragment {
         taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener() {
             @Override
             public void onHeadlineClick(HeadlineBean bean) {
-                ToastUtils.show(bean.getTitle() + ":" + bean.getContent());
+                UIUtils.showToast(bean.getTitle() + ":" + bean.getContent());
             }
 
             @Override
             public void onMoreClick() {
-                ToastUtils.show("更多");
+                UIUtils.showToast("更多");
             }
         });
     }

@@ -35,7 +35,7 @@ public class ApproveListLayout extends HorizontalScrollView {
     private static final float DEFAULT_PIC_OFFSET = 0.3f;
 
     private Context context;
-    private List<CircleImageView> headList;
+    private List<RoundImageView> headList;
 
     private int picSize = UIUtils.dp2px(DEFAULT_PIC_SIZE);
     private int picCount = DEFAULT_PIC_COUNT;
@@ -83,7 +83,7 @@ public class ApproveListLayout extends HorizontalScrollView {
         headList = new ArrayList<>(picCount);
         //循环把CircleImageView塞到RelativiLayout中，根据偏移量来摆放位置
         for (int i = 0; i < picCount; i++) {
-            CircleImageView head = new CircleImageView(context);
+            RoundImageView head = new RoundImageView(context);
             head.setId(head.hashCode() + i);
             head.setBorderColor(Color.WHITE);
             head.setBorderWidth(UIUtils.dp2px(1));
@@ -133,7 +133,7 @@ public class ApproveListLayout extends HorizontalScrollView {
     }
 
     private void hideAllHeads() {
-        for (CircleImageView head : headList) {
+        for (RoundImageView head : headList) {
             head.setVisibility(View.GONE);
         }
     }
