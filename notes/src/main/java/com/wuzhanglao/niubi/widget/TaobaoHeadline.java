@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
+import android.widget.ViewSwitcher;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.HeadlineBean;
@@ -22,10 +22,11 @@ public class TaobaoHeadline extends RelativeLayout {
 
     private static final String TAG = TaobaoHeadline.class.getSimpleName();
     private HeadlineClickListener listener;
-
     private LayoutInflater inflater;
-    private ViewFlipper viewFlipper;
+    private ViewSwitcher viewSwitcher;
     private List<View> data = new ArrayList<>();
+    private List<HeadlineBean> beanList;
+    private RelativeLayout subView1, subView2;
 
     public TaobaoHeadline(Context context) {
         this(context, null);
@@ -39,9 +40,12 @@ public class TaobaoHeadline extends RelativeLayout {
 
     private void initView() {
         View rootView = LayoutInflater.from(getContext()).inflate(R.layout.taobao_headline_layout, this, true);
-        viewFlipper = (ViewFlipper) rootView.findViewById(R.id.taobao_headline_viewflipper);
-        for (View view : data) {
-            viewFlipper.addView(view);
+        viewSwitcher = (ViewSwitcher) rootView.findViewById(R.id.taobao_headline_viewswitcher);
+        if(subView1==null){
+            subView1 = (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.headline_holder,this,true);
+        }
+        if(subView2==null){
+            subView2 = (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.headline_holder,this,true);
         }
         findViewById(R.id.taobao_headline_more_tv).setOnClickListener(new OnClickListener() {
             @Override
@@ -52,17 +56,24 @@ public class TaobaoHeadline extends RelativeLayout {
             }
         });
         //进入动画
-        viewFlipper.setInAnimation(getContext(), R.anim.headline_in);
+        viewSwitcher.setInAnimation(getContext(), R.anim.headline_in);
         //退出动画
-        viewFlipper.setOutAnimation(getContext(), R.anim.headline_out);
-        //动画间隔
-        viewFlipper.setFlipInterval(2000);
-        viewFlipper.startFlipping();
+        viewSwitcher.setOutAnimation(getContext(), R.anim.headline_out);
+        postDelayed(runnable, 2000);
     }
+
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            viewSwitcher.showNext();
+            postDelayed(runnable, 2000);
+        }
+    };
 
     //配置滚动的数据
     public void setData(List<HeadlineBean> data) {
-        convertData(data);
+        this.beanList = data;
+//        convertData(data);
         initView();
     }
 
@@ -70,7 +81,7 @@ public class TaobaoHeadline extends RelativeLayout {
     private void convertData(final List<HeadlineBean> list) {
         for (final HeadlineBean bean : list) {
             final HeadlineBean b = bean;
-            final View view = inflater.inflate(R.layout.headline_holder, viewFlipper, false);
+            final View view = inflater.inflate(R.layout.headline_holder, viewSwitcher, false);
             final TextView headline_title = (TextView) view.findViewById(R.id.headline_title_tv);
             final TextView headline_content = (TextView) view.findViewById(R.id.headline_content_tv);
             headline_title.setText(bean.getTitle());

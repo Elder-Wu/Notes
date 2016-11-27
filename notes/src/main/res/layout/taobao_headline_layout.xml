@@ -23,13 +23,12 @@
             android:scaleType="fitXY"
             android:src="@drawable/jd_toutiao" />
 
-        <ViewFlipper
-            android:id="@+id/taobao_headline_viewflipper"
+        <ViewSwitcher
+            android:id="@+id/taobao_headline_viewswitcher"
             android:layout_width="0dp"
             android:layout_height="@dimen/headline_height"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1" />
+            android:layout_marginRight="1dp" />
 
         <View
             android:layout_width="0.5dp"

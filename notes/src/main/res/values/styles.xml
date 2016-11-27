@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/white</item>
     </style>
 
     <style name="ios_bottom_dialog" parent="android:style/Theme.Dialog">

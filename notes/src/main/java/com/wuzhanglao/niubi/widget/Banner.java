@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
+import com.wuzhanglao.niubi.utils.transformer.CubeOutTransformer;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +91,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOnTouchListener(this);
-        mViewPager.setPageTransformer(true, new MyPageTransformer());
+        mViewPager.setPageTransformer(true, new CubeOutTransformer());
         setDefaultDuration();
         addView(mViewPager);
 
