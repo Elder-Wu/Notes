@@ -28,7 +28,19 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/headline_height"
             android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp" />
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:padding="1dp">
+
+            <include
+                android:id="@+id/subView1"
+                layout="@layout/headline_holder" />
+
+            <include
+                android:id="@+id/subView2"
+                layout="@layout/headline_holder" />
+
+        </ViewSwitcher>
 
         <View
             android:layout_width="0.5dp"

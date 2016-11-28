@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         context = this;
         //设置contentView
         beforeSetContentView();
-        setContentView(setContentView());
+        setContentView(setContentResId());
         afterSetContentView();
         //初始化RxBus
         initRxBus(setOnNext());
@@ -98,7 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected abstract int setContentView();
+    protected abstract int setContentResId();
 
     protected abstract void initView();
 

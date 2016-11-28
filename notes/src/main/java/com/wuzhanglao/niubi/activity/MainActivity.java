@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -39,7 +40,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     }
 
     @Override
-    protected int setContentView() {
+    protected int setContentResId() {
+        Log.d(TAG, "setContentResId");
         return R.layout.activity_main;
     }
 

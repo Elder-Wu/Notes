@@ -9,6 +9,8 @@
         android:id="@+id/fragment_taobao_headline_headline"
         android:layout_width="match_parent"
         android:layout_height="@dimen/headline_height"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" />
 
 </RelativeLayout>
