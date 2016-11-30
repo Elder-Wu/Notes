@@ -15,12 +15,6 @@ import rx.schedulers.Schedulers;
 
 public class NetworkRequest {
 
-    private static class NetworkRequestSingletonHolder {
-        private static final NetworkRequest instance = new NetworkRequest();
-        private static final NetworkService heweather_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeWeather);
-        private static final NetworkService hebeibei_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeBeiBei);
-    }
-
     public static final NetworkRequest getInstance() {
         return NetworkRequestSingletonHolder.instance;
     }
@@ -33,6 +27,24 @@ public class NetworkRequest {
         return NetworkRequestSingletonHolder.hebeibei_service;
     }
 
+    public void getWeather(String city, Action1 onNext) {
+        getHeWeatherService().getWeatherService(city, GlobleConfig.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
+    }
+
+    public void getScenic(String cityid, Action1 onNext) {
+        getHeWeatherService().getScenicService(cityid, GlobleConfig.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
+    }
+
+    public void getHeBeiBeiData(Action1 onNext) {
+        getHeBeiBeiService().getHeBeiBeiDate("64").compose(new ComposeThread<HeBeiBeiBean>()).subscribe(onNext);
+    }
+
+    private static class NetworkRequestSingletonHolder {
+        private static final NetworkRequest instance = new NetworkRequest();
+        private static final NetworkService heweather_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeWeather);
+        private static final NetworkService hebeibei_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeBeiBei);
+    }
+
     private class ComposeThread<T> implements Observable.Transformer<T, T> {
         @Override
         public Observable<T> call(Observable<T> observable) {
@@ -41,17 +53,5 @@ public class NetworkRequest {
                     .unsubscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
         }
-    }
-
-    public void getWeather(String city, Action1 onNext) {
-        getHeWeatherService().getWeatherService(city, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
-    }
-
-    public void getScenic(String cityid, Action1 onNext) {
-        getHeWeatherService().getScenicService(cityid, GlobleData.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
-    }
-
-    public void getHeBeiBeiData(Action1 onNext) {
-        getHeBeiBeiService().getHeBeiBeiDate("64").compose(new ComposeThread<HeBeiBeiBean>()).subscribe(onNext);
     }
 }
