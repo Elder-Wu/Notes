@@ -9,6 +9,7 @@ import rx.subjects.Subject;
  * Created by wuming on 2016/11/22.
  */
 
+//单例模式的一种写法
 public enum RxBus {
     INSTANCE;
 
