@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.wuzhanglao.niubi.mvp.model.HeBeiBeiBean;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
+import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,19 @@ public interface NetworkService {
 
     String BASE_URL_HeWeather = "https://api.heweather.com";
     String BASE_URL_HeBeiBei = "http://jiekou.hunlianquan.cn/";
+    String BASE_URL_SHANBAY = "https://api.shanbay.com/";
+
+    @GET("x3/weather")
+    Observable<HeWeatherBean> getWeatherService(@Query("city") String city, @Query("key") String key);
+
+    @GET("x3/attractions")
+    Observable<HeWeatherBean> getScenicService(@Query("cityid") String cityid, @Query("key") String key);
+
+    @POST("Home/Activity/account")
+    Observable<HeBeiBeiBean> getHeBeiBeiDate(@Field("u_id") String u_id);
+
+    @GET("bdc/search")
+    Observable<ShanbayResp> getTranslation(@Query("word") String word);
 
     class Factory {
         public static final NetworkService create(String baseUrl) {
@@ -48,7 +62,7 @@ public interface NetworkService {
                             return chain.proceed(chain.request());
                         }
 
-                    })//网络拦截器,进行重定向等操作
+                    })
                     .connectTimeout(15, TimeUnit.SECONDS)//设置连接超时
                     .build();
             Retrofit retrofit = new Retrofit.Builder()
@@ -60,13 +74,4 @@ public interface NetworkService {
             return retrofit.create(NetworkService.class);
         }
     }
-
-    @GET("x3/weather")
-    Observable<HeWeatherBean> getWeatherService(@Query("city") String city, @Query("key") String key);
-
-    @GET("x3/attractions")
-    Observable<HeWeatherBean> getScenicService(@Query("cityid") String cityid, @Query("key") String key);
-
-    @POST("Home/Activity/account")
-    Observable<HeBeiBeiBean> getHeBeiBeiDate(@Field("u_id") String u_id);
 }

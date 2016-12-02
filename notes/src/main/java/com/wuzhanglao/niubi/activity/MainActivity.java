@@ -18,6 +18,7 @@ import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
+import com.wuzhanglao.niubi.fragment.FragmentHighlight;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
@@ -65,6 +66,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("广告栏无限轮播");
         data.add("贝塞尔曲线");
         data.add("RxBus案例");
+        data.add("TextView高亮显示");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -128,6 +130,9 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 break;
             case "RxBus案例":
                 startActivity(new Intent(context, TestRxActivity1.class));
+                break;
+            case "TextView高亮显示":
+                openFragment(new FragmentHighlight(), adapter.getData(position));
                 break;
         }
     }
