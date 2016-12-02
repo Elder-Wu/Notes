@@ -13,7 +13,7 @@ public class UIUtils {
 
     public static boolean isDoubleClick() {
         long currentClickTime = System.currentTimeMillis();
-        if ((currentClickTime - lastClickTime) > 500) {
+        if ((currentClickTime - lastClickTime) > 300) {
             lastClickTime = currentClickTime;
             return false;
         }

@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
+import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.utils.transformer.CubeOutTransformer;
 
 import java.lang.reflect.Field;
@@ -32,8 +33,10 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     //指示器选中时和未选中时的颜色
     private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
     private static final int SELECTED_DOT_COLOR = Color.DKGRAY;
-    //指示器的圆点大小
-    private static final int DEFAULT_DOT_SIZE = 30;
+    //指示器的圆点大小  单位：dp
+    private static final int DEFAULT_DOT_SIZE = UIUtils.dp2px(8);
+    //每个小圆点之间的距离
+    private static final int DEFAULT_DOT_SPAN = UIUtils.dp2px(3);
     //页面切换时间
     private static final int SCROLL_DURATION = 500;
     //页面展示时间
@@ -100,7 +103,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(ALIGN_PARENT_BOTTOM);
         params.addRule(CENTER_HORIZONTAL);
-        params.setMargins(10, 10, 10, 10);
+        params.setMargins(UIUtils.dp2px(5), UIUtils.dp2px(5), UIUtils.dp2px(5), UIUtils.dp2px(5));
         addView(ll_dots, params);
     }
 
@@ -171,7 +174,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     public void addContent(View view) {
         if (params == null) {
             params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(5, 5, 5, 5);
+            params.setMargins(DEFAULT_DOT_SPAN, DEFAULT_DOT_SPAN, DEFAULT_DOT_SPAN, DEFAULT_DOT_SPAN);
         }
         Dot dot = new Dot(getContext());
         dots.add(dot);

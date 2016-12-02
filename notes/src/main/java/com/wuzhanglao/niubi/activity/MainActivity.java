@@ -182,11 +182,17 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         toolbar_back_tv.setVisibility(View.VISIBLE);
         toolbar_profile_iv.setVisibility(View.GONE);
         toolbar_title_tv.setText(fragmentName);
+        if(drawerLayout!=null){
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
     }
 
     public void hideBackButton() {
         toolbar_back_tv.setVisibility(View.GONE);
         toolbar_profile_iv.setVisibility(View.VISIBLE);
         toolbar_title_tv.setText(getString(R.string.main_title));
+        if(drawerLayout!=null){
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+        }
     }
 }
