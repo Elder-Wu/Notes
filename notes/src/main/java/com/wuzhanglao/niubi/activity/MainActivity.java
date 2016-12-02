@@ -1,12 +1,12 @@
 package com.wuzhanglao.niubi.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -22,16 +22,17 @@ import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
+import com.wuzhanglao.niubi.utils.RxBus;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.TextHolderClickListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
     private TextHolderAdatpter adapter;
-
     private FragmentManager fragmentManager;
 
     @Override
@@ -41,7 +42,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
 
     @Override
     protected int setContentResId() {
-        Log.d(TAG, "setContentResId");
         return R.layout.activity_main;
     }
 
@@ -64,6 +64,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("刮刮卡");
         data.add("广告栏无限轮播");
         data.add("贝塞尔曲线");
+        data.add("RxBus案例");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -87,6 +88,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
 
     @Override
     public void onTextClick(int position) {
+        RxBus.send(new Random().nextInt());
         if (UIUtils.isDoubleClick()) {
             return;
         }
@@ -123,6 +125,9 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 break;
             case "贝塞尔曲线":
                 openFragment(new BezierFragment(), adapter.getData(position));
+                break;
+            case "RxBus案例":
+                startActivity(new Intent(context, TestRxActivity1.class));
                 break;
         }
     }
