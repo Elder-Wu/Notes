@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/activity_main_toolbar"
-        layout="@layout/toolbar_general" />
+    <!--界面主布局-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        <include
+            android:id="@+id/activity_main_toolbar"
+            layout="@layout/toolbar_main" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/activity_main_toolbar" />
+
+        <FrameLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/activity_main_toolbar" />
+    </RelativeLayout>
+
+    <!--展开之后的布局-->
+    <fragment
+        android:name="com.wuzhanglao.niubi.fragment.NavigationFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_toolbar" />
-
-    <TextView
-        android:id="@+id/introduce_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center" />
-
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/activity_main_toolbar" />
-</RelativeLayout>
+        android:layout_gravity="start"
+        tools:layout="@layout/fragment_navigation" />
+</android.support.v4.widget.DrawerLayout>

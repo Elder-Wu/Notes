@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="173dp"
+            android:background="@drawable/navi_bg"
+            android:paddingLeft="11dp">
+
+            <com.wuzhanglao.niubi.widget.RoundImageView
+                android:id="@+id/navigation_user_head_iv"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="61dp"
+                android:src="@drawable/wuzhanglao" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/navigation_user_head_iv"
+                android:layout_marginTop="9dp">
+
+                <TextView
+                    android:id="@+id/navigation_user_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="我是吴长老啊"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="13dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/navigation_user_name_tv"
+                    android:background="@drawable/shape_white_border_with_corner2"
+                    android:gravity="center"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="Lv.5"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    android:textStyle="italic|bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="13dp"
+                    android:background="@drawable/shape_white_border_with_corner"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="2dp">
+
+
+                    <ImageView
+                        android:layout_width="12.3dp"
+                        android:layout_height="12.3dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/mail" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系"
+                        android:layout_marginLeft="3dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/mv3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="我的消息"
+                android:textSize="10.3dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/mv3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="我的消息" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -28,7 +28,7 @@ public class GuaGuaKa extends View {
     private Bitmap cacheBitmap;
     private Canvas cacheCanvas;
 
-    private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.demo);
+    private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.wuzhanglao);
 
     public GuaGuaKa(Context context) {
         this(context, null);

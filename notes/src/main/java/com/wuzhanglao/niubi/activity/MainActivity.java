@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
@@ -35,6 +39,11 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     private final String TAG = MainActivity.class.getSimpleName();
     private TextHolderAdatpter adapter;
     private FragmentManager fragmentManager;
+    private DrawerLayout drawerLayout;
+    //toolbar相关
+    private TextView toolbar_title_tv;
+    private TextView toolbar_back_tv;
+    private ImageView toolbar_profile_iv;
 
     @Override
     protected void doOnNext(Object o) {
@@ -49,7 +58,32 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     @Override
     protected void afterSetContentView() {
         super.afterSetContentView();
-        initDefaultToolBar();
+        toolbar_title_tv = (TextView) findViewById(R.id.activity_main_toolbar_title_tv);
+        toolbar_back_tv = (TextView) findViewById(R.id.activity_main_toolbar_back_tv);
+        toolbar_profile_iv = (ImageView) findViewById(R.id.activity_main_toolbar_profile_iv);
+
+        toolbar_title_tv.setText(getString(R.string.main_title));
+        toolbar_back_tv.setVisibility(View.GONE);
+        toolbar_profile_iv.setVisibility(View.GONE);
+        toolbar_back_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UIUtils.isDoubleClick()) {
+                    return;
+                }
+                onBackPressed();
+            }
+        });
+        toolbar_profile_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UIUtils.isDoubleClick()) {
+                    return;
+                }
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+        hideBackButton();
     }
 
     protected void initData() {
@@ -73,19 +107,12 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     }
 
     protected void initView() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
 
-        TextView introduce = (TextView) findViewById(R.id.introduce_tv);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            introduce.setText(Html.fromHtml(getString(R.string.introduce), 0));
-        } else {
-            introduce.setText(Html.fromHtml(getString(R.string.introduce)));
-        }
-
         fragmentManager = getSupportFragmentManager();
-        hideBackButton();
     }
 
     @Override
@@ -132,7 +159,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 startActivity(new Intent(context, TestRxActivity1.class));
                 break;
             case "TextView高亮显示":
-                openFragment(new FragmentHighlight(), adapter.getData(position));
+                openFragment(new FragmentHighlight(), "TextView高亮显示");
                 break;
         }
     }
@@ -152,12 +179,14 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     }
 
     public void showBackButton(String fragmentName) {
-        setToolbarBackVisible(true);
-        setToolbarTitle(fragmentName);
+        toolbar_back_tv.setVisibility(View.VISIBLE);
+        toolbar_profile_iv.setVisibility(View.GONE);
+        toolbar_title_tv.setText(fragmentName);
     }
 
     public void hideBackButton() {
-        setToolbarTitle(getString(R.string.main_title));
-        setToolbarBackVisible(false);
+        toolbar_back_tv.setVisibility(View.GONE);
+        toolbar_profile_iv.setVisibility(View.VISIBLE);
+        toolbar_title_tv.setText(getString(R.string.main_title));
     }
 }

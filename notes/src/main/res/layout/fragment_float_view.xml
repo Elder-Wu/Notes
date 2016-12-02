@@ -28,7 +28,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="140dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/demo" />
+        android:src="@drawable/wuzhanglao" />
 
     <com.wuzhanglao.niubi.widget.CustomClock
         android:layout_width="150dp"
