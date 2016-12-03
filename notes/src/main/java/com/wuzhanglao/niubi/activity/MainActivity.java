@@ -25,6 +25,7 @@ import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.FragmentHighlight;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
+import com.wuzhanglao.niubi.fragment.LoadImageFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.utils.RxBus;
@@ -101,6 +102,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("贝塞尔曲线");
         data.add("RxBus案例");
         data.add("TextView高亮显示");
+        data.add("加载网络图片");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -159,7 +161,10 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 startActivity(new Intent(context, TestRxActivity1.class));
                 break;
             case "TextView高亮显示":
-                openFragment(new FragmentHighlight(), "TextView高亮显示");
+                openFragment(new FragmentHighlight(), adapter.getData(position));
+                break;
+            case "加载网络图片":
+                openFragment(new LoadImageFragment(),adapter.getData(position));
                 break;
         }
     }

@@ -19,13 +19,13 @@ android {
         versionName "1.0.1"
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "bdff410f9c7a31c23daad7aa", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
     buildTypes {
@@ -58,16 +58,16 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-//    compile 'com.android.support:multidex:1.0.1'
+    //    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:support-v4:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:cardview-v7:24.0.0'
     compile 'com.android.support:appcompat-v7:24.0.0'
-//    compile 'com.google.code.gson:gson:2.2.4'
+    //    compile 'com.google.code.gson:gson:2.2.4'
     //内存检测
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //网络图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     //rxjava相关依赖
     compile 'io.reactivex:rxjava:1.2.1'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -84,9 +84,9 @@ dependencies {
     compile 'cn.jiguang:jpush:2.1.8'
     // 此处以SDK 2.1.8版本为例
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-//    compile('cn.bmob.android:bmob-sdk:3.5.0') {
-//        exclude group: 'com.squareup.okhttp3'
-//        exclude group: 'com.google.gson',module:'annotations'
-//    }
-//    compile 'cn.bmob.android:http-legacy:1.0'
+    //    compile('cn.bmob.android:bmob-sdk:3.5.0') {
+    //        exclude group: 'com.squareup.okhttp3'
+    //        exclude group: 'com.google.gson',module:'annotations'
+    //    }
+    //    compile 'cn.bmob.android:http-legacy:1.0'
 }

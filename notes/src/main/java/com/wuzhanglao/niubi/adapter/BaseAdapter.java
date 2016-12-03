@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.wuzhanglao.niubi.holder.EmptyViewHolder;
 
 import java.util.List;
@@ -50,7 +49,8 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T extends 
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         int type = getItemViewType(position);
         if (type != HEADER && type != FOOTER) {
-            onBindHolder((VH) holder, position - (hasHeader() ? 1 : 0));
+            int position_in_data = position - (hasHeader() ? 1 : 0);
+            onBindHolder((VH) holder, position_in_data);
         }
     }
 

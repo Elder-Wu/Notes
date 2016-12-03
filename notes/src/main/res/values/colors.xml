@@ -11,6 +11,7 @@
     <color name="text_color_green_013ADF">#013ADF</color>
     <color name="blue_6eb">#6eb0f3</color>
     <color name="gray_aaa">#aaaaaa</color>
+    <color name="gray_eee">#EEEEEE</color>
     <color name="blue_afe">#2E9AFE</color>
     <color name="pink_ece">#F6CECE</color>
 </resources>

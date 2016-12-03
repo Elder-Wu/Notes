@@ -35,7 +35,6 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, String> {
             holder.line.setVisibility(View.GONE);
         }
     }
-
     private class OnTextClick implements View.OnClickListener {
 
         private int position;
@@ -59,5 +58,4 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, String> {
     public interface TextHolderClickListener {
         void onTextClick(int position);
     }
-
 }
