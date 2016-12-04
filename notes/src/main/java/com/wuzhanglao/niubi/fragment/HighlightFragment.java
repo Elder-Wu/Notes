@@ -23,10 +23,10 @@ import com.wuzhanglao.niubi.utils.UIUtils;
  * Created by wuming on 2016/12/2.
  */
 
-public class FragmentHighlight extends BaseMvpFragment<HighlightFragmentMvpView, HighlightFragmentMvpPresenter>
+public class HighlightFragment extends BaseMvpFragment<HighlightFragmentMvpView, HighlightFragmentMvpPresenter>
         implements HighlightFragmentMvpView {
 
-    private static final String TAG = FragmentHighlight.class.getSimpleName();
+    private static final String TAG = HighlightFragment.class.getSimpleName();
     private static final String s = "    Any contributions, large or small, #$% 174major 1884 features, bug fixes, additional language translations, unit/integration tests are welcomed and appreciated but will be thoroughly reviewed and discussed.";
     private SpannableString ss;
     private TextView englishText;
@@ -86,6 +86,8 @@ public class FragmentHighlight extends BaseMvpFragment<HighlightFragmentMvpView,
     public void getTranslationSuccess(Object result) {
         final ShanbayResp resp = (ShanbayResp) result;
         UIUtils.showToast(resp.getData().getCn_definition().getDefn());
+
+        resp.getData().getAudio();
     }
 
     @Override

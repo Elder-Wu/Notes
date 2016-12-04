@@ -1,13 +1,11 @@
 package com.wuzhanglao.niubi.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +20,7 @@ import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
-import com.wuzhanglao.niubi.fragment.FragmentHighlight;
+import com.wuzhanglao.niubi.fragment.HighlightFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
@@ -161,7 +159,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 startActivity(new Intent(context, TestRxActivity1.class));
                 break;
             case "TextView高亮显示":
-                openFragment(new FragmentHighlight(), adapter.getData(position));
+                openFragment(new HighlightFragment(), adapter.getData(position));
                 break;
             case "加载网络图片":
                 openFragment(new LoadImageFragment(),adapter.getData(position));
