@@ -43,4 +43,10 @@ public class CountDownFragment extends BaseFragment {
             }
         });
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        countDownView.stop();
+    }
 }

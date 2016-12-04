@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="top|start">
+
+    <ViewSwitcher
+        android:id="@+id/dialog_translation_viewswitcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/dialog_translation_word_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_afe"
+                android:textSize="16sp"
+                tools:text="word" />
+
+            <TextView
+                android:id="@+id/dialog_translation_phonetic_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/dialog_translation_word_tv"
+                android:textSize="16sp"
+                tools:text="phonetic" />
+
+            <TextView
+                android:id="@+id/dialog_translation_translation_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dialog_translation_phonetic_tv"
+                android:maxLines="3"
+                android:minLines="3"
+                android:textSize="16sp"
+                tools:text="翻译\n翻译\n翻译\n翻译\n翻译" />
+
+            <ImageView
+                android:id="@+id/dialog_translation_more_iv"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@+id/dialog_translation_translation_tv"
+                android:layout_marginBottom="-5dp"
+                android:src="@drawable/icon_down" />
+
+        </RelativeLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center" />
+    </ViewSwitcher>
+
+</RelativeLayout>

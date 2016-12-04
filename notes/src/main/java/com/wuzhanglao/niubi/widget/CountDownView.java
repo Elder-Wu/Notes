@@ -157,6 +157,10 @@ public class CountDownView extends View {
 
     }
 
+    public void stop() {
+        countDownTimer.cancel();
+    }
+
     public void setCountDownTimerListener(CountDownTimerListener listener) {
         this.listener = listener;
     }
