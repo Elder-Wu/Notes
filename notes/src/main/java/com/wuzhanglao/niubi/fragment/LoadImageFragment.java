@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.adapter.ImageHolderAdapter;
-import com.wuzhanglao.niubi.adapter.ImageLoadHelper;
+import com.wuzhanglao.niubi.adapter.LoadImageHelper;
 import com.wuzhanglao.niubi.mvp.presenter.LoadImageFragmentPresenter;
 import com.wuzhanglao.niubi.mvp.view.LoadImageFragmentView;
 
@@ -23,7 +23,7 @@ public class LoadImageFragment extends BaseMvpFragment<LoadImageFragmentView, Lo
         implements LoadImageFragmentView {
 
     private static final String TAG = LoadImageFragment.class.getSimpleName();
-    private ImageLoadHelper imageLoadHelper;
+    private LoadImageHelper loadImageHelper;
     private List<String> urlList;
 
     @Override
@@ -51,11 +51,11 @@ public class LoadImageFragment extends BaseMvpFragment<LoadImageFragmentView, Lo
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         initData();
-        imageLoadHelper = new ImageLoadHelper(context);
-        imageLoadHelper.setSwipeRefreshLayout((SwipeRefreshLayout) view.findViewById(R.id.fragment_loadimage_refreshlayout));
-        imageLoadHelper.setRecyclerView((RecyclerView) view.findViewById(R.id.fragment_loadimage_rv));
-        imageLoadHelper.setAdapter(new ImageHolderAdapter(context, urlList));
-        imageLoadHelper.init();
+        loadImageHelper = new LoadImageHelper(context);
+        loadImageHelper.setSwipeRefreshLayout((SwipeRefreshLayout) view.findViewById(R.id.fragment_loadimage_refreshlayout));
+        loadImageHelper.setRecyclerView((RecyclerView) view.findViewById(R.id.fragment_loadimage_rv));
+        loadImageHelper.setAdapter(new ImageHolderAdapter(context, urlList));
+        loadImageHelper.init();
     }
 
     @Override

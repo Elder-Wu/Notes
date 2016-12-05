@@ -5,14 +5,14 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
-import com.wuzhanglao.niubi.utils.UIUtils;
+import android.util.Log;
 
 /**
  * Created by wuming on 2016/12/3.
  */
 
-public class ImageLoadHelper extends RecyclerView.OnScrollListener implements SwipeRefreshLayout.OnRefreshListener {
+public class LoadImageHelper extends RecyclerView.OnScrollListener implements SwipeRefreshLayout.OnRefreshListener {
+    private static final String TAG = LoadImageHelper.class.getSimpleName();
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ImageHolderAdapter adapter;
@@ -21,7 +21,7 @@ public class ImageLoadHelper extends RecyclerView.OnScrollListener implements Sw
     private Handler handler = new Handler();
     private boolean isLoading = false;
 
-    public ImageLoadHelper(Context context) {
+    public LoadImageHelper(Context context) {
         this.context = context;
     }
 
@@ -60,7 +60,7 @@ public class ImageLoadHelper extends RecyclerView.OnScrollListener implements Sw
         if (layoutManager.findLastVisibleItemPosition() == adapter.getItemCount() - 1) {
             if (!isLoading) {
                 isLoading = true;
-                UIUtils.showToast("开始加载更多...");
+                Log.d(TAG, "加载更多...");
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
