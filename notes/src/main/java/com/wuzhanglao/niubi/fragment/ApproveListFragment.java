@@ -60,34 +60,34 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpV
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.apprive_list_mv1_approve:
-                if (!approveList.contains(R.drawable.mv1)) {
-                    approveList.add(0, R.drawable.mv1);
+                if (!approveList.contains(R.drawable.img1)) {
+                    approveList.add(0, R.drawable.img1);
                 } else {
                     UIUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv1_unapprove:
-                approveList.remove(new Integer(R.drawable.mv1));
+                approveList.remove(new Integer(R.drawable.img1));
                 break;
             case R.id.apprive_list_mv2_approve:
-                if (!approveList.contains(R.drawable.mv2)) {
-                    approveList.add(0, R.drawable.mv2);
+                if (!approveList.contains(R.drawable.img2)) {
+                    approveList.add(0, R.drawable.img2);
                 } else {
                     UIUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv2_unapprove:
-                approveList.remove(new Integer(R.drawable.mv2));
+                approveList.remove(new Integer(R.drawable.img2));
                 break;
             case R.id.apprive_list_mv3_approve:
-                if (!approveList.contains(R.drawable.mv3)) {
-                    approveList.add(0, R.drawable.mv3);
+                if (!approveList.contains(R.drawable.img3)) {
+                    approveList.add(0, R.drawable.img3);
                 } else {
                     UIUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv3_unapprove:
-                approveList.remove(new Integer(R.drawable.mv3));
+                approveList.remove(new Integer(R.drawable.img3));
                 break;
         }
         approveListLayout.updateApproveList(approveList);

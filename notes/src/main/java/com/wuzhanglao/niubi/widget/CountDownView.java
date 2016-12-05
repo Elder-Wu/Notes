@@ -158,7 +158,9 @@ public class CountDownView extends View {
     }
 
     public void stop() {
-        countDownTimer.cancel();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 
     public void setCountDownTimerListener(CountDownTimerListener listener) {

@@ -25,9 +25,9 @@ public class BannerFragment extends BaseFragment {
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         banner = (Banner) view.findViewById(R.id.fragment_viewpager_imagebanner);
-        banner.addContent(getImageView(R.drawable.mv1));
-        banner.addContent(getImageView(R.drawable.mv2));
-        banner.addContent(getImageView(R.drawable.mv4));
+        banner.addContent(getImageView(R.drawable.img1));
+        banner.addContent(getImageView(R.drawable.img2));
+        banner.addContent(getImageView(R.drawable.img4));
         banner.startScroll();
     }
 

@@ -26,7 +26,7 @@
             <com.wuzhanglao.niubi.widget.RoundImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/mv1" />
+                android:src="@drawable/img1" />
 
             <Button
                 android:id="@+id/apprive_list_mv1_approve"
@@ -51,7 +51,7 @@
             <com.wuzhanglao.niubi.widget.RoundImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/mv2" />
+                android:src="@drawable/img2" />
 
             <Button
                 android:id="@+id/apprive_list_mv2_approve"
@@ -76,7 +76,7 @@
             <com.wuzhanglao.niubi.widget.RoundImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/mv3" />
+                android:src="@drawable/img3" />
 
             <Button
                 android:id="@+id/apprive_list_mv3_approve"

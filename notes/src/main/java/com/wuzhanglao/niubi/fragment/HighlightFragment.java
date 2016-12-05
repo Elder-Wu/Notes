@@ -20,8 +20,8 @@ import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 import com.wuzhanglao.niubi.mvp.presenter.HighlightFragmentMvpPresenter;
 import com.wuzhanglao.niubi.mvp.view.HighlightFragmentMvpView;
 import com.wuzhanglao.niubi.utils.UIUtils;
-import com.wuzhanglao.niubi.widget.CommonDialog;
 import com.wuzhanglao.niubi.widget.ClickableTextView;
+import com.wuzhanglao.niubi.widget.CommonDialog;
 
 import java.io.IOException;
 
@@ -50,13 +50,9 @@ public class HighlightFragment extends BaseMvpFragment<HighlightFragmentMvpView,
         return R.layout.fragment_highlight;
     }
 
-    private void initData() {
-    }
-
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
-        initData();
-        //给CommonDialog设置自己的布局
+        //给CommonDialog设置布局
         translationDialog = new CommonDialog(context) {
             @Override
             protected View setCustomContentView() {
@@ -136,7 +132,8 @@ public class HighlightFragment extends BaseMvpFragment<HighlightFragmentMvpView,
     //获取翻译结果失败
     @Override
     public void getTranslationFailed(Object result) {
-        UIUtils.showToast(result.toString());
+        UIUtils.showToast("获取翻译失败");
+        translationDialog.dismiss();
     }
 
     @Override

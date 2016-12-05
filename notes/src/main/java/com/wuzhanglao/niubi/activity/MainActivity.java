@@ -87,6 +87,8 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
 
     protected void initData() {
         List<String> data = new ArrayList();
+        data.add("TextView高亮显示");
+        data.add("加载网络图片");
         data.add("仿ios底部弹出对话框");
         data.add("Activity动画特效");
         data.add("淘宝头条控件");
@@ -99,8 +101,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add("广告栏无限轮播");
         data.add("贝塞尔曲线");
         data.add("RxBus案例");
-        data.add("TextView高亮显示");
-        data.add("加载网络图片");
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
