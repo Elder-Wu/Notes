@@ -3,6 +3,7 @@ package com.wuzhanglao.niubi.utils;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -15,9 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -28,6 +27,7 @@ import rx.Observable;
 
 public interface NetworkService {
 
+    String CACHE_PATH = "okhttp_cache";
     String BASE_URL_HeWeather = "https://api.heweather.com";
     String BASE_URL_SHANBAY = "https://api.shanbay.com/";
 
@@ -39,8 +39,8 @@ public interface NetworkService {
                     .addInterceptor(logInterceptor)//日志拦截器
                     .addNetworkInterceptor(new CacheInterceptor())
                     .connectTimeout(15, TimeUnit.SECONDS)//设置连接超时
-                    .retryOnConnectionFailure(false)
-                    .cache(new Cache(MyApplication.getInstance().getCacheDir(), 1024 * 1024))
+                    .retryOnConnectionFailure(true)
+                    .cache(new Cache(new File(MyApplication.getInstance().getCacheDir(), CACHE_PATH), 1024 * 1024 * 10))
                     .build();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -54,19 +54,24 @@ public interface NetworkService {
 
     class CacheInterceptor implements Interceptor {
 
-        private int retryCount = 3;
-
         @Override
         public Response intercept(Chain chain) throws IOException {
-            // TODO: 2016/11/9 可以进行网络重连接等操作
+            //TODO: 2016/11/9 可以进行网络重连接等操作
             //@link 这篇博客写的很详细:http://www.jianshu.com/p/faa46bbe8a2e
             Request request = chain.request();
             Response response = chain.proceed(request);
-            if (response.isSuccessful()) {
+            if (NetworkUtils.isNetworkAvailable()) {
+                // 有网络时 设置缓存超时时间0个小时
+                int maxAge = 0;
                 response.newBuilder()
-                        .removeHeader("Cache-Control")
-                        //缓存保留时间(30天)
-                        .header("Cache-Control", "max-age=" + 3600 * 24 * 30)
+                        .header("Cache-Control", "public, max-age=" + maxAge)
+                        .removeHeader("Pragma")     // 清除头信息
+                        .build();
+            } else {
+                int maxStale = 60 * 60 * 24;        // 无网络时，设置超时为1天
+                response.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                        .removeHeader("Pragma")
                         .build();
             }
             return response;
