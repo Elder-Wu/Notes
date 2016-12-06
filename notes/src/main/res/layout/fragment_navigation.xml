@@ -82,22 +82,24 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_navi_checkupdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:padding="8dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/img3" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_update" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="我的消息"
-                android:textSize="10.3dp" />
+                android:layout_marginLeft="10dp"
+                android:text="检查更新"
+                android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout

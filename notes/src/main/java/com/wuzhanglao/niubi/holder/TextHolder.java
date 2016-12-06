@@ -12,12 +12,16 @@ import com.wuzhanglao.niubi.R;
 
 public class TextHolder extends RecyclerView.ViewHolder {
 
-    public TextView desc;
+    public TextView title_tv;
+    public TextView subtitle_tv;
+    public TextView num_tv;
     public View line;
 
     public TextHolder(View itemView) {
         super(itemView);
-        desc = (TextView) itemView.findViewById(R.id.desc_tv);
+        num_tv = (TextView) itemView.findViewById(R.id.text_holder_num_tv);
+        title_tv = (TextView) itemView.findViewById(R.id.text_holder_title_tv);
+        subtitle_tv = (TextView) itemView.findViewById(R.id.text_holder_subtitle_tv);
         line = itemView.findViewById(R.id.text_holder_line);
     }
 }

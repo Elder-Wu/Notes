@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.mvp.presenter.NetworkFragmentMvpPresenter;
-import com.wuzhanglao.niubi.mvp.view.NetworkFragmentMvpView;
+import com.wuzhanglao.niubi.mvp.presenter.NetworkFragmentPresenter;
+import com.wuzhanglao.niubi.mvp.view.NetworkFragmentView;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 /**
  * Created by wuming on 16/10/19.
  */
 
-public class NetworkFragment extends BaseMvpFragment<NetworkFragmentMvpView, NetworkFragmentMvpPresenter>
-        implements View.OnClickListener, NetworkFragmentMvpView {
+public class NetworkFragment extends BaseMvpFragment<NetworkFragmentView, NetworkFragmentPresenter>
+        implements View.OnClickListener, NetworkFragmentView {
 
     private TextView result;
 
@@ -40,8 +40,8 @@ public class NetworkFragment extends BaseMvpFragment<NetworkFragmentMvpView, Net
     }
 
     @Override
-    public NetworkFragmentMvpPresenter initPresenter() {
-        return new NetworkFragmentMvpPresenter();
+    public NetworkFragmentPresenter initPresenter() {
+        return new NetworkFragmentPresenter();
     }
 
 

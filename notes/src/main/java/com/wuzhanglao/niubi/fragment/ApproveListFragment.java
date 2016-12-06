@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.mvp.presenter.ApproveListFragmentMvpPresenter;
-import com.wuzhanglao.niubi.mvp.view.ApproveListFragmentMvpView;
+import com.wuzhanglao.niubi.mvp.presenter.ApproveListFragmentPresenter;
+import com.wuzhanglao.niubi.mvp.view.ApproveListFragmentView;
 import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.ApproveListLayout;
 
@@ -17,15 +17,15 @@ import java.util.List;
  * Created by wuming on 2016/10/23.
  */
 
-public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentMvpView, ApproveListFragmentMvpPresenter>
-        implements ApproveListFragmentMvpView, View.OnClickListener {
+public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView, ApproveListFragmentPresenter>
+        implements ApproveListFragmentView, View.OnClickListener {
 
     private ApproveListLayout approveListLayout;
     private List<Integer> approveList;
 
     @Override
-    public ApproveListFragmentMvpPresenter initPresenter() {
-        return new ApproveListFragmentMvpPresenter();
+    public ApproveListFragmentPresenter initPresenter() {
+        return new ApproveListFragmentPresenter();
     }
 
     @Override

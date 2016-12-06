@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,11 +23,11 @@ import com.wuzhanglao.niubi.R;
 public class GuaGuaKa extends View {
 
     private Paint pathPaint;
-
     private Path path;
-
     private Bitmap cacheBitmap;
     private Canvas cacheCanvas;
+    private Rect srcRect;
+    private Rect destRect;
 
     private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.wuzhanglao);
 
@@ -37,7 +38,6 @@ public class GuaGuaKa extends View {
     public GuaGuaKa(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setBackgroundColor(Color.WHITE);
-
         pathPaint = new Paint();
         pathPaint.setAntiAlias(true);
         pathPaint.setDither(true);
@@ -46,7 +46,6 @@ public class GuaGuaKa extends View {
         pathPaint.setStrokeWidth(50);
         pathPaint.setStrokeCap(Paint.Cap.ROUND);
         pathPaint.setStrokeJoin(Paint.Join.ROUND);
-
         path = new Path();
     }
 
@@ -55,7 +54,13 @@ public class GuaGuaKa extends View {
         canvas.drawBitmap(backBitmap, 0, 0, null);
         pathPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         cacheCanvas.drawPath(path, pathPaint);
-        canvas.drawBitmap(cacheBitmap,0,0,null);
+        canvas.drawBitmap(cacheBitmap, 0, 0, null);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        backBitmap = Bitmap.createScaledBitmap(backBitmap, getMeasuredWidth(), getMeasuredHeight(), true);
     }
 
     @Override

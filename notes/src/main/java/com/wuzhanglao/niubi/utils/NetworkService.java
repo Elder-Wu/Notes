@@ -1,6 +1,5 @@
 package com.wuzhanglao.niubi.utils;
 
-import com.wuzhanglao.niubi.mvp.model.HeBeiBeiBean;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 
@@ -30,7 +29,6 @@ import rx.Observable;
 public interface NetworkService {
 
     String BASE_URL_HeWeather = "https://api.heweather.com";
-    String BASE_URL_HeBeiBei = "http://jiekou.hunlianquan.cn/";
     String BASE_URL_SHANBAY = "https://api.shanbay.com/";
 
     class Factory {
@@ -39,7 +37,7 @@ public interface NetworkService {
             logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(logInterceptor)//日志拦截器
-                    .addNetworkInterceptor(new RetryIntercepter())
+                    .addNetworkInterceptor(new CacheInterceptor())
                     .connectTimeout(15, TimeUnit.SECONDS)//设置连接超时
                     .retryOnConnectionFailure(false)
                     .cache(new Cache(MyApplication.getInstance().getCacheDir(), 1024 * 1024))
@@ -54,7 +52,7 @@ public interface NetworkService {
         }
     }
 
-    class RetryIntercepter implements Interceptor {
+    class CacheInterceptor implements Interceptor {
 
         private int retryCount = 3;
 
@@ -80,9 +78,6 @@ public interface NetworkService {
 
     @GET("x3/attractions")
     Observable<HeWeatherBean> getScenicService(@Query("cityid") String cityid, @Query("key") String key);
-
-    @POST("Home/Activity/account")
-    Observable<HeBeiBeiBean> getHeBeiBeiDate(@Field("u_id") String u_id);
 
     @GET("bdc/search")
     Observable<ShanbayResp> getTranslation(@Query("word") String word);

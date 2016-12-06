@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:background="@color/white">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/text_holder_cv"
+    <LinearLayout
+        android:id="@+id/text_holder_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <TextView
-            android:id="@+id/desc_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#33100199"
+            android:id="@+id/text_holder_num_tv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:background="@color/red_111"
+            tools:text="01"
+            tools:textColor="@color/white" />
 
-    </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_holder_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/text_holder_subtitle_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="简介简介简介简介简介简介简介简介简介简介简介简介"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_right" />
+    </LinearLayout>
+
 
     <View
         android:id="@+id/text_holder_line"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_below="@+id/text_holder_cv"
-        android:background="@color/transparent" />
+        android:layout_height="2dp"
+        android:layout_below="@+id/text_holder_root"
+        android:background="@color/gray_eee" />
 </RelativeLayout>

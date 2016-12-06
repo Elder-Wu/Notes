@@ -1,7 +1,6 @@
 package com.wuzhanglao.niubi.utils;
 
 
-import com.wuzhanglao.niubi.mvp.model.HeBeiBeiBean;
 import com.wuzhanglao.niubi.mvp.model.HeWeatherBean;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 
@@ -24,10 +23,6 @@ public class NetworkRequest {
         return NetworkRequestSingletonHolder.heweather_service;
     }
 
-    private static final NetworkService getHeBeiBeiService() {
-        return NetworkRequestSingletonHolder.hebeibei_service;
-    }
-
     private static final NetworkService getShanbayService() {
         return NetworkRequestSingletonHolder.shanbay_service;
     }
@@ -40,10 +35,6 @@ public class NetworkRequest {
         getHeWeatherService().getScenicService(cityid, GlobleConfig.HEFENG_KEY).compose(new ComposeThread<HeWeatherBean>()).subscribe(onNext);
     }
 
-    public void getHeBeiBeiData(Action1 onNext) {
-        getHeBeiBeiService().getHeBeiBeiDate("64").compose(new ComposeThread<HeBeiBeiBean>()).subscribe(onNext);
-    }
-
     public void getShanbayTranslation(String word, Action1 onNext, Action1 onError) {
         getShanbayService().getTranslation(word).compose(new ComposeThread<ShanbayResp>()).subscribe(onNext, onError);
     }
@@ -51,7 +42,6 @@ public class NetworkRequest {
     private static class NetworkRequestSingletonHolder {
         private static final NetworkRequest instance = new NetworkRequest();
         private static final NetworkService heweather_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeWeather);
-        private static final NetworkService hebeibei_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeBeiBei);
         private static final NetworkService shanbay_service = NetworkService.Factory.create(NetworkService.BASE_URL_SHANBAY);
     }
 
