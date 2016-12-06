@@ -92,7 +92,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add(new TextBean("加载网络图片", "使用Glide对一组url进行加载，下拉刷新，下拉加载更多"));
         data.add(new TextBean("仿ios底部弹出对话框", "可以随意设定标题和选项按钮"));
         data.add(new TextBean("Activity动画特效", "待完善..."));
-        data.add(new TextBean("淘宝头条控件", "模仿京东头条，上下无限滚动"));
+        data.add(new TextBean("京东头条控件", "模仿京东头条，上下无限滚动"));
         data.add(new TextBean("显示未读消息数控件", "类似QQ、微信底部tab标签，可以显示未读消息的数量"));
         data.add(new TextBean("广告倒计时控件", "修复了Timer类会内存溢出的问题"));
         data.add(new TextBean("网络请求", "Retrofit+RxJava+okhttp实现异步的网络请求"));
@@ -132,7 +132,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
             case "Activity动画特效":
                 openFragment(new AnimFragment(), bean.getTitle());
                 break;
-            case "淘宝头条控件":
+            case "京东头条控件":
                 openFragment(new TBHeadlineFragment(), bean.getTitle());
                 break;
             case "广告倒计时控件":

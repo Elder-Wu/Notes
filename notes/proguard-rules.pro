@@ -24,3 +24,8 @@ public static final int *;
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
+
+-dontwarn rx.**
+-dontwarn retrofit2.**
+-dontwarn okio.**
+-keep class rx.internal.util.unsafe.** { *; }
