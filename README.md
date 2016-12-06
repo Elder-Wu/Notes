@@ -6,6 +6,7 @@ Create a repository for myself.Mainly record some of my study notes.
 **扫描二维码下载**
 
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/qr_code.png?raw=true">
+
 <img src="https://github.com/Elder-Wu/Notes/blob/master/gif/app_ui.png?raw=true">
 
 ****
