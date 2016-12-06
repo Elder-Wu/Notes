@@ -44,7 +44,7 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
         if (position + 1 == data.size()) {
             holder.line.setVisibility(View.GONE);
         } else {
-            holder.num_tv.setVisibility(View.VISIBLE);
+            holder.line.setVisibility(View.VISIBLE);
         }
         ((ViewGroup) holder.num_tv.getParent()).setOnClickListener(new OnTextClick(position));
     }

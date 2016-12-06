@@ -34,6 +34,7 @@
                 tools:text="phonetic" />
 
             <TextView
+                android:background="@color/white"
                 android:id="@+id/dialog_translation_translation_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
                 android:id="@+id/dialog_translation_more_iv"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
+                android:background="@drawable/shape_gradient_white"
                 android:layout_alignBottom="@+id/dialog_translation_translation_tv"
                 android:layout_marginBottom="-5dp"
                 android:src="@drawable/icon_down" />

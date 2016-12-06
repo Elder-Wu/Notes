@@ -2,6 +2,7 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
@@ -54,6 +55,7 @@ public class HighlightFragment extends BaseMvpFragment<HighlightFragmentView, Hi
     public void getTranslationFailed(Object result) {
         UIUtils.showToast("获取翻译失败");
         translationDialog.dismiss();
+        Log.d(TAG,result.toString());
     }
 
     @Override
