@@ -26,11 +26,11 @@
         <ViewSwitcher
             android:id="@+id/taobao_headline_viewswitcher"
             android:layout_width="0dp"
-            android:layout_height="@dimen/headline_height"
+            android:layout_height="28dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:padding="1dp">
+            android:layout_marginTop="0.5dp"
+            android:layout_weight="1">
 
             <include
                 android:id="@+id/subView1"
