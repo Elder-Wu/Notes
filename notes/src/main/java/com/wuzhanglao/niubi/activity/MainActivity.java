@@ -118,7 +118,6 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
 
     @Override
     public void onTextClick(TextBean bean) {
-        UIUtils.showToast(getPackageName());
         RxBus.send(new Random().nextInt());
         if (UIUtils.isDoubleClick()) {
             return;
