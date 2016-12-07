@@ -43,7 +43,6 @@ class ReflectiveProperty<T, V> extends Property<T, V> {
      * the constructor will search for a field with that exact name.
      */
     public ReflectiveProperty(Class<T> propertyHolder, Class<V> valueType, String name) {
-         // TODO: cache reflection info for each new class/name pair
         super(valueType, name);
         char firstLetter = Character.toUpperCase(name.charAt(0));
         String theRest = name.substring(1);

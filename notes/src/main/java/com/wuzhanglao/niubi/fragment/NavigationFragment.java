@@ -21,13 +21,17 @@ public class NavigationFragment extends BaseFragment implements View.OnClickList
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
         view.findViewById(R.id.fragment_navi_checkupdate).setOnClickListener(this);
+        view.findViewById(R.id.navi_fragment_contact).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.navi_fragment_contact:
-                new AlertDialog.Builder(context).setMessage("www.wuzhanglao.com").setPositiveButton("确定", null).create().show();
+                new AlertDialog.Builder(context)
+                        .setTitle("个人主页")
+                        .setMessage("www.wuzhanglao.com")
+                        .setPositiveButton("确定", null).create().show();
                 break;
             case R.id.fragment_navi_checkupdate:
                 UIUtils.showToast("该功能正在完善中...");

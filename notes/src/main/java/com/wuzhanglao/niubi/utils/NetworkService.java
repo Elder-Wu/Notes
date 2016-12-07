@@ -56,20 +56,18 @@ public interface NetworkService {
 
         @Override
         public Response intercept(Chain chain) throws IOException {
-            //TODO: 2016/11/9 可以进行网络重连接等操作
+            //可以进行网络重连接等操作
             //@link 这篇博客写的很详细:http://www.jianshu.com/p/faa46bbe8a2e
             Request request = chain.request();
             Response response = chain.proceed(request);
             if (NetworkUtil.isNetworkAvailable()) {
                 // 有网络时 设置缓存超时时间0个小时
-                int maxAge = 0;
                 response.newBuilder()
-                        .header("Cache-Control", "public, max-age=" + maxAge)
+                        .header("Cache-Control", "public, max-age=" + 0)
                         .build();
             } else {
-                int maxStale = 60 * 60 * 24;        // 无网络时，设置超时为1天
                 response.newBuilder()
-                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24)
                         .build();
             }
             return response;

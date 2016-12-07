@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.utils.RxBus;
-import com.wuzhanglao.niubi.utils.RxBusBean;
+import com.wuzhanglao.niubi.bean.RxBusBean;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.util.Random;

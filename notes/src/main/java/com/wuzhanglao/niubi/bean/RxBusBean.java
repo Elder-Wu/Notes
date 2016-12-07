@@ -1,4 +1,4 @@
-package com.wuzhanglao.niubi.utils;
+package com.wuzhanglao.niubi.bean;
 
 import com.google.gson.Gson;
 

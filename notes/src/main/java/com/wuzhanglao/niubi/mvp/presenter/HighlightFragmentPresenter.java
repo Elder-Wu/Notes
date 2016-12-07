@@ -18,15 +18,11 @@ public class HighlightFragmentPresenter extends BaseMvpPresenter<HighlightFragme
         Action1<ShanbayResp> onNext = new Action1<ShanbayResp>() {
             @Override
             public void call(ShanbayResp shanbayResp) {
-
                 if (TextUtils.isEmpty(shanbayResp.getMsg())) {
-                    Log.d("result", "null");
                     view.getTranslationFailed();
                 } else if (shanbayResp.getMsg().equals("SUCCESS")) {
-                    Log.d("result", "success");
-                    view.getTranslationFailed();
+                    view.getTranslationSuccess(shanbayResp);
                 } else {
-                    Log.d("result", "else");
                     view.getTranslationFailed();
                 }
             }
@@ -34,7 +30,6 @@ public class HighlightFragmentPresenter extends BaseMvpPresenter<HighlightFragme
         Action1<Throwable> onError = new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                Log.e("result",throwable.toString());
                 view.getTranslationFailed();
             }
         };

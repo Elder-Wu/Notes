@@ -19,6 +19,12 @@ import rx.schedulers.Schedulers;
 public class ImageUtil {
     private static final String TAG = ImageUtil.class.getSimpleName();
 
+    /**
+     * 先从本地加载，本地没有，再去网络加载
+     *
+     * @param url
+     * @param imageView
+     */
     public static void loadImage(final String url, final ImageView imageView) {
 
         Observable.create(new Observable.OnSubscribe<Bitmap>() {
