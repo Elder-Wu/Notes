@@ -36,17 +36,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
-        versionName ""
-        ndk {
-            //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
-        }
-
-        manifestPlaceholders = [
-                JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "bdff410f9c7a31c23daad7aa", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
-        ]
+        versionName "1.0.0"
     }
     buildTypes {
         debug {
@@ -57,7 +47,7 @@ android {
         }
 
         release {
-            debuggable false
+            debuggable true
             //混淆
             minifyEnabled true
             //Zipalign优化
@@ -78,6 +68,7 @@ android {
         dexInProcess = true
         javaMaxHeapSize "4g"
     }
+//    多渠道打包
 //    productFlavors {
 //        dev {
 //            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
@@ -113,24 +104,15 @@ dependencies {
     //网络图片加载
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //rxjava相关依赖
-    compile 'io.reactivex:rxjava:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.3'
     compile 'io.reactivex:rxandroid:1.2.1'
     //retrofit相关依赖
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //okhttp相关依赖
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     //友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
-    //JPush
-    compile 'cn.jiguang:jpush:2.1.8'
-    // 此处以SDK 2.1.8版本为例
-    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    //    compile('cn.bmob.android:bmob-sdk:3.5.0') {
-    //        exclude group: 'com.squareup.okhttp3'
-    //        exclude group: 'com.google.gson',module:'annotations'
-    //    }
-    //    compile 'cn.bmob.android:http-legacy:1.0'
 }

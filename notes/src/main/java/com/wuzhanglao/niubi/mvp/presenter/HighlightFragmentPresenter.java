@@ -1,5 +1,8 @@
 package com.wuzhanglao.niubi.mvp.presenter;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 import com.wuzhanglao.niubi.mvp.view.HighlightFragmentView;
 import com.wuzhanglao.niubi.utils.NetworkRequest;
@@ -15,17 +18,24 @@ public class HighlightFragmentPresenter extends BaseMvpPresenter<HighlightFragme
         Action1<ShanbayResp> onNext = new Action1<ShanbayResp>() {
             @Override
             public void call(ShanbayResp shanbayResp) {
-                if (shanbayResp.getMsg().equals("SUCCESS")) {
-                    view.getTranslationSuccess(shanbayResp);
+
+                if (TextUtils.isEmpty(shanbayResp.getMsg())) {
+                    Log.d("result", "null");
+                    view.getTranslationFailed();
+                } else if (shanbayResp.getMsg().equals("SUCCESS")) {
+                    Log.d("result", "success");
+                    view.getTranslationFailed();
                 } else {
-                    view.getTranslationFailed(shanbayResp);
+                    Log.d("result", "else");
+                    view.getTranslationFailed();
                 }
             }
         };
         Action1<Throwable> onError = new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
-                view.getTranslationFailed(throwable);
+                Log.e("result",throwable.toString());
+                view.getTranslationFailed();
             }
         };
         NetworkRequest.getInstance().getShanbayTranslation(word, onNext, onError);

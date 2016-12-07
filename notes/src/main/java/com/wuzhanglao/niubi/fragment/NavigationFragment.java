@@ -2,6 +2,7 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
@@ -25,6 +26,9 @@ public class NavigationFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.navi_fragment_contact:
+                new AlertDialog.Builder(context).setMessage("www.wuzhanglao.com").setPositiveButton("确定", null).create().show();
+                break;
             case R.id.fragment_navi_checkupdate:
                 UIUtils.showToast("该功能正在完善中...");
                 break;

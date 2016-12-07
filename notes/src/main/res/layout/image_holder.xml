@@ -16,8 +16,8 @@
             android:id="@+id/image_hoder_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="标题"
             android:layout_marginBottom="10dp"
+            android:text="标题"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -40,7 +40,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/wuzhanglao" />
+        android:src="@drawable/default_img" />
 
     <View
         android:id="@+id/image_holder_line"

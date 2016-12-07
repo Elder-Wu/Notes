@@ -7,6 +7,6 @@ package com.wuzhanglao.niubi.mvp.view;
 public interface HighlightFragmentView extends BaseMvpView {
     void getTranslationSuccess(Object result);
 
-    void getTranslationFailed(Object result);
+    void getTranslationFailed();
 
 }

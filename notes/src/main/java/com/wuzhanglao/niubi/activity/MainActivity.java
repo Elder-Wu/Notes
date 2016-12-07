@@ -22,7 +22,7 @@ import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
-import com.wuzhanglao.niubi.fragment.HighlightFragment;
+import com.wuzhanglao.niubi.fragment.TranslationFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
@@ -160,7 +160,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 startActivity(new Intent(context, TestRxActivity1.class));
                 break;
             case "TextView高亮显示":
-                openFragment(new HighlightFragment(), bean.getTitle());
+                openFragment(new TranslationFragment(), bean.getTitle());
                 break;
             case "加载网络图片":
                 openFragment(new LoadImageFragment(), bean.getTitle());

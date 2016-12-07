@@ -11,38 +11,34 @@ public class ShanbayResp {
     /**
      * msg : SUCCESS
      * status_code : 0
-     * data : {"pronunciations":{"uk":"'eni","us":"'eni"},"en_definitions":{"adv":["to any degree or extent"],"adj":["one or some or every or all without specification"]},"audio_addresses":{"uk":["https://words-audio.baydn.com/uk%2Fa%2Fan%2Fany.mp3","http://words-audio.qiniu.baydn.com/uk/a/an/any.mp3"],"us":["https://words-audio.baydn.com/us%2Fa%2Fan%2Fany.mp3","http://words-audio.qiniu.baydn.com/us/a/an/any.mp3"]},"uk_audio":"http://media.shanbay.com/audio/uk/any.mp3","conent_id":204,"audio_name":"any","cn_definition":{"pos":"","defn":"adj. 任何的\nadv. 稍\ndet. 一些\nprep. 无论哪个\npron. 任何"},"num_sense":1,"content_type":"vocabulary","sense_id":0,"id":204,"definition":" adj. 任何的\nadv. 稍\ndet. 一些\nprep. 无论哪个\npron. 任何","content_id":204,"url":"https://www.shanbay.com/bdc/mobile/preview/word?word=any","has_audio":true,"en_definition":{"pos":"adv","defn":"to any degree or extent"},"object_id":204,"content":"any","pron":"'eni","pronunciation":"'eni","audio":"http://media.shanbay.com/audio/us/any.mp3","us_audio":"http://media.shanbay.com/audio/us/any.mp3"}
+     * data : {"pronunciations":{"uk":"ˌkɒntrɪ'bjuːʃn","us":"ˌkɑːntrɪ'bjuːʃn"},"en_definitions":{"n":["the part played by a person in bringing about a result","a voluntary gift (as of money or service or ideas) made to some worthwhile cause","act of giving in common with others for a common purpose especially to a charity"]},"audio_addresses":{"uk":["https://words-audio.baydn.com/uk%2Fc%2Fco%2Fcontribution.mp3","http://words-audio.qiniu.baydn.com/uk/c/co/contribution.mp3"],"us":["https://words-audio.baydn.com/us%2Fc%2Fco%2Fcontribution.mp3","http://words-audio.qiniu.baydn.com/us/c/co/contribution.mp3"]},"uk_audio":"http://media.shanbay.com/audio/uk/contribution.mp3","conent_id":8644,"audio_name":"contribution","cn_definition":{"pos":"","defn":"n. 贡献,捐款(赠)"},"num_sense":1,"content_type":"vocabulary","sense_id":0,"id":8644,"definition":" n. 贡献,捐款(赠)","content_id":8644,"url":"https://www.shanbay.com/bdc/mobile/preview/word?word=contribution","has_audio":true,"en_definition":{"pos":"n","defn":"the part played by a person in bringing about a result; a voluntary gift (as of money or service or ideas) made to some worthwhile cause; act of giving in common with others for a common purpose especially to a charity"},"object_id":8644,"content":"contribution","pron":"ˌkɑːntrɪ'bjuːʃn","pronunciation":"ˌkɑːntrɪ'bjuːʃn","audio":"http://media.shanbay.com/audio/us/contribution.mp3","us_audio":"http://media.shanbay.com/audio/us/contribution.mp3"}
      */
 
     private String msg;
     private int status_code;
     /**
-     * pronunciations : {"uk":"'eni","us":"'eni"}
-     * en_definitions : {"adv":["to any degree or extent"],"adj":["one or some or every or all without specification"]}
-     * audio_addresses : {"uk":["https://words-audio.baydn.com/uk%2Fa%2Fan%2Fany.mp3","http://words-audio.qiniu.baydn.com/uk/a/an/any.mp3"],"us":["https://words-audio.baydn.com/us%2Fa%2Fan%2Fany.mp3","http://words-audio.qiniu.baydn.com/us/a/an/any.mp3"]}
-     * uk_audio : http://media.shanbay.com/audio/uk/any.mp3
-     * conent_id : 204
-     * audio_name : any
-     * cn_definition : {"pos":"","defn":"adj. 任何的\nadv. 稍\ndet. 一些\nprep. 无论哪个\npron. 任何"}
+     * pronunciations : {"uk":"ˌkɒntrɪ'bjuːʃn","us":"ˌkɑːntrɪ'bjuːʃn"}
+     * en_definitions : {"n":["the part played by a person in bringing about a result","a voluntary gift (as of money or service or ideas) made to some worthwhile cause","act of giving in common with others for a common purpose especially to a charity"]}
+     * audio_addresses : {"uk":["https://words-audio.baydn.com/uk%2Fc%2Fco%2Fcontribution.mp3","http://words-audio.qiniu.baydn.com/uk/c/co/contribution.mp3"],"us":["https://words-audio.baydn.com/us%2Fc%2Fco%2Fcontribution.mp3","http://words-audio.qiniu.baydn.com/us/c/co/contribution.mp3"]}
+     * uk_audio : http://media.shanbay.com/audio/uk/contribution.mp3
+     * conent_id : 8644
+     * audio_name : contribution
+     * cn_definition : {"pos":"","defn":"n. 贡献,捐款(赠)"}
      * num_sense : 1
      * content_type : vocabulary
      * sense_id : 0
-     * id : 204
-     * definition :  adj. 任何的
-     adv. 稍
-     det. 一些
-     prep. 无论哪个
-     pron. 任何
-     * content_id : 204
-     * url : https://www.shanbay.com/bdc/mobile/preview/word?word=any
+     * id : 8644
+     * definition :  n. 贡献,捐款(赠)
+     * content_id : 8644
+     * url : https://www.shanbay.com/bdc/mobile/preview/word?word=contribution
      * has_audio : true
-     * en_definition : {"pos":"adv","defn":"to any degree or extent"}
-     * object_id : 204
-     * content : any
-     * pron : 'eni
-     * pronunciation : 'eni
-     * audio : http://media.shanbay.com/audio/us/any.mp3
-     * us_audio : http://media.shanbay.com/audio/us/any.mp3
+     * en_definition : {"pos":"n","defn":"the part played by a person in bringing about a result; a voluntary gift (as of money or service or ideas) made to some worthwhile cause; act of giving in common with others for a common purpose especially to a charity"}
+     * object_id : 8644
+     * content : contribution
+     * pron : ˌkɑːntrɪ'bjuːʃn
+     * pronunciation : ˌkɑːntrɪ'bjuːʃn
+     * audio : http://media.shanbay.com/audio/us/contribution.mp3
+     * us_audio : http://media.shanbay.com/audio/us/contribution.mp3
      */
 
     private DataBean data;
@@ -73,8 +69,8 @@ public class ShanbayResp {
 
     public static class DataBean {
         /**
-         * uk : 'eni
-         * us : 'eni
+         * uk : ˌkɒntrɪ'bjuːʃn
+         * us : ˌkɑːntrɪ'bjuːʃn
          */
 
         private PronunciationsBean pronunciations;
@@ -85,11 +81,7 @@ public class ShanbayResp {
         private String audio_name;
         /**
          * pos :
-         * defn : adj. 任何的
-         adv. 稍
-         det. 一些
-         prep. 无论哪个
-         pron. 任何
+         * defn : n. 贡献,捐款(赠)
          */
 
         private CnDefinitionBean cn_definition;
@@ -102,8 +94,8 @@ public class ShanbayResp {
         private String url;
         private boolean has_audio;
         /**
-         * pos : adv
-         * defn : to any degree or extent
+         * pos : n
+         * defn : the part played by a person in bringing about a result; a voluntary gift (as of money or service or ideas) made to some worthwhile cause; act of giving in common with others for a common purpose especially to a charity
          */
 
         private EnDefinitionBean en_definition;
@@ -312,23 +304,14 @@ public class ShanbayResp {
         }
 
         public static class EnDefinitionsBean {
-            private List<String> adv;
-            private List<String> adj;
+            private List<String> n;
 
-            public List<String> getAdv() {
-                return adv;
+            public List<String> getN() {
+                return n;
             }
 
-            public void setAdv(List<String> adv) {
-                this.adv = adv;
-            }
-
-            public List<String> getAdj() {
-                return adj;
-            }
-
-            public void setAdj(List<String> adj) {
-                this.adj = adj;
+            public void setN(List<String> n) {
+                this.n = n;
             }
         }
 

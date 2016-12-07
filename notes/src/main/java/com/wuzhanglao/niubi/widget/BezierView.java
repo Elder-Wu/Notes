@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
@@ -54,12 +55,21 @@ public class BezierView extends RelativeLayout {
         paint.setDither(true);
         paint.setFilterBitmap(true);
 
-        setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addHeartView();
-            }
-        });
+        if (getParent() != null) {
+            ((ViewGroup) getParent()).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addHeartView();
+                }
+            });
+        } else {
+            setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addHeartView();
+                }
+            });
+        }
     }
 
     @Override

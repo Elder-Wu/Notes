@@ -17,7 +17,7 @@
 #}
 
 #友盟混淆
--keep public class com.example.customview.R$*{
+-keep public class com.wuzhanglao.niubi.R$*{
 public static final int *;
 }
 -keepclassmembers enum * {
@@ -25,7 +25,23 @@ public static final int *;
     public static ** valueOf(java.lang.String);
 }
 
--dontwarn rx.**
--dontwarn retrofit2.**
 -dontwarn okio.**
--keep class rx.internal.util.unsafe.** { *; }
+-dontwarn retrofit2.**
+
+#RxJava混淆
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+   long producerIndex;
+   long consumerIndex;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.** {
+    long producerIndex;
+    long consumerIndex;
+}

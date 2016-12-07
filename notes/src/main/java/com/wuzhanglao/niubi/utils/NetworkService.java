@@ -60,18 +60,16 @@ public interface NetworkService {
             //@link 这篇博客写的很详细:http://www.jianshu.com/p/faa46bbe8a2e
             Request request = chain.request();
             Response response = chain.proceed(request);
-            if (NetworkUtils.isNetworkAvailable()) {
+            if (NetworkUtil.isNetworkAvailable()) {
                 // 有网络时 设置缓存超时时间0个小时
                 int maxAge = 0;
                 response.newBuilder()
                         .header("Cache-Control", "public, max-age=" + maxAge)
-                        .removeHeader("Pragma")     // 清除头信息
                         .build();
             } else {
                 int maxStale = 60 * 60 * 24;        // 无网络时，设置超时为1天
                 response.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                        .removeHeader("Pragma")
                         .build();
             }
             return response;

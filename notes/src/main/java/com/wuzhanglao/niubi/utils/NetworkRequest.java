@@ -16,15 +16,15 @@ import rx.schedulers.Schedulers;
 public class NetworkRequest {
 
     public static final NetworkRequest getInstance() {
-        return NetworkRequestSingletonHolder.instance;
+        return SingletonHolder.instance;
     }
 
     private static final NetworkService getHeWeatherService() {
-        return NetworkRequestSingletonHolder.heweather_service;
+        return SingletonHolder.heweather_service;
     }
 
     private static final NetworkService getShanbayService() {
-        return NetworkRequestSingletonHolder.shanbay_service;
+        return SingletonHolder.shanbay_service;
     }
 
     public void getWeather(String city, Action1 onNext) {
@@ -39,7 +39,7 @@ public class NetworkRequest {
         getShanbayService().getTranslation(word).compose(new ComposeThread<ShanbayResp>()).subscribe(onNext, onError);
     }
 
-    private static class NetworkRequestSingletonHolder {
+    private static class SingletonHolder {
         private static final NetworkRequest instance = new NetworkRequest();
         private static final NetworkService heweather_service = NetworkService.Factory.create(NetworkService.BASE_URL_HeWeather);
         private static final NetworkService shanbay_service = NetworkService.Factory.create(NetworkService.BASE_URL_SHANBAY);

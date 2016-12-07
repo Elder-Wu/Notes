@@ -9,7 +9,7 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 import com.wuzhanglao.niubi.mvp.presenter.HighlightFragmentPresenter;
 import com.wuzhanglao.niubi.mvp.view.HighlightFragmentView;
-import com.wuzhanglao.niubi.utils.NetworkUtils;
+import com.wuzhanglao.niubi.utils.NetworkUtil;
 import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.ClickableTextView;
 import com.wuzhanglao.niubi.widget.TranslationDialog;
@@ -18,11 +18,11 @@ import com.wuzhanglao.niubi.widget.TranslationDialog;
  * Created by wuming on 2016/12/2.
  */
 
-public class HighlightFragment extends BaseMvpFragment<HighlightFragmentView, HighlightFragmentPresenter>
+public class TranslationFragment extends BaseMvpFragment<HighlightFragmentView, HighlightFragmentPresenter>
         implements HighlightFragmentView {
 
-    private static final String TAG = HighlightFragment.class.getSimpleName();
-    private static final String s = "Any contributions, large or small, #$% 174major 1884 features, bug fixes, additional language translations, unit/integration tests are welcomed and appreciated but will be thoroughly reviewed and discussed.";
+    private static final String TAG = TranslationFragment.class.getSimpleName();
+    private static final String s = "      Any contributions, large or small, #$% 174major 1884 features, bug fixes, additional language translations, unit/integration tests are welcomed and appreciated but will be thoroughly reviewed and discussed.";
     private ClickableTextView englishText;
     private TranslationDialog translationDialog;
 
@@ -48,15 +48,15 @@ public class HighlightFragment extends BaseMvpFragment<HighlightFragmentView, Hi
     //获取翻译结果成功,展示查询结果
     @Override
     public void getTranslationSuccess(Object result) {
+        Log.d(TAG, result.toString());
         translationDialog.showTranslation((ShanbayResp) result);
     }
 
     //获取翻译结果失败
     @Override
-    public void getTranslationFailed(Object result) {
+    public void getTranslationFailed() {
         translationDialog.dismiss();
-        Log.d(TAG, result.toString());
-        if (NetworkUtils.isNetworkAvailable()) {
+        if (NetworkUtil.isNetworkAvailable()) {
             UIUtils.showToast("查询失败");
         } else {
             UIUtils.showToast("请检查网络连接");

@@ -34,7 +34,7 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
         holder.num_tv.setText(position + 1 < 10 ? "0" + (position + 1) : "" + (position + 1));
         holder.title_tv.setText(data.get(position).getTitle());
         holder.subtitle_tv.setText(data.get(position).getSubTitle());
-        if (position < 3) {
+        if (position < 2) {
             holder.num_tv.setTextColor(Color.WHITE);
             holder.num_tv.setBackgroundColor(Color.parseColor("#FF1111"));
         } else {
