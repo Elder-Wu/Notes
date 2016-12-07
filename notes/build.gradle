@@ -52,6 +52,8 @@ android {
         debug {
             debuggable true
             versionNameSuffix "-debug"
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "Notes测试版"
         }
 
         release {
@@ -64,9 +66,11 @@ android {
             shrinkResources true
             //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //apk打包的时候需要签名
             if (keystoreFile.exists()) {
                 signingConfig signingConfigs.release
             }
+            resValue "string", "app_name", "Notes"
         }
     }
     dexOptions {
@@ -74,17 +78,17 @@ android {
         dexInProcess = true
         javaMaxHeapSize "4g"
     }
-    productFlavors {
-        dev {
-            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
-            resValue "string", "app_name", "Notes测试版"
-        }
-        real {
-            // 动态添加 string.xml 字段；
-            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
-            resValue "string", "app_name", "Notes"
-        }
-    }
+//    productFlavors {
+//        dev {
+//            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
+//            resValue "string", "app_name", "Notes测试版"
+//        }
+//        real {
+//            // 动态添加 string.xml 字段；
+//            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
+//            resValue "string", "app_name", "Notes"
+//        }
+//    }
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def outputFile = output.outputFile
