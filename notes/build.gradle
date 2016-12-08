@@ -5,6 +5,7 @@ def keystoreFile
 def keystorePassword = ''
 def keystoreAlias = ''
 def keystoreAliasPassword = ''
+def umeng_key = ''
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -15,6 +16,7 @@ if (keystoreFilepath) {
     keystoreAlias = properties.getProperty("keystore.alias")
     keystoreAliasPassword = properties.getProperty("keystore.alias_password")
 }
+umeng_key = properties.getProperty("umeng_key");
 
 def releaseTime() {
     return new Date().format("HH:mm:ss")
@@ -37,6 +39,8 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0.0"
+
+        manifestPlaceholders = [UMENG_KEY: umeng_key]
     }
     buildTypes {
         debug {

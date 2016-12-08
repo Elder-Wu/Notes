@@ -34,7 +34,7 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5810166a7666132fe5002154" />
+            android:value="${UMENG_KEY}" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="total" />
