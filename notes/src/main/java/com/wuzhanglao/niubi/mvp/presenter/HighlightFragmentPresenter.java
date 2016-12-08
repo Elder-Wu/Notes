@@ -1,7 +1,6 @@
 package com.wuzhanglao.niubi.mvp.presenter;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 import com.wuzhanglao.niubi.mvp.view.HighlightFragmentView;

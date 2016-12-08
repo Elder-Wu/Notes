@@ -38,7 +38,7 @@ public class ImageUtil {
                                 .load(url)
                                 .asBitmap()
                                 .centerCrop()
-                                .into(500, 500)
+                                .into(250, 250)
                                 .get();
                         if (bitmap != null) {
                             //将bitmap保存到本地
