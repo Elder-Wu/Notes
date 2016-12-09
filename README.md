@@ -1,11 +1,11 @@
 # Notes
 Create a repository for myself.Mainly record some of my study notes.
 
-[Demo apk下载地址](https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes.apk)
+[Demo apk下载地址](https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk)
 
 ####扫描二维码下载demo
 
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/app_ui.png?raw=true"><img src="https://github.com/Elder-Wu/Notes/blob/master/gif/qr_code.png?raw=true">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/app_ui.png?raw=true"><img src="https://github.com/Elder-Wu/Notes/blob/master/images/qr_code.png?raw=true">
 
 ****
 ###全文目录
@@ -45,10 +45,10 @@ Create a repository for myself.Mainly record some of my study notes.
 <h3 id="ios_dialog">高仿IOS底部弹窗（扩展性较高）</h3>
 <p>
     <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-    <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+    <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
     <a href="http://www.jianshu.com/p/2ebc5cc80835" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/activity_anim1.gif?raw=true">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/filehub/blob/master/images/activity_anim1.gif?raw=true">
 
 使用方法
 ```
@@ -72,10 +72,10 @@ builder.setTitle("标题",Color.RED)
 <h3 id="taobao_headline">淘宝头条控件</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/3a7688cab9e1" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/taobao_headline.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/taobao_headline.gif">
 
 使用方法
 ```
@@ -103,10 +103,10 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 <h3 id="countdown">广告倒计时View</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/3db73ba78882" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/countdown.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/countdown.gif">
 
 使用方法
 ```
@@ -142,10 +142,10 @@ countDownView.start();
 <h3 id="approve_list">点赞列表</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/993cea9d6631" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/approve_list.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/approve_list.gif">
 
 使用方法
 ```
@@ -170,10 +170,10 @@ approveListLayout.updateApproveList(approveList);
 <h3 id="float_view">可以悬浮在屏幕边缘的控件</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/8b2247b3112d" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/drag_layout.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/drag_layout.gif">
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
 ```
@@ -210,10 +210,10 @@ approveListLayout.updateApproveList(approveList);
 <h3 id="guaguaka">刮刮卡</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/a9abd8f7ef51" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/guaguaka.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/guaguaka.gif">
 
 使用方法
 ```
@@ -225,10 +225,10 @@ approveListLayout.updateApproveList(approveList);
 <h3 id="banner">广告栏无限循环</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/15dfbf64cf7a" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/banner2.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/banner1.gif">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/filehub/blob/master/images/banner2.gif">
 
 使用方法
 ```
@@ -247,10 +247,10 @@ private ImageView getImageView(int resId) {
 <h3 id="bezier_view">美拍点赞效果</h3>
 <p>
      <a href="#directory"><font color="#3262b3" size="3dp">返回目录</font></a>
-     <a href="https://raw.githubusercontent.com/Elder-Wu/Notes/master/apk/notes-debug.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
+     <a href="https://raw.githubusercontent.com/Elder-Wu/filehub/master/apk/notes.apk"><font color="#3262b3" size="3dp">Demo apk下载</font></a>
      <a href="http://www.jianshu.com/p/6e5230503745" target="_blank"><font color="#3262b3" size="3dp">博客原文</font></a>
 </p>
-<img src="https://github.com/Elder-Wu/Notes/blob/master/gif/bezier_view.gif">
+<img src="https://github.com/Elder-Wu/filehub/blob/master/images/bezier_view.gif">
 
 使用方法
 ```
