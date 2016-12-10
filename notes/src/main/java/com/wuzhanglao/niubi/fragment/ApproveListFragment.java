@@ -49,11 +49,11 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView
 
     private void initData() {
         approveList = new ArrayList<>();
-        approveList.add(R.drawable.wuzhanglao);
-        approveList.add(R.drawable.wuzhanglao);
-        approveList.add(R.drawable.wuzhanglao);
-        approveList.add(R.drawable.wuzhanglao);
-        approveList.add(R.drawable.wuzhanglao);
+        approveList.add(R.drawable.avatar);
+        approveList.add(R.drawable.avatar);
+        approveList.add(R.drawable.avatar);
+        approveList.add(R.drawable.avatar);
+        approveList.add(R.drawable.avatar);
     }
 
     @Override

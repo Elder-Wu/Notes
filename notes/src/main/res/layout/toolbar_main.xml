@@ -38,7 +38,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="3dp"
             android:padding="8dp"
-            android:src="@drawable/user" />
+            android:src="@drawable/default_avatar" />
     </RelativeLayout>
 
 </RelativeLayout>

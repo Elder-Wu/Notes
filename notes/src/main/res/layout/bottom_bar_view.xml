@@ -9,7 +9,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/img2" />
 
     <TextView
         android:id="@+id/bar_tv"

@@ -19,7 +19,7 @@
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_marginTop="61dp"
-                android:src="@drawable/wuzhanglao" />
+                android:src="@drawable/avatar" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

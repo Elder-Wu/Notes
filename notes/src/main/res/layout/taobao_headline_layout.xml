@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/headline_height"
-    android:background="@drawable/headline">
+    android:background="@drawable/shape_headline">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_marginRight="1dp"
             android:layout_marginTop="1dp"
             android:scaleType="fitXY"
-            android:src="@drawable/jd_toutiao" />
+            android:src="@drawable/headline" />
 
         <ViewSwitcher
             android:id="@+id/taobao_headline_viewswitcher"

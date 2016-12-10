@@ -87,7 +87,7 @@ public class ApproveListLayout extends HorizontalScrollView {
             head.setId(head.hashCode() + i);
             head.setBorderColor(Color.WHITE);
             head.setBorderWidth(UIUtils.dp2px(1));
-            head.setImageResource(R.drawable.wuzhanglao);
+            head.setImageResource(R.drawable.avatar);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(picSize, picSize);
             params.addRule(ALIGN_PARENT_LEFT);
             params.setMargins((picCount - i - 1) * offset, 0, 0, 0);

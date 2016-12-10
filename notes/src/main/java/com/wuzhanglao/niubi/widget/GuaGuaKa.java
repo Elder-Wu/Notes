@@ -29,7 +29,7 @@ public class GuaGuaKa extends View {
     private Rect srcRect;
     private Rect destRect;
 
-    private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.wuzhanglao);
+    private Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
 
     public GuaGuaKa(Context context) {
         this(context, null);
