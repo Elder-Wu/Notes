@@ -54,6 +54,7 @@ android {
         }
 
         release {
+            // todo:debugable can not set "false"
             debuggable true
             //混淆
             minifyEnabled true
@@ -91,7 +92,7 @@ android {
         variant.outputs.each { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                //Notes+版本名字+时间
+                //Notes+apk
                 def fileName = "notes.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }

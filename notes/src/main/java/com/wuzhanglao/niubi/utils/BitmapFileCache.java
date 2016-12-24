@@ -31,7 +31,7 @@ public class BitmapFileCache {
         return SingletonHolder.instance;
     }
 
-    public void put(int hashCode, Bitmap bitmap) {
+    public final void put(int hashCode, Bitmap bitmap) {
         try {
             FileOutputStream fos = new FileOutputStream(new File(rootDir, hashCode + ".jpg"));
             bitmap.compress(CompressFormat.JPEG, 100, fos);
@@ -47,7 +47,7 @@ public class BitmapFileCache {
     /**
      * 根据文件名获取Bitmap
      **/
-    public Bitmap get(int hashCode, int defaultImgId) {
+    public final Bitmap get(int hashCode, int defaultImgId) {
         String[] files = rootDir.list(new MyFilenameFilter(hashCode));
         if (files == null || files.length == 0) {
             return null;
@@ -61,7 +61,7 @@ public class BitmapFileCache {
         }
     }
 
-    public Bitmap get(int hashCode) {
+    public final Bitmap get(int hashCode) {
         String[] files = rootDir.list(new MyFilenameFilter(hashCode));
         if (files == null || files.length == 0) {
             return null;
@@ -78,7 +78,7 @@ public class BitmapFileCache {
     /**
      * 文件名过滤器，把想要的文件过滤出来
      **/
-    private class MyFilenameFilter implements FilenameFilter {
+    private final class MyFilenameFilter implements FilenameFilter {
 
         private int hashCode;
 
