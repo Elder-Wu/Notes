@@ -32,6 +32,10 @@
             android:name=".activity.TestRxActivity2"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.ThirdActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="${UMENG_KEY}" />

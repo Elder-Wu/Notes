@@ -8,10 +8,6 @@ import com.wuzhanglao.niubi.utils.NetworkRequest;
 
 import rx.functions.Action1;
 
-/**
- * Created by wuming on 2016/12/2.
- */
-
 public class HighlightFragmentPresenter extends BaseMvpPresenter<HighlightFragmentView> {
     public void getTranslation(String word) {
         Action1<ShanbayResp> onNext = new Action1<ShanbayResp>() {

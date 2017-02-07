@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.bean.RxBusBean;
 
-/**
+/*
  * Created by wuming on 2016/12/2.
  */
 

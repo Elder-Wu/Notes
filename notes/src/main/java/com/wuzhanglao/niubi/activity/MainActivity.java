@@ -22,11 +22,12 @@ import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
-import com.wuzhanglao.niubi.fragment.TranslationFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
+import com.wuzhanglao.niubi.fragment.TestMeasureLayoutFragment;
+import com.wuzhanglao.niubi.fragment.TranslationFragment;
 import com.wuzhanglao.niubi.utils.RxBus;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
@@ -80,14 +81,14 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 if (UIUtils.isDoubleClick()) {
                     return;
                 }
-                drawerLayout.openDrawer(Gravity.START);
+                drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
         hideBackButton();
     }
 
     protected void initData() {
-        List<TextBean> data = new ArrayList();
+        List<TextBean> data = new ArrayList<>();
         data.add(new TextBean("TextView高亮显示", "点击英文单词可以高亮显示，并且显示翻译结果"));
         data.add(new TextBean("加载网络图片", "使用Glide对一组url进行加载，下拉刷新，下拉加载更多"));
         data.add(new TextBean("仿ios底部弹出对话框", "可以随意设定标题和选项按钮"));
@@ -102,6 +103,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add(new TextBean("广告栏无限轮播", "加入了动画效果"));
         data.add(new TextBean("贝塞尔曲线", "TypedValue和nterpolator的高级使用"));
         data.add(new TextBean("RxBus案例", "轻松解决组件与组件之间的消息传递"));
+        data.add(new TextBean("onMeasure和onLayout", "高级自定义View"));
 
         adapter = new TextHolderAdatpter(context, data);
         adapter.setTextHolderClickListener(this);
@@ -164,6 +166,9 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 break;
             case "加载网络图片":
                 openFragment(new LoadImageFragment(), bean.getTitle());
+                break;
+            case "onMeasure和onLayout":
+                openFragment(new TestMeasureLayoutFragment(), bean.getTitle());
                 break;
         }
     }

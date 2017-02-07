@@ -15,7 +15,7 @@ import com.wuzhanglao.niubi.mvp.view.LoadImageFragmentView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  * Created by wuming on 2016/12/3.
  */
 
@@ -50,12 +50,14 @@ public class LoadImageFragment extends BaseMvpFragment<LoadImageFragmentView, Lo
 
     @Override
     public void initView(View view, @Nullable Bundle savedInstanceState) {
+        android.os.Debug.startMethodTracing();
         initData();
         loadImageHelper = new LoadImageHelper(context);
         loadImageHelper.setSwipeRefreshLayout((SwipeRefreshLayout) view.findViewById(R.id.fragment_loadimage_refreshlayout));
         loadImageHelper.setRecyclerView((RecyclerView) view.findViewById(R.id.fragment_loadimage_rv));
         loadImageHelper.setAdapter(new ImageHolderAdapter(context, images));
         loadImageHelper.init();
+        android.os.Debug.stopMethodTracing();
     }
 
     @Override

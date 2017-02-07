@@ -14,7 +14,7 @@ import java.util.List;
  * Created on 2016/9/28.
  */
 
-public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T extends Object> extends RecyclerView.Adapter {
+public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends RecyclerView.Adapter {
 
     private static final String TAG = BaseAdapter.class.getSimpleName();
     private static final int HEADER = 0x1001;
@@ -104,10 +104,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T extends 
     }
 
     protected boolean hasHeader() {
-        return headerView == null ? false : true;
+        return headerView != null;
     }
 
     protected boolean hasFooter() {
-        return footerView == null ? false : true;
+        return footerView != null;
     }
 }

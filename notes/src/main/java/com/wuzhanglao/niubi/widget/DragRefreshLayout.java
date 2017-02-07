@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -117,7 +116,7 @@ public class DragRefreshLayout extends RelativeLayout {
         super.dispatchDraw(canvas);
         path = new Path();
         path.moveTo(0, 0);
-        path.cubicTo(getWidth()-100, 500, 100, 500, getWidth(), 0);
+        path.cubicTo(getWidth() - 100, 500, 100, 500, getWidth(), 0);
         canvas.drawPath(path, paint);
     }
 
@@ -137,7 +136,7 @@ public class DragRefreshLayout extends RelativeLayout {
                 //(3)scrollY必须大于0
                 pointerCurrentY = ev.getY();
 //                if ((pointerCurrentY - pointerStartY) > 0 && !ViewCompat.canScrollVertically(targetView, -1)) {
-                    return true;
+                return true;
 //                }
 //                break;
         }
