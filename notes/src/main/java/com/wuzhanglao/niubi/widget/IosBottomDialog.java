@@ -59,7 +59,9 @@ public class IosBottomDialog extends Dialog {
         this.setCancelable(true);
         Window window = this.getWindow();
         //让Dialog显示在屏幕的底部
-        window.setGravity(Gravity.BOTTOM);
+        if (window != null) {
+            window.setGravity(Gravity.BOTTOM);
+        }
         //设置窗口出现和窗口隐藏的动画
         window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
         //设置BottomDialog的宽高属性
@@ -187,19 +189,19 @@ public class IosBottomDialog extends Dialog {
 
     //这个类保存了dialog的众多参数
     private static class Paraments {
-        public int titleSize;
-        public int optionTextSize;
-        public String title;
-        public int titleColor;
-        public boolean cancelable;
-        public List<Option> options;
-        public IosBottomDialog.IosBottomDialogDismissListener dismisslistener;
+        int titleSize;
+        int optionTextSize;
+        String title;
+        int titleColor;
+        boolean cancelable;
+        List<Option> options;
+        IosBottomDialog.IosBottomDialogDismissListener dismisslistener;
 
-        public Paraments() {
+        Paraments() {
             title = "";
             titleColor = Color.BLACK;
             cancelable = true;
-            options = new ArrayList();
+            options = new ArrayList<>();
             titleSize = DEFAULT_TITLE_SIZE;
             optionTextSize = DEFAULT_OPTION_SIZE;
         }
@@ -213,7 +215,7 @@ public class IosBottomDialog extends Dialog {
         public Option() {
         }
 
-        public Option(String name, int color, IosBottomDialog.OnOptionClickListener listener) {
+        Option(String name, int color, IosBottomDialog.OnOptionClickListener listener) {
             this.name = name;
             this.color = color;
             this.listener = listener;
@@ -235,7 +237,7 @@ public class IosBottomDialog extends Dialog {
             this.color = color;
         }
 
-        public IosBottomDialog.OnOptionClickListener getListener() {
+        IosBottomDialog.OnOptionClickListener getListener() {
             return listener;
         }
 

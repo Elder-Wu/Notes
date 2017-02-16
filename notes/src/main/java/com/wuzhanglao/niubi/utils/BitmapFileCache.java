@@ -56,7 +56,7 @@ public class BitmapFileCache {
             if (bitmap != null) {
                 return bitmap;
             } else {
-                return BitmapFactory.decodeResource(MyApplication.getInstance().getResources(), defaultImgId);
+                return BitmapFactory.decodeResource(App.getInstance().getResources(), defaultImgId);
             }
         }
     }

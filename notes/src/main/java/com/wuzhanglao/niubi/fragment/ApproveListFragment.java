@@ -7,7 +7,7 @@ import android.view.View;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.presenter.ApproveListFragmentPresenter;
 import com.wuzhanglao.niubi.mvp.view.ApproveListFragmentView;
-import com.wuzhanglao.niubi.utils.UIUtils;
+import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.widget.ApproveListLayout;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView
                 if (!approveList.contains(R.drawable.img1)) {
                     approveList.add(0, R.drawable.img1);
                 } else {
-                    UIUtils.showToast("该用户已经点过赞了");
+                    AppUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv1_unapprove:
@@ -73,7 +73,7 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView
                 if (!approveList.contains(R.drawable.img2)) {
                     approveList.add(0, R.drawable.img2);
                 } else {
-                    UIUtils.showToast("该用户已经点过赞了");
+                    AppUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv2_unapprove:
@@ -83,7 +83,7 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView
                 if (!approveList.contains(R.drawable.img3)) {
                     approveList.add(0, R.drawable.img3);
                 } else {
-                    UIUtils.showToast("该用户已经点过赞了");
+                    AppUtils.showToast("该用户已经点过赞了");
                 }
                 break;
             case R.id.apprive_list_mv3_unapprove:

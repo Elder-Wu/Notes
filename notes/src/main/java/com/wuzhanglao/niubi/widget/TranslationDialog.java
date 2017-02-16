@@ -16,7 +16,7 @@ import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 
 import java.io.IOException;
 
-/**
+/*
  * Created by wuming on 2016/12/6.
  */
 

@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.utils.UIUtils;
+import com.wuzhanglao.niubi.utils.AppUtils;
 
 /**
  * Created by wuming on 2016/12/2.
@@ -34,7 +34,7 @@ public class NavigationFragment extends BaseFragment implements View.OnClickList
                         .setPositiveButton("确定", null).create().show();
                 break;
             case R.id.fragment_navi_checkupdate:
-                UIUtils.showToast("该功能正在完善中...");
+                AppUtils.showToast("该功能正在完善中...");
                 break;
         }
     }

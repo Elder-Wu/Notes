@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
 
@@ -38,19 +39,19 @@ public class AnimFragment extends BaseFragment implements View.OnClickListener {
                         .addOption("操作1", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
-                                UIUtils.showToast("操作1");
+                                AppUtils.showToast("操作1");
                             }
                         })
                         .addOption("操作2", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
-                                UIUtils.showToast("操作2");
+                                AppUtils.showToast("操作2");
                             }
                         })
                         .addOption("操作3", Color.DKGRAY, new IosBottomDialog.OnOptionClickListener() {
                             @Override
                             public void onOptionClick() {
-                                UIUtils.showToast("操作3");
+                                AppUtils.showToast("操作3");
                             }
                         })
                         .setDialogDismissListener(new IosBottomDialog.IosBottomDialogDismissListener() {

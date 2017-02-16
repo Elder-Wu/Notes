@@ -1,12 +1,14 @@
 package com.wuzhanglao.niubi.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,18 +49,12 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
     private ImageView toolbar_profile_iv;
 
     @Override
-    protected void doOnNext(Object o) {
-        //接收到全局广播之后在这里处理的相关的业务逻辑
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    @Override
-    protected int setContentResId() {
-        return R.layout.activity_main;
-    }
+        initData();
 
-    @Override
-    protected void afterSetContentView() {
-        super.afterSetContentView();
         toolbar_title_tv = (TextView) findViewById(R.id.activity_main_toolbar_title_tv);
         toolbar_back_tv = (TextView) findViewById(R.id.activity_main_toolbar_back_tv);
         toolbar_profile_iv = (ImageView) findViewById(R.id.activity_main_toolbar_profile_iv);
@@ -81,7 +77,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 if (UIUtils.isDoubleClick()) {
                     return;
                 }
-                drawerLayout.openDrawer(Gravity.LEFT);
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
         hideBackButton();
@@ -105,14 +101,14 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
         data.add(new TextBean("RxBus案例", "轻松解决组件与组件之间的消息传递"));
         data.add(new TextBean("onMeasure和onLayout", "高级自定义View"));
 
-        adapter = new TextHolderAdatpter(context, data);
+        adapter = new TextHolderAdatpter(this, data);
         adapter.setTextHolderClickListener(this);
     }
 
     protected void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
         fragmentManager = getSupportFragmentManager();
@@ -159,7 +155,7 @@ public class MainActivity extends ToolbarActivity implements TextHolderAdatpter.
                 openFragment(new BezierFragment(), bean.getTitle());
                 break;
             case "RxBus案例":
-                startActivity(new Intent(context, TestRxActivity1.class));
+                startActivity(new Intent(this, TestRxActivity1.class));
                 break;
             case "TextView高亮显示":
                 openFragment(new TranslationFragment(), bean.getTitle());

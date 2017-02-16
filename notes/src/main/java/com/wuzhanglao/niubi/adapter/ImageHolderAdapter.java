@@ -10,7 +10,7 @@ import com.wuzhanglao.niubi.utils.ImageUtil;
 
 import java.util.List;
 
-/**
+/*
  * Created by wuming on 2016/12/3.
  */
 

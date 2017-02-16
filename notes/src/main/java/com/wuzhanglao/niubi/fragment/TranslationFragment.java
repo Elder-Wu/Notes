@@ -9,8 +9,8 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
 import com.wuzhanglao.niubi.mvp.presenter.HighlightFragmentPresenter;
 import com.wuzhanglao.niubi.mvp.view.HighlightFragmentView;
+import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.utils.NetworkUtil;
-import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.ClickableTextView;
 import com.wuzhanglao.niubi.widget.TranslationDialog;
 
@@ -57,9 +57,9 @@ public class TranslationFragment extends BaseMvpFragment<HighlightFragmentView, 
     public void getTranslationFailed() {
         translationDialog.dismiss();
         if (NetworkUtil.isNetworkAvailable()) {
-            UIUtils.showToast("查询失败");
+            AppUtils.showToast("查询失败");
         } else {
-            UIUtils.showToast("请检查网络连接");
+            AppUtils.showToast("请检查网络连接");
         }
     }
 

@@ -6,6 +6,10 @@
         <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/white</item>
     </style>
 
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@color/red_111</item>
+    </style>
+
     <style name="ios_bottom_dialog" parent="android:style/Theme.Dialog">
         <!--背景颜色及和透明程度-->
         <item name="android:windowBackground">@color/transparent</item>
