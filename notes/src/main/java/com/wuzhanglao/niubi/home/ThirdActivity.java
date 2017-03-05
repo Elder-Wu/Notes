@@ -1,4 +1,4 @@
-package com.wuzhanglao.niubi.activity;
+package com.wuzhanglao.niubi.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

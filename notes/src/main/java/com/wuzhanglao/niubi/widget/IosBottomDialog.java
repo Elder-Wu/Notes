@@ -59,9 +59,7 @@ public class IosBottomDialog extends Dialog {
         this.setCancelable(true);
         Window window = this.getWindow();
         //让Dialog显示在屏幕的底部
-        if (window != null) {
-            window.setGravity(Gravity.BOTTOM);
-        }
+        window.setGravity(Gravity.BOTTOM);
         //设置窗口出现和窗口隐藏的动画
         window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
         //设置BottomDialog的宽高属性

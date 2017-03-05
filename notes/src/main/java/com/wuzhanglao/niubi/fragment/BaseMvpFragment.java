@@ -3,6 +3,7 @@ package com.wuzhanglao.niubi.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.mvp.presenter.BaseMvpPresenter;
 import com.wuzhanglao.niubi.mvp.view.BaseMvpView;
 

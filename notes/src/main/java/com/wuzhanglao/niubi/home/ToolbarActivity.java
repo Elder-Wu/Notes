@@ -1,12 +1,13 @@
-package com.wuzhanglao.niubi.activity;
+package com.wuzhanglao.niubi.home;
 
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseActivity;
 
-/**
+/*
  * Created by wuming on 16/10/14.
  */
 

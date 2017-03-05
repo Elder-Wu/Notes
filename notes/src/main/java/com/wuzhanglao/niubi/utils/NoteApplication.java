@@ -6,8 +6,8 @@ import android.app.Application;
  * Created by wuming on 16/10/13.
  */
 
-public class App extends Application {
-    private static App instance;
+public class NoteApplication extends Application {
+    private static NoteApplication instance;
 
     @Override
     public void onCreate() {
@@ -15,7 +15,7 @@ public class App extends Application {
         instance = this;
     }
 
-    public static App getInstance() {
+    public static NoteApplication getInstance() {
         return instance;
     }
 }

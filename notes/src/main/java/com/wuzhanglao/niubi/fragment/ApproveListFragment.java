@@ -2,7 +2,9 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.presenter.ApproveListFragmentPresenter;
@@ -28,23 +30,27 @@ public class ApproveListFragment extends BaseMvpFragment<ApproveListFragmentView
         return new ApproveListFragmentPresenter();
     }
 
+    @Nullable
     @Override
-    public int setResId() {
-        return R.layout.fragment_approve_list;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_approve_list, container, false);
+        approveListLayout = (ApproveListLayout) rootView.findViewById(R.id.approve_list_layout);
+
+        rootView.findViewById(R.id.apprive_list_mv1_approve).setOnClickListener(this);
+        rootView.findViewById(R.id.apprive_list_mv1_unapprove).setOnClickListener(this);
+        rootView.findViewById(R.id.apprive_list_mv2_approve).setOnClickListener(this);
+        rootView.findViewById(R.id.apprive_list_mv2_unapprove).setOnClickListener(this);
+        rootView.findViewById(R.id.apprive_list_mv3_approve).setOnClickListener(this);
+        rootView.findViewById(R.id.apprive_list_mv3_unapprove).setOnClickListener(this);
+
+        return rootView;
     }
 
     @Override
-    public void initView(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         initData();
-        approveListLayout = (ApproveListLayout) view.findViewById(R.id.approve_list_layout);
         approveListLayout.updateApproveList(approveList);
-
-        view.findViewById(R.id.apprive_list_mv1_approve).setOnClickListener(this);
-        view.findViewById(R.id.apprive_list_mv1_unapprove).setOnClickListener(this);
-        view.findViewById(R.id.apprive_list_mv2_approve).setOnClickListener(this);
-        view.findViewById(R.id.apprive_list_mv2_unapprove).setOnClickListener(this);
-        view.findViewById(R.id.apprive_list_mv3_approve).setOnClickListener(this);
-        view.findViewById(R.id.apprive_list_mv3_unapprove).setOnClickListener(this);
     }
 
     private void initData() {

@@ -5,8 +5,6 @@ def keystoreFile
 def keystorePassword = ''
 def keystoreAlias = ''
 def keystoreAliasPassword = ''
-def umeng_key = ''
-def hefeng_key = ''
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -17,8 +15,6 @@ if (keystoreFilepath) {
     keystoreAlias = properties.getProperty("keystore.alias")
     keystoreAliasPassword = properties.getProperty("keystore.alias_password")
 }
-umeng_key = properties.getProperty("umeng_key");
-hefeng_key = properties.getProperty("hefeng_key")
 
 def releaseTime() {
     return new Date().format("HH:mm:ss")
@@ -27,14 +23,6 @@ def releaseTime() {
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
-    signingConfigs {
-        release {
-            storeFile keystoreFile
-            storePassword keystorePassword
-            keyAlias keystoreAlias
-            keyPassword keystoreAliasPassword
-        }
-    }
     defaultConfig {
         applicationId "com.wuzhanglao.niubi"
         minSdkVersion 14
@@ -42,8 +30,7 @@ android {
         versionCode 1
         versionName "1.0.0"
 
-        manifestPlaceholders = [UMENG_KEY: umeng_key]
-        resValue "string", "hefeng_key", hefeng_key
+        manifestPlaceholders = [KEY_UMENG: '5810166a7666132fe5002154']
     }
     buildTypes {
         debug {
@@ -65,8 +52,11 @@ android {
             //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //apk打包的时候需要签名
-            if (keystoreFile.exists()) {
-                signingConfig signingConfigs.release
+            if (System.getenv("KEYSTORE_FILE") != null) {
+                storeFile file(System.getenv("KEYSTORE_FILE"));
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEYSTORE_ALIAS")
+                keyPassword System.getenv("KEYSTORE_ALIAS_PASSWORD")
             }
             resValue "string", "app_name", "Notes"
         }

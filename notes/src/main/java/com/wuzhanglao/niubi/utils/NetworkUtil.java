@@ -16,7 +16,7 @@ public class NetworkUtil {
      */
     public static boolean isNetworkAvailable() {
         boolean flag = false;
-        final ConnectivityManager manager = (ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager manager = (ConnectivityManager) NoteApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         //去进行判断网络是否连接
         if (manager.getActiveNetworkInfo() != null) {
             flag = manager.getActiveNetworkInfo().isAvailable();
@@ -28,7 +28,7 @@ public class NetworkUtil {
      * 网络已经连接，然后去判断是wifi连接还是GPRS连接
      */
     public static String getNetworkType() {
-        final ConnectivityManager manager = (ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager manager = (ConnectivityManager) NoteApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo.State gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
         NetworkInfo.State wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
         if (gprs == NetworkInfo.State.CONNECTED || gprs == NetworkInfo.State.CONNECTING) {

@@ -2,11 +2,13 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
-import com.wuzhanglao.niubi.utils.UIUtils;
 import com.wuzhanglao.niubi.widget.CountDownView;
 
 /**
@@ -17,14 +19,12 @@ public class CountDownFragment extends BaseFragment {
 
     private CountDownView countDownView;
 
-    @Override
-    public int setResId() {
-        return R.layout.fragment_countdown;
-    }
 
+    @Nullable
     @Override
-    public void initView(View view, @Nullable Bundle savedInstanceState) {
-        countDownView = (CountDownView) view.findViewById(R.id.fragment_count_down);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_countdown, container, false);
+        countDownView = (CountDownView) rootView.findViewById(R.id.fragment_count_down);
         countDownView.setCountDownTimerListener(new CountDownView.CountDownTimerListener() {
             @Override
             public void onStartCount() {
@@ -36,13 +36,14 @@ public class CountDownFragment extends BaseFragment {
                 AppUtils.showToast("结束了");
             }
         });
-        view.findViewById(R.id.fragment_count_down_start_btn).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.fragment_count_down_start_btn).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 countDownView.start();
             }
         });
+        return rootView;
     }
 
     @Override

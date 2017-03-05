@@ -34,7 +34,7 @@ public class ImageUtil {
             public void call(Subscriber<? super Bitmap> subscriber) {
                 try {
                     if (bitmap == null) {
-                        bitmap = Glide.with(App.getInstance())
+                        bitmap = Glide.with(NoteApplication.getInstance())
                                 .load(url)
                                 .asBitmap()
                                 .centerCrop()

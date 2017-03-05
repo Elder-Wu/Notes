@@ -1,4 +1,4 @@
-package com.wuzhanglao.niubi.activity;
+package com.wuzhanglao.niubi.home;
 
 import android.content.Intent;
 import android.os.Bundle;

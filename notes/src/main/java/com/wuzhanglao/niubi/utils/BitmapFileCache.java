@@ -3,7 +3,6 @@ package com.wuzhanglao.niubi.utils;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +12,7 @@ import java.io.IOException;
 
 public class BitmapFileCache {
 
-    public static final String PATH = Environment.getExternalStorageDirectory() + "/images";
+    public static final String PATH = NoteApplication.getInstance().getExternalFilesDir("wuzhanglao").getAbsolutePath();
     private File rootDir = new File(PATH);
 
     private BitmapFileCache() {
@@ -56,7 +55,7 @@ public class BitmapFileCache {
             if (bitmap != null) {
                 return bitmap;
             } else {
-                return BitmapFactory.decodeResource(App.getInstance().getResources(), defaultImgId);
+                return BitmapFactory.decodeResource(NoteApplication.getInstance().getResources(), defaultImgId);
             }
         }
     }

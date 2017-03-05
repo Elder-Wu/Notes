@@ -2,9 +2,12 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.widget.BottomBar;
 
 /**
@@ -15,18 +18,16 @@ public class BottomBarFragment extends BaseFragment implements View.OnClickListe
 
     private BottomBar bottomBar;
 
+    @Nullable
     @Override
-    public int setResId() {
-        return R.layout.fragment_bottom_bar;
-    }
-
-    @Override
-    public void initView(View view, @Nullable Bundle savedInstanceState) {
-        bottomBar = (BottomBar) view.findViewById(R.id.fragment_bottom_bar);
-        view.findViewById(R.id.fragment_bottombar_add1_btn).setOnClickListener(this);
-        view.findViewById(R.id.fragment_bottombar_add10_btn).setOnClickListener(this);
-        view.findViewById(R.id.fragment_bottombar_delete1_btn).setOnClickListener(this);
-        view.findViewById(R.id.fragment_bottombar_deleteall_btn).setOnClickListener(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_bottom_bar, container, false);
+        bottomBar = (BottomBar) rootView.findViewById(R.id.fragment_bottom_bar);
+        rootView.findViewById(R.id.fragment_bottombar_add1_btn).setOnClickListener(this);
+        rootView.findViewById(R.id.fragment_bottombar_add10_btn).setOnClickListener(this);
+        rootView.findViewById(R.id.fragment_bottombar_delete1_btn).setOnClickListener(this);
+        rootView.findViewById(R.id.fragment_bottombar_deleteall_btn).setOnClickListener(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override

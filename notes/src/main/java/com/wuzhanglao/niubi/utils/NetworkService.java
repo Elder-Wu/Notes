@@ -40,7 +40,7 @@ public interface NetworkService {
                     .addNetworkInterceptor(new CacheInterceptor())
                     .connectTimeout(15, TimeUnit.SECONDS)//设置连接超时
                     .retryOnConnectionFailure(true)
-                    .cache(new Cache(new File(App.getInstance().getCacheDir(), CACHE_PATH), 1024 * 1024 * 10))
+                    .cache(new Cache(new File(NoteApplication.getInstance().getCacheDir(), CACHE_PATH), 1024 * 1024 * 10))
                     .build();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)

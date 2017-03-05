@@ -8,16 +8,14 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.holder.ImageHolder;
 import com.wuzhanglao.niubi.utils.ImageUtil;
 
-import java.util.List;
-
 /*
  * Created by wuming on 2016/12/3.
  */
 
 public class ImageHolderAdapter extends BaseAdapter<ImageHolder, String> {
 
-    public ImageHolderAdapter(Context context, List<String> data) {
-        super(context, data);
+    public ImageHolderAdapter(Context context) {
+        super(context);
     }
 
     @Override
@@ -27,9 +25,9 @@ public class ImageHolderAdapter extends BaseAdapter<ImageHolder, String> {
 
     @Override
     protected void onBindHolder(ImageHolder holder, int position_in_data) {
-        final String url = data.get(position_in_data);
+        final String url = getItem(position_in_data);
         ImageUtil.loadImage(url, holder.image_iv);
-        if (position_in_data == data.size() - 1) {
+        if (position_in_data == getItemCount() - 1) {
             holder.line.setVisibility(View.GONE);
         } else {
             holder.line.setVisibility(View.VISIBLE);

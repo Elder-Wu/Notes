@@ -3,7 +3,9 @@ package com.wuzhanglao.niubi.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
@@ -26,14 +28,11 @@ public class TranslationFragment extends BaseMvpFragment<HighlightFragmentView, 
     private ClickableTextView englishText;
     private TranslationDialog translationDialog;
 
+    @Nullable
     @Override
-    public int setResId() {
-        return R.layout.fragment_highlight;
-    }
-
-    @Override
-    public void initView(View view, @Nullable Bundle savedInstanceState) {
-        englishText = (ClickableTextView) view.findViewById(R.id.fragment_highlight_text);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_highlight,container,false);
+        englishText = (ClickableTextView) rootView.findViewById(R.id.fragment_highlight_text);
         englishText.setText(s);
         englishText.setHighlightTextClickListener(new ClickableTextView.HighLightTextClickListener() {
             @Override
@@ -42,7 +41,8 @@ public class TranslationFragment extends BaseMvpFragment<HighlightFragmentView, 
                 presenter.getTranslation(text);
             }
         });
-        translationDialog = new TranslationDialog(context);
+        translationDialog = new TranslationDialog(getContext());
+        return rootView;
     }
 
     //获取翻译结果成功,展示查询结果

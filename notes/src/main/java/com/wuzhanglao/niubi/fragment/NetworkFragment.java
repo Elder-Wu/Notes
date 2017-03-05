@@ -2,14 +2,15 @@ package com.wuzhanglao.niubi.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.mvp.presenter.NetworkFragmentPresenter;
 import com.wuzhanglao.niubi.mvp.view.NetworkFragmentView;
 import com.wuzhanglao.niubi.utils.AppUtils;
-import com.wuzhanglao.niubi.utils.UIUtils;
 
 /**
  * Created by wuming on 16/10/19.
@@ -20,15 +21,13 @@ public class NetworkFragment extends BaseMvpFragment<NetworkFragmentView, Networ
 
     private TextView result;
 
+    @Nullable
     @Override
-    public int setResId() {
-        return R.layout.fragment_network;
-    }
-
-    @Override
-    public void initView(View view, @Nullable Bundle savedInstanceState) {
-        result = (TextView) view.findViewById(R.id.fragment_network_result_tv);
-        view.findViewById(R.id.fragment_network_get_btn).setOnClickListener(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_network, container, false);
+        result = (TextView) rootView.findViewById(R.id.fragment_network_result_tv);
+        rootView.findViewById(R.id.fragment_network_get_btn).setOnClickListener(this);
+        return rootView;
     }
 
     @Override

@@ -17,22 +17,22 @@ public class UIUtils {
     }
 
     public static int px2dp(float pxValue) {
-        final float scale = App.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = NoteApplication.getInstance().getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
     public static int dp2px(float dipValue) {
-        final float scale = App.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = NoteApplication.getInstance().getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
 
     public static int px2sp(float pxValue) {
-        final float fontScale = App.getInstance().getResources().getDisplayMetrics().scaledDensity;
+        final float fontScale = NoteApplication.getInstance().getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 
     public static int sp2px(float spValue) {
-        final float fontScale = App.getInstance().getResources().getDisplayMetrics().scaledDensity;
+        final float fontScale = NoteApplication.getInstance().getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 }

@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".utils.MyApplication"
+        android:name=".utils.NoteApplication"
         android:allowBackup="true"
         android:icon="@mipmap/notes"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
@@ -26,20 +26,20 @@
         </activity>
 
         <activity
-            android:name=".activity.TestRxActivity1"
+            android:name=".home.TestRxActivity1"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.TestRxActivity2"
+            android:name=".home.TestRxActivity2"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.ThirdActivity"
+            android:name=".home.ThirdActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="${UMENG_KEY}" />
+            android:value="${KEY_UMENG}" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="total" />

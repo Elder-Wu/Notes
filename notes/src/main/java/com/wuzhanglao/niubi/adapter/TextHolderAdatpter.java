@@ -17,11 +17,10 @@ import java.util.List;
 
 public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
 
-    private static final String TAG = TextHolderAdatpter.class.getSimpleName();
-    private TextHolderClickListener listener;
+    private TextHolderClickListener mListener;
 
-    public TextHolderAdatpter(Context context, List<TextBean> data) {
-        super(context, data);
+    public TextHolderAdatpter(Context context) {
+        super(context);
     }
 
     @Override
@@ -32,8 +31,8 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
     @Override
     protected void onBindHolder(TextHolder holder, int position) {
         holder.num_tv.setText(position + 1 < 10 ? "0" + (position + 1) : "" + (position + 1));
-        holder.title_tv.setText(data.get(position).getTitle());
-        holder.subtitle_tv.setText(data.get(position).getSubTitle());
+        holder.title_tv.setText(getItem(position).getTitle());
+        holder.subtitle_tv.setText(getItem(position).getSubTitle());
         if (position < 2) {
             holder.num_tv.setTextColor(Color.WHITE);
             holder.num_tv.setBackgroundColor(Color.parseColor("#FF1111"));
@@ -41,7 +40,7 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
             holder.num_tv.setTextColor(Color.DKGRAY);
             holder.num_tv.setBackgroundColor(Color.WHITE);
         }
-        if (position + 1 == data.size()) {
+        if (position + 1 == getItemCount()) {
             holder.line.setVisibility(View.GONE);
         } else {
             holder.line.setVisibility(View.VISIBLE);
@@ -59,14 +58,14 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
 
         @Override
         public void onClick(View v) {
-            if (listener != null) {
-                listener.onTextClick(data.get(position));
+            if (mListener != null) {
+                mListener.onTextClick(getItem(position));
             }
         }
     }
 
     public void setTextHolderClickListener(TextHolderClickListener listener) {
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     public interface TextHolderClickListener {
