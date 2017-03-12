@@ -14,14 +14,13 @@ android {
     }
     signingConfigs {
         release {
-            Object flag = getProperty("KEYSTORE_FILE");
-            if (flag != null) {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+            if (properties.getProperty("FLAG") != null) {
                 storeFile file(KEYSTORE_FILE)
                 storePassword KEYSTORE_PASSWORD
                 keyAlias KEYSTORE_ALIAS
                 keyPassword KEYSTORE_ALIAS_PASSWORD
-            } else {
-                throw new RuntimeException("123 exception")
             }
         }
     }
