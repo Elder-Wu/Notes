@@ -14,13 +14,14 @@ android {
     }
     signingConfigs {
         release {
-            Properties properties = new Properties()
-            properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
-            if (properties.getProperty(KEYSTORE_FILE) != null) {
+            Object flag = getProperty("KEYSTORE_FILE");
+            if (flag != null) {
                 storeFile file(KEYSTORE_FILE)
                 storePassword KEYSTORE_PASSWORD
                 keyAlias KEYSTORE_ALIAS
                 keyPassword KEYSTORE_ALIAS_PASSWORD
+            } else {
+                throw new RuntimeException("123 exception")
             }
         }
     }
