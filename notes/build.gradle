@@ -14,7 +14,9 @@ android {
     }
     signingConfigs {
         release {
-            if (KEYSTORE_FILE != null) {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+            if (properties.getProperty(KEYSTORE_FILE) != null) {
                 storeFile file(KEYSTORE_FILE)
                 storePassword KEYSTORE_PASSWORD
                 keyAlias KEYSTORE_ALIAS
