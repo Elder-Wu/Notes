@@ -1,16 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        release {
-            if (System.getenv("KEYSTORE_FILE") != null) {
-                storeFile file(KEYSTORE_FILE)
-                storePassword KEYSTORE_PASSWORD
-                keyAlias KEYSTORE_ALIAS
-                keyPassword KEYSTORE_ALIAS_PASSWORD
-            }
-        }
-    }
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
     defaultConfig {
@@ -21,6 +11,16 @@ android {
         versionName "1.0.0"
 
         manifestPlaceholders = [KEY_UMENG: '5810166a7666132fe5002154']
+    }
+    signingConfigs {
+        release {
+            if (KEYSTORE_FILE != null) {
+                storeFile file(KEYSTORE_FILE)
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEYSTORE_ALIAS
+                keyPassword KEYSTORE_ALIAS_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -46,7 +46,6 @@ android {
             resValue "string", "app_name", "Notes正式版本"
         }
     }
-
     dexOptions {
         preDexLibraries true
         dexInProcess = true
