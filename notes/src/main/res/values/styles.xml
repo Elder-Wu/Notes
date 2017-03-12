@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/white</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>
     </style>
 
     <style name="AppTheme.Splash" parent="AppTheme">

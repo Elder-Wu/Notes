@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+                storeFile file(KEYSTORE_FILE)
+                storePassword KEYSTORE_PASSWORD
+                keyAlias KEYSTORE_ALIAS
+                keyPassword KEYSTORE_ALIAS_PASSWORD
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
     defaultConfig {
@@ -21,7 +29,6 @@ android {
         }
 
         release {
-            // todo:debugable can not set "false"
             debuggable true
             //混淆
             minifyEnabled true
@@ -32,15 +39,12 @@ android {
             //加载默认混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //apk打包的时候需要签名
-            if (System.getenv("KEYSTORE_FILE") != null) {
-                storeFile file(System.getenv("KEYSTORE_FILE"));
-                storePassword System.getenv("KEYSTORE_PASSWORD")
-                keyAlias System.getenv("KEYSTORE_ALIAS")
-                keyPassword System.getenv("KEYSTORE_ALIAS_PASSWORD")
-            }
-            resValue "string", "app_name", "Notes"
+            signingConfig signingConfigs.release
+
+            resValue "string", "app_name", "Notes正式版本"
         }
     }
+
     dexOptions {
         preDexLibraries true
         dexInProcess = true
