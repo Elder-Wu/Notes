@@ -19,6 +19,7 @@ import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
+import com.wuzhanglao.niubi.fragment.GlideFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
@@ -60,6 +61,9 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 	@Override
 	public void onItemClick(String title) {
 		switch (title) {
+			case "Glide transform":
+				openFragment(new GlideFragment(), title);
+				break;
 			case "显示未读消息数控件":
 				openFragment(new BottomBarFragment(), title);
 				break;

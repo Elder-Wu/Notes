@@ -14,9 +14,9 @@ import com.wuzhanglao.niubi.base.BaseFragment;
  */
 
 public class BezierFragment extends BaseFragment {
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bezier,container,false);
-    }
+	@Nullable
+	@Override
+	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.fragment_bezier, container, false);
+	}
 }
