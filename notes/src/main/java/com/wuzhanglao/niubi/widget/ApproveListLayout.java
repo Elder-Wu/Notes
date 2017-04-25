@@ -25,8 +25,6 @@ import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 
 public class ApproveListLayout extends HorizontalScrollView {
 
-    private static final String TAG = ApproveListLayout.class.getSimpleName();
-
     //默认图片大小
     private static final int DEFAULT_PIC_SIZE = 50;
     //默认图片数量

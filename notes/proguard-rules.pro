@@ -22,7 +22,7 @@ public static final int *;
 }
 -keepclassmembers enum * {
     public static **[] values();
-    public static ** valueOf(java.lang.String);
+    public static ** valueOf(java.lang.Strgiing);
 }
 
 -dontwarn okio.**

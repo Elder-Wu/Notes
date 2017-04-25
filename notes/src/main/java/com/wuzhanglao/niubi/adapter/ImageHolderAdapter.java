@@ -20,7 +20,7 @@ public class ImageHolderAdapter extends BaseAdapter<ImageHolder, String> {
 
     @Override
     protected ImageHolder onCreateHolder(ViewGroup parent, int viewType) {
-        return new ImageHolder(inflater.inflate(R.layout.image_holder, parent, false));
+        return new ImageHolder(mInflater.inflate(R.layout.image_holder, parent, false));
     }
 
     @Override

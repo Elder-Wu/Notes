@@ -1,35 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:colorPrimaryDark" tools:targetApi="lollipop">@color/white</item>
-        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="android:textColor">@color/red_111</item>
     </style>
-
-    <style name="AppTheme.Splash" parent="AppTheme">
-        <item name="android:windowBackground">@color/red_111</item>
-    </style>
-
-    <style name="ios_bottom_dialog" parent="android:style/Theme.Dialog">
-        <!--背景颜色及和透明程度-->
-        <item name="android:windowBackground">@color/transparent</item>
-        <!--是否去除标题 -->
-        <item name="android:windowNoTitle">true</item>
-        <!--是否去除边框-->
-        <item name="android:windowFrame">@null</item>
-        <!--是否浮现在activity之上-->
-        <item name="android:windowIsFloating">true</item>
-        <!--是否模糊-->
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-
-    <!-- 弹窗动画 由下至上 -->
-    <style name="ios_bottom_dialog_anim" parent="@android:style/Animation.Dialog">
-        <item name="@android:windowEnterAnimation">@anim/ios_dialog_enter</item>
-        <!-- 进入时的动画 -->
-        <item name="@android:windowExitAnimation">@anim/ios_dialog_exit</item>
-        <!-- 退出时的动画 -->
-    </style>
-
 </resources>

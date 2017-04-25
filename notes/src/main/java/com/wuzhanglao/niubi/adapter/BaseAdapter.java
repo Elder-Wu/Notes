@@ -20,14 +20,14 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends
     private static final int HEADER = 0x1001;
     private static final int FOOTER = 0x1002;
 
-    public LayoutInflater inflater;
+    public LayoutInflater mInflater;
     public List<T> mDataList = new ArrayList<>();    //adapter中的数据是存放在List里面的
 
-    private View headerView = null;
-    private View footerView = null;
+    private View mHeaderView = null;
+    private View mFooterView = null;
 
     public BaseAdapter(Context context) {
-        inflater = LayoutInflater.from(context);
+        mInflater = LayoutInflater.from(context);
     }
 
     public void setDataList(List<T> dataList) {
@@ -51,10 +51,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == HEADER) {
-            return new EmptyViewHolder(headerView);
+            return new EmptyViewHolder(mHeaderView);
         }
         if (viewType == FOOTER) {
-            return new EmptyViewHolder(footerView);
+            return new EmptyViewHolder(mFooterView);
         }
         //如果既不是头部也不是尾部，就让用户去判断到底该实例化哪个ViewHolder(界面)
         return onCreateHolder(parent, viewType);
@@ -74,10 +74,10 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 && headerView != null) {
+        if (position == 0 && mHeaderView != null) {
             return HEADER;
         }
-        if (position == getItemCount() - 1 && footerView != null) {
+        if (position == getItemCount() - 1 && mFooterView != null) {
             return FOOTER;
         }
         //如果既不是头部也不是尾部，那就让子类去判断，该position的view到底是什么类型
@@ -93,26 +93,26 @@ public abstract class BaseAdapter<VH extends RecyclerView.ViewHolder, T> extends
     protected abstract void onBindHolder(VH holder, int position_in_data);
 
     public void addHeaderView(View headerView) {
-        this.headerView = headerView;
+        this.mHeaderView = headerView;
     }
 
     public void removeHeaderView() {
-        this.headerView = null;
+        this.mHeaderView = null;
     }
 
     public void addFooterView(View footerView) {
-        this.footerView = footerView;
+        this.mFooterView = footerView;
     }
 
     public void removeFooterView() {
-        this.footerView = null;
+        this.mFooterView = null;
     }
 
     protected boolean hasHeader() {
-        return headerView != null;
+        return mHeaderView != null;
     }
 
     protected boolean hasFooter() {
-        return footerView != null;
+        return mFooterView != null;
     }
 }

@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<com.wuzhanglao.niubi.widget.CountDownView
-    android:id="@+id/fragment_count_down"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_alignParentRight="true"
-    android:layout_margin="5dp"
-    app:background_color="@color/gray_aaa"
-    app:border_color="@color/blue_6eb"
-    app:border_width="2dp"
-    app:text="跳过广告"
-    app:text_color="@color/white"
-    app:text_size="14dp" />
+    <com.wuzhanglao.niubi.widget.CountDownView
+        android:id="@+id/fragment_count_down"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        app:background_color="@color/gray_aaa"
+        app:border_color="@color/blue_6eb"
+        app:border_width="2dp"
+        app:text="跳过广告"
+        app:text_color="@color/white"
+        app:text_size="14dp" />
 
     <Button
         android:id="@+id/fragment_count_down_start_btn"
