@@ -7,8 +7,10 @@ import android.widget.TextView;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
 
-/*
- * Created by wuming on 16/10/14.
+/**
+ * date:16/10/14
+ * author:wuzhanglao
+ * website:www.wuzhanglao.com
  */
 
 public abstract class ToolbarActivity extends BaseActivity {

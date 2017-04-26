@@ -69,5 +69,11 @@ public class LoadImageHelper extends RecyclerView.OnScrollListener implements Sw
                 }, 10000);
             }
         }
+
+         int a = 0;
+
+        {
+            System.out.print("");
+        }
     }
 }

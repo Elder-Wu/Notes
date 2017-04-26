@@ -9,8 +9,6 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.bean.TextBean;
 import com.wuzhanglao.niubi.holder.TextHolder;
 
-import java.util.List;
-
 /**
  * Created by wuming on 16/10/13.
  */
@@ -25,7 +23,7 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
 
     @Override
     protected TextHolder onCreateHolder(ViewGroup parent, int viewType) {
-        return new TextHolder(inflater.inflate(R.layout.text_holder, parent, false));
+        return new TextHolder(mInflater.inflate(R.layout.text_holder, parent, false));
     }
 
     @Override
