@@ -1,9 +1,4 @@
 package com.wuzhanglao.niubi.home;
-/*
- * date:2017/2/17
- * author:wuzhanglao
- * website:www.wuzhanglao.com
- */
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -27,6 +22,7 @@ import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.fragment.TestMeasureLayoutFragment;
 import com.wuzhanglao.niubi.fragment.TranslationFragment;
+import com.wuzhanglao.niubi.utils.NoteApplication;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> implements HomeViewCallback {
@@ -98,7 +94,7 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 				openFragment(new BezierFragment(), title);
 				break;
 			case "RxBus案例":
-				getActivity().startActivity(new Intent(getActivity(), TestRxActivity1.class));
+				getActivity().startActivity(new Intent(NoteApplication.getInstance(), TestRxActivity1.class));
 				break;
 			case "TextView高亮显示":
 				openFragment(new TranslationFragment(), title);

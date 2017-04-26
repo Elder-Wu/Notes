@@ -105,4 +105,10 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     //监听网络状态
     compile 'com.github.pwittchen:reactivenetwork:0.8.0'
+    //leak-canary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    //event bus
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
