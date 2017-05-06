@@ -111,4 +111,6 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     //event bus
     compile 'org.greenrobot:eventbus:3.0.0'
+    //logger
+    compile 'com.orhanobut:logger:1.15'
 }

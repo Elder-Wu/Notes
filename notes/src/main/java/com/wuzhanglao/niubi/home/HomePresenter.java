@@ -18,10 +18,10 @@ import com.wuzhanglao.niubi.fragment.GlideFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
+import com.wuzhanglao.niubi.fragment.MultiItemFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.fragment.TestMeasureLayoutFragment;
-import com.wuzhanglao.niubi.fragment.TranslationFragment;
 import com.wuzhanglao.niubi.utils.NoteApplication;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
@@ -97,13 +97,16 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 				getActivity().startActivity(new Intent(NoteApplication.getInstance(), TestRxActivity1.class));
 				break;
 			case "TextView高亮显示":
-				openFragment(new TranslationFragment(), title);
+//				openFragment(new TranslationFragment(), title);
 				break;
 			case "加载网络图片":
 				openFragment(new LoadImageFragment(), title);
 				break;
 			case "onMeasure和onLayout":
 				openFragment(new TestMeasureLayoutFragment(), title);
+				break;
+			case "MultiItem":
+				openFragment(new MultiItemFragment(),title);
 				break;
 		}
 	}

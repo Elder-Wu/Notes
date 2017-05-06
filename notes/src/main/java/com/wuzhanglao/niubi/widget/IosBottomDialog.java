@@ -37,7 +37,7 @@ public class IosBottomDialog extends Dialog {
 
     private IosBottomDialog(Context context) {
         //给dialog定制了一个主题（透明背景，无边框，无标题栏，浮在Activity上面，模糊）
-        super(context, R.style.ios_bottom_dialog);
+        super(context);
         setContentView(R.layout.ios_bottom_dialog);
         initView();
     }
@@ -61,7 +61,7 @@ public class IosBottomDialog extends Dialog {
         //让Dialog显示在屏幕的底部
         window.setGravity(Gravity.BOTTOM);
         //设置窗口出现和窗口隐藏的动画
-        window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
+//        window.setWindowAnimations(R.style.ios_bottom_dialog_anim);
         //设置BottomDialog的宽高属性
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;

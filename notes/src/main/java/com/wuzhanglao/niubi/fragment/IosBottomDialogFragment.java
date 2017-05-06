@@ -3,6 +3,7 @@ package com.wuzhanglao.niubi.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
 
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -27,6 +30,21 @@ import rx.schedulers.Schedulers;
 
 public class IosBottomDialogFragment extends BaseFragment implements View.OnClickListener {
 
+	private void handle(String source) {
+		Log.d("123123123", "source string---->" + source);
+		String regex = "\\*\\*";
+		Pattern pattern = Pattern.compile(regex);
+
+		Matcher matcher = pattern.matcher(source);
+		while (matcher.find()) {
+			String s = matcher.group();
+			Log.d("123123123", "result:" + s);
+			String result = matcher.replaceFirst("<vocab>");
+			Log.d("123123123", "  result:" + result);
+			matcher = pattern.matcher(result);
+		}
+	}
+
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +55,16 @@ public class IosBottomDialogFragment extends BaseFragment implements View.OnClic
 		rootView.findViewById(R.id.fragment_ios_bottom_dialog_btn4).setOnClickListener(this);
 		rootView.findViewById(R.id.fragment_ios_bottom_dialog_btn5).setOnClickListener(this);
 		rootView.findViewById(R.id.fragment_ios_bottom_dialog_btn6).setOnClickListener(this);
+
+		String str1 = "Hello Shanbay";
+		String str2 = ";a sh  *if iao;h";
+		String str3 = "Hahahah ** he hei xi xiixi";
+		String str4 = "**as;higoan* e;v**se;viauhfid*";
+
+		handle(str1);
+		handle(str2);
+		handle(str3);
+		handle(str4);
 
 		Observable.timer(5, TimeUnit.SECONDS)
 				.subscribeOn(Schedulers.io())

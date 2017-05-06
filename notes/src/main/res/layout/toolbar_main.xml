@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black_444444"
-    android:paddingTop="@dimen/toolbar_padding_top">
+    android:background="@color/black_444444">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -4,4 +4,11 @@
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
         <item name="android:textColor">@color/red_111</item>
     </style>
+
+    <style name="IosBottomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.base.mvp.BaseMvpView;
@@ -61,6 +62,64 @@ public class HomeView extends BaseMvpView<HomeViewCallback> implements TextHolde
 		hideBackButton();
 		initData();
 		initView();
+
+
+
+
+
+
+
+
+
+
+
+
+		Logger.d("测试Logger.d(d)");
+		Logger.d("message", "测试Logger.d(message,d)");
+
+		Logger.e("测试Logger.e(e)");
+		Logger.e("message", "测试Logger.e(message,e)");
+
+
+		Logger.t(1).d("测试Logger.d(d)");
+		Logger.t(2).d("测试Logger.d(d)");
+		Logger.t(3).d("测试Logger.d(d)");
+
+		Logger.init().hideThreadInfo().methodCount(0);
+
+		Logger.json("{\"name\":\"tom\",\"sex\":\"男\",\"age\":\"24\"}");
+		Logger.xml("<?xml version=\"1.0\"?>\n" +
+				"   <EMPLIST>\n" +
+				"     <EMP>\n" +
+				"      <ENAME>MARY</ENAME>\n" +
+				"     </EMP>\n" +
+				"     <EMP>\n" +
+				"      <ENAME>SCOTT</ENAME>\n" +
+				"     </EMP>\n" +
+				"   </EMPLIST>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 
 	public void showBackButton(String fragmentName) {
@@ -83,6 +142,7 @@ public class HomeView extends BaseMvpView<HomeViewCallback> implements TextHolde
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
+		data.add(new TextBean("MultiItem", "RecyclerView多类型布局"));
 		data.add(new TextBean("Glide transform", "..."));
 		data.add(new TextBean("TextView高亮显示", "点击英文单词可以高亮显示，并且显示翻译结果"));
 		data.add(new TextBean("加载网络图片", "使用Glide对一组url进行加载，下拉刷新，下拉加载更多"));
