@@ -7,6 +7,6 @@ package com.wuzhanglao.niubi.home;
 
 import com.wuzhanglao.niubi.base.mvp.BaseMvpViewCallback;
 
-public interface HomeViewCallback extends BaseMvpViewCallback {
+public interface HomeCallback extends BaseMvpViewCallback {
     void onBackBtnClick();
 }

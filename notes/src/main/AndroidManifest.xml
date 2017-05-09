@@ -17,7 +17,7 @@
         <activity
             android:name=".home.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,13 @@
         </activity>
 
         <activity
+            android:name=".home.TransparentStatusActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".home.TestRxActivity1"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait" />
 
         <activity

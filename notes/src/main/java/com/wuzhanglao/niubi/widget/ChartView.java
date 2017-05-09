@@ -1,6 +1,7 @@
 package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -8,15 +9,17 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
-import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,24 +30,30 @@ import java.util.Map;
  * Created by ming.wu@shanbay.com on 2017/5/3.
  */
 
-public class ChartView extends View {
+public class ChartView extends FrameLayout {
 
-	private static final int DEFAULT_TEXT_SIZE = 10;
-
-	private List<Data> mRawDataList;
-	private float mStartX;
-	private float mStartY;
+	private static final int DEFAULT_TEXT_SIZE = 10;  //单位：dp
+	private static final int DEFAULT_BASE_COLOR = Color.BLACK;
 
 	private float mViewHeight;
+
 	private float mViewWidth;
-
 	//这是绘制文字的笔
-	private Paint mTextPaint;
+	private Paint mPaint;
 
+	private List<Data> mRawDataList = new ArrayList<>();
+
+	private List<Point> mPointList = new ArrayList<>();
+	private List<HintView> mHintViewList = new ArrayList<>();
+	private Map<String, Float> mAbscissaMap = new HashMap<>();
+	private HintView mHintView;
+
+	//整个图表的色调
+	private int mBaseColor;
+	private int mTextSize;
 	private boolean mIsThumbnailMode = false;
 
-	private Map<String, Float> mAbscissaMap = new HashMap<>();
-	private List<Point> mPointList = new ArrayList<>();
+	private DashPathEffect mDashPathEffect = new DashPathEffect(new float[]{5, 5}, 0);
 
 	public ChartView(Context context) {
 		this(context, null);
@@ -52,26 +61,27 @@ public class ChartView extends View {
 
 	public ChartView(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
-		mRawDataList = new ArrayList<>();
-		mRawDataList.add(new Data("Mar 01", 3111));
-//		mRawDataList.add(new Data("Mar 02", 0));
-//		mRawDataList.add(new Data("Mar 03", 0));
-//		mRawDataList.add(new Data("Mar 04", 0));
-//		mRawDataList.add(new Data("Mar 05", 0));
-//		mRawDataList.add(new Data("Mar 06", 0));
-//		mRawDataList.add(new Data("Mar 07", 0));
-		mRawDataList.add(new Data("Mar 02", 3115));
-//		mRawDataList.add(new Data("Mar 03", 3278));
-//		mRawDataList.add(new Data("Mar 04", 3376));
-//		mRawDataList.add(new Data("Mar 05", 3489));
-//		mRawDataList.add(new Data("Mar 06", 3789));
-//		mRawDataList.add(new Data("Mar 07", 3788));
 
-		mTextPaint = new Paint();
-		mTextPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics()));
-		mTextPaint.setStyle(Paint.Style.STROKE);
-		mTextPaint.setDither(true);
-		mTextPaint.setAntiAlias(true);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ChartView);
+		mBaseColor = ta.getColor(R.styleable.ChartView_baseColor, DEFAULT_BASE_COLOR);
+		mIsThumbnailMode = ta.getBoolean(R.styleable.ChartView_isThumbnailMode, false);
+		mTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics());
+		mTextSize = ta.getDimensionPixelSize(R.styleable.ChartView_android_textSize, mTextSize);
+		ta.recycle();
+
+		mPaint = new Paint();
+		mPaint.setAlpha(180);
+		mPaint.setDither(true);
+		mPaint.setAntiAlias(true);
+		mPaint.setStyle(Paint.Style.STROKE);
+		mPaint.setTextSize(mTextSize);
+
+		mHintView = new HintView(getContext());
+
+		setWillNotDraw(false);
+
+		//加了这行代码，我们就可以在编辑器里面看到预览了
+		isInEditMode();
 	}
 
 	@Override
@@ -95,42 +105,45 @@ public class ChartView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		//把纵坐标显示的值计算出来，这样的话所有的值都有了
-		int min = 99999;
-		int max = 0;
+		super.onDraw(canvas);
+		//计算出最大值和最小值
+		int minValue = Integer.MAX_VALUE;
+		int maxValue = Integer.MIN_VALUE;
 		for (Data data : mRawDataList) {
-			min = data.value < min ? data.value : min;
-			max = data.value > max ? data.value : max;
+			minValue = data.value < minValue ? data.value : minValue;
+			maxValue = data.value > maxValue ? data.value : maxValue;
 		}
-		//TODO 试一下除不尽的情况
+
 		//纵坐标"数值"上的间距
-		int ordinateGap = (int) Math.ceil((max - min) / 4.0f);
-		ordinateGap = ordinateGap == 0 ? 1 : ordinateGap;
+		int ordinateValueGap = (int) Math.ceil((maxValue - minValue) / 4.0f);
+		ordinateValueGap = ordinateValueGap == 0 ? 1 : ordinateValueGap;
 
 		//计算起始x坐标，起始y坐标
+		float startX;
+		float startY;
 		if (mIsThumbnailMode) {
-			mStartX = 0;
-			mStartY = mViewHeight;
+			startX = 0;
+			startY = mViewHeight;
 		} else {
 			int maxWidth = 0;
 			for (Data data : mRawDataList) {
-				int width = (int) Math.ceil(mTextPaint.measureText(String.valueOf(data.value)));
+				int width = (int) Math.ceil(mPaint.measureText(String.valueOf(data.value)));
 				maxWidth = maxWidth > width ? maxWidth : width;
 			}
-			mStartX = maxWidth + 10;
+			startX = maxWidth + 10;
 
-			Paint.FontMetrics metrics = mTextPaint.getFontMetrics();
-			mStartY = mViewHeight - (int) Math.ceil(metrics.bottom - metrics.top);
+			Paint.FontMetrics metrics = mPaint.getFontMetrics();
+			startY = mViewHeight - (int) Math.ceil(metrics.bottom - metrics.top);
 		}
 
 		//画横线和纵坐标的值
-		float leftHeight = mStartY;
+		float leftHeight = startY;
 		float topLineHeight = 0;
 		int ordinatePixelGap = (int) Math.ceil(leftHeight / 11.0f);
 		for (int i = 0; i < 6; i++) {
-			float height = mStartY - i * ordinatePixelGap * 2;
+			float height = startY - i * ordinatePixelGap * 2;
 			if (i == 5) {
-				max = min + ordinateGap * i;
+				maxValue = minValue + ordinateValueGap * i;
 				topLineHeight = height;
 			}
 
@@ -138,51 +151,56 @@ public class ChartView extends View {
 				continue;
 			}
 			if (i == 0 || i == 5) {
-				mTextPaint.setPathEffect(null);
+				mPaint.setPathEffect(null);
 			} else {
-				mTextPaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
+				mPaint.setPathEffect(mDashPathEffect);
 			}
 			Path path = new Path();
-			path.moveTo(mStartX, height);
+			path.moveTo(startX, height);
 			path.lineTo(mViewWidth, height);
-			canvas.drawPath(path, mTextPaint);
+			mPaint.setColor(Color.BLACK);
+			mPaint.setStrokeWidth(0);
+			canvas.drawPath(path, mPaint);
 
-			if (i == 0 && min - ordinateGap >= 0) {
+			if (i == 0 && minValue - ordinateValueGap >= 0) {
 				Rect rect = new Rect();
-				String text = String.valueOf(min - ordinateGap);
-				mTextPaint.getTextBounds(text, 0, text.length(), rect);
-				canvas.drawText(text, mStartX - rect.width() - 10, height + rect.height() / 2.0f, mTextPaint);
+				String text = String.valueOf(minValue - ordinateValueGap);
+				mPaint.getTextBounds(text, 0, text.length(), rect);
+				mPaint.setPathEffect(null);
+				canvas.drawText(text, startX - rect.width() - 10, height + rect.height() / 2.0f, mPaint);
 			}
 
 			if (i != 0) {
 				Rect rect = new Rect();
-				String text = String.valueOf(min + ordinateGap * (i - 1));
-				mTextPaint.getTextBounds(text, 0, text.length(), rect);
-				canvas.drawText(text, mStartX - rect.width() - 10, height + rect.height() / 2.0f, mTextPaint);
+				String text = String.valueOf(minValue + ordinateValueGap * (i - 1));
+				mPaint.getTextBounds(text, 0, text.length(), rect);
+				mPaint.setPathEffect(null);
+				canvas.drawText(text, startX - rect.width() - 10, height + rect.height() / 2.0f, mPaint);
 			}
 		}
 
 		//画纵线和横坐标的值
-		float leftWidth = mViewWidth - mStartX;
+		float leftWidth = mViewWidth - startX;
 		int abscissaPixelGap = (int) Math.ceil(leftWidth / 14.0f);
-		mTextPaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
+		mPaint.setPathEffect(mDashPathEffect);
 		mAbscissaMap.clear();
 		for (int i = 0; i < 7; i++) {
-			float width = mStartX + abscissaPixelGap + i * 2 * abscissaPixelGap;
+			float width = startX + abscissaPixelGap + i * 2 * abscissaPixelGap;
 			if (!mIsThumbnailMode) {
 				Path path = new Path();
-				path.moveTo(width, mStartY);
+				path.moveTo(width, startY);
 				path.lineTo(width, topLineHeight);
-				canvas.drawPath(path, mTextPaint);
-//				canvas.drawLine(width, mStartY, width, topLineHeight, mTextPaint);
+				mPaint.setPathEffect(mDashPathEffect);
+				canvas.drawPath(path, mPaint);
 			}
 			if (mRawDataList != null && i < mRawDataList.size()) {
 				Rect rect = new Rect();
 				String text = mRawDataList.get(i).date;
-				mTextPaint.getTextBounds(text, 0, text.length(), rect);
+				mPaint.getTextBounds(text, 0, text.length(), rect);
 				mAbscissaMap.put(text, width);
 				if (!mIsThumbnailMode) {
-					canvas.drawText(text, width - rect.width() / 2.0f, mStartY + rect.height() + rect.height() / 2, mTextPaint);
+					mPaint.setPathEffect(null);
+					canvas.drawText(text, width - rect.width() / 2.0f, startY + rect.height() + rect.height() / 2, mPaint);
 				}
 			}
 		}
@@ -192,7 +210,7 @@ public class ChartView extends View {
 		for (Data data : mRawDataList) {
 			Point point = new Point();
 			point.x = mAbscissaMap.get(data.date);
-			point.y = leftHeight - (((leftHeight - ordinatePixelGap) / (max - min)) * (data.value - min)) - ordinatePixelGap * 2;
+			point.y = leftHeight - (((leftHeight - ordinatePixelGap) / (maxValue - minValue)) * (data.value - minValue)) - ordinatePixelGap * 2;
 			mPointList.add(point);
 		}
 
@@ -200,7 +218,7 @@ public class ChartView extends View {
 		Paint blockPaint = new Paint();
 		blockPaint.setDither(true);
 		blockPaint.setAntiAlias(true);
-		blockPaint.setColor(Color.parseColor("#fecd44"));
+		blockPaint.setColor(mBaseColor);
 		blockPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		for (int i = 0; i < 7; i++) {
 			if (i + 1 >= mPointList.size()) {
@@ -212,10 +230,10 @@ public class ChartView extends View {
 				blockPaint.setAlpha(100);
 			}
 			Path colorBlock = new Path();
-			colorBlock.moveTo(mStartX + abscissaPixelGap + abscissaPixelGap * 2 * i, mStartY);
-			colorBlock.lineTo(mStartX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), mStartY);
-			colorBlock.lineTo(mStartX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), mPointList.get(i + 1).y);
-			colorBlock.lineTo(mStartX + abscissaPixelGap + abscissaPixelGap * 2 * i, mPointList.get(i).y);
+			colorBlock.moveTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, startY);
+			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), startY);
+			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), mPointList.get(i + 1).y);
+			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, mPointList.get(i).y);
 			colorBlock.close();
 			canvas.drawPath(colorBlock, blockPaint);
 		}
@@ -230,10 +248,11 @@ public class ChartView extends View {
 				path.lineTo(point.x, point.y);
 			}
 		}
-		mTextPaint.setColor(Color.parseColor("#fecd44"));
-		mTextPaint.setStyle(Paint.Style.STROKE);
-		mTextPaint.setStrokeWidth(2);
-		canvas.drawPath(path, mTextPaint);
+		mPaint.setColor(mBaseColor);
+		mPaint.setStyle(Paint.Style.STROKE);
+		mPaint.setStrokeWidth(2);
+		mPaint.setPathEffect(null);
+		canvas.drawPath(path, mPaint);
 
 		//画点
 		Paint pointPaint = new Paint();
@@ -243,13 +262,197 @@ public class ChartView extends View {
 		for (Point point : mPointList) {
 			pointPaint.setColor(Color.WHITE);
 			canvas.drawCircle(point.x, point.y, 7, pointPaint);
-			pointPaint.setColor(Color.parseColor("#fecd44"));
+			pointPaint.setColor(mBaseColor);
 			canvas.drawCircle(point.x, point.y, 3, pointPaint);
 		}
+	}
 
-		//点击事件
+	public void setThumbnailMode(boolean isThumbnailMode) {
+		mIsThumbnailMode = isThumbnailMode;
+		requestLayout();
+	}
 
-		//
+	public void setColor(int colorTone) {
+		mBaseColor = colorTone;
+		requestLayout();
+	}
+
+	public void setData(List<Data> dataList) {
+		mRawDataList = dataList;
+		requestLayout();
+	}
+
+	public void removeAllHintView() {
+		for (HintView hintView : mHintViewList) {
+			removeView(hintView);
+		}
+		mHintViewList.clear();
+
+		removeView(mHintView);
+	}
+
+	public void showAllHintView() {
+		if (!mHintViewList.isEmpty()) {
+			return;
+		}
+
+		for (int i = 0; i < mPointList.size(); i += 2) {
+			final Point point = mPointList.get(i);
+
+			final HintView hintView = new HintView(getContext());
+			addView(hintView);
+			mHintViewList.add(hintView);
+			hintView.setVisibility(INVISIBLE);
+			hintView.show(getValue(point.x));
+
+			hintView.post(new LayoutHintViewRunnable(hintView, point));
+		}
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if (mIsThumbnailMode || event.getAction() != MotionEvent.ACTION_DOWN) {
+			return super.onTouchEvent(event);
+		}
+
+		removeView(mHintView);
+
+		float fingerX = event.getX();
+		float fingerY = event.getY();
+
+		for (final Point point : mPointList) {
+			if (fingerY < point.y - 50 || fingerY > point.y + 50
+					|| fingerX < point.x - 50 || fingerX > point.x + 50) {
+				continue;
+			}
+
+			addView(mHintView);
+			mHintView.setVisibility(INVISIBLE);
+			mHintView.show(getValue(point.x));
+
+			post(new LayoutHintViewRunnable(mHintView, point));
+			return true;
+		}
+
+		return super.onTouchEvent(event);
+	}
+
+	private class LayoutHintViewRunnable implements Runnable {
+
+		private View view;
+		private Point point;
+
+		public LayoutHintViewRunnable(View view, Point point) {
+			this.view = view;
+			this.point = point;
+		}
+
+		@Override
+		public void run() {
+			int left;
+			int top;
+
+			int hintViewWidth = view.getMeasuredWidth();
+			int hintViewHeight = view.getMeasuredHeight();
+
+			if (point.y >= hintViewHeight) {
+				//点的上面
+				top = (int) Math.ceil(point.y - hintViewHeight - 10);
+			} else {
+				//点的下面
+				top = (int) Math.ceil(point.y + 10);
+			}
+
+			if (point.x >= hintViewWidth / 2.0f
+					&& (getMeasuredWidth() - point.x) < hintViewWidth / 2.0f) {
+				//靠最右边
+				left = getMeasuredWidth() - hintViewWidth;
+			} else if (point.x < hintViewWidth / 2.0f
+					&& (getMeasuredWidth() - point.x) >= hintViewWidth / 2.0f) {
+				//靠最左边
+				left = getPaddingLeft();
+			} else {
+				//放中间
+				left = (int) (point.x - Math.ceil(hintViewWidth / 2.0f));
+			}
+
+			FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(hintViewWidth, hintViewHeight);
+			layoutParams.leftMargin = left;
+			layoutParams.topMargin = top;
+			view.setLayoutParams(layoutParams);
+			view.setVisibility(VISIBLE);
+		}
+	}
+
+	private String getValue(float x) {
+		String date = null;
+		for (Map.Entry<String, Float> data : mAbscissaMap.entrySet()) {
+			if (data.getValue() == x) {
+				date = data.getKey();
+				break;
+			}
+		}
+
+		if (TextUtils.isEmpty(date)) {
+			return "";
+		}
+
+		for (Data data : mRawDataList) {
+			if (TextUtils.equals(data.date, date)) {
+				return String.valueOf(data.value);
+			}
+		}
+
+		return "";
+	}
+
+	private class HintView extends View {
+
+		private Paint paint;
+		private String text = "";
+		private Rect textRect = new Rect();
+		private RectF textRectF = new RectF();
+
+		public HintView(Context context) {
+			super(context);
+			paint = new Paint();
+			paint.setDither(true);
+			paint.setAntiAlias(true);
+			paint.setTextSize(mTextSize);
+			paint.setTypeface(Typeface.SERIF);
+		}
+
+		@Override
+		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+			paint.getTextBounds(text, 0, text.length(), textRect);
+			int width = textRect.width() + 20;
+			int height = textRect.height() + 20;
+			textRectF.set(0, 0, width, height);
+			widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
+			heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		}
+
+		private void show(@NonNull String text) {
+			this.text = text;
+			requestLayout();
+		}
+
+		@Override
+		protected void onDraw(Canvas canvas) {
+			paint.setStrokeWidth(5);
+			paint.setColor(mBaseColor);
+			paint.setStyle(Paint.Style.FILL);
+			canvas.drawRoundRect(textRectF, 5, 5, paint);
+
+			paint.setColor(Color.WHITE);
+			paint.setStyle(Paint.Style.STROKE);
+			canvas.drawRoundRect(textRectF, 5, 5, paint);
+
+			paint.setStrokeWidth(0);
+			paint.getTextBounds(text, 0, text.length(), textRect);
+			canvas.drawText(text, (textRectF.width() - textRect.width()) / 2.0f, (textRectF.height() + textRect.height()) / 2.0f, paint);
+		}
 	}
 
 	private class Point {
@@ -268,110 +471,14 @@ public class ChartView extends View {
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-//		if(mIsThumbnailMode){
-//			return super.onTouchEvent(event);
-//		}
-		if (event.getAction() != MotionEvent.ACTION_DOWN) {
-			return super.onTouchEvent(event);
-		}
-
-		float fingerX = event.getX();
-		float fingerY = event.getY();
-
-		for (final Point point : mPointList) {
-			if (fingerY >= point.y - 50 && fingerY <= point.y + 50
-					&& fingerX >= point.x - 50 && fingerX <= point.x + 50) {
-				AppUtils.showToast("您点击了一个图标");
-				final HintView hintView = new HintView(getContext());
-				((ViewGroup) getRootView()).addView(hintView);
-				hintView.show("3278");
-
-				hintView.post(new Runnable() {
-					@Override
-					public void run() {
-						int left;
-						int top;
-						int right;
-						int bottom;
-
-						if (point.y >= hintView.getMeasuredHeight()) {
-							//点的上面
-							top = (int) Math.ceil(point.y - hintView.getMeasuredHeight() - 10);
-							bottom = (int) Math.ceil(point.y-10);
-						} else {
-							//点的下面
-							top = (int) Math.ceil(point.y+10);
-							bottom = (int) Math.ceil(point.y + hintView.getMeasuredHeight() + 10);
-						}
-
-						if (point.x >= hintView.getMeasuredWidth() / 2.0f
-								&& (getMeasuredWidth() - point.x) < hintView.getMeasuredWidth() / 2.0f) {
-							//靠最右边
-							left = getMeasuredWidth() - hintView.getMeasuredWidth();
-							right = getMeasuredWidth();
-						} else if (point.x < hintView.getMeasuredWidth() / 2.0f
-								&& (getMeasuredWidth() - point.x) >= hintView.getMeasuredWidth() / 2.0f) {
-							//靠最左边
-							left = getPaddingLeft();
-							right = getPaddingLeft() + hintView.getMeasuredWidth();
-						} else {
-							//放中间
-							left = (int) (point.x - Math.ceil(hintView.getMeasuredWidth() / 2.0f));
-							right = (int) (point.x + Math.ceil(hintView.getMeasuredWidth() / 2.0f));
-						}
-
-						hintView.layout(left, top, right, bottom);
-					}
-				});
-				return true;
-			}
-		}
-
-		return super.onTouchEvent(event);
-	}
-
-	private class HintView extends View {
-
-		private Paint paint;
-		private String text = "234234";
-		private Rect textRect = new Rect();
-		private RectF textRectF = new RectF();
-
-		public HintView(Context context) {
-			super(context);
-			paint = new Paint();
-			paint.setDither(true);
-			paint.setAntiAlias(true);
-			paint.setStyle(Paint.Style.FILL_AND_STROKE);
-
-			setBackgroundColor(Color.RED);
-		}
-
-		@Override
-		protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-			paint.getTextBounds(text, 0, text.length(), textRect);
-			textRectF.roundOut(textRect);
-//			widthMeasureSpec = MeasureSpec.makeMeasureSpec(textRect.width(), MeasureSpec.EXACTLY);
-//			heightMeasureSpec = MeasureSpec.makeMeasureSpec(textRect.height(), MeasureSpec.EXACTLY);
-
-			widthMeasureSpec = MeasureSpec.makeMeasureSpec(50, MeasureSpec.EXACTLY);
-			heightMeasureSpec = MeasureSpec.makeMeasureSpec(30, MeasureSpec.EXACTLY);
-			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		}
-
-		private void show(@NonNull String text) {
-			this.text = text;
-			requestLayout();
-		}
-
-		@Override
-		protected void onDraw(Canvas canvas) {
-			paint.setColor(Color.WHITE);
-			canvas.drawRoundRect(textRectF, 5, 5, paint);
-			paint.setColor(Color.parseColor("#fecd44"));
-			canvas.drawRoundRect(textRectF, 5, 5, paint);
-			canvas.drawText(text, 0, text.length(), paint);
-		}
+	public boolean isInEditMode() {
+		mRawDataList.add(new ChartView.Data("Mar 01", 3111));
+		mRawDataList.add(new ChartView.Data("Mar 02", 3115));
+		mRawDataList.add(new ChartView.Data("Mar 03", 3278));
+		mRawDataList.add(new ChartView.Data("Mar 04", 3376));
+		mRawDataList.add(new ChartView.Data("Mar 05", 3489));
+		mRawDataList.add(new ChartView.Data("Mar 06", 3789));
+		mRawDataList.add(new ChartView.Data("Mar 07", 3788));
+		return super.isInEditMode();
 	}
 }

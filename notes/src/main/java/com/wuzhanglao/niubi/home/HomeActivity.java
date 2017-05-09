@@ -1,34 +1,32 @@
 package com.wuzhanglao.niubi.home;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.WindowManager;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseActivity;
 
-public class HomeActivity extends ToolbarActivity {
+public class HomeActivity extends BaseActivity {
 
-	private HomePresenter mPresenter;
 	private HomeView mView;
+	private HomePresenter mPresenter;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			getWindow().setStatusBarColor(Color.YELLOW);
-		}
+		initTranslucentStatus();
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-
-		mPresenter = new HomePresenter(this);
+		setContentView(R.layout.activity_home);
+		mView = new HomeView(this);
+		mPresenter = new HomePresenter();
+		mPresenter.setView(mView);
+		mPresenter.setModel(new HomeModel());
+		mPresenter.attach();
 	}
 
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		mView.hideBackButton();
+//		mView.hideBackButton();
 	}
 
 	@Override

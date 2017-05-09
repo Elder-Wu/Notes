@@ -3,18 +3,22 @@ package com.wuzhanglao.niubi.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.widget.ChartView;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -77,6 +81,35 @@ public class IosBottomDialogFragment extends BaseFragment implements View.OnClic
 						AppUtils.showToast("成功了");
 					}
 				});
+
+		final ChartView chartView = (ChartView) rootView.findViewById(R.id.chart);
+		ArrayList<ChartView.Data> mRawDataList = new ArrayList<>();
+		mRawDataList.add(new ChartView.Data("Mar 01", 3111));
+//		mRawDataList.add(new Data("Mar 02", 0));
+//		mRawDataList.add(new Data("Mar 03", 0));
+//		mRawDataList.add(new Data("Mar 04", 0));
+//		mRawDataList.add(new Data("Mar 05", 0));
+//		mRawDataList.add(new Data("Mar 06", 0));
+//		mRawDataList.add(new Data("Mar 07", 0));
+		mRawDataList.add(new ChartView.Data("Mar 02", 3115));
+		mRawDataList.add(new ChartView.Data("Mar 03", 3278));
+		mRawDataList.add(new ChartView.Data("Mar 04", 3376));
+		mRawDataList.add(new ChartView.Data("Mar 05", 3489));
+		mRawDataList.add(new ChartView.Data("Mar 06", 3789));
+		mRawDataList.add(new ChartView.Data("Mar 07", 3788));
+		chartView.setData(mRawDataList);
+		chartView.setColor(Color.RED);
+		SwitchCompat switchCompat = (SwitchCompat) rootView.findViewById(R.id.switch_btn);
+		switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					chartView.showAllHintView();
+				} else {
+					chartView.removeAllHintView();
+				}
+			}
+		});
 		return rootView;
 	}
 

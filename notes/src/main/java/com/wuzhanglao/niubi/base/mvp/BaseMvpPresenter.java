@@ -5,26 +5,17 @@ package com.wuzhanglao.niubi.base.mvp;
  * website:www.wuzhanglao.com
  */
 
-import com.wuzhanglao.niubi.base.BaseActivity;
-
 public abstract class BaseMvpPresenter<V extends BaseMvpView, M extends BaseMvpModel> {
 	private V mView;
 	private M mModel;
-	private BaseActivity mActivity;
 
-	public BaseMvpPresenter(BaseActivity activity) {
-		mActivity = activity;
-		mView = setView();
-		mModel = setModel();
+	public void setModel(M model) {
+		mModel = model;
 	}
 
-	public BaseActivity getActivity() {
-		return mActivity;
+	public void setView(V view) {
+		mView = view;
 	}
-
-	public abstract M setModel();
-
-	public abstract V setView();
 
 	public V getView() {
 		return mView;
@@ -34,11 +25,18 @@ public abstract class BaseMvpPresenter<V extends BaseMvpView, M extends BaseMvpM
 		return mModel;
 	}
 
+	public final void attach() {
+		onAttach();
+	}
+
 	public final void detach() {
 		mView = null;
 		mModel = null;
-		mActivity = null;
 		onDetach();
+	}
+
+	public void onAttach() {
+
 	}
 
 	public void onDetach() {

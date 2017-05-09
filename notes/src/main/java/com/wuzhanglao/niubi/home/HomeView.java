@@ -5,81 +5,72 @@ package com.wuzhanglao.niubi.home;
  * website:www.wuzhanglao.com
  */
 
-import android.support.v4.view.GravityCompat;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
+import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.base.mvp.BaseMvpView;
 import com.wuzhanglao.niubi.bean.TextBean;
-import com.wuzhanglao.niubi.utils.UIUtils;
+import com.wuzhanglao.niubi.utils.NoteApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeView extends BaseMvpView<HomeViewCallback> implements TextHolderAdatpter.TextHolderClickListener {
+public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAdatpter.TextHolderClickListener {
 
 	private TextHolderAdatpter mAdapter;
 	private DrawerLayout mDrawerLayout;
 	//toolbar相关
-	private TextView toolbar_title_tv;
-	private TextView toolbar_back_tv;
-	private ImageView toolbar_profile_iv;
+//	private TextView mToolbarTitle;
+//	private TextView mToolbarBack;
+//	private ImageView mToolbarProfile;
 
-	public HomeView(View rootView) {
-		super(rootView);
+	private FragmentManager mFragmentManager;
 
-		toolbar_title_tv = (TextView) rootView.findViewById(R.id.activity_main_toolbar_title_tv);
-		toolbar_back_tv = (TextView) rootView.findViewById(R.id.activity_main_toolbar_back_tv);
-		toolbar_profile_iv = (ImageView) rootView.findViewById(R.id.activity_main_toolbar_profile_iv);
+	public HomeView(BaseActivity activity) {
+		super(activity);
 
-		toolbar_title_tv.setText(getContext().getString(R.string.main_title));
-		toolbar_back_tv.setVisibility(View.GONE);
-		toolbar_profile_iv.setVisibility(View.GONE);
-		toolbar_back_tv.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (getCallback() != null) {
-					getCallback().onBackBtnClick();
-				}
-			}
-		});
-		toolbar_profile_iv.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (UIUtils.isDoubleClick()) {
-					return;
-				}
-				mDrawerLayout.openDrawer(GravityCompat.START);
-			}
-		});
-		hideBackButton();
+//		mToolbarTitle = (TextView) activity.findViewById(R.id.activity_main_toolbar_title_tv);
+//		mToolbarBack = (TextView) activity.findViewById(R.id.activity_main_toolbar_back_tv);
+//		mToolbarProfile = (ImageView) activity.findViewById(R.id.activity_main_toolbar_profile_iv);
+//
+//		mToolbarTitle.setText(getActivity().getString(R.string.main_title));
+//		mToolbarBack.setVisibility(View.GONE);
+//		mToolbarProfile.setVisibility(View.GONE);
+//		mToolbarBack.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (getCallback() != null) {
+//					getCallback().onBackBtnClick();
+//				}
+//			}
+//		});
+//		mToolbarProfile.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (UIUtils.isDoubleClick()) {
+//					return;
+//				}
+//				mDrawerLayout.openDrawer(GravityCompat.START);
+//			}
+//		});
+//		hideBackButton();
 		initData();
 		initView();
-
-
-
-
-
-
-
-
-
-
-
+		mFragmentManager = activity.getSupportFragmentManager();
 
 		Logger.d("测试Logger.d(d)");
 		Logger.d("message", "测试Logger.d(message,d)");
 
 		Logger.e("测试Logger.e(e)");
 		Logger.e("message", "测试Logger.e(message,e)");
-
 
 		Logger.t(1).d("测试Logger.d(d)");
 		Logger.t(2).d("测试Logger.d(d)");
@@ -99,46 +90,25 @@ public class HomeView extends BaseMvpView<HomeViewCallback> implements TextHolde
 				"   </EMPLIST>");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
-	public void showBackButton(String fragmentName) {
-		toolbar_back_tv.setVisibility(View.VISIBLE);
-		toolbar_profile_iv.setVisibility(View.GONE);
-		toolbar_title_tv.setText(fragmentName);
-		if (mDrawerLayout != null) {
-			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-		}
-	}
-
-	public void hideBackButton() {
-		toolbar_back_tv.setVisibility(View.GONE);
-		toolbar_profile_iv.setVisibility(View.VISIBLE);
-		toolbar_title_tv.setText(getContext().getString(R.string.main_title));
-		if (mDrawerLayout != null) {
-			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
-		}
-	}
+//	public void showBackButton(String fragmentName) {
+//		mToolbarBack.setVisibility(View.VISIBLE);
+//		mToolbarProfile.setVisibility(View.GONE);
+//		mToolbarTitle.setText(fragmentName);
+//		if (mDrawerLayout != null) {
+//			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//		}
+//	}
+//
+//	public void hideBackButton() {
+//		mToolbarBack.setVisibility(View.GONE);
+//		mToolbarProfile.setVisibility(View.VISIBLE);
+//		mToolbarTitle.setText(getActivity().getString(R.string.main_title));
+//		if (mDrawerLayout != null) {
+//			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+//		}
+//	}
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
@@ -160,20 +130,32 @@ public class HomeView extends BaseMvpView<HomeViewCallback> implements TextHolde
 		data.add(new TextBean("RxBus案例", "轻松解决组件与组件之间的消息传递"));
 		data.add(new TextBean("onMeasure和onLayout", "高级自定义View"));
 
-		mAdapter = new TextHolderAdatpter(getContext());
+		mAdapter = new TextHolderAdatpter(getActivity());
 		mAdapter.setTextHolderClickListener(this);
 		mAdapter.setDataList(data);
 	}
 
 	private void initView() {
-		mDrawerLayout = (DrawerLayout) getRootView().findViewById(R.id.activity_main_drawer);
-		RecyclerView recyclerView = (RecyclerView) getRootView().findViewById(R.id.recycler_view);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+		mDrawerLayout = (DrawerLayout) getActivity().findViewById(R.id.activity_main_drawer);
+		RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.recycler_view);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		recyclerView.setAdapter(mAdapter);
 	}
 
 	@Override
 	public void onTextClick(TextBean bean) {
 		getCallback().onItemClick(bean.getTitle());
+	}
+
+	public void openFragment(Fragment fragment, String fragmentName) {
+		mFragmentManager.beginTransaction()
+				.replace(R.id.main_container, fragment)
+				.addToBackStack(null)
+				.commitAllowingStateLoss();
+//		showBackButton(fragmentName);
+	}
+
+	public void openRxBus() {
+		getActivity().startActivity(new Intent(NoteApplication.getInstance(), TransparentStatusActivity.class));
 	}
 }
