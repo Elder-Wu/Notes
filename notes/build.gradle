@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.wuzhanglao.niubi"
@@ -105,4 +105,6 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     //监听网络状态
     compile 'com.github.pwittchen:reactivenetwork:0.8.0'
+    //logger
+    compile 'com.orhanobut:logger:1.15'
 }

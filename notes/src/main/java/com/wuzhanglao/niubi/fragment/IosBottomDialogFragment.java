@@ -3,6 +3,7 @@ package com.wuzhanglao.niubi.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,13 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by wuming on 16/10/14.
@@ -41,6 +49,16 @@ public class IosBottomDialogFragment extends BaseFragment implements View.OnClic
                     @Override
                     public void onOptionClick() {
                         AppUtils.showToast("操作1");
+                        Observable.interval(1, TimeUnit.SECONDS)
+                                .take(((1 * 60 + 1) * 60 + 1) / 10)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(new Action1<Long>() {
+                                    @Override
+                                    public void call(Long time) {
+                                        Log.d("123123123","time->"+time.intValue());
+                                    }
+                                });
                     }
                 }).create().show();
                 break;
