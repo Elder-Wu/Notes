@@ -35,24 +35,19 @@ public class ChartView extends FrameLayout {
 	private static final int DEFAULT_TEXT_SIZE = 10;  //单位：dp
 	private static final int DEFAULT_BASE_COLOR = Color.BLACK;
 
-	private float mViewHeight;
-
-	private float mViewWidth;
-	//这是绘制文字的笔
 	private Paint mPaint;
+	private HintView mHintView;
 
 	private List<Data> mRawDataList = new ArrayList<>();
-
 	private List<Point> mPointList = new ArrayList<>();
 	private List<HintView> mHintViewList = new ArrayList<>();
 	private Map<String, Float> mAbscissaMap = new HashMap<>();
-	private HintView mHintView;
 
-	//整个图表的色调
-	private int mBaseColor;
+	private int mBaseColor; //整个图表的色调
 	private int mTextSize;
+	private float mViewWidth;
+	private float mViewHeight;
 	private boolean mIsThumbnailMode = false;
-
 	private DashPathEffect mDashPathEffect = new DashPathEffect(new float[]{5, 5}, 0);
 
 	public ChartView(Context context) {
@@ -205,6 +200,7 @@ public class ChartView extends FrameLayout {
 			}
 		}
 
+
 		//计算出点的位置
 		mPointList.clear();
 		for (Data data : mRawDataList) {
@@ -237,6 +233,7 @@ public class ChartView extends FrameLayout {
 			colorBlock.close();
 			canvas.drawPath(colorBlock, blockPaint);
 		}
+
 
 		//画折线
 		Path path = new Path();
@@ -275,6 +272,10 @@ public class ChartView extends FrameLayout {
 	public void setColor(int colorTone) {
 		mBaseColor = colorTone;
 		requestLayout();
+	}
+
+	public int getColor() {
+		return mBaseColor;
 	}
 
 	public void setData(List<Data> dataList) {

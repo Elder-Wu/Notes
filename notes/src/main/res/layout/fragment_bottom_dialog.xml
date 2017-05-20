@@ -58,14 +58,10 @@
 
     <com.wuzhanglao.niubi.widget.ChartView
         android:id="@+id/chart"
+        android:layout_marginTop="73dp"
+        android:background="@color/blue_afe"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="1dp"
-        android:textSize="18dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_height="300dp"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/switch_btn"

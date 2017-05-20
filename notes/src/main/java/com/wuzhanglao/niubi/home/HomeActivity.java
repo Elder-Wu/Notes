@@ -21,6 +21,8 @@ public class HomeActivity extends BaseActivity {
 		mPresenter.setView(mView);
 		mPresenter.setModel(new HomeModel());
 		mPresenter.attach();
+
+		mView.initData();
 	}
 
 	@Override
