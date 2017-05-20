@@ -4,23 +4,31 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseActivity;
 
-public class HomeActivity extends ToolbarActivity {
+public class HomeActivity extends BaseActivity {
 
+	private HomeView mView;
 	private HomePresenter mPresenter;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		initTranslucentStatus();
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_home);
+		mView = new HomeView(this);
+		mPresenter = new HomePresenter();
+		mPresenter.setView(mView);
+		mPresenter.setModel(new HomeModel());
+		mPresenter.attach();
 
-		mPresenter = new HomePresenter(this);
+		mView.initData();
 	}
 
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		mPresenter.getView().hideBackButton();
+//		mView.hideBackButton();
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.bean.RxBusBean;
 import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.utils.RxBus;
@@ -17,16 +18,12 @@ import java.util.Random;
  * Created by wuming on 2016/12/2.
  */
 
-public class TestRxActivity2 extends ToolbarActivity {
+public class TestRxActivity2 extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_rxbus2);
-
-        initDefaultToolBar();
-        setToolbarTitle("MainActivity2");
-        setToolbarBackVisible(false);
 
         findViewById(R.id.activity_rxbus2_btn).setOnClickListener(new View.OnClickListener() {
 

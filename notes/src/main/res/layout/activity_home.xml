@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_drawer"
     android:layout_width="match_parent"
@@ -12,19 +13,20 @@
 
         <include
             android:id="@+id/activity_main_toolbar"
-            layout="@layout/toolbar_main" />
+            layout="@layout/toolbar_main"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
+            android:background="@android:color/holo_green_light"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/activity_main_toolbar" />
+            android:layout_below="@+id/activity_main_toolbar"/>
 
         <FrameLayout
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/activity_main_toolbar" />
+            android:layout_below="@+id/activity_main_toolbar"/>
     </RelativeLayout>
 
     <!--展开之后的布局-->
@@ -33,5 +35,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_navigation" />
+        tools:layout="@layout/fragment_navigation"/>
 </android.support.v4.widget.DrawerLayout>
