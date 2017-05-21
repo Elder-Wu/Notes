@@ -16,19 +16,32 @@ import com.wuzhanglao.niubi.widget.TimerView;
  */
 
 public class MultiItemFragment extends BaseFragment {
-	@Nullable
-	@Override
-	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_multi_item, container, false);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_multi_item, container, false);
 
-		TimerView timerView = (TimerView) rootView.findViewById(R.id.timer_view);
-		timerView.setCountDownTime(1, 0, 0, 10);
-		timerView.setOnFinishedListener(new TimerView.OnFinishedListener() {
-			@Override
-			public void onFinished() {
-				AppUtils.showToast("finish");
-			}
-		});
-		return rootView;
-	}
+        final TimerView timerView = (TimerView) rootView.findViewById(R.id.timer_view);
+        timerView.setTimerSize(18, false);
+        timerView.setCountDownTime(0, 0, 10, 10);
+        timerView.start();
+
+        timerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (timerView.isRunning()) {
+                    timerView.stop();
+                } else {
+                    timerView.start();
+                }
+            }
+        });
+        timerView.setOnFinishedListener(new TimerView.OnFinishedListener() {
+            @Override
+            public void onFinished() {
+                AppUtils.showToast("finish");
+            }
+        });
+        return rootView;
+    }
 }
