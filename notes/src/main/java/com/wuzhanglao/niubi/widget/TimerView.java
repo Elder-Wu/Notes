@@ -1,23 +1,26 @@
 package com.wuzhanglao.niubi.widget;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * date:2017/5/20
@@ -26,323 +29,199 @@ import rx.schedulers.Schedulers;
  */
 
 public class TimerView extends View {
-    private long mTime;
-    private long mStartSystemTime;
-    private boolean shouldDraw = true;
-    private Paint mPaint;
 
-    private int mWidth;
-    private int mHeight;
+	private static final int DEFAULT_TEXT_SIZE = 44; //单位：dp
 
+	private int mWidth;
+	private int mHeight;
+	private int mMaxDightWidth;
+	private int mMaxDightHeight;
 
-    private OnFinishedListener listener;
+	private int mHour;
+	private int mMinute;
+	private int mSecond;
+	private int mMillisecond;
+	private int mRemainedMillisecond;
 
-    public TimerView(Context context) {
-        this(context, null);
-    }
+	private Paint mPaint;
+	private OnFinishedListener mListener;
+	private List<Point> mPointList = new ArrayList<>();
+	private CompositeSubscription mCompositeSubscription = new CompositeSubscription();
 
-    public TimerView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
+	public TimerView(Context context) {
+		this(context, null);
+	}
 
-    public TimerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        setTextSizeInternal();
-    }
+	public TimerView(Context context, @Nullable AttributeSet attrs) {
+		super(context, attrs);
+		mPaint = new Paint();
+		mPaint.setDither(true);
+		mPaint.setAntiAlias(true);
+		mPaint.setColor(Color.RED);
+		mPaint.setTextAlign(Paint.Align.CENTER);
 
-    public void setTimeColor(int color) {
-        mPaint.setColor(color);
-    }
+		setTextSizeInternal(DEFAULT_TEXT_SIZE);
 
-    public void setTextSize() {
+		for (int i = 0; i < 11; i++) {
+			mPointList.add(new Point());
+		}
 
-    }
+		setBackgroundColor(Color.GREEN);
+	}
 
-    private void setTextSizeInternal() {
-        int maxDightWidth = Integer.MIN_VALUE;
-        int maxDightHeight = Integer.MIN_VALUE;
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		widthMeasureSpec = MeasureSpec.makeMeasureSpec(mWidth, MeasureSpec.EXACTLY);
+		heightMeasureSpec = MeasureSpec.makeMeasureSpec(mHeight, MeasureSpec.EXACTLY);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
 
-        for (int i = 0; i <= 10; i++) {
-            Rect rect = new Rect();
-            if (i == 10) {
-                mPaint.getTextBounds(":", 0, 1, rect);
-            } else {
-                mPaint.getTextBounds(String.valueOf(i), 0, 1, rect);
-            }
-            maxDightWidth = maxDightWidth > rect.width() ? maxDightWidth : rect.width();
-            maxDightHeight = maxDightHeight > rect.height() ? maxDightHeight : rect.height();
-        }
+	@Override
+	protected void onDraw(Canvas canvas) {
+		for (Point point : mPointList) {
+			canvas.drawText(point.text, point.x, point.y, mPaint);
+		}
+	}
 
-        //00:00:00:00   这种格式的时间，一共有11个字符
-        mWidth = maxDightWidth * 11;
-        mHeight = maxDightHeight;
-    }
+	public void setCountDownTime(int milllsecond) {
+		mRemainedMillisecond = milllsecond;
+		startCountDown();
+	}
 
-    /**
-     * 设置计时字体大小和是否加粗
-     *
-     * @param size
-     * @param isbold
-     */
-    public void setTimeSize(int size, boolean isbold) {
-        mPaint.setTextSize(size);
-        if (isbold) {
-            Typeface font = Typeface.create(Typeface.DEFAULT, Typeface.BOLD);
-            mPaint.setTypeface(font);
-        }
-    }
+	public void setCountDownTime(int hour, int minute, int second, int millisecond) {
+		mRemainedMillisecond = ((hour * 60 + minute) * 60 + second) * 1000 + millisecond;
+		startCountDown();
+	}
 
-    public void setTime(long milliseconds) {
-        mTime = milliseconds;
-        if (mStartSystemTime == 0) {
-            mStartSystemTime = SystemClock.elapsedRealtime();
-        }
-    }
+	private void startCountDown() {
+		mCompositeSubscription.clear();
+		mCompositeSubscription.add(Observable.interval(0, 1, TimeUnit.SECONDS)
+				.take(mRemainedMillisecond / 10)
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Subscriber<Long>() {
 
-    public void setOnFinishedListener(OnFinishedListener listener) {
-        this.listener = listener;
-    }
+					@Override
+					public void onNext(Long time) {
+						mRemainedMillisecond -= 10;
+						mHour = mRemainedMillisecond / 1000 / 60 / 60;
+						mMinute = (mRemainedMillisecond / 1000 / 60) % 60;
+						mSecond = mRemainedMillisecond / 1000 % 60;
+						mMillisecond = (mRemainedMillisecond % 1000) / 10;
+						Log.d("value", "mRemainedMillisecond->" + mRemainedMillisecond);
+						Log.d("value", "mHour->" + mHour);
+						Log.d("value", "mMinute->" + mMinute);
+						Log.d("value", "mSecond->" + mSecond);
+						Log.d("value", "mMillisecond->" + mMillisecond);
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
+						Log.d("value", "           ");
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        widthMeasureSpec = MeasureSpec.makeMeasureSpec(mWidth, MeasureSpec.EXACTLY);
-        heightMeasureSpec = MeasureSpec.makeMeasureSpec(mHeight, MeasureSpec.EXACTLY);
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
+						//计算出每个字符的x,y坐标
+						for (int i = 0; i < mPointList.size(); i++) {
+							int value;
+							if (i < 3) {
+								value = mHour;
+							} else if (i < 6) {
+								value = mMinute;
+							} else if (i < 9) {
+								value = mSecond;
+							} else {
+								value = mMillisecond;
+							}
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mPaint.setTextSize(1.0f);
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
+							Point point = mPointList.get(i);
+							point.x = mMaxDightWidth / 2.0f + mMaxDightWidth * i;
+							point.y = mMaxDightHeight;
+							if ((i + 1) % 3 == 0 && i != mPointList.size() - 1) {
+								point.text = ":";
+							} else if (i > mPointList.size() - 3) {
+								point.text = String.valueOf(i % 2 == 0 ? value % 10 : value / 10);
+							} else {
+								point.text = String.valueOf(i % 2 == 0 ? value / 10 : value % 10);
+							}
+							Log.d("value", "text->" + point.text);
+						}
+						invalidate();
+					}
 
-        int maxDightWidth = Integer.MIN_VALUE;
-        int maxDightHeight = Integer.MIN_VALUE;
+					@Override
+					public void onCompleted() {
+						if (mListener != null) {
+							mListener.onFinished();
+						}
+					}
 
-        for (int i = 0; i <= 10; i++) {
-            Rect rect = new Rect();
-            if (i == 10) {
-                mPaint.getTextBounds(":", 0, 1, rect);
-            } else {
-                mPaint.getTextBounds(String.valueOf(i), 0, 1, rect);
-            }
-            maxDightWidth = maxDightWidth > rect.width() ? maxDightWidth : rect.width();
-            maxDightHeight = maxDightHeight > rect.height() ? maxDightHeight : rect.height();
-        }
+					@Override
+					public void onError(Throwable e) {
 
-        //00:00:00:00   这种格式的时间，一共有11个字符
+					}
+				}));
+	}
 
+	public void setTimerColor(int color) {
+		mPaint.setColor(color);
+		invalidate();
+	}
 
-        int viewWidth = getMeasuredWidth();
-        int viewHeight = getMeasuredHeight();
+	/**
+	 * 设置计时字体大小和是否加粗
+	 *
+	 * @param size   单位：dp
+	 * @param isbold
+	 */
+	public void setTimerSize(int size, boolean isbold) {
+		setTextSizeInternal(size);
+		if (isbold) {
+			Typeface font = Typeface.create(Typeface.DEFAULT, Typeface.BOLD);
+			mPaint.setTypeface(font);
+		}
+		requestLayout();
+	}
 
+	private void setTextSizeInternal(int textSize) {
+		mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, textSize, getResources().getDisplayMetrics()));
+		mMaxDightWidth = Integer.MIN_VALUE;
+		mMaxDightHeight = Integer.MIN_VALUE;
 
-        mWidth = w;
-        mHeight = h;
-    }
+		for (int i = 0; i < mPointList.size(); i++) {
+			Rect rect = new Rect();
+			if (i == mPointList.size() - 1) {
+				mPaint.getTextBounds(":", 0, 1, rect);
+			} else {
+				mPaint.getTextBounds(String.valueOf(i), 0, 1, rect);
+			}
+			mMaxDightWidth = mMaxDightWidth > rect.width() ? mMaxDightWidth : rect.width();
+			mMaxDightHeight = mMaxDightHeight > rect.height() ? mMaxDightHeight : rect.height();
+		}
 
-//    private int measureWidthWrap() {
-//        return (int) mPaint.measureText("00:00:00:00");
-//    }
+		//00:00:00:00   这种格式的时间，一共有11个字符
+		mWidth = mMaxDightWidth * mPointList.size();
+		mHeight = mMaxDightHeight;
+	}
 
-    private int measureDimensionHeight(int measureSpec) {
-        int specMode = MeasureSpec.getMode(measureSpec);//模式
-        int specSize = MeasureSpec.getSize(measureSpec);//大小
+	public void setOnFinishedListener(OnFinishedListener listener) {
+		mListener = listener;
+	}
 
-        int size = 0;
+	public interface OnFinishedListener {
+		void onFinished();
+	}
 
-        switch (specMode) {
-            case MeasureSpec.UNSPECIFIED:
-                //要多大 有多大 一般是用不上
-                size = measureHeightWrap();
-                break;
-            case MeasureSpec.EXACTLY:
-                //是多大用多大
-                size = specSize;
-                break;
-            case MeasureSpec.AT_MOST:
-                //在是多大和要多大选一个小的。
-                size = Math.min(specSize, measureHeightWrap());
-                break;
-        }
-        return size;
-    }
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		mCompositeSubscription.clear();
+	}
 
-
-    private int measureHeightWrap() {
-        Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-        return fontMetrics.bottom - fontMetrics.top;
-    }
-
-    private int measureWidthWrap() {
-        return (int) mPaint.measureText("00000000000");
-    }
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        if (shouldDraw) {
-//            Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-//            String time;
-//            long remain = mTime - (SystemClock.elapsedRealtime() - mStartSystemTime);
-//            if (remain < 0) {
-//                shouldDraw = false;
-//                time = "00:00:00:00";
-//                if (listener != null) {
-//                    listener.onFinished();
-//                }
-//            } else {
-//                shouldDraw = true;
-//                time = formatTime(mTime - (SystemClock.elapsedRealtime() - mStartSystemTime));
-//            }
-//            canvas.drawText(time, (mWidth - (int) mPaint.measureText(time)) / 2, (getMeasuredHeight() / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent), mPaint);
-//            if (shouldDraw) {
-//                invalidate();
-//            }
-//        } else {
-//            Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-//            canvas.drawText("00:00:00:00", (mWidth - (int) mPaint.measureText("00:00:00:00")) / 2, (getMeasuredHeight() / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent), mPaint);
-//        }
-//    }
-
-    private int mHour;
-    private int mMinute;
-    private int mSecond;
-    private int mMillisecond;
-    private long mTotalMillisecond;
-
-    public void setCountDownTime(int hour, int minute, int second, int millisecond) {
-        mHour = hour;
-        mMinute = minute;
-        mSecond = second;
-        mMillisecond = millisecond;
-        mTotalMillisecond = ((mHour * 60 + mMinute) * 60 + mSecond) * 1000;
-
-        startCountDown();
-    }
-
-    private void startCountDown() {
-        Observable.interval(10, TimeUnit.MILLISECONDS)
-                .take(((mHour * 60 + mMinute) * 60 + mSecond) / 10)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Long>() {
-                    @Override
-                    public void call(Long time) {
-
-                    }
-                });
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-//        long hour = milliseconds / (3600 * 1000);
-//        long minute = (milliseconds % (3600 * 1000)) / (60 * 1000);
-//        long second = ((milliseconds % (3600 * 1000)) % (60 * 1000)) / 1000;
-//        long mills = (((milliseconds % (3600 * 1000)) % (60 * 1000)) % 1000) / 10;
-
-        //画"时"
-            //画"分"
-            //画"秒"
-            //画"毫秒"
-            if (shouldDraw) {
-                Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-                ArrayList<String> times = new ArrayList<>();
-                long remain = mTime - (SystemClock.elapsedRealtime() - mStartSystemTime);
-                if (remain < 0) {
-                    shouldDraw = false;
-                    times.add("0");
-                    times.add("0");
-                    times.add(":");
-                    times.add("0");
-                    times.add("0");
-                    times.add(":");
-                    times.add("0");
-                    times.add("0");
-                    times.add(":");
-                    times.add("0");
-                    times.add("0");
-                    if (listener != null) {
-                        listener.onFinished();
-                    }
-                } else {
-                    shouldDraw = true;
-                    times.clear();
-                    times.addAll(toStringWithFormat(mTime - (SystemClock.elapsedRealtime() - mStartSystemTime)));
-                }
-                for (int i = 0; i < times.size(); i++) {
-                    String time = times.get(i);
-                    if (time.equals(":")) {
-                        canvas.drawText(time, mPaint.measureText("0") * i + (mPaint.measureText("0") - mPaint.measureText(":")) / 2, (getMeasuredHeight() / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent), mPaint);
-
-                    } else {
-                        canvas.drawText(time, mPaint.measureText("0") * i, (getMeasuredHeight() / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent), mPaint);
-                    }
-                }
-                if (shouldDraw) {
-                    invalidate();
-                }
-            } else {
-                Paint.FontMetricsInt fontMetrics = mPaint.getFontMetricsInt();
-                canvas.drawText("00:00:00:00", (mWidth - (int) mPaint.measureText("00:00:00:00")) / 2, (getMeasuredHeight() / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent), mPaint);
-            }
-    }
-
-
-    public interface OnFinishedListener {
-        void onFinished();
-    }
-
-//    private String formatTime(long milliseconds) {
-//
-//        StringBuffer returnDate = new StringBuffer();
-//
-//        long hour = milliseconds / (3600 * 1000);
-//        long minute = (milliseconds % (3600 * 1000)) / (60 * 1000);
-//        long second = ((milliseconds % (3600 * 1000)) % (60 * 1000)) / 1000;
-//        long mills = (((milliseconds % (3600 * 1000)) % (60 * 1000)) % 1000) / 10;
-//
-//        returnDate.append(hour > 9 ? String.valueOf(hour) : 0 + String.valueOf(hour));
-//        returnDate.append(":");
-//        returnDate.append(minute > 9 ? String.valueOf(minute) : 0 + String.valueOf(minute));
-//        returnDate.append(":");
-//        returnDate.append(second > 9 ? String.valueOf(second) : 0 + String.valueOf(second));
-//        returnDate.append(":");
-//        returnDate.append(mills > 9 ? String.valueOf(mills) : 0 + String.valueOf(mills));
-//
-//        return returnDate.toString();
-//    }
-
-    private ArrayList<String> toStringWithFormat(long milliseconds) {
-        ArrayList<String> arrays = new ArrayList<>();
-        StringBuffer returnDate = new StringBuffer();
-
-        long hour = milliseconds / (3600 * 1000);
-        long minute = (milliseconds % (3600 * 1000)) / (60 * 1000);
-        long second = ((milliseconds % (3600 * 1000)) % (60 * 1000)) / 1000;
-        long mills = (((milliseconds % (3600 * 1000)) % (60 * 1000)) % 1000) / 10;
-
-        returnDate.append(hour > 9 ? String.valueOf(hour) : 0 + String.valueOf(hour));
-        returnDate.append(":");
-        returnDate.append(minute > 9 ? String.valueOf(minute) : 0 + String.valueOf(minute));
-        returnDate.append(":");
-        returnDate.append(second > 9 ? String.valueOf(second) : 0 + String.valueOf(second));
-        returnDate.append(":");
-        returnDate.append(mills > 9 ? String.valueOf(mills) : 0 + String.valueOf(mills));
-
-        for (int i = 0; i < returnDate.toString().length(); i++) {
-            if (i < returnDate.toString().length() - 1) {
-                arrays.add(returnDate.substring(i, i + 1));
-            } else {
-                arrays.add(returnDate.substring(i));
-            }
-        }
-        return arrays;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
+	private class Point {
+		private float x;
+		private float y;
+		private String text = "";
+	}
 }
