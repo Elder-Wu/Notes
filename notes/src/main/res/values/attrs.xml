@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CountDownView">
-        <attr name="background_color" format="color"/>
-        <attr name="border_width" format="dimension"/>
-        <attr name="border_color" format="color"/>
-        <attr name="text" format="string"/>
-        <attr name="text_size" format="dimension"/>
-        <attr name="text_color" format="color"/>
+        <attr name="background_color" format="color" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="text" format="string" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="BottomBar">
-        <attr name="bar_img" format="reference"/>
-        <attr name="bar_text" format="string"/>
+        <attr name="bar_img" format="reference" />
+        <attr name="bar_text" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ApproveListLayout">
-        <attr name="pic_count" format="integer"/>
-        <attr name="pic_size" format="dimension"/>
-        <attr name="pic_offset" format="float"/>
+        <attr name="pic_count" format="integer" />
+        <attr name="pic_size" format="dimension" />
+        <attr name="pic_offset" format="float" />
     </declare-styleable>
 
     <declare-styleable name="FloatViewLayout">
-        <attr name="offset" format="float"/>
+        <attr name="offset" format="float" />
     </declare-styleable>
 
     <declare-styleable name="RoundImageView">
-        <attr name="civ_border_width" format="dimension"/>
-        <attr name="civ_border_color" format="color"/>
-        <attr name="civ_border_overlay" format="boolean"/>
-        <attr name="civ_fill_color" format="color"/>
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="ChartView">
-        <attr name="baseColor" format="color"/>
-        <attr name="isThumbnailMode" format="boolean"/>
-        <attr name="android:textSize"/>
+        <attr name="baseColor" format="color" />
+        <attr name="isThumbnailMode" format="boolean" />
+        <attr name="android:textSize" />
+    </declare-styleable>
+
+    <declare-styleable name="TimerView">
+        <attr name="android:textSize" />
+        <attr name="android:textColor" />
     </declare-styleable>
 
     <declare-styleable name="HorizontalProgressView">

@@ -12,24 +12,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:visibility="gone"/>
+    android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="59:"
+        android:textSize="18dp"/>
 
     <com.wuzhanglao.niubi.widget.TimerView
         android:id="@+id/timer_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="15dp"/>
 
     <com.wuzhanglao.niubi.widget.HorizontalProgressView
-        android:background="@color/pink_ece"
         android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/pink_ece"
         android:paddingLeft="2dp"
         android:paddingRight="50dp"
         app:backgroundType="round"
         app:foregroundType="rect"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="10dp"
         app:maxProgress="10000"
         app:progress="50"/>
 </LinearLayout>
