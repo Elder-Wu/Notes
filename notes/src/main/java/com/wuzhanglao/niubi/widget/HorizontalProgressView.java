@@ -86,9 +86,10 @@ public class HorizontalProgressView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-
+		// 1.保存系统的默认canvas图层
 		canvas.saveLayer(0, 0, getMeasuredWidth(), getMeasuredHeight(), null, Canvas.ALL_SAVE_FLAG);
 
+		// 2.在新建的图层上绘制内容
 		canvas.translate(0, 0);
 		mPaint.setXfermode(null);
 		mPaint.setColor(mBackgroundColor);
@@ -113,6 +114,7 @@ public class HorizontalProgressView extends View {
 				break;
 		}
 
+		// 3.将两个图层进行组合
 		canvas.restore();
 	}
 
