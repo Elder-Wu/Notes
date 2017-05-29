@@ -25,10 +25,9 @@ import java.util.List;
 
 public class IosBottomDialog extends Dialog {
 
-    private static final String TAG = IosBottomDialog.class.getSimpleName();
-    public static final int DEFAULT_PADDING = 8;
-    public static final int DEFAULT_TITLE_SIZE = 15;
-    public static final int DEFAULT_OPTION_SIZE = 15;
+    private static final int DEFAULT_PADDING = 8;
+    private static final int DEFAULT_TITLE_SIZE = 15;
+    private static final int DEFAULT_OPTION_SIZE = 15;
 
     private LinearLayout options_ll;
     private TextView title;
