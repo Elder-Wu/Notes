@@ -112,7 +112,7 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
-		data.add(new TextBean("MultiItem", "RecyclerView多类型布局"));
+		data.add(new TextBean("TimerView", "RecyclerView多类型布局"));
 		data.add(new TextBean("Glide transform", "..."));
 		data.add(new TextBean("TextView高亮显示", "点击英文单词可以高亮显示，并且显示翻译结果"));
 		data.add(new TextBean("加载网络图片", "使用Glide对一组url进行加载，下拉刷新，下拉加载更多"));

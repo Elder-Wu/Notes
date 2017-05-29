@@ -12,7 +12,7 @@ import com.wuzhanglao.niubi.fragment.GlideFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
-import com.wuzhanglao.niubi.fragment.MultiItemFragment;
+import com.wuzhanglao.niubi.fragment.TimerViewFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.fragment.TestMeasureLayoutFragment;
@@ -83,8 +83,8 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 			case "onMeasure和onLayout":
 				getView().openFragment(new TestMeasureLayoutFragment(), title);
 				break;
-			case "MultiItem":
-				getView().openFragment(new MultiItemFragment(), title);
+			case "TimerView":
+				getView().openFragment(new TimerViewFragment(), title);
 				break;
 		}
 	}

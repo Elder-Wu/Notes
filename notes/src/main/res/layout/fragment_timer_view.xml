@@ -13,13 +13,22 @@
 
 
     <TextView
-        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="59:" />
+        android:text="59:"
+        android:textSize="18dp" />
+
     <com.wuzhanglao.niubi.widget.TimerView
         android:id="@+id/timer_view"
-        android:textSize="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/red_111"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp" />
+
+    <com.wuzhanglao.niubi.widget.ArrowView
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 </LinearLayout>

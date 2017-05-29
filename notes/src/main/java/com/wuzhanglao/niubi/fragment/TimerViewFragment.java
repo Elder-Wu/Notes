@@ -15,11 +15,11 @@ import com.wuzhanglao.niubi.widget.TimerView;
  * Created by ming.wu@shanbay.com on 2017/4/27.
  */
 
-public class MultiItemFragment extends BaseFragment {
+public class TimerViewFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_multi_item, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_timer_view, container, false);
 
         final TimerView timerView = (TimerView) rootView.findViewById(R.id.timer_view);
         timerView.setTimerSize(18, false);
