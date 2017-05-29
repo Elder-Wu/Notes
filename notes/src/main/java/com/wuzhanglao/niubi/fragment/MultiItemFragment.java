@@ -1,5 +1,6 @@
 package com.wuzhanglao.niubi.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.widget.HorizontalProgressView;
 import com.wuzhanglao.niubi.widget.TimerView;
 
 /**
@@ -29,6 +31,13 @@ public class MultiItemFragment extends BaseFragment {
 				AppUtils.showToast("finish");
 			}
 		});
+
+		HorizontalProgressView progressView = (HorizontalProgressView) rootView.findViewById(R.id.progress);
+		progressView.setMaxProgress(100);
+		progressView.setProgress(50);
+
+		progressView.setProgressForegroundColor(Color.GRAY);
+		progressView.setProgressBackgroundColor(Color.GREEN);
 		return rootView;
 	}
 }

@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/multi_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"/>
-
+        android:layout_marginTop="50dp"
+        android:visibility="gone"/>
 
     <com.wuzhanglao.niubi.widget.TimerView
         android:id="@+id/timer_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <com.wuzhanglao.niubi.widget.HorizontalProgressView
+        android:background="@color/pink_ece"
+        android:id="@+id/progress"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="50dp"
+        app:backgroundType="round"
+        app:foregroundType="rect"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        app:maxProgress="10000"
+        app:progress="50"/>
 </LinearLayout>
