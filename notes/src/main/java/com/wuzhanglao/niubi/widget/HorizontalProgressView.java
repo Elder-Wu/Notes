@@ -38,8 +38,8 @@ public class HorizontalProgressView extends View {
 	private static final int DEFAULT_MAX_PROGRESS = 100;
 	private static final int DEFAULT_FOREGROUND_TYPE = RECT;
 	private static final int DEFAULT_BACKGROUND_TYPE = RECT;
-	private static final int DEFAULT_FOREGROUND_COLOR = Color.RED;
-	private static final int DEFAULT_BACKGROUND_COLOR = Color.GRAY;
+	private static final int DEFAULT_FOREGROUND_COLOR = Color.BLUE;
+	private static final int DEFAULT_BACKGROUND_COLOR = Color.LTGRAY;
 
 	private float mProgress;
 	private float mMaxProgress;
