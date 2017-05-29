@@ -1,6 +1,5 @@
 package com.wuzhanglao.niubi.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -46,11 +45,8 @@ public class MultiItemFragment extends BaseFragment {
 		});
 
 		HorizontalProgressView progressView = (HorizontalProgressView) rootView.findViewById(R.id.progress);
-		progressView.setMaxProgress(100);
-		progressView.setProgress(50);
+//		progressView.setProgress(80);
 
-		progressView.setProgressForegroundColor(Color.GRAY);
-		progressView.setProgressBackgroundColor(Color.GREEN);
 		return rootView;
 	}
 }

@@ -38,8 +38,8 @@ public class HorizontalProgressView extends View {
 	private static final int DEFAULT_MAX_PROGRESS = 100;
 	private static final int DEFAULT_FOREGROUND_TYPE = RECT;
 	private static final int DEFAULT_BACKGROUND_TYPE = RECT;
-	private static final int DEFAULT_FOREGROUND_COLOR = Color.parseColor("#FF0000");
-	private static final int DEFAULT_BACKGROUND_COLOR = Color.parseColor("#f2f2f2");
+	private static final int DEFAULT_FOREGROUND_COLOR = Color.RED;
+	private static final int DEFAULT_BACKGROUND_COLOR = Color.GRAY;
 
 	private float mProgress;
 	private float mMaxProgress;
@@ -47,6 +47,7 @@ public class HorizontalProgressView extends View {
 	private int mBackgroundType;
 	private int mForegroundColor;
 	private int mBackgroundColor;
+
 	private Paint mPaint;
 	private RectF mRectF = new RectF();
 	private PorterDuffXfermode mPorterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP);
@@ -59,7 +60,7 @@ public class HorizontalProgressView extends View {
 		super(context, attrs);
 
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.HorizontalProgressView);
-		setProgressInternal(ta.getInteger(R.styleable.HorizontalProgressView_progress, DEFAULT_PROGRESS));
+		mProgress = ta.getInteger(R.styleable.HorizontalProgressView_progress, DEFAULT_PROGRESS);
 		mMaxProgress = ta.getInteger(R.styleable.HorizontalProgressView_maxProgress, DEFAULT_MAX_PROGRESS);
 		mForegroundType = ta.getInteger(R.styleable.HorizontalProgressView_foregroundType, DEFAULT_FOREGROUND_TYPE);
 		mBackgroundType = ta.getInteger(R.styleable.HorizontalProgressView_backgroundType, DEFAULT_BACKGROUND_TYPE);
@@ -72,6 +73,8 @@ public class HorizontalProgressView extends View {
 		mPaint.setAntiAlias(true);
 		mPaint.setStrokeWidth(0);
 		mPaint.setStyle(Paint.Style.FILL);
+
+		setProgressInternal(Float.valueOf(mProgress).intValue());
 	}
 
 	@Override
