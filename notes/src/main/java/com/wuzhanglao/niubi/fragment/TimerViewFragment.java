@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.widget.HorizontalProgressView;
 import com.wuzhanglao.niubi.widget.TimerView;
 
 /**

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/multi_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp" />
-
+        android:layout_marginTop="50dp"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,13 +23,16 @@
         android:id="@+id/timer_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/red_111"
-        android:padding="8dp"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp" />
+        android:textSize="15dp"/>
 
-    <com.wuzhanglao.niubi.widget.ArrowView
+    <com.wuzhanglao.niubi.widget.HorizontalProgressView
+        android:id="@+id/progress"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        app:backgroundType="round"
+        app:foregroundType="round"
+        app:progress="6"/>
 </LinearLayout>

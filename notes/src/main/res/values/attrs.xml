@@ -41,4 +41,19 @@
         <attr name="android:textSize" />
         <attr name="android:textColor" />
     </declare-styleable>
+
+    <declare-styleable name="HorizontalProgressView">
+        <attr name="foregroundColor" format="color"/>
+        <attr name="backgroundColor" format="color"/>
+        <attr name="maxProgress" format="integer"/>
+        <attr name="progress" format="integer"/>
+        <attr name="backgroundType" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="round" value="1"/>
+        </attr>
+        <attr name="foregroundType" format="enum">
+            <enum name="rect" value="0"/>
+            <enum name="round" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>
