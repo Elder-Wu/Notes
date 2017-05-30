@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -18,8 +20,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.orhanobut.logger.Logger;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /*
  * Created by ming.wu@shanbay.com on 2017/3/13.
@@ -43,20 +58,45 @@ public class GlideFragment extends BaseFragment {
 				.into(imageView);
 
 		final ImageView imageView2 = (ImageView) rootView.findViewById(R.id.image2);
-		imageView2.post(new Runnable() {
+		imageView2.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Glide.with(getContext())
-						.load("http://pic.qiantucdn.com/58pic/18/31/50/70T58PIC4Xi_1024.jpg")
+						.load((String) null)
 //				.load("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2197390997,3461607957&fm=23&gp=0.jpg")
 //				.load("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2530539761,4266142259&fm=23&gp=0.jpg")
 						.transform(new RoundTransform(getContext(), imageView2.getMeasuredWidth(), 10))
 						.diskCacheStrategy(DiskCacheStrategy.NONE)
 						.skipMemoryCache(true)
-						.crossFade()
-						.into(imageView2);
+						.fallback(new ColorDrawable(Color.GREEN))
+						.listener(new RequestListener<String, GlideDrawable>() {
+							@Override
+							public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+								return false;
+							}
+
+							@Override
+							public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+								Logger.d(model);
+								return false;
+							}
+						})
+						.into(new SimpleTarget<GlideDrawable>() {
+							@Override
+							public void onResourceReady(final GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+								Observable.timer(5, TimeUnit.SECONDS)
+										.subscribeOn(Schedulers.io())
+										.observeOn(AndroidSchedulers.mainThread())
+										.subscribe(new Action1<Long>() {
+											@Override
+											public void call(Long aLong) {
+												imageView2.setImageDrawable(new ColorDrawable(Color.DKGRAY));
+											}
+										});
+							}
+						});
 			}
-		});
+		},2000);
 
 		return rootView;
 	}
