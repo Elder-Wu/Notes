@@ -12,7 +12,6 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -30,10 +29,15 @@ import java.util.Map;
  * Created by ming.wu@shanbay.com on 2017/5/3.
  */
 
-public class ChartView extends FrameLayout {
+public class ProgressChartView extends FrameLayout {
 
 	private static final int DEFAULT_TEXT_SIZE = 10;  //单位：dp
 	private static final int DEFAULT_BASE_COLOR = Color.BLACK;
+	private static final int DEFAULT_TEXT_COLOR = Color.BLACK;
+	private static final int DEFAULT_COORDINATE_OFFSET = 10;
+	private static final int DEFAULT_TOUCH_RANGE = 50;
+	private static final int DEFAULT_ABSCISSA_COUNT = 7;
+	private static final int DEFAULT_ORDINATE_COUNT = 6;
 
 	private Paint mPaint;
 	private HintView mHintView;
@@ -45,23 +49,34 @@ public class ChartView extends FrameLayout {
 
 	private int mBaseColor; //整个图表的色调
 	private int mTextSize;
-	private float mViewWidth;
-	private float mViewHeight;
-	private boolean mIsThumbnailMode = false;
+	private boolean mIsThumbnailMode;
 	private DashPathEffect mDashPathEffect = new DashPathEffect(new float[]{5, 5}, 0);
+	private int mTextColor = DEFAULT_TEXT_COLOR;
 
-	public ChartView(Context context) {
+	private int mMaxOrdinateValue;
+	private int mMinOrdinateValue;
+	private int mOrdinateValueGap;
+
+	private Path mPolylinePath = new Path();
+	private List<Path> mColorBlockPathList = new ArrayList<>();
+
+	private List<Dial> mAbscissaDialList = new ArrayList<>();
+	private List<Path> mAbscissaLinePathList = new ArrayList<>();
+
+	private List<Dial> mOrdinateDialList = new ArrayList<>();
+	private List<Path> mOrdinateLinePathList = new ArrayList<>();
+
+	public ProgressChartView(Context context) {
 		this(context, null);
 	}
 
-	public ChartView(Context context, @Nullable AttributeSet attrs) {
+	public ProgressChartView(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
-
-		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ChartView);
-		mBaseColor = ta.getColor(R.styleable.ChartView_baseColor, DEFAULT_BASE_COLOR);
-		mIsThumbnailMode = ta.getBoolean(R.styleable.ChartView_isThumbnailMode, false);
+		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ProgressChartView);
+		mBaseColor = ta.getColor(R.styleable.ProgressChartView_baseColor, DEFAULT_BASE_COLOR);
+		mIsThumbnailMode = ta.getBoolean(R.styleable.ProgressChartView_isThumbnailMode, false);
 		mTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DEFAULT_TEXT_SIZE, getResources().getDisplayMetrics());
-		mTextSize = ta.getDimensionPixelSize(R.styleable.ChartView_android_textSize, mTextSize);
+		mTextSize = ta.getDimensionPixelSize(R.styleable.ProgressChartView_android_textSize, mTextSize);
 		ta.recycle();
 
 		mPaint = new Paint();
@@ -94,99 +109,78 @@ public class ChartView extends FrameLayout {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		mViewHeight = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
-		mViewWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
-	}
-
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		//计算出最大值和最小值
-		int minValue = Integer.MAX_VALUE;
-		int maxValue = Integer.MIN_VALUE;
-		for (Data data : mRawDataList) {
-			minValue = data.value < minValue ? data.value : minValue;
-			maxValue = data.value > maxValue ? data.value : maxValue;
-		}
-
-		//纵坐标"数值"上的间距
-		int ordinateValueGap = (int) Math.ceil((maxValue - minValue) / 4.0f);
-		ordinateValueGap = ordinateValueGap == 0 ? 1 : ordinateValueGap;
+		float viewHeight = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
+		float viewWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
 
 		//计算起始x坐标，起始y坐标
 		float startX;
 		float startY;
 		if (mIsThumbnailMode) {
 			startX = 0;
-			startY = mViewHeight;
+			startY = viewHeight;
 		} else {
-			int maxWidth = 0;
-			for (Data data : mRawDataList) {
-				int width = (int) Math.ceil(mPaint.measureText(String.valueOf(data.value)));
-				maxWidth = maxWidth > width ? maxWidth : width;
-			}
-			startX = maxWidth + 10;
+			int maxWidth = (int) Math.ceil(mPaint.measureText(String.valueOf(mMinOrdinateValue + mOrdinateValueGap * (DEFAULT_ORDINATE_COUNT - 1))));
+			startX = maxWidth + DEFAULT_COORDINATE_OFFSET;
 
 			Paint.FontMetrics metrics = mPaint.getFontMetrics();
-			startY = mViewHeight - (int) Math.ceil(metrics.bottom - metrics.top);
+			startY = viewHeight - (metrics.bottom - metrics.top) - DEFAULT_COORDINATE_OFFSET;
 		}
 
-		//画横线和纵坐标的值
+		//计算每条横线的位置和纵坐标刻度的位置
 		float leftHeight = startY;
 		float topLineHeight = 0;
-		int ordinatePixelGap = (int) Math.ceil(leftHeight / 11.0f);
-		for (int i = 0; i < 6; i++) {
+		int ordinatePixelGap = (int) Math.ceil(leftHeight / (DEFAULT_ORDINATE_COUNT * 2 - 1));
+
+		mAbscissaDialList.clear();
+		mAbscissaLinePathList.clear();
+		for (int i = 0; i < DEFAULT_ORDINATE_COUNT; i++) {
 			float height = startY - i * ordinatePixelGap * 2;
-			if (i == 5) {
-				maxValue = minValue + ordinateValueGap * i;
+			if (i == DEFAULT_ORDINATE_COUNT - 1) {
+				mMaxOrdinateValue = mMinOrdinateValue + mOrdinateValueGap * i;
 				topLineHeight = height;
 			}
 
 			if (mIsThumbnailMode) {
 				continue;
 			}
-			if (i == 0 || i == 5) {
-				mPaint.setPathEffect(null);
-			} else {
-				mPaint.setPathEffect(mDashPathEffect);
-			}
+
 			Path path = new Path();
 			path.moveTo(startX, height);
-			path.lineTo(mViewWidth, height);
-			mPaint.setColor(Color.BLACK);
-			mPaint.setStrokeWidth(0);
-			canvas.drawPath(path, mPaint);
+			path.lineTo(viewWidth, height);
+			mAbscissaLinePathList.add(path);
 
-			if (i == 0 && minValue - ordinateValueGap >= 0) {
-				Rect rect = new Rect();
-				String text = String.valueOf(minValue - ordinateValueGap);
-				mPaint.getTextBounds(text, 0, text.length(), rect);
-				mPaint.setPathEffect(null);
-				canvas.drawText(text, startX - rect.width() - 10, height + rect.height() / 2.0f, mPaint);
+			Rect rect = new Rect();
+			String text = "";
+			if (i == 0 && mMinOrdinateValue - mOrdinateValueGap >= 0) {
+				text = String.valueOf(mMinOrdinateValue - mOrdinateValueGap);
 			}
-
 			if (i != 0) {
-				Rect rect = new Rect();
-				String text = String.valueOf(minValue + ordinateValueGap * (i - 1));
-				mPaint.getTextBounds(text, 0, text.length(), rect);
-				mPaint.setPathEffect(null);
-				canvas.drawText(text, startX - rect.width() - 10, height + rect.height() / 2.0f, mPaint);
+				text = String.valueOf(mMinOrdinateValue + mOrdinateValueGap * (i - 1));
 			}
+			mPaint.getTextBounds(text, 0, text.length(), rect);
+
+			Point point = new Point();
+			point.x = startX - rect.width() - 10;
+			point.y = height + rect.height() / 2.0f;
+			Dial dial = new Dial();
+			dial.text = text;
+			dial.point = point;
+			mAbscissaDialList.add(dial);
 		}
 
-		//画纵线和横坐标的值
-		float leftWidth = mViewWidth - startX;
-		int abscissaPixelGap = (int) Math.ceil(leftWidth / 14.0f);
-		mPaint.setPathEffect(mDashPathEffect);
+		//计算每条纵线的位置和横坐标刻度的位置
+		float leftWidth = viewWidth - startX;
+		int abscissaPixelGap = (int) Math.ceil(leftWidth / (DEFAULT_ABSCISSA_COUNT * 2));
+		mOrdinateDialList.clear();
+		mOrdinateLinePathList.clear();
 		mAbscissaMap.clear();
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < DEFAULT_ABSCISSA_COUNT; i++) {
 			float width = startX + abscissaPixelGap + i * 2 * abscissaPixelGap;
 			if (!mIsThumbnailMode) {
 				Path path = new Path();
 				path.moveTo(width, startY);
 				path.lineTo(width, topLineHeight);
-				mPaint.setPathEffect(mDashPathEffect);
-				canvas.drawPath(path, mPaint);
+				mOrdinateLinePathList.add(path);
 			}
 			if (mRawDataList != null && i < mRawDataList.size()) {
 				Rect rect = new Rect();
@@ -194,73 +188,114 @@ public class ChartView extends FrameLayout {
 				mPaint.getTextBounds(text, 0, text.length(), rect);
 				mAbscissaMap.put(text, width);
 				if (!mIsThumbnailMode) {
-					mPaint.setPathEffect(null);
-					canvas.drawText(text, width - rect.width() / 2.0f, startY + rect.height() + rect.height() / 2, mPaint);
+					Point point = new Point();
+					point.x = width - rect.width() / 2.0f;
+					point.y = startY + rect.height() + rect.height() / 2;
+					Dial dial = new Dial();
+					dial.text = text;
+					dial.point = point;
+					mOrdinateDialList.add(dial);
 				}
 			}
 		}
 
-
-		//计算出点的位置
+		//计算出每个点的位置
 		mPointList.clear();
 		for (Data data : mRawDataList) {
 			Point point = new Point();
 			point.x = mAbscissaMap.get(data.date);
-			point.y = leftHeight - (((leftHeight - ordinatePixelGap) / (maxValue - minValue)) * (data.value - minValue)) - ordinatePixelGap * 2;
+			point.y = leftHeight - (((leftHeight - ordinatePixelGap) / (mMaxOrdinateValue - mMinOrdinateValue)) * (data.value - mMinOrdinateValue)) - ordinatePixelGap * 2;
+			point.value = String.valueOf(data.value);
 			mPointList.add(point);
 		}
 
-		//画色块
-		Paint blockPaint = new Paint();
-		blockPaint.setDither(true);
-		blockPaint.setAntiAlias(true);
-		blockPaint.setColor(mBaseColor);
-		blockPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		for (int i = 0; i < 7; i++) {
+		//计算出色块的path
+		mColorBlockPathList.clear();
+		for (int i = 0; i < DEFAULT_ABSCISSA_COUNT; i++) {
 			if (i + 1 >= mPointList.size()) {
 				break;
 			}
-			if (i % 2 == 0) {
-				blockPaint.setAlpha(50);
-			} else {
-				blockPaint.setAlpha(100);
-			}
-			Path colorBlock = new Path();
-			colorBlock.moveTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, startY);
-			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), startY);
-			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), mPointList.get(i + 1).y);
-			colorBlock.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, mPointList.get(i).y);
-			colorBlock.close();
-			canvas.drawPath(colorBlock, blockPaint);
+			Path path = new Path();
+			path.moveTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, startY);
+			path.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), startY);
+			path.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * (i + 1), mPointList.get(i + 1).y);
+			path.lineTo(startX + abscissaPixelGap + abscissaPixelGap * 2 * i, mPointList.get(i).y);
+			path.close();
+			mColorBlockPathList.add(path);
 		}
 
-
-		//画折线
-		Path path = new Path();
+		//计算出折线的path
+		mPolylinePath.reset();
 		for (int i = 0; i < mPointList.size(); i++) {
 			Point point = mPointList.get(i);
 			if (i == 0) {
-				path.moveTo(point.x, point.y);
+				mPolylinePath.moveTo(point.x, point.y);
 			} else {
-				path.lineTo(point.x, point.y);
+				mPolylinePath.lineTo(point.x, point.y);
 			}
 		}
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		if (!mIsThumbnailMode) {
+			//画纵坐标
+			mPaint.setColor(mTextColor);
+			mPaint.setStrokeWidth(1);
+			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+			for (int i = 0; i < mAbscissaLinePathList.size(); i++) {
+				if (i == 0) {
+					mPaint.setPathEffect(null);
+				} else {
+					mPaint.setPathEffect(mDashPathEffect);
+				}
+				canvas.drawPath(mAbscissaLinePathList.get(i), mPaint);
+
+				Dial dial = mAbscissaDialList.get(i);
+				mPaint.setPathEffect(null);
+				canvas.drawText(dial.text, dial.point.x, dial.point.y, mPaint);
+			}
+
+			//画横坐标
+			for (int i = 0; i < mOrdinateLinePathList.size(); i++) {
+				mPaint.setPathEffect(mDashPathEffect);
+				canvas.drawPath(mOrdinateLinePathList.get(i), mPaint);
+				if (mRawDataList != null && i < mOrdinateDialList.size()) {
+					Dial dial = mOrdinateDialList.get(i);
+					mPaint.setPathEffect(null);
+					canvas.drawText(dial.text, dial.point.x, dial.point.y, mPaint);
+				}
+			}
+		}
+
+		//画色块
+		mPaint.setColor(mBaseColor);
+		mPaint.setStrokeWidth(0);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		for (int i = 0; i < mColorBlockPathList.size(); i++) {
+			if (i % 2 == 0) {
+				mPaint.setAlpha(30);
+			} else {
+				mPaint.setAlpha(60);
+			}
+			canvas.drawPath(mColorBlockPathList.get(i), mPaint);
+		}
+
+		//画折线
 		mPaint.setColor(mBaseColor);
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setStrokeWidth(2);
 		mPaint.setPathEffect(null);
-		canvas.drawPath(path, mPaint);
+		canvas.drawPath(mPolylinePath, mPaint);
 
 		//画点
-		Paint pointPaint = new Paint();
-		pointPaint.setDither(true);
-		pointPaint.setAntiAlias(true);
-		pointPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		for (Point point : mPointList) {
-			pointPaint.setColor(Color.WHITE);
-			canvas.drawCircle(point.x, point.y, 7, pointPaint);
-			pointPaint.setColor(mBaseColor);
-			canvas.drawCircle(point.x, point.y, 3, pointPaint);
+			mPaint.setColor(Color.WHITE);
+			canvas.drawCircle(point.x, point.y, 7, mPaint);
+			mPaint.setColor(mBaseColor);
+			canvas.drawCircle(point.x, point.y, 3, mPaint);
 		}
 	}
 
@@ -271,15 +306,23 @@ public class ChartView extends FrameLayout {
 
 	public void setColor(int colorTone) {
 		mBaseColor = colorTone;
-		requestLayout();
-	}
-
-	public int getColor() {
-		return mBaseColor;
+		invalidate();
 	}
 
 	public void setData(List<Data> dataList) {
 		mRawDataList = dataList;
+		//计算出最大值和最小值
+		mMinOrdinateValue = Integer.MAX_VALUE;
+		mMaxOrdinateValue = Integer.MIN_VALUE;
+		for (Data data : mRawDataList) {
+			mMinOrdinateValue = data.value < mMinOrdinateValue ? data.value : mMinOrdinateValue;
+			mMaxOrdinateValue = data.value > mMaxOrdinateValue ? data.value : mMaxOrdinateValue;
+		}
+
+		//纵坐标"数值"上的间距
+		mOrdinateValueGap = (int) Math.ceil((mMaxOrdinateValue - mMinOrdinateValue) / Float.valueOf(String.valueOf(DEFAULT_ORDINATE_COUNT - 2)));
+		mOrdinateValueGap = mOrdinateValueGap == 0 ? 1 : mOrdinateValueGap;
+
 		requestLayout();
 	}
 
@@ -304,8 +347,7 @@ public class ChartView extends FrameLayout {
 			addView(hintView);
 			mHintViewList.add(hintView);
 			hintView.setVisibility(INVISIBLE);
-			hintView.show(getValue(point.x));
-
+			hintView.show(point.value);
 			hintView.post(new LayoutHintViewRunnable(hintView, point));
 		}
 	}
@@ -318,18 +360,18 @@ public class ChartView extends FrameLayout {
 
 		removeView(mHintView);
 
-		float fingerX = event.getX();
-		float fingerY = event.getY();
+		float touchX = event.getX();
+		float touchY = event.getY();
 
 		for (final Point point : mPointList) {
-			if (fingerY < point.y - 50 || fingerY > point.y + 50
-					|| fingerX < point.x - 50 || fingerX > point.x + 50) {
+			if (touchY < point.y - DEFAULT_TOUCH_RANGE || touchY > point.y + DEFAULT_TOUCH_RANGE
+					|| touchX < point.x - DEFAULT_TOUCH_RANGE || touchX > point.x + DEFAULT_TOUCH_RANGE) {
 				continue;
 			}
 
 			addView(mHintView);
 			mHintView.setVisibility(INVISIBLE);
-			mHintView.show(getValue(point.x));
+			mHintView.show(point.value);
 
 			post(new LayoutHintViewRunnable(mHintView, point));
 			return true;
@@ -356,7 +398,7 @@ public class ChartView extends FrameLayout {
 			int hintViewWidth = view.getMeasuredWidth();
 			int hintViewHeight = view.getMeasuredHeight();
 
-			if (point.y >= hintViewHeight) {
+			if (point.y >= hintViewHeight + 10) {
 				//点的上面
 				top = (int) Math.ceil(point.y - hintViewHeight - 10);
 			} else {
@@ -377,34 +419,12 @@ public class ChartView extends FrameLayout {
 				left = (int) (point.x - Math.ceil(hintViewWidth / 2.0f));
 			}
 
-			FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(hintViewWidth, hintViewHeight);
+			LayoutParams layoutParams = new LayoutParams(hintViewWidth, hintViewHeight);
 			layoutParams.leftMargin = left;
 			layoutParams.topMargin = top;
 			view.setLayoutParams(layoutParams);
 			view.setVisibility(VISIBLE);
 		}
-	}
-
-	private String getValue(float x) {
-		String date = null;
-		for (Map.Entry<String, Float> data : mAbscissaMap.entrySet()) {
-			if (data.getValue() == x) {
-				date = data.getKey();
-				break;
-			}
-		}
-
-		if (TextUtils.isEmpty(date)) {
-			return "";
-		}
-
-		for (Data data : mRawDataList) {
-			if (TextUtils.equals(data.date, date)) {
-				return String.valueOf(data.value);
-			}
-		}
-
-		return "";
 	}
 
 	private class HintView extends View {
@@ -459,6 +479,13 @@ public class ChartView extends FrameLayout {
 	private class Point {
 		private float x;
 		private float y;
+		private String value;
+	}
+
+	//刻度
+	private class Dial {
+		private String text;
+		private Point point;
 	}
 
 	public static class Data {
@@ -473,13 +500,13 @@ public class ChartView extends FrameLayout {
 
 	@Override
 	public boolean isInEditMode() {
-		mRawDataList.add(new ChartView.Data("Mar 01", 3111));
-		mRawDataList.add(new ChartView.Data("Mar 02", 3115));
-		mRawDataList.add(new ChartView.Data("Mar 03", 3278));
-		mRawDataList.add(new ChartView.Data("Mar 04", 3376));
-		mRawDataList.add(new ChartView.Data("Mar 05", 3489));
-		mRawDataList.add(new ChartView.Data("Mar 06", 3789));
-		mRawDataList.add(new ChartView.Data("Mar 07", 3788));
+		mRawDataList.add(new Data("Mar 01", 3111));
+		mRawDataList.add(new Data("Mar 02", 3115));
+		mRawDataList.add(new Data("Mar 03", 3278));
+		mRawDataList.add(new Data("Mar 04", 3376));
+		mRawDataList.add(new Data("Mar 05", 3489));
+		mRawDataList.add(new Data("Mar 06", 3789));
+		mRawDataList.add(new Data("Mar 07", 3788));
 		return super.isInEditMode();
 	}
 }

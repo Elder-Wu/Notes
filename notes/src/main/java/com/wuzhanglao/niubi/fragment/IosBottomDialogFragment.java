@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
-import com.wuzhanglao.niubi.widget.ChartView;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
 
 import java.util.ArrayList;
