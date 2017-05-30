@@ -16,6 +16,7 @@ import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
 import com.wuzhanglao.niubi.widget.IosBottomDialog;
+import com.wuzhanglao.niubi.widget.ProgressChartView;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -81,21 +82,21 @@ public class IosBottomDialogFragment extends BaseFragment implements View.OnClic
                     }
                 });
 
-        final ChartView chartView = (ChartView) rootView.findViewById(R.id.chart);
-        ArrayList<ChartView.Data> mRawDataList = new ArrayList<>();
-        mRawDataList.add(new ChartView.Data("Mar 01", 3111));
+        final ProgressChartView chartView = (ProgressChartView) rootView.findViewById(R.id.chart);
+        ArrayList<ProgressChartView.Data> mRawDataList = new ArrayList<>();
+        mRawDataList.add(new ProgressChartView.Data("Mar 01", 3111));
 //		mRawDataList.add(new Data("Mar 02", 0));
 //		mRawDataList.add(new Data("Mar 03", 0));
 //		mRawDataList.add(new Data("Mar 04", 0));
 //		mRawDataList.add(new Data("Mar 05", 0));
 //		mRawDataList.add(new Data("Mar 06", 0));
 //		mRawDataList.add(new Data("Mar 07", 0));
-        mRawDataList.add(new ChartView.Data("Mar 02", 3115));
-        mRawDataList.add(new ChartView.Data("Mar 03", 3278));
-        mRawDataList.add(new ChartView.Data("Mar 04", 3376));
-        mRawDataList.add(new ChartView.Data("Mar 05", 3489));
-        mRawDataList.add(new ChartView.Data("Mar 06", 3789));
-        mRawDataList.add(new ChartView.Data("Mar 07", 3788));
+        mRawDataList.add(new ProgressChartView.Data("Mar 02", 3115));
+        mRawDataList.add(new ProgressChartView.Data("Mar 03", 3278));
+        mRawDataList.add(new ProgressChartView.Data("Mar 04", 3376));
+        mRawDataList.add(new ProgressChartView.Data("Mar 05", 3489));
+        mRawDataList.add(new ProgressChartView.Data("Mar 06", 3789));
+        mRawDataList.add(new ProgressChartView.Data("Mar 07", 3788));
         chartView.setData(mRawDataList);
         chartView.setColor(Color.RED);
         SwitchCompat switchCompat = (SwitchCompat) rootView.findViewById(R.id.switch_btn);
