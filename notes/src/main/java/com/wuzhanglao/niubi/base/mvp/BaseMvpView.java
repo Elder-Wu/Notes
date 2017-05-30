@@ -1,8 +1,8 @@
 package com.wuzhanglao.niubi.base.mvp;
 /*
- * date:2017/3/1
- * author:wuzhanglao
- * website:www.wuzhanglao.com
+ * date:2017/3/1.
+ * author:wuzhanglao.
+ * website:www.wuzhanglao.com.
  */
 
 import android.app.Activity;
