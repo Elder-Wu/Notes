@@ -31,10 +31,10 @@
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="ChartView">
-        <attr name="baseColor" format="color" />
-        <attr name="isThumbnailMode" format="boolean" />
-        <attr name="android:textSize" />
+    <declare-styleable name="ProgressChartView">
+        <attr name="android:textSize"/>
+        <attr name="baseColor" format="color"/>
+        <attr name="isThumbnailMode" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="TimerView">
@@ -55,5 +55,17 @@
             <enum name="rect" value="0"/>
             <enum name="round" value="1"/>
         </attr>
+    </declare-styleable>
+    <declare-styleable name="ExpandableTextView">
+        <attr name="android:text"/>
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+        <attr name="android:lineSpacingMultiplier"/>
+        <attr name="maxLineCount" format="integer"/>
+        <attr name="hasAnimation" format="boolean"/>
+        <attr name="expandLabel" format="string"/>
+        <attr name="collapseLabel" format="string"/>
+        <attr name="expandLabelColor" format="color"/>
+        <attr name="collapseLabelColor" format="color"/>
     </declare-styleable>
 </resources>
