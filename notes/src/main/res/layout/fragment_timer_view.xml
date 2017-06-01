@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="59:"
-        android:textSize="18dp" />
+        android:textSize="18dp"/>
 
     <com.wuzhanglao.niubi.widget.TimerView
         android:id="@+id/timer_view"
@@ -32,7 +32,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
-        app:backgroundType="rect"
-        app:foregroundType="rect"
-        app:progress="60"/>
+        app:backgroundType="round"
+        app:foregroundType="round"
+        app:progress="20"/>
 </LinearLayout>
