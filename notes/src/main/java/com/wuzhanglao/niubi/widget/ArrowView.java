@@ -16,45 +16,57 @@ import android.view.View;
 
 public class ArrowView extends View {
 
-    private Paint mPaint;
+	private Paint mPaint;
 
-    public ArrowView(Context context) {
-        this(context, null);
-    }
+	private Path mPath = new Path();
 
-    public ArrowView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        mPaint = new Paint();
-        mPaint.setColor(Color.RED);
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
-        mPaint.setStrokeWidth(5);
-        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-    }
+	public ArrowView(Context context) {
+		this(context, null);
+	}
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
+	public ArrowView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		mPaint = new Paint();
+		mPaint.setColor(Color.RED);
+		mPaint.setAntiAlias(true);
+		mPaint.setDither(true);
+		mPaint.setStrokeWidth(5);
+		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+	}
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-    }
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        Path path = new Path();
-        path.moveTo(0, getMeasuredHeight() / 2.0f);
-        path.lineTo(getMeasuredWidth(), getMeasuredHeight() / 2.0f);
-        canvas.drawPath(path, mPaint);
+	@Override
+	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+		super.onLayout(changed, left, top, right, bottom);
+	}
 
-        Path path1 = new Path();
-        path.moveTo(getMeasuredWidth(), getMeasuredHeight() / 2.0f);
-        path.lineTo(getMeasuredWidth() - 100, getMeasuredHeight() / 2.0f - 50);
-        path.lineTo(getMeasuredWidth() - 100, getMeasuredHeight() / 2.0f + 50);
-        path.close();
-        canvas.drawPath(path1,mPaint);
+	@Override
+	protected void onDraw(Canvas canvas) {
+		// 1.rotate the canvas
+		canvas.rotate(50);
+		// 1.1 caculate the angle
 
-    }
+		// 2.draw line
+
+		// 3.draw traiangle
+
+		// 4.finish the paint
+
+		Path path = new Path();
+		path.moveTo(0, getMeasuredHeight() / 2.0f);
+		path.lineTo(getMeasuredWidth(), getMeasuredHeight() / 2.0f);
+		canvas.drawPath(path, mPaint);
+
+		Path path1 = new Path();
+		path.moveTo(getMeasuredWidth(), getMeasuredHeight() / 2.0f);
+		path.lineTo(getMeasuredWidth() - 100, getMeasuredHeight() / 2.0f - 50);
+		path.lineTo(getMeasuredWidth() - 100, getMeasuredHeight() / 2.0f + 50);
+		path.close();
+		canvas.drawPath(path1, mPaint);
+
+	}
 }
