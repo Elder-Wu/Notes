@@ -4,7 +4,7 @@ package com.wuzhanglao.niubi.widget;
 
 //    private static final String TAG = CommonDialog.class.getSimpleName();
 //    private static final int DEFAULT_DIALOG_GRAVITY = Gravity.BOTTOM;
-//    private static final int DEFAULT_DIALOG_ANIM = R.style.ios_bottom_dialog_anim;
+//    private static final int DEFAULT_DIALOG_ANIM = R.style.IosBottomDialog;
 //    private DialogDismissListener dialogDismissListener;
 //
 //    public CommonDialog(Context context) {

@@ -1,7 +1,10 @@
 package com.wuzhanglao.niubi.fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.view.ViewGroup;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseFragment;
 import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.widget.RoundDrawable;
 import com.wuzhanglao.niubi.widget.TimerView;
 
 /**
@@ -20,6 +24,8 @@ public class TimerViewFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_timer_view, container, false);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
+		ViewCompat.setBackground(rootView, new RoundDrawable(bitmap));
 
 		final TimerView timerView = (TimerView) rootView.findViewById(R.id.timer_view);
 		timerView.setTimerSize(18, false);

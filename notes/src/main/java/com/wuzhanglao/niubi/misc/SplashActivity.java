@@ -1,8 +1,10 @@
 package com.wuzhanglao.niubi.misc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.wuzhanglao.niubi.base.BaseActivity;
+import com.wuzhanglao.niubi.home.HomeActivity;
 
 /**
  * Created by ming.wu@shanbay.com on 2017/5/30.
@@ -11,10 +13,8 @@ import com.wuzhanglao.niubi.base.BaseActivity;
 public class SplashActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		initTranslucentStatusBar();
 		super.onCreate(savedInstanceState);
-//		getWindow().getDecorView().setBackgroundColor(Color.MAGENTA);
-
-//		setContentView(R.layout.activity_splash);
+		startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+		finish();
 	}
 }
