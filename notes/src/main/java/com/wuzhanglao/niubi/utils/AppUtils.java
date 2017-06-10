@@ -6,12 +6,13 @@ package com.wuzhanglao.niubi.utils;
  */
 
 import android.os.Looper;
-import android.widget.Toast;
+
+import es.dmoral.toasty.Toasty;
 
 public class AppUtils {
     public static void showToast(String msg) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            Toast.makeText(NoteApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+            Toasty.info(NoteApplication.getInstance(), msg, 2).show();
         }
     }
 }

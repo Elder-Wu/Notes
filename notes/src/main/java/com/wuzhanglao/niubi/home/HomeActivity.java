@@ -6,6 +6,8 @@ import android.view.WindowManager;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
+import com.wuzhanglao.niubi.utils.AppUtils;
+import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomeActivity extends BaseActivity {
 
@@ -28,6 +30,10 @@ public class HomeActivity extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
+		if(!UIUtils.isDoubleClick()){
+			AppUtils.showToast("再按一次退出");
+			return;
+		}
 		super.onBackPressed();
 //		mView.hideBackButton();
 	}

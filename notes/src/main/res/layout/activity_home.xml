@@ -13,7 +13,7 @@
 
         <include
             android:id="@+id/activity_main_toolbar"
-            layout="@layout/toolbar_default"/>
+            layout="@layout/layout_toolbar_default"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

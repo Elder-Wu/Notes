@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list android:opacity="opaque" xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
 
-    <item android:drawable="@color/red_111"/>
+    <item android:drawable="@color/white" />
     <item>
         <bitmap
+            android:antialias="true"
             android:gravity="center"
-            android:src="@drawable/o"/>
+            android:src="@drawable/splash_logo"
+            android:tileMode="disabled" />
     </item>
 
 </layer-list>
