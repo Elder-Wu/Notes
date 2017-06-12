@@ -34,9 +34,9 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
     private static final int UNSELECTED_DOT_COLOR = Color.LTGRAY;
     private static final int SELECTED_DOT_COLOR = Color.DKGRAY;
     //指示器的圆点大小  单位：dp
-    private static final int DEFAULT_DOT_SIZE = UIUtils.dp2px(8);
+    private static final int DEFAULT_DOT_SIZE = Math.round(UIUtils.dp2px(8));
     //每个小圆点之间的距离
-    private static final int DEFAULT_DOT_SPAN = UIUtils.dp2px(3);
+    private static final int DEFAULT_DOT_SPAN = Math.round(UIUtils.dp2px(3));
     //页面切换时间
     private static final int SCROLL_DURATION = 500;
     //页面展示时间
@@ -103,7 +103,7 @@ public class Banner extends RelativeLayout implements ViewPager.OnPageChangeList
         RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(ALIGN_PARENT_BOTTOM);
         params.addRule(CENTER_HORIZONTAL);
-        params.setMargins(UIUtils.dp2px(5), UIUtils.dp2px(5), UIUtils.dp2px(5), UIUtils.dp2px(5));
+        params.setMargins(Math.round(UIUtils.dp2px(5)),Math.round(UIUtils.dp2px(5)),Math.round(UIUtils.dp2px(5)),Math.round(UIUtils.dp2px(5)));
         addView(ll_dots, params);
     }
 

@@ -35,7 +35,7 @@ public class ApproveListLayout extends HorizontalScrollView {
     private Context context;
     private List<RoundImageView> headList;
 
-    private int picSize = UIUtils.dp2px(DEFAULT_PIC_SIZE);
+    private int picSize = Math.round(UIUtils.dp2px(DEFAULT_PIC_SIZE));
     private int picCount = DEFAULT_PIC_COUNT;
     private float picOffset = DEFAULT_PIC_OFFSET;
 
@@ -84,7 +84,7 @@ public class ApproveListLayout extends HorizontalScrollView {
             RoundImageView head = new RoundImageView(context);
             head.setId(head.hashCode() + i);
             head.setBorderColor(Color.WHITE);
-            head.setBorderWidth(UIUtils.dp2px(1));
+            head.setBorderWidth(Math.round(UIUtils.dp2px(1)));
             head.setImageResource(R.drawable.avatar);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(picSize, picSize);
             params.addRule(ALIGN_PARENT_LEFT);

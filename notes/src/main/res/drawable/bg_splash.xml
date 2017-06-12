@@ -2,13 +2,21 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
 
-    <item android:drawable="@color/white" />
-    <item>
+    <item android:drawable="@color/main_color" />
+    <item android:bottom="100dp">
         <bitmap
             android:antialias="true"
             android:gravity="center"
-            android:src="@drawable/splash_logo"
+            android:src="@drawable/icon_app"
             android:tileMode="disabled" />
+    </item>
+
+    <item android:bottom="-150dp">
+        <bitmap
+            android:antialias="true"
+            android:gravity="center"
+            android:src="@drawable/splash_text"
+            android:tileMode="disabled"/>
     </item>
 
 </layer-list>

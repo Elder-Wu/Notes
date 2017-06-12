@@ -28,7 +28,6 @@
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/btn_bg_colorfff_radius3"
                 android:padding="6dp"
-                android:text="@string/back"
                 android:textColor="@color/white"
                 android:textSize="15dp"/>
 

@@ -83,7 +83,7 @@ public class BezierView extends RelativeLayout {
 
     private void addHeartView() {
         if (params == null) {
-            params = new RelativeLayout.LayoutParams(UIUtils.dp2px(DEFAULT_PIC_SIZE), UIUtils.dp2px(DEFAULT_PIC_SIZE));
+            params = new RelativeLayout.LayoutParams(Math.round(UIUtils.dp2px(DEFAULT_PIC_SIZE)), Math.round(UIUtils.dp2px(DEFAULT_PIC_SIZE)));
             params.addRule(ALIGN_PARENT_BOTTOM);
             params.addRule(CENTER_HORIZONTAL);
             params.setMargins(10, 10, 10, 10);

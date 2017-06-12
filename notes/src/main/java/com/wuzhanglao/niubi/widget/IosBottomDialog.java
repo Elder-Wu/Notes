@@ -136,7 +136,7 @@ public class IosBottomDialog extends Dialog {
                 for (int i = 0; i < p.options.size(); i++) {
                     final Option option = p.options.get(i);
                     final TextView optionText = new TextView(context);
-                    int padding = UIUtils.dp2px(IosBottomDialog.DEFAULT_PADDING);
+                    int padding = UIUtils.dp2px(IosBottomDialog.DEFAULT_PADDING).intValue();
                     optionText.setPadding(padding, padding, padding, padding);
                     optionText.setText(option.getName());
                     optionText.setTextSize(p.optionTextSize);

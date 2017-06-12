@@ -45,7 +45,6 @@
         android:background="@drawable/bottom_dialog_cancel"
         android:gravity="center"
         android:padding="8dp"
-        android:text="@string/cancel"
         android:textColor="@color/text_color_green_013ADF"
         android:textSize="15sp" />
 

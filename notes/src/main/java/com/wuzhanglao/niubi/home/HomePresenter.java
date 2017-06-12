@@ -27,7 +27,7 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 
 	@Override
 	public void onBackBtnClick() {
-		if (UIUtils.isDoubleClick()) {
+		if (UIUtils.isDoubleClick(300)) {
 			return;
 		}
 	}

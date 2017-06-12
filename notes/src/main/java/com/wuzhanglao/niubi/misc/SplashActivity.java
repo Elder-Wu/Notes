@@ -18,18 +18,20 @@ import rx.schedulers.Schedulers;
  */
 
 public class SplashActivity extends BaseActivity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Observable.timer(1, TimeUnit.MILLISECONDS)
-				.subscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(new Action1<Long>() {
-					@Override
-					public void call(Long aLong) {
-						startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-						finish();
-					}
-				});
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Observable.timer(5, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>() {
+
+                    @Override
+                    public void call(Long aLong) {
+                        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                        finish();
+                    }
+                });
+    }
 }

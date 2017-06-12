@@ -55,7 +55,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/more" />
+            android:paddingRight="10dp" />
     </LinearLayout>
 </RelativeLayout>
