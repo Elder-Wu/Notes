@@ -35,6 +35,10 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
         <activity
+            android:name=".misc.DemoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".home.TestRxActivity1"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>

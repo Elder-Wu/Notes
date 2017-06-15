@@ -12,10 +12,10 @@ import com.wuzhanglao.niubi.fragment.GlideFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
 import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
-import com.wuzhanglao.niubi.fragment.TimerViewFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
 import com.wuzhanglao.niubi.fragment.TestMeasureLayoutFragment;
+import com.wuzhanglao.niubi.fragment.TimerViewFragment;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> implements HomeCallback {
@@ -35,6 +35,8 @@ public class HomePresenter extends BaseMvpPresenter<HomeView, HomeModel> impleme
 	@Override
 	public void onItemClick(String title) {
 		switch (title) {
+			case "DemoActivity":
+				break;
 			case "Glide transform":
 				getView().openFragment(new GlideFragment(), title);
 				break;

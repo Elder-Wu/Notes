@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
 import com.wuzhanglao.niubi.R;
@@ -18,7 +19,9 @@ import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.base.mvp.BaseMvpView;
 import com.wuzhanglao.niubi.bean.TextBean;
+import com.wuzhanglao.niubi.misc.DemoActivity;
 import com.wuzhanglao.niubi.utils.NoteApplication;
+import com.wuzhanglao.niubi.view.ExoPlayerDemo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +92,6 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 				"     </EMP>\n" +
 				"   </EMPLIST>");
 
-
 	}
 
 //	public void showBackButton(String fragmentName) {
@@ -112,6 +114,7 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
+		data.add(new TextBean("DemoActivity", "一个用来显示Demo的Activity"));
 		data.add(new TextBean("TimerView", "RecyclerView多类型布局"));
 		data.add(new TextBean("Glide transform", "..."));
 		data.add(new TextBean("TextView高亮显示", "点击英文单词可以高亮显示，并且显示翻译结果"));
@@ -145,6 +148,9 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 	@Override
 	public void onTextClick(TextBean bean) {
 		getCallback().onItemClick(bean.getTitle());
+		if (TextUtils.equals(bean.getTitle(), "DemoActivity")) {
+			DemoActivity.start(getActivity(), new ExoPlayerDemo(getActivity()));
+		}
 	}
 
 	public void openFragment(Fragment fragment, String fragmentName) {

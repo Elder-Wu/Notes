@@ -17,13 +17,13 @@ import android.widget.Toast;
 
 public class ToastUtil {
 
-    public static void showInfo(String msg) {
+    public static void showInfo(Context context,String msg) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
 //            Toasty.Config.getInstance().setInfoColor(Color.parseColor("#CAE1FF")).apply();
 //            Toasty.info(NoteApplication.getInstance(), msg, 2).show();
 
-            Toast toast = new Toast(NoteApplication.getInstance());
-            toast.setView(new ToastView(NoteApplication.getInstance(), msg));
+            Toast toast = new Toast(context);
+            toast.setView(new ToastView(context, msg));
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.show();
         }
