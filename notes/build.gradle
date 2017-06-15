@@ -117,4 +117,5 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     //toasty
     compile 'com.github.GrenderG:Toasty:1.2.5'
+    compile 'com.google.android.exoplayer:exoplayer:r2.4.1'
 }
