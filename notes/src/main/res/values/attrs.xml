@@ -68,4 +68,13 @@
         <attr name="expandLabelColor" format="color"/>
         <attr name="collapseLabelColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="RoundBackgroundLayout">
+        <attr name="color" format="color"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="type" format="enum">
+            <enum name="round" value="1"/>
+            <enum name="rect" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

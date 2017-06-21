@@ -5,8 +5,6 @@ package com.wuzhanglao.niubi.base.mvp;
  * website:www.wuzhanglao.com.
  */
 
-import android.app.Activity;
-
 import com.wuzhanglao.niubi.base.BaseActivity;
 
 public abstract class BaseMvpView<CB extends BaseMvpViewCallback> {
@@ -18,7 +16,7 @@ public abstract class BaseMvpView<CB extends BaseMvpViewCallback> {
 		mActivity = activity;
 	}
 
-	public Activity getActivity() {
+	public BaseActivity getActivity() {
 		return mActivity;
 	}
 

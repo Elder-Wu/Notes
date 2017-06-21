@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-    <!--App主题-->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    <!--App默认主题-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+    <style name="AppTheme.TranslucentStatus" parent="AppTheme"/>
+
+    <style name="AppTheme.Splash" parent="AppTheme.TranslucentStatus">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
     <style name="AppTheme.Fullscreen" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
-    </style>
-
-    <style name="AppTheme.Splash" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
     <!--弹窗主题-->

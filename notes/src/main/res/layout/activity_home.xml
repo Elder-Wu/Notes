@@ -12,21 +12,21 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/activity_main_toolbar"
+            android:id="@+id/toolbar"
             layout="@layout/layout_toolbar_default"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
-            android:background="@android:color/holo_green_light"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/activity_main_toolbar"/>
+            android:layout_below="@+id/toolbar"
+            android:background="@android:color/holo_green_light"/>
 
         <FrameLayout
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/activity_main_toolbar"/>
+            android:layout_below="@+id/toolbar"/>
     </RelativeLayout>
 
     <!--展开之后的布局-->

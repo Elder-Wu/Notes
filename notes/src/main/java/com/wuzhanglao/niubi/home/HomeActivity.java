@@ -1,29 +1,31 @@
 package com.wuzhanglao.niubi.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.WindowManager;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
+import com.wuzhanglao.niubi.base.DefaultToolbar;
 import com.wuzhanglao.niubi.utils.ToastUtil;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomeActivity extends BaseActivity {
 
-	private HomeView mView;
 	private HomePresenter mPresenter;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		initTranslucentStatusBar();
-		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		mView = new HomeView(this);
+
+		DefaultToolbar toolbar = new DefaultToolbar(this);
+		toolbar.setTitle("主界面");
+		toolbar.hideBackIcon();
+
 		mPresenter = new HomePresenter();
-		mPresenter.setView(mView);
+		mPresenter.setView(new HomeView(this));
 		mPresenter.setModel(new HomeModel());
 		mPresenter.attach();
 	}
@@ -35,12 +37,16 @@ public class HomeActivity extends BaseActivity {
 			return;
 		}
 		super.onBackPressed();
-//		mView.hideBackButton();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		mPresenter.detach();
+	}
+
+	public static void launch(Activity activity) {
+		Intent intent = new Intent(activity, HomeActivity.class);
+		activity.startActivity(intent);
 	}
 }

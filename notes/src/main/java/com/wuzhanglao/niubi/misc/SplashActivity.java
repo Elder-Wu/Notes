@@ -1,6 +1,5 @@
 package com.wuzhanglao.niubi.misc;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.wuzhanglao.niubi.base.BaseActivity;
@@ -18,20 +17,20 @@ import rx.schedulers.Schedulers;
  */
 
 public class SplashActivity extends BaseActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Observable.timer(2, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Long>() {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Observable.timer(1, TimeUnit.MICROSECONDS)
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(new Action1<Long>() {
 
-                    @Override
-                    public void call(Long aLong) {
-                        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                        finish();
-                    }
-                });
-    }
+					@Override
+					public void call(Long aLong) {
+						overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+						HomeActivity.launch(SplashActivity.this);
+						finish();
+					}
+				});
+	}
 }

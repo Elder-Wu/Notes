@@ -13,7 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
-import com.orhanobut.logger.Logger;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.base.BaseActivity;
@@ -22,6 +21,7 @@ import com.wuzhanglao.niubi.bean.TextBean;
 import com.wuzhanglao.niubi.misc.DemoActivity;
 import com.wuzhanglao.niubi.utils.NoteApplication;
 import com.wuzhanglao.niubi.view.ExoPlayerDemo;
+import com.wuzhanglao.niubi.view.PatternDemo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,90 +30,20 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 
 	private TextHolderAdatpter mAdapter;
 	private DrawerLayout mDrawerLayout;
-	//toolbar相关
-//	private TextView mToolbarTitle;
-//	private TextView mToolbarBack;
-//	private ImageView mToolbarProfile;
 
 	private FragmentManager mFragmentManager;
 
 	public HomeView(BaseActivity activity) {
 		super(activity);
-
-//		mToolbarTitle = (TextView) activity.findViewById(R.id.activity_main_toolbar_title_tv);
-//		mToolbarBack = (TextView) activity.findViewById(R.id.activity_main_toolbar_back_tv);
-//		mToolbarProfile = (ImageView) activity.findViewById(R.id.activity_main_toolbar_profile_iv);
-//
-//		mToolbarTitle.setText(getActivity().getString(R.string.main_title));
-//		mToolbarBack.setVisibility(View.GONE);
-//		mToolbarProfile.setVisibility(View.GONE);
-//		mToolbarBack.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (getCallback() != null) {
-//					getCallback().onBackBtnClick();
-//				}
-//			}
-//		});
-//		mToolbarProfile.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (UIUtils.isDoubleClick()) {
-//					return;
-//				}
-//				mDrawerLayout.openDrawer(GravityCompat.START);
-//			}
-//		});
-//		hideBackButton();
 		initData();
 		initView();
 		mFragmentManager = activity.getSupportFragmentManager();
 
-		Logger.d("测试Logger.d(d)");
-		Logger.d("message", "测试Logger.d(message,d)");
-
-		Logger.e("测试Logger.e(e)");
-		Logger.e("message", "测试Logger.e(message,e)");
-
-		Logger.t(1).d("测试Logger.d(d)");
-		Logger.t(2).d("测试Logger.d(d)");
-		Logger.t(3).d("测试Logger.d(d)");
-
-		Logger.init().hideThreadInfo().methodCount(0);
-
-		Logger.json("{\"name\":\"tom\",\"sex\":\"男\",\"age\":\"24\"}");
-		Logger.xml("<?xml version=\"1.0\"?>\n" +
-				"   <EMPLIST>\n" +
-				"     <EMP>\n" +
-				"      <ENAME>MARY</ENAME>\n" +
-				"     </EMP>\n" +
-				"     <EMP>\n" +
-				"      <ENAME>SCOTT</ENAME>\n" +
-				"     </EMP>\n" +
-				"   </EMPLIST>");
-
 	}
-
-//	public void showBackButton(String fragmentName) {
-//		mToolbarBack.setVisibility(View.VISIBLE);
-//		mToolbarProfile.setVisibility(View.GONE);
-//		mToolbarTitle.setText(fragmentName);
-//		if (mDrawerLayout != null) {
-//			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//		}
-//	}
-//
-//	public void hideBackButton() {
-//		mToolbarBack.setVisibility(View.GONE);
-//		mToolbarProfile.setVisibility(View.VISIBLE);
-//		mToolbarTitle.setText(getActivity().getString(R.string.main_title));
-//		if (mDrawerLayout != null) {
-//			mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
-//		}
-//	}
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
+		data.add(new TextBean("PatternDemo",""));
 		data.add(new TextBean("DemoActivity", "一个用来显示Demo的Activity"));
 		data.add(new TextBean("TimerView", "RecyclerView多类型布局"));
 		data.add(new TextBean("Glide transform", "..."));
@@ -149,7 +79,9 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 	public void onTextClick(TextBean bean) {
 		getCallback().onItemClick(bean.getTitle());
 		if (TextUtils.equals(bean.getTitle(), "DemoActivity")) {
-			DemoActivity.start(getActivity(), new ExoPlayerDemo(getActivity()));
+			DemoActivity.launch(getActivity(), new ExoPlayerDemo(getActivity()));
+		} else if(TextUtils.equals(bean.getTitle(),"PatternDemo")){
+			DemoActivity.launch(getActivity(), new PatternDemo(getActivity()));
 		}
 	}
 
@@ -158,7 +90,6 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 				.replace(R.id.main_container, fragment)
 				.addToBackStack(null)
 				.commitAllowingStateLoss();
-//		showBackButton(fragmentName);
 	}
 
 	public void openRxBus() {

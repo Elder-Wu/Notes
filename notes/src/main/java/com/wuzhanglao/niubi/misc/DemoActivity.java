@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
+import com.wuzhanglao.niubi.base.DefaultToolbar;
 
 /**
  * Created by ming.wu@shanbay.com on 2017/6/15.
@@ -19,9 +20,11 @@ public class DemoActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		initTranslucentStatusBar();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_demo);
+
+		DefaultToolbar toolbar = new DefaultToolbar(this);
+		toolbar.setTitle(sDemoView.getTitle());
 		((ViewGroup) findViewById(R.id.demo_activity_root)).addView(sDemoView.getView());
 	}
 
@@ -31,7 +34,7 @@ public class DemoActivity extends BaseActivity {
 		sDemoView = null;
 	}
 
-	public static void start(Activity activity, DemoView demoView) {
+	public static void launch(Activity activity, DemoView demoView) {
 		sDemoView = demoView;
 		Intent intent = new Intent(activity, DemoActivity.class);
 		activity.startActivity(intent);
@@ -39,8 +42,8 @@ public class DemoActivity extends BaseActivity {
 
 	public interface DemoView {
 
-		String getTitle();
-
 		View getView();
+
+		String getTitle();
 	}
 }
