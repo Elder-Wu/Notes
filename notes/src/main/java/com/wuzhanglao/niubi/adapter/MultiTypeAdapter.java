@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Created by ming.wu@shanbay.com on 2017/4/27.
  */
-public class MultiTypeAdapter<T extends MultiTypeAdapter.Callback> extends RecyclerView.Adapter<MultiTypeAdapter.ViewHolder> {
+public abstract class MultiTypeAdapter<T extends MultiTypeAdapter.Callback> extends RecyclerView.Adapter<MultiTypeAdapter.ViewHolder> {
 
 	private T mCallback;
 	private List<Data> mDataList = new ArrayList<>();
@@ -59,6 +59,8 @@ public class MultiTypeAdapter<T extends MultiTypeAdapter.Callback> extends Recyc
 			e.printStackTrace();
 		}
 	}
+
+	protected abstract void registerItemType(int type);
 
 	@Override
 	public int getItemViewType(int position) {

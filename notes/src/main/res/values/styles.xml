@@ -4,9 +4,7 @@
     <!--App默认主题-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
 
-    <style name="AppTheme.TranslucentStatus" parent="AppTheme"/>
-
-    <style name="AppTheme.Splash" parent="AppTheme.TranslucentStatus">
+    <style name="AppTheme.Splash" parent="AppTheme">
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 

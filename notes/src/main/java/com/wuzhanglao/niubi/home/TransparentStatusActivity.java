@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
 
 /**
  * Created by ming.wu@shanbay.com on 2017/5/7.
  */
 
-public class TransparentStatusActivity extends BaseActivity {
+public abstract class TransparentStatusActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -25,9 +24,6 @@ public class TransparentStatusActivity extends BaseActivity {
 			//半透明状态栏(带阴影)
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
-
-		getWindow().setBackgroundDrawableResource(R.drawable.img1);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_translucent_status);
 	}
 }
