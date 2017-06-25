@@ -14,13 +14,13 @@
         android:text="播放"/>
 
 
-    <com.wuzhanglao.niubi.widget.RoundBackgroundLayout
+    <com.wuzhanglao.niubi.widget.RoundCornerLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:color="@color/red_111"
         android:fitsSystemWindows="true"
-        app:radius="4dp"
-        app:type="rect">
+        app:cornerRadius="4dp"
+        app:cornerType="rect">
 
         <TextView
             android:fitsSystemWindows="true"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="我是内容"/>
-    </com.wuzhanglao.niubi.widget.RoundBackgroundLayout>
+    </com.wuzhanglao.niubi.widget.RoundCornerLayout>
 
     <Button
         android:text="Test"

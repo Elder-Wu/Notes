@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.base.DefaultToolbar;
 import com.wuzhanglao.niubi.utils.ToastUtil;
 import com.wuzhanglao.niubi.utils.UIUtils;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends TransparentStatusActivity {
 
 	private HomePresenter mPresenter;
 

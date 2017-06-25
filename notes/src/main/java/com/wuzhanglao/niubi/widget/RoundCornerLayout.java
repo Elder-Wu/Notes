@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.utils.UIUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -21,7 +22,7 @@ import java.lang.annotation.RetentionPolicy;
  * Created by ming.wu@shanbay.com on 2017/6/12.
  */
 
-public class RoundBackgroundLayout extends FrameLayout {
+public class RoundCornerLayout extends FrameLayout {
 
 	public static final int ROUND = 1;
 	public static final int RECT = 2;
@@ -40,20 +41,20 @@ public class RoundBackgroundLayout extends FrameLayout {
 	private Paint mPaint = new Paint();
 
 	private int mBackgroundColor;
-	private int mBackgroundType;
-	private int mBackgroundRadius;
+	private int mCornerType;
+	private int mCornerRadius;
 
-	public RoundBackgroundLayout(@NonNull Context context) {
+	public RoundCornerLayout(@NonNull Context context) {
 		this(context, null);
 	}
 
-	public RoundBackgroundLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+	public RoundCornerLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 
-		TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.RoundBackgroundLayout);
-		mBackgroundColor = ta.getColor(R.styleable.RoundBackgroundLayout_color, DEFAULT_BACKGROUND_COLOR);
-		mBackgroundType = ta.getInt(R.styleable.RoundBackgroundLayout_type, DEFAULT_BACKGROUND_TYPE);
-		mBackgroundRadius = ta.getDimensionPixelSize(R.styleable.RoundBackgroundLayout_radius, DEFAULT_BACKGROUND_RADIUS);
+		TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.RoundCornerLayout);
+		mBackgroundColor = ta.getColor(R.styleable.RoundCornerLayout_viewColor, DEFAULT_BACKGROUND_COLOR);
+		mCornerType = ta.getInt(R.styleable.RoundCornerLayout_cornerType, DEFAULT_BACKGROUND_TYPE);
+		mCornerRadius = ta.getDimensionPixelSize(R.styleable.RoundCornerLayout_cornerRadius, DEFAULT_BACKGROUND_RADIUS);
 		ta.recycle();
 
 		mPaint = new Paint();
@@ -72,7 +73,17 @@ public class RoundBackgroundLayout extends FrameLayout {
 		rectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
 	}
 
-	public void setColor(int color) {
+	public void setCornerType(@TYPE int cornerType) {
+		mCornerType = cornerType;
+		invalidate();
+	}
+
+	public void setCornerRadius(int dip) {
+		mCornerRadius = UIUtils.dp2px(dip).intValue();
+		invalidate();
+	}
+
+	public void setViewColor(int color) {
 		mBackgroundColor = color;
 		mPaint.setColor(mBackgroundColor);
 		invalidate();
@@ -81,12 +92,12 @@ public class RoundBackgroundLayout extends FrameLayout {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		float radius = 0;
-		switch (mBackgroundType) {
+		switch (mCornerType) {
 			case ROUND:
 				radius = rectF.height() / 2.0f;
 				break;
 			case RECT:
-				radius = mBackgroundRadius;
+				radius = mCornerRadius;
 				break;
 		}
 		canvas.drawRoundRect(rectF, radius, radius, mPaint);

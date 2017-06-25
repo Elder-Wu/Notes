@@ -14,12 +14,14 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.wuzhanglao.niubi.R;
+import com.wuzhanglao.niubi.adapter.SubMultiTypeAdapter;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.base.mvp.BaseMvpView;
 import com.wuzhanglao.niubi.bean.TextBean;
 import com.wuzhanglao.niubi.misc.DemoActivity;
 import com.wuzhanglao.niubi.utils.NoteApplication;
+import com.wuzhanglao.niubi.utils.ToastUtil;
 import com.wuzhanglao.niubi.view.ExoPlayerDemo;
 import com.wuzhanglao.niubi.view.PatternDemo;
 
@@ -43,7 +45,7 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 
 	protected void initData() {
 		List<TextBean> data = new ArrayList<>();
-		data.add(new TextBean("PatternDemo",""));
+		data.add(new TextBean("PatternDemo", ""));
 		data.add(new TextBean("DemoActivity", "一个用来显示Demo的Activity"));
 		data.add(new TextBean("TimerView", "RecyclerView多类型布局"));
 		data.add(new TextBean("Glide transform", "..."));
@@ -80,7 +82,7 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 		getCallback().onItemClick(bean.getTitle());
 		if (TextUtils.equals(bean.getTitle(), "DemoActivity")) {
 			DemoActivity.launch(getActivity(), new ExoPlayerDemo(getActivity()));
-		} else if(TextUtils.equals(bean.getTitle(),"PatternDemo")){
+		} else if (TextUtils.equals(bean.getTitle(), "PatternDemo")) {
 			DemoActivity.launch(getActivity(), new PatternDemo(getActivity()));
 		}
 	}
@@ -94,5 +96,17 @@ public class HomeView extends BaseMvpView<HomeCallback> implements TextHolderAda
 
 	public void openRxBus() {
 		getActivity().startActivity(new Intent(NoteApplication.getInstance(), TransparentStatusActivity.class));
+	}
+
+	private SubMultiTypeAdapter mSubMultiTypeAdapter;
+
+	private void initAdatper() {
+		mSubMultiTypeAdapter = new SubMultiTypeAdapter(getActivity());
+		mSubMultiTypeAdapter.setCallback(new SubMultiTypeAdapter.Callback() {
+			@Override
+			public void onAction() {
+				ToastUtil.showInfo(getActivity(), "do action");
+			}
+		});
 	}
 }

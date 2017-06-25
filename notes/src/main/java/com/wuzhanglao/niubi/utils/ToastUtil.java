@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.util.TypedValue;
-import android.view.View;
+import android.view.Gravity;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,56 +19,82 @@ import android.widget.Toast;
 
 public class ToastUtil {
 
-    public static void showInfo(Context context,String msg) {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-//            Toasty.Config.getInstance().setInfoColor(Color.parseColor("#CAE1FF")).apply();
-//            Toasty.info(NoteApplication.getInstance(), msg, 2).show();
+	public static void showError(Context context, String msg) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			return;
+		}
+		ToastView toastView = new ToastView(context, msg);
+		toastView.setColor(Color.RED);
+		Toast toast = new Toast(context);
+		toast.setView(toastView);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.show();
+	}
 
-            Toast toast = new Toast(context);
-            toast.setView(new ToastView(context, msg));
-            toast.setDuration(Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
+	public static void showWarn(Context context, String msg) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			return;
+		}
+		ToastView toastView = new ToastView(context, msg);
+		toastView.setColor(Color.YELLOW);
+		Toast toast = new Toast(context);
+		toast.setView(toastView);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.show();
+	}
 
-    private static class ToastView extends View {
+	public static void showInfo(Context context, String msg) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			return;
+		}
+		Toast toast = new Toast(context);
+		toast.setView(new ToastView(context, msg));
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.show();
+	}
 
-        private String msg;
-        private Rect mTextBounds = new Rect();
-        private RectF mRectF = new RectF();
-        private Paint mPaint = new Paint();
+	private static class ToastView extends FrameLayout {
 
-        public ToastView(Context context, String msg) {
-            super(context);
-            this.msg = msg;
-            mPaint.setAntiAlias(true);
-            mPaint.setDither(true);
-            mPaint.setTextAlign(Paint.Align.CENTER);
-            mPaint.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, NoteApplication.getInstance().getResources().getDisplayMetrics()));
+		private TextView mTextView;
+		private float mRadius;
+		private RectF mRectF = new RectF();
+		private Paint mPaint = new Paint();
 
-            mPaint.getTextBounds(msg, 0, msg.length(), mTextBounds);
-        }
+		public ToastView(@NonNull Context context, CharSequence msg) {
+			super(context);
+			mPaint = new Paint();
+			mPaint.setDither(true);
+			mPaint.setAntiAlias(true);
+			mPaint.setStrokeWidth(0);
+			mPaint.setStyle(Paint.Style.FILL);
+			mPaint.setColor(Color.LTGRAY);
 
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            widthMeasureSpec = MeasureSpec.makeMeasureSpec(mTextBounds.width() + Math.round(UIUtils.dp2px(20)), MeasureSpec.EXACTLY);
-            Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(mTextBounds.height() + Math.round(fontMetrics.top - fontMetrics.ascent) + UIUtils.dp2px(10).intValue(), MeasureSpec.EXACTLY);
-            setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
-        }
+			mTextView = new TextView(context);
+			mTextView.setText(msg);
+			addView(mTextView);
+			FrameLayout.LayoutParams layoutParams = (LayoutParams) mTextView.getLayoutParams();
+			layoutParams.gravity = Gravity.CENTER;
+			mTextView.setLayoutParams(layoutParams);
 
-        @Override
-        protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-            mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        }
+			mRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+			setWillNotDraw(false);
+		}
 
-        @Override
-        protected void onDraw(Canvas canvas) {
-            mPaint.setColor(Color.LTGRAY);
-            canvas.drawRoundRect(mRectF, UIUtils.dp2px(6), UIUtils.dp2px(6), mPaint);
-            mPaint.setColor(Color.WHITE);
-            Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-            canvas.drawText(msg, getMeasuredWidth() / 2.0f, getMeasuredHeight(), mPaint);
-        }
-    }
+		@Override
+		protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+			super.onSizeChanged(w, h, oldw, oldh);
+			mRectF.set(0, 0, mTextView.getMeasuredWidth(), mTextView.getMeasuredHeight());
+		}
+
+		public void setColor(int color) {
+			mPaint.setColor(color);
+			invalidate();
+		}
+
+		@Override
+		protected void onDraw(Canvas canvas) {
+			canvas.drawRoundRect(mRectF, mRadius, mRadius, mPaint);
+			super.onDraw(canvas);
+		}
+	}
 }

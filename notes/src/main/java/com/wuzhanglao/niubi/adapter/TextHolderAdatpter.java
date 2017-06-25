@@ -14,7 +14,6 @@ import com.wuzhanglao.niubi.holder.TextHolder;
  */
 
 public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
-
     private TextHolderClickListener mListener;
 
     public TextHolderAdatpter(Context context) {
