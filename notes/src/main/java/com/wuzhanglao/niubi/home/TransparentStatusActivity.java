@@ -12,7 +12,8 @@ import com.wuzhanglao.niubi.base.BaseActivity;
  * Created by ming.wu@shanbay.com on 2017/5/7.
  */
 
-public abstract class TransparentStatusActivity extends BaseActivity {
+// TODO: 2017/6/25 这里是abstract
+public class TransparentStatusActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
