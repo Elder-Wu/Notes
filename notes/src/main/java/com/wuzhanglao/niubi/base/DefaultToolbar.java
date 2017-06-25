@@ -10,33 +10,50 @@ import com.wuzhanglao.niubi.R;
  * Created by ming.wu@shanbay.com on 2017/6/19.
  */
 
-public class DefaultToolbar implements View.OnClickListener{
-	private BaseActivity activity;
-	private TextView title;
-	private ImageView back;
+public class DefaultToolbar implements View.OnClickListener {
+	private BaseActivity mActivity;
+	private TextView mTvTitle;
+	private ImageView mIvBack;
+	private TextView mTvRightText;
+	private ImageView mIvRightIcon;
 
 	public DefaultToolbar(BaseActivity activity) {
-		this.activity = activity;
-		title = (TextView) activity.findViewById(R.id.default_toolbar_title);
-		back = (ImageView) activity.findViewById(R.id.default_toolbar_back);
+		mActivity = activity;
+		mTvTitle = (TextView) activity.findViewById(R.id.default_toolbar_title);
+		mIvBack = (ImageView) activity.findViewById(R.id.default_toolbar_back);
+		mTvRightText = (TextView) activity.findViewById(R.id.default_toolbar_right_text);
+		mIvRightIcon = (ImageView) activity.findViewById(R.id.default_toolbar_right_icon);
 
-		back.setOnClickListener(this);
+		mIvBack.setOnClickListener(this);
 	}
 
-	public void setTitle(CharSequence title) {
-		this.title.setText(title);
+	public void setmTvTitle(CharSequence mTvTitle) {
+		this.mTvTitle.setText(mTvTitle);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.default_toolbar_back:
-				activity.onBackPressed();
+				mActivity.onBackPressed();
 				break;
 		}
 	}
 
 	public void hideBackIcon() {
-		back.setVisibility(View.GONE);
+		mIvBack.setVisibility(View.GONE);
+	}
+
+	public void showRightIcon(View.OnClickListener listener) {
+		mIvRightIcon.setOnClickListener(listener);
+		mIvRightIcon.setVisibility(View.VISIBLE);
+		mTvRightText.setVisibility(View.GONE);
+	}
+
+	public void showRightText(String text, View.OnClickListener listener) {
+		mIvRightIcon.setVisibility(View.GONE);
+		mTvRightText.setText(text);
+		mTvRightText.setOnClickListener(listener);
+		mTvRightText.setVisibility(View.VISIBLE);
 	}
 }

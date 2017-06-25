@@ -45,13 +45,13 @@
     <declare-styleable name="HorizontalProgressView">
         <attr name="progress" format="integer"/>
         <attr name="maxProgress" format="integer"/>
-        <attr name="foregroundColor" format="color"/>
-        <attr name="backgroundColor" format="color"/>
-        <attr name="foregroundType" format="enum">
+        <attr name="foregroundProgressColor" format="color"/>
+        <attr name="backgroundProgressColor" format="color"/>
+        <attr name="foregroundProgressType" format="enum">
             <enum name="rect" value="0"/>
             <enum name="round" value="1"/>
         </attr>
-        <attr name="backgroundType" format="enum">
+        <attr name="backgroundProgressType" format="enum">
             <enum name="rect" value="0"/>
             <enum name="round" value="1"/>
         </attr>

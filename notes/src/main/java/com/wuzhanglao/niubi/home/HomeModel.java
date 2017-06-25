@@ -5,7 +5,5 @@ package com.wuzhanglao.niubi.home;
  * website:www.wuzhanglao.com
  */
 
-import com.wuzhanglao.niubi.base.mvp.BaseMvpModel;
-
-public class HomeModel extends BaseMvpModel {
+public class HomeModel {
 }

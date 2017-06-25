@@ -12,6 +12,7 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomeActivity extends TransparentStatusActivity {
 
+	private HomeView mView;
 	private HomePresenter mPresenter;
 
 	@Override
@@ -20,19 +21,20 @@ public class HomeActivity extends TransparentStatusActivity {
 		setContentView(R.layout.activity_home);
 
 		DefaultToolbar toolbar = new DefaultToolbar(this);
-		toolbar.setTitle("主界面");
+		toolbar.setmTvTitle("主界面");
 		toolbar.hideBackIcon();
 
+		mView = new HomeView(this);
 		mPresenter = new HomePresenter();
-		mPresenter.setView(new HomeView(this));
-		mPresenter.setModel(new HomeModel());
+		mPresenter.setView(mView);
 		mPresenter.attach();
+		mPresenter.init();
 	}
 
 	@Override
 	public void onBackPressed() {
 		if (!UIUtils.isDoubleClick(2000)) {
-			ToastUtil.showInfo(this, "再按一次退出");
+			ToastUtil.showInfo("双击退出");
 			return;
 		}
 		super.onBackPressed();

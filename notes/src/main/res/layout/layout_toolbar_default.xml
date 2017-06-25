@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#CAE1FF"
+    android:clipToPadding="false"
     android:elevation="2dp"
     android:fitsSystemWindows="true"
     tools:targetApi="lollipop">
@@ -28,26 +29,33 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
+            android:ellipsize="end"
             android:gravity="center"
-            android:text="标题"
+            android:lines="1"
+            android:text="标题标题标题标题标题标题标题"
             android:textColor="@color/white"
             android:textSize="22dp"/>
 
         <FrameLayout
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:paddingRight="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
 
             <TextView
+                android:textSize="15dp"
+                android:id="@+id/default_toolbar_right_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                tools:text="更多"/>
 
             <ImageView
-                android:paddingRight="8dp"
-                tools:src="@drawable/ic_toolbar_share_light"
+                android:id="@+id/default_toolbar_right_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_toolbar_share_light"
+                android:visibility="gone"/>
         </FrameLayout>
     </RelativeLayout>
 </FrameLayout>

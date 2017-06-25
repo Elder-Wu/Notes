@@ -19,36 +19,36 @@ import android.widget.Toast;
 
 public class ToastUtil {
 
-	public static void showError(Context context, String msg) {
+	public static void showError(String msg) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			return;
 		}
-		ToastView toastView = new ToastView(context, msg);
+		ToastView toastView = new ToastView(NoteApplication.getInstance(), msg);
 		toastView.setColor(Color.RED);
-		Toast toast = new Toast(context);
+		Toast toast = new Toast(NoteApplication.getInstance());
 		toast.setView(toastView);
 		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.show();
 	}
 
-	public static void showWarn(Context context, String msg) {
+	public static void showWarn(String msg) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			return;
 		}
-		ToastView toastView = new ToastView(context, msg);
+		ToastView toastView = new ToastView(NoteApplication.getInstance(), msg);
 		toastView.setColor(Color.YELLOW);
-		Toast toast = new Toast(context);
+		Toast toast = new Toast(NoteApplication.getInstance());
 		toast.setView(toastView);
 		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.show();
 	}
 
-	public static void showInfo(Context context, String msg) {
+	public static void showInfo(String msg) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			return;
 		}
-		Toast toast = new Toast(context);
-		toast.setView(new ToastView(context, msg));
+		Toast toast = new Toast(NoteApplication.getInstance());
+		toast.setView(new ToastView(NoteApplication.getInstance(), msg));
 		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.show();
 	}
@@ -67,14 +67,20 @@ public class ToastUtil {
 			mPaint.setAntiAlias(true);
 			mPaint.setStrokeWidth(0);
 			mPaint.setStyle(Paint.Style.FILL);
-			mPaint.setColor(Color.LTGRAY);
+			mPaint.setColor(Color.GRAY);
+			mPaint.setAlpha(230);
 
 			mTextView = new TextView(context);
 			mTextView.setText(msg);
+			mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 			addView(mTextView);
 			FrameLayout.LayoutParams layoutParams = (LayoutParams) mTextView.getLayoutParams();
 			layoutParams.gravity = Gravity.CENTER;
 			mTextView.setLayoutParams(layoutParams);
+			mTextView.setTextColor(Color.WHITE);
+			int padding_5_dp = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+			int padding_10_dp = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
+			mTextView.setPadding(padding_10_dp, padding_5_dp, padding_10_dp, padding_5_dp);
 
 			mRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
 			setWillNotDraw(false);

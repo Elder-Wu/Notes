@@ -6,5 +6,4 @@ package com.wuzhanglao.niubi.base.mvp;
  */
 
 public interface BaseMvpViewCallback {
-    void onItemClick(String title);
 }

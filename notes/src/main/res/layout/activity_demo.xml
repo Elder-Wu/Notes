@@ -1,62 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/demo_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="#CAE1FF"
-        android:elevation="2dp"
-        android:fitsSystemWindows="true"
-        tools:targetApi="lollipop">
-
-        <RelativeLayout
-            android:fitsSystemWindows="true"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <ImageView
-                android:id="@+id/default_toolbar_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="5dp"
-                android:src="@drawable/icon_toolbar_back_light"/>
-
-            <TextView
-                android:fitsSystemWindows="true"
-                android:id="@+id/default_toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:gravity="center"
-                android:text="标题"
-                android:textColor="@color/white"
-                android:textSize="22dp"/>
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="8dp"
-                    tools:src="@drawable/ic_toolbar_share_light"/>
-            </FrameLayout>
-        </RelativeLayout>
-    </FrameLayout>
-</RelativeLayout>
+    <include layout="@layout/layout_toolbar_default"/>
+</LinearLayout>

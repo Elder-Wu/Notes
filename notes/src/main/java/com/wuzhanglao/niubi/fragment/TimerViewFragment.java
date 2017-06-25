@@ -23,7 +23,7 @@ public class TimerViewFragment extends BaseFragment {
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_timer_view, container, false);
+		View rootView = inflater.inflate(R.layout.layout_demo_timer, container, false);
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
 		ViewCompat.setBackground(rootView, new RoundDrawable(bitmap));
 

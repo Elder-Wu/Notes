@@ -22,7 +22,7 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 		mRoot.findViewById(R.id.exo_player_demo_play).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ToastUtil.showInfo(activity, "播放音频");
+				ToastUtil.showInfo("播放音频");
 			}
 		});
 	}
@@ -117,7 +117,7 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 
 	@Override
 	public String getTitle() {
-		return getClass().getSimpleName();
+		return getClass().getSimpleName()+getClass().getSimpleName()+getClass().getSimpleName()+getClass().getSimpleName();
 	}
 
 	@Override

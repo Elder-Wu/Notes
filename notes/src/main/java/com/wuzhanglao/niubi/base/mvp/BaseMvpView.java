@@ -1,9 +1,4 @@
 package com.wuzhanglao.niubi.base.mvp;
-/*
- * date:2017/3/1.
- * author:wuzhanglao.
- * website:www.wuzhanglao.com.
- */
 
 import com.wuzhanglao.niubi.base.BaseActivity;
 
@@ -16,7 +11,7 @@ public abstract class BaseMvpView<CB extends BaseMvpViewCallback> {
 		mActivity = activity;
 	}
 
-	public BaseActivity getActivity() {
+	protected BaseActivity getActivity() {
 		return mActivity;
 	}
 
@@ -24,7 +19,7 @@ public abstract class BaseMvpView<CB extends BaseMvpViewCallback> {
 		mCallback = callback;
 	}
 
-	public CB getCallback() {
+	protected CB getCallback() {
 		return mCallback;
 	}
 }

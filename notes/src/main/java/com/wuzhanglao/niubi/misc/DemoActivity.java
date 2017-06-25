@@ -7,14 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
-import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.base.DefaultToolbar;
+import com.wuzhanglao.niubi.home.TransparentStatusActivity;
+import com.wuzhanglao.niubi.utils.ToastUtil;
 
 /**
  * Created by ming.wu@shanbay.com on 2017/6/15.
  */
 
-public class DemoActivity extends BaseActivity {
+public class DemoActivity extends TransparentStatusActivity {
 
 	private static DemoView sDemoView;
 
@@ -24,7 +25,13 @@ public class DemoActivity extends BaseActivity {
 		setContentView(R.layout.activity_demo);
 
 		DefaultToolbar toolbar = new DefaultToolbar(this);
-		toolbar.setTitle(sDemoView.getTitle());
+		toolbar.setmTvTitle(sDemoView.getTitle());
+		toolbar.showRightIcon(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ToastUtil.showInfo("分享");
+			}
+		});
 		((ViewGroup) findViewById(R.id.demo_activity_root)).addView(sDemoView.getView());
 	}
 

@@ -38,7 +38,7 @@ public class HorizontalProgressView extends View {
 	private static final int DEFAULT_MAX_PROGRESS = 100;
 	private static final int DEFAULT_FOREGROUND_TYPE = RECT;
 	private static final int DEFAULT_BACKGROUND_TYPE = RECT;
-	private static final int DEFAULT_FOREGROUND_COLOR = Color.BLUE;
+	private static final int DEFAULT_FOREGROUND_COLOR = Color.RED;
 	private static final int DEFAULT_BACKGROUND_COLOR = Color.LTGRAY;
 
 	private float mProgress;
@@ -62,10 +62,10 @@ public class HorizontalProgressView extends View {
 		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.HorizontalProgressView);
 		mProgress = ta.getInteger(R.styleable.HorizontalProgressView_progress, DEFAULT_PROGRESS);
 		mMaxProgress = ta.getInteger(R.styleable.HorizontalProgressView_maxProgress, DEFAULT_MAX_PROGRESS);
-		mForegroundType = ta.getInteger(R.styleable.HorizontalProgressView_foregroundType, DEFAULT_FOREGROUND_TYPE);
-		mBackgroundType = ta.getInteger(R.styleable.HorizontalProgressView_backgroundType, DEFAULT_BACKGROUND_TYPE);
-		mForegroundColor = ta.getInteger(R.styleable.HorizontalProgressView_foregroundColor, DEFAULT_FOREGROUND_COLOR);
-		mBackgroundColor = ta.getInteger(R.styleable.HorizontalProgressView_backgroundColor, DEFAULT_BACKGROUND_COLOR);
+		mForegroundType = ta.getInteger(R.styleable.HorizontalProgressView_foregroundProgressType, DEFAULT_FOREGROUND_TYPE);
+		mBackgroundType = ta.getInteger(R.styleable.HorizontalProgressView_backgroundProgressType, DEFAULT_BACKGROUND_TYPE);
+		mForegroundColor = ta.getInteger(R.styleable.HorizontalProgressView_foregroundProgressColor, DEFAULT_FOREGROUND_COLOR);
+		mBackgroundColor = ta.getInteger(R.styleable.HorizontalProgressView_backgroundProgressColor, DEFAULT_BACKGROUND_COLOR);
 		ta.recycle();
 
 		mPaint = new Paint();
@@ -141,22 +141,22 @@ public class HorizontalProgressView extends View {
 		return Float.valueOf(mMaxProgress).intValue();
 	}
 
-	public void setProgressForegroundColor(int color) {
+	public void setForegroundProgressColor(int color) {
 		mForegroundColor = color;
 		invalidate();
 	}
 
-	public void setProgressBackgroundColor(int color) {
+	public void setBackgroundProgressColor(int color) {
 		mBackgroundColor = color;
 		invalidate();
 	}
 
-	public void setBackgroundType(@Type int type) {
+	public void setBackgroundProgressType(@Type int type) {
 		mBackgroundType = type;
 		invalidate();
 	}
 
-	public void setForegroundType(@Type int type) {
+	public void setForegroundProgressType(@Type int type) {
 		mForegroundType = type;
 		invalidate();
 	}

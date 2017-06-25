@@ -32,7 +32,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
-        app:backgroundType="round"
-        app:foregroundType="round"
+        app:backgroundProgressType="round"
+        app:foregroundProgressType="round"
+        app:maxProgress="100"
         app:progress="20"/>
 </LinearLayout>

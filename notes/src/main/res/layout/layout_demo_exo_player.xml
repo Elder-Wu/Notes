@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <Button
-        android:fitsSystemWindows="true"
         android:id="@+id/exo_player_demo_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,12 +17,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:color="@color/red_111"
-        android:fitsSystemWindows="true"
         app:cornerRadius="4dp"
         app:cornerType="rect">
 
         <TextView
-            android:fitsSystemWindows="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -32,7 +29,6 @@
 
     <Button
         android:text="Test"
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
