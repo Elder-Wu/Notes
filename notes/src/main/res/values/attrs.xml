@@ -70,7 +70,7 @@
     </declare-styleable>
 
     <declare-styleable name="RoundCornerLayout">
-        <attr name="viewColor" format="color"/>
+        <attr name="cornerColor" format="color"/>
         <attr name="cornerRadius" format="dimension"/>
         <attr name="cornerType" format="enum">
             <enum name="round" value="1"/>

@@ -56,7 +56,7 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
         @Override
         public void onClick(View v) {
             if (mListener != null) {
-                mListener.onTextClick(getItem(position));
+                mListener.onTextClick(position);
             }
         }
     }
@@ -66,6 +66,6 @@ public class TextHolderAdatpter extends BaseAdapter<TextHolder, TextBean> {
     }
 
     public interface TextHolderClickListener {
-        void onTextClick(TextBean bean);
+        void onTextClick(int position);
     }
 }

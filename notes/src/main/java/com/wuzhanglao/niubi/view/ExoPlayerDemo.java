@@ -6,7 +6,6 @@ import android.view.View;
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.base.BaseActivity;
 import com.wuzhanglao.niubi.misc.DemoActivity;
-import com.wuzhanglao.niubi.utils.ToastUtil;
 
 /**
  * Created by ming.wu@shanbay.com on 2017/6/15.
@@ -19,12 +18,6 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 
 	public ExoPlayerDemo(final Activity activity) {
 		mRoot = activity.getLayoutInflater().inflate(R.layout.layout_demo_exo_player, null);
-		mRoot.findViewById(R.id.exo_player_demo_play).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ToastUtil.showInfo("播放音频");
-			}
-		});
 	}
 
 	/*private void initializePlayer() {
@@ -117,7 +110,7 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 
 	@Override
 	public String getTitle() {
-		return getClass().getSimpleName()+getClass().getSimpleName()+getClass().getSimpleName()+getClass().getSimpleName();
+		return getClass().getSimpleName() + getClass().getSimpleName() + getClass().getSimpleName() + getClass().getSimpleName();
 	}
 
 	@Override

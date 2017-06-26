@@ -12,7 +12,6 @@ import com.wuzhanglao.niubi.utils.UIUtils;
 
 public class HomeActivity extends TransparentStatusActivity {
 
-	private HomeView mView;
 	private HomePresenter mPresenter;
 
 	@Override
@@ -24,9 +23,8 @@ public class HomeActivity extends TransparentStatusActivity {
 		toolbar.setmTvTitle("主界面");
 		toolbar.hideBackIcon();
 
-		mView = new HomeView(this);
 		mPresenter = new HomePresenter();
-		mPresenter.setView(mView);
+		mPresenter.setView(new HomeView(this));
 		mPresenter.attach();
 		mPresenter.init();
 	}

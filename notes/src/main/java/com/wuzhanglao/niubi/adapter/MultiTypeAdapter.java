@@ -60,7 +60,8 @@ public abstract class MultiTypeAdapter<T extends MultiTypeAdapter.Callback> exte
 		}
 	}
 
-	protected abstract void registerItemType(int type);
+	protected abstract void registerItemType(
+			int type);
 
 	@Override
 	public int getItemViewType(int position) {

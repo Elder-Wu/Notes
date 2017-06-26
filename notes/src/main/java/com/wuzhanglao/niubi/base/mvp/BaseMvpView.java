@@ -2,7 +2,7 @@ package com.wuzhanglao.niubi.base.mvp;
 
 import com.wuzhanglao.niubi.base.BaseActivity;
 
-public abstract class BaseMvpView<CB extends BaseMvpViewCallback> {
+public abstract class BaseMvpView<CB> {
 
 	private BaseActivity mActivity;
 	private CB mCallback;

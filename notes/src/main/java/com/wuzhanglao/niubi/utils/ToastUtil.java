@@ -31,18 +31,6 @@ public class ToastUtil {
 		toast.show();
 	}
 
-	public static void showWarn(String msg) {
-		if (Looper.myLooper() != Looper.getMainLooper()) {
-			return;
-		}
-		ToastView toastView = new ToastView(NoteApplication.getInstance(), msg);
-		toastView.setColor(Color.YELLOW);
-		Toast toast = new Toast(NoteApplication.getInstance());
-		toast.setView(toastView);
-		toast.setDuration(Toast.LENGTH_SHORT);
-		toast.show();
-	}
-
 	public static void showInfo(String msg) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			return;

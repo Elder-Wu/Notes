@@ -48,7 +48,6 @@ public class DemoActivity extends TransparentStatusActivity {
 	}
 
 	public interface DemoView {
-
 		View getView();
 
 		String getTitle();

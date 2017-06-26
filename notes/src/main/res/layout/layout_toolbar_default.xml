@@ -27,27 +27,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginRight="46dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:lines="1"
-            android:text="标题标题标题标题标题标题标题"
+            android:maxLines="1"
+            android:text="标题"
             android:textColor="@color/white"
             android:textSize="22dp"/>
 
         <FrameLayout
-            android:paddingRight="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:paddingRight="8dp">
 
             <TextView
-                android:textSize="15dp"
                 android:id="@+id/default_toolbar_right_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:visibility="gone"
                 tools:text="更多"/>
 
             <ImageView
@@ -55,7 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_toolbar_share_light"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                tools:src="@drawable/ic_toolbar_share_light"
+                tools:visibility="visible"/>
         </FrameLayout>
     </RelativeLayout>
 </FrameLayout>

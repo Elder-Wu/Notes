@@ -2,29 +2,29 @@ package com.wuzhanglao.niubi.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 
 /*
  * Created by ming.wu@shanbay.com on 2017/1/25.
  */
-public class NotificationTip extends android.support.v7.widget.AppCompatTextView {
+public class NumberTipView extends android.support.v7.widget.AppCompatTextView {
 
-	private Paint paint = new Paint();
+	private Paint mPaint = new Paint();
 
-	public NotificationTip(Context context) {
+	public NumberTipView(Context context) {
 		this(context, null);
 	}
 
-	public NotificationTip(Context context, AttributeSet attrs) {
+	public NumberTipView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		paint.setDither(true);
-		paint.setAntiAlias(true);
-		paint.setFilterBitmap(true);
-		paint.setStyle(Paint.Style.FILL);
-		paint.setColor(ContextCompat.getColor(getContext(), android.R.color.holo_red_light));
+		mPaint.setDither(true);
+		mPaint.setAntiAlias(true);
+		mPaint.setFilterBitmap(true);
+		mPaint.setStyle(Paint.Style.FILL);
+		mPaint.setColor(Color.RED);
+		setTextColor(Color.WHITE);
 	}
 
 	@Override
@@ -42,12 +42,17 @@ public class NotificationTip extends android.support.v7.widget.AppCompatTextView
 		int width = getMeasuredWidth();
 		int height = getMeasuredHeight();
 		int min = Math.min(width, height);
-		canvas.drawCircle(width / 2, height / 2, min / 2, paint);
-		ViewCompat.setBackground(this, null);
+		canvas.drawCircle(width / 2, height / 2, min / 2, mPaint);
+		setBackground(null);
 		super.onDraw(canvas);
 	}
 
-	public void update(int num) {
+	public void setTipBackgroundColor(int color) {
+		mPaint.setColor(color);
+		invalidate();
+	}
+
+	public void render(int num) {
 		if (num >= 100) {
 			setText("99+");
 		} else {
