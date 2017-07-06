@@ -77,4 +77,13 @@
             <enum name="rect" value="2"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="cview_RoundCornerLayout">
+        <attr name="cview_roundCornerColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="cview_RectCornerLayout">
+        <attr name="cview_rectCornerColor" format="color"/>
+        <attr name="cview_rectCornerRadius" format="dimension"/>
+    </declare-styleable>
 </resources>

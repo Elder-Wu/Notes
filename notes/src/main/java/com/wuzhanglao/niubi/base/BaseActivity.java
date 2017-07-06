@@ -1,5 +1,7 @@
 package com.wuzhanglao.niubi.base;
 
+import android.os.Bundle;
+
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.umeng.analytics.MobclickAgent;
 
@@ -8,6 +10,11 @@ import com.umeng.analytics.MobclickAgent;
  */
 
 public abstract class BaseActivity extends RxAppCompatActivity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	protected void onResume() {
