@@ -1,9 +1,25 @@
-package com.wuzhanglao.niubi.widget;
-
-/*
- * Created by wuming on 2016/12/6.
- */
-
+//package com.wuzhanglao.niubi.widget;
+//
+///*
+// * Created by wuming on 2016/12/6.
+// */
+//
+//import android.content.Context;
+//import android.media.MediaPlayer;
+//import android.text.TextUtils;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.widget.ImageView;
+//import android.widget.RelativeLayout;
+//import android.widget.TextView;
+//import android.widget.ViewSwitcher;
+//
+//import com.wuzhanglao.niubi.R;
+//import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
+//
+//import java.io.IOException;
+//
 //public class TranslationDialog extends CommonDialog {
 //
 //    private static final String TAG = TranslationDialog.class.getSimpleName();

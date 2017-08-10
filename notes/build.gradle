@@ -104,7 +104,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     //友盟统计
-    compile 'com.umeng.analytics:analytics:latest.integration'
+//    compile 'com.umeng.analytics:analytics:latest.integration'
     //监听网络状态
     compile 'com.github.pwittchen:reactivenetwork:0.8.0'
     //leak-canary
