@@ -32,6 +32,7 @@ public class DemoActivity extends TransparentStatusActivity {
 				ToastUtil.showInfo("分享");
 			}
 		});
+
 		((ViewGroup) findViewById(R.id.demo_activity_root)).addView(sDemoView.getView());
 	}
 

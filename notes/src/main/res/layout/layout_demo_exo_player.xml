@@ -92,7 +92,7 @@
             <com.wuzhanglao.niubi.widget.NumberTipView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
+                android:padding="3dp"
                 android:text="99+"
                 android:textSize="8dp"
                 android:textStyle="bold"/>
@@ -101,10 +101,11 @@
 
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -145,8 +146,8 @@
             <com.wuzhanglao.niubi.widget.RoundCornerLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
                 app:cornerRadius="5dp"
                 app:cornerType="rect">
 
@@ -173,5 +174,42 @@
                     android:textColor="@color/white"/>
             </com.wuzhanglao.niubi.widget.RoundCornerLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.wuzhanglao.niubi.widget.RoundCornerLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="4dp"
+            app:cornerType="rect">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="这是圆角矩形边框"/>
+        </com.wuzhanglao.niubi.widget.RoundCornerLayout>
+
+        <com.wuzhanglao.niubi.widget.RoundCornerLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:cornerColor="@color/blue_afe"
+            app:cornerRadius="4dp"
+            app:cornerType="rect">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="这是圆角矩形边框"
+                android:textColor="@color/white"/>
+        </com.wuzhanglao.niubi.widget.RoundCornerLayout>
     </LinearLayout>
 </RelativeLayout>

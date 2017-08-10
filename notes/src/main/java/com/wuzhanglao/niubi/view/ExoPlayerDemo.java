@@ -20,6 +20,9 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 		mRoot = activity.getLayoutInflater().inflate(R.layout.layout_demo_exo_player, null);
 	}
 
+	{
+	}
+
 	/*private void initializePlayer() {
 		Intent intent = getIntent();
 		boolean needNewPlayer = player == null;
@@ -110,7 +113,7 @@ public class ExoPlayerDemo implements DemoActivity.DemoView {
 
 	@Override
 	public String getTitle() {
-		return getClass().getSimpleName() + getClass().getSimpleName() + getClass().getSimpleName() + getClass().getSimpleName();
+		return "RectCornerLayout";
 	}
 
 	@Override
