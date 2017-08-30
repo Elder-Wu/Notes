@@ -2,24 +2,24 @@ package com.wuzhanglao.niubi.base.mvp;
 
 import com.wuzhanglao.niubi.base.BaseActivity;
 
-public abstract class BaseMvpView<CB> {
+public abstract class BaseMvpView<T> {
 
-	private BaseActivity mActivity;
-	private CB mCallback;
+    private BaseActivity mActivity;
+    private T mCallback;
 
-	public BaseMvpView(BaseActivity activity) {
-		mActivity = activity;
-	}
+    public BaseMvpView(BaseActivity activity) {
+        mActivity = activity;
+    }
 
-	protected BaseActivity getActivity() {
-		return mActivity;
-	}
+    public BaseActivity getActivity() {
+        return mActivity;
+    }
 
-	public void setCallback(CB callback) {
-		mCallback = callback;
-	}
+    public void setCallback(T callback) {
+        mCallback = callback;
+    }
 
-	protected CB getCallback() {
-		return mCallback;
-	}
+    public T getCallback() {
+        return mCallback;
+    }
 }

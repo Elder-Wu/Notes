@@ -30,11 +30,6 @@
         </activity>
 
         <activity
-            android:name=".home.TransparentStatusActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
-        <activity
             android:name=".misc.DemoActivity"
             android:screenOrientation="portrait"/>
 

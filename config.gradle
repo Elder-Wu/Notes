@@ -1,0 +1,9 @@
+ext{
+    android = [
+            buildToolsVersion = 1,
+    ]
+
+    dependencies = [
+
+    ]
+}

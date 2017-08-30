@@ -21,14 +21,14 @@ import com.wuzhanglao.niubi.view.ExoPlayerDemo;
 
 import java.util.List;
 
-public class HomeView extends BaseMvpView<HomeView.Callback> {
+public class HomeMvpView extends BaseMvpView<HomeMvpView.Callback> {
 
 	private TextHolderAdatpter mAdapter;
 	private DrawerLayout mDrawerLayout;
 
 	private FragmentManager mFragmentManager;
 
-	public HomeView(BaseActivity activity) {
+	public HomeMvpView(BaseActivity activity) {
 		super(activity);
 		mDrawerLayout = (DrawerLayout) getActivity().findViewById(R.id.activity_main_drawer);
 		mFragmentManager = activity.getSupportFragmentManager();
