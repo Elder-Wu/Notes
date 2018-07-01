@@ -16,7 +16,7 @@
 //import android.widget.ViewSwitcher;
 //
 //import com.wuzhanglao.niubi.R;
-//import com.wuzhanglao.niubi.mvp.model.ShanbayResp;
+//import com.wuzhanglao.mvp.model.ShanbayResp;
 //
 //import java.io.IOException;
 //

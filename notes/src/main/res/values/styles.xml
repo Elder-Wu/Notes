@@ -12,19 +12,4 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!--弹窗主题-->
-    <style name="IosBottomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-
-    <!-- 弹窗动画 由下至上 -->
-    <style name="ios_bottom_dialog_anim" parent="@android:style/Animation.Dialog">
-        <item name="@android:windowEnterAnimation">@anim/ios_dialog_enter</item>
-        <!-- 进入时的动画 -->
-        <item name="@android:windowExitAnimation">@anim/ios_dialog_exit</item>
-        <!-- 退出时的动画 -->
-    </style>
 </resources>

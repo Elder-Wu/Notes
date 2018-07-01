@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.wuzhanglao.niubi.R;
 import com.wuzhanglao.niubi.holder.ImageHolder;
-import com.wuzhanglao.niubi.utils.ImageUtil;
 
 /*
  * Created by wuming on 2016/12/3.
@@ -26,7 +25,6 @@ public class ImageHolderAdapter extends BaseAdapter<ImageHolder, String> {
     @Override
     protected void onBindHolder(ImageHolder holder, int position_in_data) {
         final String url = getItem(position_in_data);
-        ImageUtil.loadImage(url, holder.image_iv);
         if (position_in_data == getItemCount() - 1) {
             holder.line.setVisibility(View.GONE);
         } else {

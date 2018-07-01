@@ -111,7 +111,7 @@ taobaoHeadline.setHeadlineClickListener(new TaobaoHeadline.HeadlineClickListener
 使用方法
 ```
 _布局文件中使用_
-<com.wuzhanglao.niubi.widget.CountDownView
+<com.wuzhanglao.widget.CountDownView
     android:id="@+id/fragment_count_down"
     android:layout_width="50dp"
     android:layout_height="50dp"
@@ -150,7 +150,7 @@ countDownView.start();
 使用方法
 ```
 _布局中使用_
-<com.wuzhanglao.niubi.widget.ApproveListLayout
+<com.wuzhanglao.widget.ApproveListLayout
     android:id="@+id/approve_list_layout"
     android:layout_width="match_parent"
     android:layout_height="50dp" />
@@ -177,7 +177,7 @@ approveListLayout.updateApproveList(approveList);
 
 使用方法：直接将DragLayout包裹在你想要悬浮的控件外面就好了，任何控件都阔以
 ```
-<com.wuzhanglao.niubi.widget.FloatViewLayout
+<com.wuzhanglao.widget.FloatViewLayout
     android:id="@+id/fragment_drag_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -189,7 +189,7 @@ approveListLayout.updateApproveList(approveList);
         android:padding="20dp"
         android:text="我是一个可以拖动的View"
         android:textColor="@color/white" />
-    <com.wuzhanglao.niubi.widget.CircleImageView
+    <com.wuzhanglao.widget.CircleImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="80dp"
@@ -200,11 +200,11 @@ approveListLayout.updateApproveList(approveList);
         android:layout_marginTop="140dp"
         android:scaleType="centerCrop"
         android:src="@drawable/demo" />
-    <com.wuzhanglao.niubi.widget.CustomClock
+    <com.wuzhanglao.widget.CustomClock
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="200dp" />
-</com.wuzhanglao.niubi.widget.FloatViewLayout>
+</com.wuzhanglao.widget.FloatViewLayout>
 ```
 ****
 <h3 id="guaguaka">刮刮卡</h3>
@@ -217,7 +217,7 @@ approveListLayout.updateApproveList(approveList);
 
 使用方法
 ```
-<com.wuzhanglao.niubi.widget.GuaGuaKa
+<com.wuzhanglao.widget.GuaGuaKa
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 ```
@@ -254,7 +254,7 @@ private ImageView getImageView(int resId) {
 
 使用方法
 ```
-<com.wuzhanglao.niubi.widget.BezierView
+<com.wuzhanglao.widget.BezierView
     android:layout_width="100dp"
     android:layout_height="match_parent"
     android:layout_alignParentRight="true"

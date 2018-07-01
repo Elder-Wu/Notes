@@ -1,12 +1,6 @@
 *.iml
-.gradle
+.gradle/
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-/.idea/misc.xml
-/.idea/modules.xml
+.idea/
 .DS_Store
 /build
-/captures
-/gradle.properties
-freeline*

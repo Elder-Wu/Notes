@@ -3,16 +3,13 @@ package com.wuzhanglao.niubi.home;
 import com.wuzhanglao.niubi.adapter.TextHolderAdatpter;
 import com.wuzhanglao.niubi.base.mvp.BaseMvpPresenter;
 import com.wuzhanglao.niubi.bean.TextBean;
-import com.wuzhanglao.niubi.fragment.AnimFragment;
 import com.wuzhanglao.niubi.fragment.ApproveListFragment;
 import com.wuzhanglao.niubi.fragment.BannerFragment;
 import com.wuzhanglao.niubi.fragment.BezierFragment;
 import com.wuzhanglao.niubi.fragment.BottomBarFragment;
 import com.wuzhanglao.niubi.fragment.CountDownFragment;
 import com.wuzhanglao.niubi.fragment.FloatViewFragment;
-import com.wuzhanglao.niubi.fragment.GlideFragment;
 import com.wuzhanglao.niubi.fragment.GuaGuaKaFragment;
-import com.wuzhanglao.niubi.fragment.IosBottomDialogFragment;
 import com.wuzhanglao.niubi.fragment.LoadImageFragment;
 import com.wuzhanglao.niubi.fragment.NetworkFragment;
 import com.wuzhanglao.niubi.fragment.TBHeadlineFragment;
@@ -32,22 +29,12 @@ public class HomeMvpPresenter extends BaseMvpPresenter<HomeMvpView,HomeMvpModel>
     }
 
     private void onItemClick(int position) {
-        getView().startDemoActivity();
         String title = mViewList.get(position).getTitle();
         switch (title) {
             case "DemoActivity":
                 break;
-            case "Glide transform":
-                getView().openFragment(new GlideFragment(), title);
-                break;
             case "显示未读消息数控件":
                 getView().openFragment(new BottomBarFragment(), title);
-                break;
-            case "仿ios底部弹出对话框":
-                getView().openFragment(new IosBottomDialogFragment(), title);
-                break;
-            case "Activity动画特效":
-                getView().openFragment(new AnimFragment(), title);
                 break;
             case "京东头条控件":
                 getView().openFragment(new TBHeadlineFragment(), title);
