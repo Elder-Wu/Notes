@@ -51,7 +51,7 @@ Create a repository for myself.Mainly record some of my study notes.
 <img src="https://github.com/Elder-Wu/filehub/blob/master/images/ios_bottom_dialog.gif?raw=true">&nbsp;&nbsp;<img src="https://github.com/Elder-Wu/filehub/blob/master/images/activity_anim1.gif?raw=true">
 
 使用方法
-```
+```java
 IosBottomDialog.Builder builder = new IosBottomDialog.Builder(context);
 //1个标题＋2个操作
 builder.setTitle("标题",Color.RED)
